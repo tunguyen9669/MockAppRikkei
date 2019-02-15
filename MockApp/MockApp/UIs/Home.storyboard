@@ -9,6 +9,11 @@
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="Roboto-Regular.ttf">
+            <string>Roboto-Regular</string>
+        </array>
+    </customFonts>
     <scenes>
         <!--Home View Controller-->
         <scene sceneID="tM0-6q-UqZ">
@@ -24,18 +29,90 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mt4-8P-zn9" customClass="SegmentView" customModule="MockApp" customModuleProvider="target">
+                                <rect key="frame" x="16" y="42" width="87" height="63"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="News" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EMS-Za-XXN">
+                                        <rect key="frame" x="22" y="21.5" width="43" height="20"/>
+                                        <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="17"/>
+                                        <color key="textColor" red="0.0039215686274509803" green="0.14117647058823529" blue="0.28235294117647058" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sQ7-eJ-cKA">
+                                        <rect key="frame" x="10" y="61" width="67" height="2"/>
+                                        <color key="backgroundColor" red="0.011764705882352941" green="0.066666666666666666" blue="0.14117647058823529" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="2" id="peN-ij-UIs"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="63" id="2T7-1T-BhL"/>
+                                    <constraint firstAttribute="width" constant="87" id="2xH-Ar-iEg"/>
+                                    <constraint firstItem="EMS-Za-XXN" firstAttribute="centerX" secondItem="mt4-8P-zn9" secondAttribute="centerX" id="874-yI-iaF"/>
+                                    <constraint firstItem="EMS-Za-XXN" firstAttribute="centerY" secondItem="mt4-8P-zn9" secondAttribute="centerY" id="FbX-XZ-F9h"/>
+                                    <constraint firstAttribute="trailing" secondItem="sQ7-eJ-cKA" secondAttribute="trailing" constant="10" id="Kzs-LQ-OPh"/>
+                                    <constraint firstAttribute="bottom" secondItem="sQ7-eJ-cKA" secondAttribute="bottom" id="SQ1-9T-ozJ"/>
+                                    <constraint firstItem="sQ7-eJ-cKA" firstAttribute="leading" secondItem="mt4-8P-zn9" secondAttribute="leading" constant="10" id="fwy-S8-q2K"/>
+                                </constraints>
+                                <connections>
+                                    <outlet property="selectedView" destination="sQ7-eJ-cKA" id="leT-Z5-Fix"/>
+                                    <outlet property="titleLabel" destination="EMS-Za-XXN" id="omy-Db-QjV"/>
+                                </connections>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1fe-3h-zWw" customClass="SegmentView" customModule="MockApp" customModuleProvider="target">
+                                <rect key="frame" x="103" y="42" width="87" height="63"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Popular" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZfF-Cl-IK6">
+                                        <rect key="frame" x="13.5" y="21.5" width="60" height="20"/>
+                                        <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="17"/>
+                                        <color key="textColor" red="0.94901960780000005" green="0.5450980392" blue="0.058823529409999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Lbr-Ww-2bg">
+                                        <rect key="frame" x="10" y="61" width="67" height="2"/>
+                                        <color key="backgroundColor" red="0.01176470588" green="0.066666666669999999" blue="0.14117647059999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="2" id="6br-aJ-IZR"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstItem="ZfF-Cl-IK6" firstAttribute="centerX" secondItem="1fe-3h-zWw" secondAttribute="centerX" id="4GT-Yj-iKN"/>
+                                    <constraint firstItem="ZfF-Cl-IK6" firstAttribute="centerY" secondItem="1fe-3h-zWw" secondAttribute="centerY" id="4bu-M6-HI1"/>
+                                    <constraint firstAttribute="trailing" secondItem="Lbr-Ww-2bg" secondAttribute="trailing" constant="10" id="6Rv-sV-iGY"/>
+                                    <constraint firstItem="Lbr-Ww-2bg" firstAttribute="leading" secondItem="1fe-3h-zWw" secondAttribute="leading" constant="10" id="ZE9-Md-r7G"/>
+                                    <constraint firstAttribute="bottom" secondItem="Lbr-Ww-2bg" secondAttribute="bottom" id="fKk-Qz-0rq"/>
+                                </constraints>
+                                <connections>
+                                    <outlet property="selectedView" destination="Lbr-Ww-2bg" id="3SN-rZ-65Q"/>
+                                    <outlet property="titleLabel" destination="ZfF-Cl-IK6" id="aOi-Ym-0v4"/>
+                                </connections>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="mt4-8P-zn9" firstAttribute="top" secondItem="dTC-HY-APA" secondAttribute="top" constant="22" id="1ef-cg-X4W"/>
+                            <constraint firstItem="1fe-3h-zWw" firstAttribute="height" secondItem="mt4-8P-zn9" secondAttribute="height" id="5is-a1-ifk"/>
                             <constraint firstItem="arR-PW-MCk" firstAttribute="centerX" secondItem="dTC-HY-APA" secondAttribute="centerX" id="LB8-q8-g5W"/>
                             <constraint firstItem="arR-PW-MCk" firstAttribute="centerY" secondItem="dTC-HY-APA" secondAttribute="centerY" id="VeI-tm-7nH"/>
+                            <constraint firstItem="1fe-3h-zWw" firstAttribute="centerY" secondItem="mt4-8P-zn9" secondAttribute="centerY" id="ce0-6K-57B"/>
+                            <constraint firstItem="1fe-3h-zWw" firstAttribute="leading" secondItem="mt4-8P-zn9" secondAttribute="trailing" id="gGX-C5-sIg"/>
+                            <constraint firstItem="mt4-8P-zn9" firstAttribute="leading" secondItem="dTC-HY-APA" secondAttribute="leading" constant="16" id="jZK-HE-kxd"/>
+                            <constraint firstItem="1fe-3h-zWw" firstAttribute="width" secondItem="mt4-8P-zn9" secondAttribute="width" id="x1j-XZ-L2F"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="dTC-HY-APA"/>
                     </view>
+                    <connections>
+                        <outlet property="newsSegment" destination="mt4-8P-zn9" id="ixC-qq-MpW"/>
+                        <outlet property="popularSegment" destination="1fe-3h-zWw" id="lXC-66-b4P"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="AnU-Yi-V30" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-204" y="-36"/>
+            <point key="canvasLocation" x="-204" y="-36.431784107946029"/>
         </scene>
     </scenes>
 </document>

@@ -43,6 +43,7 @@
 		24ADABB72216A1DD00499926 /* Browse.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 24ADABB62216A1DD00499926 /* Browse.storyboard */; };
 		24ADABB92216A1E700499926 /* MyPage.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 24ADABB82216A1E700499926 /* MyPage.storyboard */; };
 		24ADABBE2216A33900499926 /* CustomTabbarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24ADABBD2216A33900499926 /* CustomTabbarController.swift */; };
+		24ADABC12216BD9000499926 /* SegmentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24ADABC02216BD9000499926 /* SegmentView.swift */; };
 		49CCFFDD49640E5A4226D39B /* Pods_MockApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E34C98BD0C2AD0A4591B8B62 /* Pods_MockApp.framework */; };
 		CEF588C2CD9C42F67E4D07A4 /* Pods_MockAppUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7B9DAEC9C80AD666325C2E00 /* Pods_MockAppUITests.framework */; };
 		DC691732BACE0228F10B3461 /* Pods_MockAppTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5ED870C3537D34F5A291E3A2 /* Pods_MockAppTests.framework */; };
@@ -109,6 +110,7 @@
 		24ADABB62216A1DD00499926 /* Browse.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Browse.storyboard; sourceTree = "<group>"; };
 		24ADABB82216A1E700499926 /* MyPage.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MyPage.storyboard; sourceTree = "<group>"; };
 		24ADABBD2216A33900499926 /* CustomTabbarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomTabbarController.swift; sourceTree = "<group>"; };
+		24ADABC02216BD9000499926 /* SegmentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegmentView.swift; sourceTree = "<group>"; };
 		5ED870C3537D34F5A291E3A2 /* Pods_MockAppTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MockAppTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7B9DAEC9C80AD666325C2E00 /* Pods_MockAppUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MockAppUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B0AE2BE7F466AD7D0B8F7E3F /* Pods-MockAppTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MockAppTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-MockAppTests/Pods-MockAppTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -226,6 +228,7 @@
 		24ADAB7D22169A6A00499926 /* Helper */ = {
 			isa = PBXGroup;
 			children = (
+				24ADABBF2216BD7900499926 /* CustomView */,
 				24ADAB7E22169A7F00499926 /* Extension */,
 			);
 			path = Helper;
@@ -293,6 +296,14 @@
 				24ADABBD2216A33900499926 /* CustomTabbarController.swift */,
 			);
 			path = CustomTabbarViewController;
+			sourceTree = "<group>";
+		};
+		24ADABBF2216BD7900499926 /* CustomView */ = {
+			isa = PBXGroup;
+			children = (
+				24ADABC02216BD9000499926 /* SegmentView.swift */,
+			);
+			path = CustomView;
 			sourceTree = "<group>";
 		};
 		ACBCDB06ED14C602854B1DB5 /* Pods */ = {
@@ -590,6 +601,7 @@
 				24ADAB8022169AB700499926 /* UIColorExtension.swift in Sources */,
 				24ADABAF2216A12C00499926 /* BrowseViewController.swift in Sources */,
 				24ADABBE2216A33900499926 /* CustomTabbarController.swift in Sources */,
+				24ADABC12216BD9000499926 /* SegmentView.swift in Sources */,
 				24ADABB12216A14800499926 /* MyPageViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
