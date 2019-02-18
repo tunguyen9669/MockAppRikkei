@@ -7,6 +7,16 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		24A496AF221A3E8100ABA699 /* NewsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A496AE221A3E8100ABA699 /* NewsViewController.swift */; };
+		24A496B1221A404500ABA699 /* PopularViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A496B0221A404500ABA699 /* PopularViewController.swift */; };
+		24A496B7221A435100ABA699 /* NewsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A496B5221A435100ABA699 /* NewsCell.swift */; };
+		24A496B8221A435100ABA699 /* NewsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 24A496B6221A435100ABA699 /* NewsCell.xib */; };
+		24A496BB221A486300ABA699 /* News.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A496BA221A486300ABA699 /* News.swift */; };
+		24A496BE221A5D8800ABA699 /* APIServiceAgent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A496BD221A5D8800ABA699 /* APIServiceAgent.swift */; };
+		24A496C0221A5DD400ABA699 /* APIServiceObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A496BF221A5DD400ABA699 /* APIServiceObject.swift */; };
+		24A496C2221A5E0B00ABA699 /* APIRequestProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A496C1221A5E0B00ABA699 /* APIRequestProvider.swift */; };
+		24A496C4221A5FFC00ABA699 /* HomeService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A496C3221A5FFC00ABA699 /* HomeService.swift */; };
+		24A496C8221A605B00ABA699 /* NewsDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A496C7221A605B00ABA699 /* NewsDTO.swift */; };
 		24ADAB4C221695A900499926 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24ADAB4B221695A900499926 /* AppDelegate.swift */; };
 		24ADAB4E221695A900499926 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24ADAB4D221695A900499926 /* ViewController.swift */; };
 		24ADAB51221695A900499926 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 24ADAB4F221695A900499926 /* Main.storyboard */; };
@@ -68,6 +78,16 @@
 
 /* Begin PBXFileReference section */
 		1532F561EBBDE54645BBC9A5 /* Pods-MockAppTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MockAppTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MockAppTests/Pods-MockAppTests.debug.xcconfig"; sourceTree = "<group>"; };
+		24A496AE221A3E8100ABA699 /* NewsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsViewController.swift; sourceTree = "<group>"; };
+		24A496B0221A404500ABA699 /* PopularViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopularViewController.swift; sourceTree = "<group>"; };
+		24A496B5221A435100ABA699 /* NewsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsCell.swift; sourceTree = "<group>"; };
+		24A496B6221A435100ABA699 /* NewsCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NewsCell.xib; sourceTree = "<group>"; };
+		24A496BA221A486300ABA699 /* News.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = News.swift; sourceTree = "<group>"; };
+		24A496BD221A5D8800ABA699 /* APIServiceAgent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIServiceAgent.swift; sourceTree = "<group>"; };
+		24A496BF221A5DD400ABA699 /* APIServiceObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIServiceObject.swift; sourceTree = "<group>"; };
+		24A496C1221A5E0B00ABA699 /* APIRequestProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIRequestProvider.swift; sourceTree = "<group>"; };
+		24A496C3221A5FFC00ABA699 /* HomeService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeService.swift; sourceTree = "<group>"; };
+		24A496C7221A605B00ABA699 /* NewsDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsDTO.swift; sourceTree = "<group>"; };
 		24ADAB48221695A900499926 /* MockApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MockApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		24ADAB4B221695A900499926 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		24ADAB4D221695A900499926 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -159,6 +179,70 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		24A496B2221A42BD00ABA699 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				24A496B4221A42DA00ABA699 /* PopularCell */,
+				24A496B3221A42CF00ABA699 /* NewsCell */,
+				24ADABAA2216A10000499926 /* HomeViewController.swift */,
+				24A496AE221A3E8100ABA699 /* NewsViewController.swift */,
+				24A496B0221A404500ABA699 /* PopularViewController.swift */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		24A496B3221A42CF00ABA699 /* NewsCell */ = {
+			isa = PBXGroup;
+			children = (
+				24A496B5221A435100ABA699 /* NewsCell.swift */,
+				24A496B6221A435100ABA699 /* NewsCell.xib */,
+			);
+			path = NewsCell;
+			sourceTree = "<group>";
+		};
+		24A496B4221A42DA00ABA699 /* PopularCell */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = PopularCell;
+			sourceTree = "<group>";
+		};
+		24A496B9221A485500ABA699 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				24A496C6221A604A00ABA699 /* DTOs */,
+				24A496C5221A604300ABA699 /* Model */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		24A496BC221A5CC200ABA699 /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				24A496BD221A5D8800ABA699 /* APIServiceAgent.swift */,
+				24A496BF221A5DD400ABA699 /* APIServiceObject.swift */,
+				24A496C1221A5E0B00ABA699 /* APIRequestProvider.swift */,
+				24A496C3221A5FFC00ABA699 /* HomeService.swift */,
+			);
+			name = Service;
+			sourceTree = "<group>";
+		};
+		24A496C5221A604300ABA699 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				24A496BA221A486300ABA699 /* News.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		24A496C6221A604A00ABA699 /* DTOs */ = {
+			isa = PBXGroup;
+			children = (
+				24A496C7221A605B00ABA699 /* NewsDTO.swift */,
+			);
+			path = DTOs;
+			sourceTree = "<group>";
+		};
 		24ADAB3F221695A900499926 = {
 			isa = PBXGroup;
 			children = (
@@ -185,6 +269,8 @@
 			isa = PBXGroup;
 			children = (
 				24ADABA622169CEC00499926 /* Assets.xcassets */,
+				24A496BC221A5CC200ABA699 /* Service */,
+				24A496B9221A485500ABA699 /* Models */,
 				24ADABA92216A0DA00499926 /* ViewControllers */,
 				24ADABA82216A0D000499926 /* UIs */,
 				24ADAB7D22169A6A00499926 /* Helper */,
@@ -281,8 +367,8 @@
 		24ADABA92216A0DA00499926 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				24A496B2221A42BD00ABA699 /* Home */,
 				24ADABBC2216A33900499926 /* CustomTabbarViewController */,
-				24ADABAA2216A10000499926 /* HomeViewController.swift */,
 				24ADABAC2216A11400499926 /* NearViewController.swift */,
 				24ADABAE2216A12C00499926 /* BrowseViewController.swift */,
 				24ADABB02216A14800499926 /* MyPageViewController.swift */,
@@ -326,8 +412,8 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 24ADAB70221695AB00499926 /* Build configuration list for PBXNativeTarget "MockApp" */;
 			buildPhases = (
-				24ADAB7A2216988D00499926 /* ShellScript */,
 				C8CB86BC768AA1619AAD8DED /* [CP] Check Pods Manifest.lock */,
+				24ADAB7A2216988D00499926 /* ShellScript */,
 				24ADAB44221695A900499926 /* Sources */,
 				24ADAB45221695A900499926 /* Frameworks */,
 				24ADAB46221695A900499926 /* Resources */,
@@ -450,6 +536,7 @@
 				24ADABA422169B1E00499926 /* Roboto-MediumItalic.ttf in Resources */,
 				24ADABB52216A1CB00499926 /* Near.storyboard in Resources */,
 				24ADABB92216A1E700499926 /* MyPage.storyboard in Resources */,
+				24A496B8221A435100ABA699 /* NewsCell.xib in Resources */,
 				24ADAB51221695A900499926 /* Main.storyboard in Resources */,
 				24ADAB9D22169B1E00499926 /* Roboto-Thin.ttf in Resources */,
 				24ADAB9922169B1E00499926 /* Roboto-Light.ttf in Resources */,
@@ -505,6 +592,7 @@
 				"${BUILT_PRODUCTS_DIR}/R.swift.Library/Rswift.framework",
 				"${BUILT_PRODUCTS_DIR}/Realm/Realm.framework",
 				"${BUILT_PRODUCTS_DIR}/RealmSwift/RealmSwift.framework",
+				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
@@ -514,6 +602,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Rswift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Realm.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RealmSwift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -593,16 +682,25 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				24A496B1221A404500ABA699 /* PopularViewController.swift in Sources */,
+				24A496BE221A5D8800ABA699 /* APIServiceAgent.swift in Sources */,
 				24ADABAB2216A10000499926 /* HomeViewController.swift in Sources */,
+				24A496C0221A5DD400ABA699 /* APIServiceObject.swift in Sources */,
 				24ADAB4E221695A900499926 /* ViewController.swift in Sources */,
 				24ADABAD2216A11400499926 /* NearViewController.swift in Sources */,
+				24A496C4221A5FFC00ABA699 /* HomeService.swift in Sources */,
+				24A496BB221A486300ABA699 /* News.swift in Sources */,
 				24ADAB4C221695A900499926 /* AppDelegate.swift in Sources */,
+				24A496AF221A3E8100ABA699 /* NewsViewController.swift in Sources */,
 				24ADAB7C2216997800499926 /* R.generated.swift in Sources */,
 				24ADAB8022169AB700499926 /* UIColorExtension.swift in Sources */,
 				24ADABAF2216A12C00499926 /* BrowseViewController.swift in Sources */,
 				24ADABBE2216A33900499926 /* CustomTabbarController.swift in Sources */,
 				24ADABC12216BD9000499926 /* SegmentView.swift in Sources */,
+				24A496C8221A605B00ABA699 /* NewsDTO.swift in Sources */,
+				24A496B7221A435100ABA699 /* NewsCell.swift in Sources */,
 				24ADABB12216A14800499926 /* MyPageViewController.swift in Sources */,
+				24A496C2221A5E0B00ABA699 /* APIRequestProvider.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="Roboto-Medium.ttf">
+            <string>Roboto-Medium</string>
+        </array>
+        <array key="Roboto-Regular.ttf">
+            <string>Roboto-Regular</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" restorationIdentifier="NewsCell" selectionStyle="default" indentationWidth="10" id="KGk-i7-Jjw" customClass="NewsCell" customModule="MockApp" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="270"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="269.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="default_image" translatesAutoresizingMaskIntoConstraints="NO" id="iI9-4t-Rli">
+                        <rect key="frame" x="0.0" y="10" width="320" height="210"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="210" id="01E-Ek-WrJ"/>
+                            <constraint firstAttribute="width" constant="320" id="jlu-8E-BbY"/>
+                        </constraints>
+                    </imageView>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IMX-ZR-IBG">
+                        <rect key="frame" x="0.0" y="220" width="320" height="49.5"/>
+                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                    </view>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Thubaytruyennghe" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AHX-e8-elK">
+                        <rect key="frame" x="5" y="230" width="310" height="14"/>
+                        <fontDescription key="fontDescription" name="Roboto-Medium" family="Roboto" pointSize="12"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Today by Brian on Instagram" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oEW-BT-UIY">
+                        <rect key="frame" x="5" y="249" width="310" height="12"/>
+                        <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="10"/>
+                        <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <color key="backgroundColor" cocoaTouchSystemColor="tableCellGroupedBackgroundColor"/>
+                <constraints>
+                    <constraint firstItem="oEW-BT-UIY" firstAttribute="leading" secondItem="AHX-e8-elK" secondAttribute="leading" id="2xQ-us-l75"/>
+                    <constraint firstItem="IMX-ZR-IBG" firstAttribute="top" secondItem="iI9-4t-Rli" secondAttribute="bottom" id="4QS-S7-eEx"/>
+                    <constraint firstAttribute="trailing" secondItem="IMX-ZR-IBG" secondAttribute="trailing" id="9Fi-9a-4wY"/>
+                    <constraint firstItem="oEW-BT-UIY" firstAttribute="trailing" secondItem="AHX-e8-elK" secondAttribute="trailing" id="CO9-TK-0dq"/>
+                    <constraint firstItem="IMX-ZR-IBG" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="TZ7-7q-h7t"/>
+                    <constraint firstItem="AHX-e8-elK" firstAttribute="top" secondItem="iI9-4t-Rli" secondAttribute="bottom" constant="10" id="Vu0-0f-q0n"/>
+                    <constraint firstAttribute="trailing" secondItem="AHX-e8-elK" secondAttribute="trailing" constant="5" id="a0m-6j-8o0"/>
+                    <constraint firstItem="iI9-4t-Rli" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="dqT-zI-saM"/>
+                    <constraint firstItem="oEW-BT-UIY" firstAttribute="top" secondItem="AHX-e8-elK" secondAttribute="bottom" constant="5" id="gcJ-oh-zg1"/>
+                    <constraint firstAttribute="bottom" secondItem="IMX-ZR-IBG" secondAttribute="bottom" id="hdm-xo-vev"/>
+                    <constraint firstItem="AHX-e8-elK" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="5" id="ivE-jR-PAE"/>
+                    <constraint firstItem="iI9-4t-Rli" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="khA-Tq-z8b"/>
+                    <constraint firstAttribute="trailing" secondItem="iI9-4t-Rli" secondAttribute="trailing" id="kqW-VP-xgc"/>
+                    <constraint firstAttribute="bottom" secondItem="oEW-BT-UIY" secondAttribute="bottom" constant="8.5" id="seJ-Bc-Q3i"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="inforNewsLabel" destination="oEW-BT-UIY" id="h9m-nw-Q29"/>
+                <outlet property="thumbImageView" destination="iI9-4t-Rli" id="QuW-9d-aTv"/>
+                <outlet property="titleLabel" destination="AHX-e8-elK" id="4U3-TI-FJb"/>
+            </connections>
+            <point key="canvasLocation" x="-120" y="36.881559220389811"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="default_image" width="285" height="160"/>
+    </resources>
+</document>

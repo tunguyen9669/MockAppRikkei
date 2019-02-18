@@ -176,12 +176,14 @@ struct R: Rswift.Validatable {
     fileprivate init() {}
   }
   
-  /// This `R.image` struct is generated, and contains static references to 8 images.
+  /// This `R.image` struct is generated, and contains static references to 9 images.
   struct image {
     /// Image `browse_selected`.
     static let browse_selected = Rswift.ImageResource(bundle: R.hostingBundle, name: "browse_selected")
     /// Image `browse`.
     static let browse = Rswift.ImageResource(bundle: R.hostingBundle, name: "browse")
+    /// Image `default_image`.
+    static let default_image = Rswift.ImageResource(bundle: R.hostingBundle, name: "default_image")
     /// Image `home_selected`.
     static let home_selected = Rswift.ImageResource(bundle: R.hostingBundle, name: "home_selected")
     /// Image `home`.
@@ -203,6 +205,11 @@ struct R: Rswift.Validatable {
     /// `UIImage(named: "browse_selected", bundle: ..., traitCollection: ...)`
     static func browse_selected(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
       return UIKit.UIImage(resource: R.image.browse_selected, compatibleWith: traitCollection)
+    }
+    
+    /// `UIImage(named: "default_image", bundle: ..., traitCollection: ...)`
+    static func default_image(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.default_image, compatibleWith: traitCollection)
     }
     
     /// `UIImage(named: "home", bundle: ..., traitCollection: ...)`
@@ -233,6 +240,53 @@ struct R: Rswift.Validatable {
     /// `UIImage(named: "user_selected", bundle: ..., traitCollection: ...)`
     static func user_selected(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
       return UIKit.UIImage(resource: R.image.user_selected, compatibleWith: traitCollection)
+    }
+    
+    fileprivate init() {}
+  }
+  
+  /// This `R.nib` struct is generated, and contains static references to 1 nibs.
+  struct nib {
+    /// Nib `NewsCell`.
+    static let newsCell = _R.nib._NewsCell()
+    
+    /// `UINib(name: "NewsCell", in: bundle)`
+    @available(*, deprecated, message: "Use UINib(resource: R.nib.newsCell) instead")
+    static func newsCell(_: Void = ()) -> UIKit.UINib {
+      return UIKit.UINib(resource: R.nib.newsCell)
+    }
+    
+    static func newsCell(owner ownerOrNil: AnyObject?, options optionsOrNil: [UINib.OptionsKey : Any]? = nil) -> NewsCell? {
+      return R.nib.newsCell.instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? NewsCell
+    }
+    
+    fileprivate init() {}
+  }
+  
+  /// This `R.segue` struct is generated, and contains static references to 1 view controllers.
+  struct segue {
+    /// This struct is generated for `HomeViewController`, and contains static references to 2 segues.
+    struct homeViewController {
+      /// Segue identifier `news`.
+      static let news: Rswift.StoryboardSegueIdentifier<UIKit.UIStoryboardSegue, HomeViewController, NewsViewController> = Rswift.StoryboardSegueIdentifier(identifier: "news")
+      /// Segue identifier `popular`.
+      static let popular: Rswift.StoryboardSegueIdentifier<UIKit.UIStoryboardSegue, HomeViewController, PopularViewController> = Rswift.StoryboardSegueIdentifier(identifier: "popular")
+      
+      /// Optionally returns a typed version of segue `news`.
+      /// Returns nil if either the segue identifier, the source, destination, or segue types don't match.
+      /// For use inside `prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?)`.
+      static func news(segue: UIKit.UIStoryboardSegue) -> Rswift.TypedStoryboardSegueInfo<UIKit.UIStoryboardSegue, HomeViewController, NewsViewController>? {
+        return Rswift.TypedStoryboardSegueInfo(segueIdentifier: R.segue.homeViewController.news, segue: segue)
+      }
+      
+      /// Optionally returns a typed version of segue `popular`.
+      /// Returns nil if either the segue identifier, the source, destination, or segue types don't match.
+      /// For use inside `prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?)`.
+      static func popular(segue: UIKit.UIStoryboardSegue) -> Rswift.TypedStoryboardSegueInfo<UIKit.UIStoryboardSegue, HomeViewController, PopularViewController>? {
+        return Rswift.TypedStoryboardSegueInfo(segueIdentifier: R.segue.homeViewController.popular, segue: segue)
+      }
+      
+      fileprivate init() {}
     }
     
     fileprivate init() {}
@@ -302,6 +356,32 @@ struct R: Rswift.Validatable {
 struct _R: Rswift.Validatable {
   static func validate() throws {
     try storyboard.validate()
+    try nib.validate()
+  }
+  
+  struct nib: Rswift.Validatable {
+    static func validate() throws {
+      try _NewsCell.validate()
+    }
+    
+    struct _NewsCell: Rswift.NibResourceType, Rswift.Validatable {
+      let bundle = R.hostingBundle
+      let name = "NewsCell"
+      
+      func firstView(owner ownerOrNil: AnyObject?, options optionsOrNil: [UINib.OptionsKey : Any]? = nil) -> NewsCell? {
+        return instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? NewsCell
+      }
+      
+      static func validate() throws {
+        if UIKit.UIImage(named: "default_image", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'default_image' is used in nib 'NewsCell', but couldn't be loaded.") }
+        if #available(iOS 11.0, *) {
+        }
+      }
+      
+      fileprivate init() {}
+    }
+    
+    fileprivate init() {}
   }
   
   struct storyboard: Rswift.Validatable {
@@ -336,15 +416,27 @@ struct _R: Rswift.Validatable {
       let bundle = R.hostingBundle
       let homeViewController = StoryboardViewControllerResource<HomeViewController>(identifier: "HomeViewController")
       let name = "Home"
+      let newsViewController = StoryboardViewControllerResource<NewsViewController>(identifier: "NewsViewController")
+      let popularViewController = StoryboardViewControllerResource<PopularViewController>(identifier: "PopularViewController")
       
       func homeViewController(_: Void = ()) -> HomeViewController? {
         return UIKit.UIStoryboard(resource: self).instantiateViewController(withResource: homeViewController)
+      }
+      
+      func newsViewController(_: Void = ()) -> NewsViewController? {
+        return UIKit.UIStoryboard(resource: self).instantiateViewController(withResource: newsViewController)
+      }
+      
+      func popularViewController(_: Void = ()) -> PopularViewController? {
+        return UIKit.UIStoryboard(resource: self).instantiateViewController(withResource: popularViewController)
       }
       
       static func validate() throws {
         if #available(iOS 11.0, *) {
         }
         if _R.storyboard.home().homeViewController() == nil { throw Rswift.ValidationError(description:"[R.swift] ViewController with identifier 'homeViewController' could not be loaded from storyboard 'Home' as 'HomeViewController'.") }
+        if _R.storyboard.home().newsViewController() == nil { throw Rswift.ValidationError(description:"[R.swift] ViewController with identifier 'newsViewController' could not be loaded from storyboard 'Home' as 'NewsViewController'.") }
+        if _R.storyboard.home().popularViewController() == nil { throw Rswift.ValidationError(description:"[R.swift] ViewController with identifier 'popularViewController' could not be loaded from storyboard 'Home' as 'PopularViewController'.") }
       }
       
       fileprivate init() {}
