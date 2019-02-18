@@ -17,6 +17,14 @@
 		24A496C2221A5E0B00ABA699 /* APIRequestProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A496C1221A5E0B00ABA699 /* APIRequestProvider.swift */; };
 		24A496C4221A5FFC00ABA699 /* HomeService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A496C3221A5FFC00ABA699 /* HomeService.swift */; };
 		24A496C8221A605B00ABA699 /* NewsDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A496C7221A605B00ABA699 /* NewsDTO.swift */; };
+		24A496CB221A8A2D00ABA699 /* Connectivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A496CA221A8A2D00ABA699 /* Connectivity.swift */; };
+		24A496D0221A8C5C00ABA699 /* UserPresfHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A496CF221A8C5C00ABA699 /* UserPresfHelper.swift */; };
+		24A496D6221A917700ABA699 /* NewsRealmModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A496D5221A917700ABA699 /* NewsRealmModel.swift */; };
+		24A496D8221A923400ABA699 /* NewsRealmManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A496D7221A923400ABA699 /* NewsRealmManager.swift */; };
+		24A496DA221A943400ABA699 /* ResultsExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A496D9221A943400ABA699 /* ResultsExtension.swift */; };
+		24A496DC221A9CA500ABA699 /* IntExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A496DB221A9CA500ABA699 /* IntExtension.swift */; };
+		24A496E0221A9EF600ABA699 /* UITabbarExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A496DF221A9EF600ABA699 /* UITabbarExtension.swift */; };
+		24A496E2221AA3C100ABA699 /* StringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A496E1221AA3C100ABA699 /* StringExtension.swift */; };
 		24ADAB4C221695A900499926 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24ADAB4B221695A900499926 /* AppDelegate.swift */; };
 		24ADAB4E221695A900499926 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24ADAB4D221695A900499926 /* ViewController.swift */; };
 		24ADAB51221695A900499926 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 24ADAB4F221695A900499926 /* Main.storyboard */; };
@@ -88,6 +96,14 @@
 		24A496C1221A5E0B00ABA699 /* APIRequestProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIRequestProvider.swift; sourceTree = "<group>"; };
 		24A496C3221A5FFC00ABA699 /* HomeService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeService.swift; sourceTree = "<group>"; };
 		24A496C7221A605B00ABA699 /* NewsDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsDTO.swift; sourceTree = "<group>"; };
+		24A496CA221A8A2D00ABA699 /* Connectivity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Connectivity.swift; sourceTree = "<group>"; };
+		24A496CF221A8C5C00ABA699 /* UserPresfHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserPresfHelper.swift; sourceTree = "<group>"; };
+		24A496D5221A917700ABA699 /* NewsRealmModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsRealmModel.swift; sourceTree = "<group>"; };
+		24A496D7221A923400ABA699 /* NewsRealmManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsRealmManager.swift; sourceTree = "<group>"; };
+		24A496D9221A943400ABA699 /* ResultsExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultsExtension.swift; sourceTree = "<group>"; };
+		24A496DB221A9CA500ABA699 /* IntExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntExtension.swift; sourceTree = "<group>"; };
+		24A496DF221A9EF600ABA699 /* UITabbarExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITabbarExtension.swift; sourceTree = "<group>"; };
+		24A496E1221AA3C100ABA699 /* StringExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExtension.swift; sourceTree = "<group>"; };
 		24ADAB48221695A900499926 /* MockApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MockApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		24ADAB4B221695A900499926 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		24ADAB4D221695A900499926 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -210,6 +226,7 @@
 		24A496B9221A485500ABA699 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				24A496D4221A916300ABA699 /* RealmModel */,
 				24A496C6221A604A00ABA699 /* DTOs */,
 				24A496C5221A604300ABA699 /* Model */,
 			);
@@ -241,6 +258,38 @@
 				24A496C7221A605B00ABA699 /* NewsDTO.swift */,
 			);
 			path = DTOs;
+			sourceTree = "<group>";
+		};
+		24A496C9221A8A0600ABA699 /* Constant */ = {
+			isa = PBXGroup;
+			children = (
+				24A496CA221A8A2D00ABA699 /* Connectivity.swift */,
+			);
+			path = Constant;
+			sourceTree = "<group>";
+		};
+		24A496CC221A8B4700ABA699 /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				24A496CF221A8C5C00ABA699 /* UserPresfHelper.swift */,
+			);
+			path = Utilities;
+			sourceTree = "<group>";
+		};
+		24A496D1221A90BA00ABA699 /* RealmManager */ = {
+			isa = PBXGroup;
+			children = (
+				24A496D7221A923400ABA699 /* NewsRealmManager.swift */,
+			);
+			path = RealmManager;
+			sourceTree = "<group>";
+		};
+		24A496D4221A916300ABA699 /* RealmModel */ = {
+			isa = PBXGroup;
+			children = (
+				24A496D5221A917700ABA699 /* NewsRealmModel.swift */,
+			);
+			path = RealmModel;
 			sourceTree = "<group>";
 		};
 		24ADAB3F221695A900499926 = {
@@ -314,6 +363,9 @@
 		24ADAB7D22169A6A00499926 /* Helper */ = {
 			isa = PBXGroup;
 			children = (
+				24A496D1221A90BA00ABA699 /* RealmManager */,
+				24A496CC221A8B4700ABA699 /* Utilities */,
+				24A496C9221A8A0600ABA699 /* Constant */,
 				24ADABBF2216BD7900499926 /* CustomView */,
 				24ADAB7E22169A7F00499926 /* Extension */,
 			);
@@ -324,6 +376,10 @@
 			isa = PBXGroup;
 			children = (
 				24ADAB7F22169AB700499926 /* UIColorExtension.swift */,
+				24A496D9221A943400ABA699 /* ResultsExtension.swift */,
+				24A496DB221A9CA500ABA699 /* IntExtension.swift */,
+				24A496DF221A9EF600ABA699 /* UITabbarExtension.swift */,
+				24A496E1221AA3C100ABA699 /* StringExtension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -573,7 +629,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				$SRCROOT/MockApp/Resources/R.generated.swift,
+				"$SRCROOT/MockApp/Resources/R.generated.swift",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -589,6 +645,7 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-MockApp/Pods-MockApp-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework",
 				"${BUILT_PRODUCTS_DIR}/R.swift.Library/Rswift.framework",
 				"${BUILT_PRODUCTS_DIR}/Realm/Realm.framework",
 				"${BUILT_PRODUCTS_DIR}/RealmSwift/RealmSwift.framework",
@@ -599,6 +656,7 @@
 			);
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Kingfisher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Rswift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Realm.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RealmSwift.framework",
@@ -685,6 +743,9 @@
 				24A496B1221A404500ABA699 /* PopularViewController.swift in Sources */,
 				24A496BE221A5D8800ABA699 /* APIServiceAgent.swift in Sources */,
 				24ADABAB2216A10000499926 /* HomeViewController.swift in Sources */,
+				24A496E0221A9EF600ABA699 /* UITabbarExtension.swift in Sources */,
+				24A496DC221A9CA500ABA699 /* IntExtension.swift in Sources */,
+				24A496E2221AA3C100ABA699 /* StringExtension.swift in Sources */,
 				24A496C0221A5DD400ABA699 /* APIServiceObject.swift in Sources */,
 				24ADAB4E221695A900499926 /* ViewController.swift in Sources */,
 				24ADABAD2216A11400499926 /* NearViewController.swift in Sources */,
@@ -692,12 +753,17 @@
 				24A496BB221A486300ABA699 /* News.swift in Sources */,
 				24ADAB4C221695A900499926 /* AppDelegate.swift in Sources */,
 				24A496AF221A3E8100ABA699 /* NewsViewController.swift in Sources */,
+				24A496D0221A8C5C00ABA699 /* UserPresfHelper.swift in Sources */,
 				24ADAB7C2216997800499926 /* R.generated.swift in Sources */,
+				24A496D6221A917700ABA699 /* NewsRealmModel.swift in Sources */,
 				24ADAB8022169AB700499926 /* UIColorExtension.swift in Sources */,
+				24A496CB221A8A2D00ABA699 /* Connectivity.swift in Sources */,
 				24ADABAF2216A12C00499926 /* BrowseViewController.swift in Sources */,
+				24A496DA221A943400ABA699 /* ResultsExtension.swift in Sources */,
 				24ADABBE2216A33900499926 /* CustomTabbarController.swift in Sources */,
 				24ADABC12216BD9000499926 /* SegmentView.swift in Sources */,
 				24A496C8221A605B00ABA699 /* NewsDTO.swift in Sources */,
+				24A496D8221A923400ABA699 /* NewsRealmManager.swift in Sources */,
 				24A496B7221A435100ABA699 /* NewsCell.swift in Sources */,
 				24ADABB12216A14800499926 /* MyPageViewController.swift in Sources */,
 				24A496C2221A5E0B00ABA699 /* APIRequestProvider.swift in Sources */,

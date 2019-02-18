@@ -10,6 +10,7 @@ import UIKit
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
+    static let shared :AppDelegate = AppDelegate()
 
     var window: UIWindow?
     var tabbar: CustomTabbarController?

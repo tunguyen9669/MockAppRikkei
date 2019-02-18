@@ -8,6 +8,7 @@ target 'MockApp' do
     pod 'R.swift'
  	pod 'Alamofire', '~> 4.7'
     pod 'SwiftyJSON', '~> 3.1.4'
+    pod 'Kingfisher'
 
   # Pods for MockApp
 

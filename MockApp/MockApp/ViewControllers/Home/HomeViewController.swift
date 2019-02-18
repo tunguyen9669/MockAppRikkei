@@ -16,6 +16,7 @@ class HomeViewController: UIViewController {
     @IBOutlet weak var newsContainer: UIView!
     @IBOutlet weak var popularContainer: UIView!
     
+    
     let services = HomeService()
     var arrNews: [News] = []
     var newsVC: NewsViewController?
@@ -41,23 +42,23 @@ class HomeViewController: UIViewController {
        
     }
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        print("home prepare")
-        if segue.identifier == "news" {
-            if let newsVC = segue.destination as? NewsViewController {
-                self.newsVC = newsVC
-                var news = News()
-              
-                
-            
-            }
-        }else if segue.identifier == "popular" {
-            if let popular = segue.destination as? PopularViewController {
-                self.popularVC = popular
-                
-            }
-        }
-    }
+//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+//        print("home prepare")
+//        if segue.identifier == "news" {
+//            if let newsVC = segue.destination as? NewsViewController {
+//                self.newsVC = newsVC
+//                var news = News()
+//              
+//                
+//            
+//            }
+//        }else if segue.identifier == "popular" {
+//            if let popular = segue.destination as? PopularViewController {
+//                self.popularVC = popular
+//                
+//            }
+//        }
+//    }
     
     // MARK: - function
     @objc func onTapNewsView(_ sender: UITapGestureRecognizer) {
@@ -74,5 +75,6 @@ class HomeViewController: UIViewController {
         popularContainer.isHidden = false
         print("Tap Popular")
     }
+    
    
 }

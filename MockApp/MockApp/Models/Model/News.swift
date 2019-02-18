@@ -8,13 +8,14 @@
 
 import Foundation
 
+
 class News {
     public var id: Int?
     public var feed: String?
     public var title: String?
     public var detailUrl: String?
     public var thumb: String?
-    public var description: String?
+    public var desc: String?
     public var author: String?
     public var publishDate: String?
     public var creatTime: String?
@@ -36,7 +37,7 @@ class News {
         return thumb ?? ""
     }
     public func getDescription() -> String {
-        return description ?? ""
+        return desc ?? ""
     }
     public func getAuthor() -> String {
         return author ?? ""
@@ -51,13 +52,13 @@ class News {
         return updateTime ?? ""
     }
     
-    init() {
+    required init() {
         self.id = 0
         self.feed = "Facebook"
         self.title = "News #Thubaytruyennghe #IOS #Rikkeisoft"
         self.detailUrl = ""
         self.thumb = ""
-        self.description = ""
+        self.desc = ""
         self.author = "TuND"
         self.publishDate  = ""
         self.creatTime = ""
@@ -70,10 +71,12 @@ class News {
         self.title = newsDto.title
         self.detailUrl = newsDto.detailUrl
         self.thumb = newsDto.thumb
-        self.description = newsDto.description
+        self.desc = newsDto.desc
         self.author = newsDto.author
         self.publishDate = newsDto.publishDate
         self.creatTime = newsDto.creatTime
         self.updateTime = newsDto.updateTime
     }
+    
+   
 }

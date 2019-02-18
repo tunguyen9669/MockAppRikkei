@@ -15,7 +15,7 @@ class NewsDTO {
     public var title: String?
     public var detailUrl: String?
     public var thumb: String?
-    public var description: String?
+    public var desc: String?
     public var author: String?
     public var publishDate: String?
     public var creatTime: String?
@@ -37,7 +37,7 @@ class NewsDTO {
         return thumb ?? ""
     }
     public func getDescription() -> String {
-        return description ?? ""
+        return desc ?? ""
     }
     public func getAuthor() -> String {
         return author ?? ""
@@ -58,7 +58,7 @@ class NewsDTO {
         self.title = json["title"].stringValue
         self.detailUrl = json["detail_url"].stringValue
         self.thumb = json["thumb_img"].stringValue
-        self.description = json["description"].stringValue
+        self.desc = json["description"].stringValue
         self.author = json["author"].stringValue
         self.publishDate = json["publish_date"].stringValue
         self.creatTime = json["created_at"].stringValue
