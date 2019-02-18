@@ -25,16 +25,21 @@ class NewsViewController: UIViewController {
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        
+        // get data in DB
         guard let arrNewsDB = realmManager.getObjects(NewsRealmModel.self)?.toArray(ofType: NewsRealmModel.self) else {
             return
         }
-       
         let keyUpdate = UserPrefsHelper.shared.getKeyUpdateNews()
         
-        // check data in DB and update
+        // check data in DB and update table and time for update News
         if arrNewsDB.count <= 0 || keyUpdate.isToday() == false {
+            self.arrNews.removeAll()
+            UserPrefsHelper.shared.setkeyUpdateNews(self.getDateNow())
             getNewsList(pageIndex)
+            self.creatDB(news: self.arrNews)
         } else {
+            self.arrNews.removeAll()
             for item in arrNewsDB {
                 var news = News()
                 news.id  = Int(item.id)
@@ -55,7 +60,6 @@ class NewsViewController: UIViewController {
     }
     
     // MARK: - function
-    
     func creatDB(news: [News]) {
         realmManager.deleteDabase()
         for item in news {
@@ -73,11 +77,25 @@ class NewsViewController: UIViewController {
             realmManager.addObject(obj: news)
         }
     }
+    
     func reloadTable() {
         self.arrNews = self.arrNews.sorted { (news1, news2) -> Bool in
             return news1.getPublishDate().convertStringToMilisecond() >= news2.getPublishDate().convertStringToMilisecond()
         }
         self.tableView.reloadData()
+    }
+    
+    func getDateNow() -> Int {
+        let date = NSDate()
+        let calendar = Calendar.current
+        let month = calendar.component(.month, from: date as Date)
+        let year = calendar.component(.year, from: date as Date)
+        let day = calendar.component(.day, from: date as Date)
+        let hour = calendar.component(.hour, from: date as Date)
+        let min = calendar.component(.minute, from: date as Date)
+        let second = calendar.component(.second, from: date as Date)
+        let timeNow = "\(year)-0\(month)-\(day) \(hour):\(min):\(second)"
+        return timeNow.convertStringToMilisecond()
     }
     
     func getNewsList(_ pageIndex: Int) {
@@ -90,7 +108,7 @@ class NewsViewController: UIViewController {
                     for item in result {
                         self.arrNews.append(News(item))
                     }
-                    self.creatDB(news: self.arrNews)
+                    
                     self.reloadTable()
                 case .failure(let error):
                     print("Fail get data")
@@ -107,6 +125,7 @@ class NewsViewController: UIViewController {
     
     
 }
+// MARK : - extension
 extension  NewsViewController : UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return arrNews.count

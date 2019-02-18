@@ -30,7 +30,7 @@ class NewsRealmManager: NSObject {
             try realm.write {
                 realm.add(obj)
                 if let news = obj as? NewsRealmModel {
-                    realm.add(news)
+                    realm.add(news, update: true)
                     print("Complete add News")
                 }
             }
