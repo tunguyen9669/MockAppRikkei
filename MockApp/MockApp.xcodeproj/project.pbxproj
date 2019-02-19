@@ -62,6 +62,11 @@
 		24ADABB92216A1E700499926 /* MyPage.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 24ADABB82216A1E700499926 /* MyPage.storyboard */; };
 		24ADABBE2216A33900499926 /* CustomTabbarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24ADABBD2216A33900499926 /* CustomTabbarController.swift */; };
 		24ADABC12216BD9000499926 /* SegmentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24ADABC02216BD9000499926 /* SegmentView.swift */; };
+		24E5466D221BB9AE003D1855 /* PopularRealmModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24E5466C221BB9AE003D1855 /* PopularRealmModel.swift */; };
+		24E5466F221BB9BC003D1855 /* PopularDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24E5466E221BB9BC003D1855 /* PopularDTO.swift */; };
+		24E54671221BB9CC003D1855 /* Popular.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24E54670221BB9CC003D1855 /* Popular.swift */; };
+		24E54673221BDA00003D1855 /* Venue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24E54672221BDA00003D1855 /* Venue.swift */; };
+		24E54675221BDA12003D1855 /* VenueDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24E54674221BDA12003D1855 /* VenueDTO.swift */; };
 		49CCFFDD49640E5A4226D39B /* Pods_MockApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E34C98BD0C2AD0A4591B8B62 /* Pods_MockApp.framework */; };
 		CEF588C2CD9C42F67E4D07A4 /* Pods_MockAppUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7B9DAEC9C80AD666325C2E00 /* Pods_MockAppUITests.framework */; };
 		DC691732BACE0228F10B3461 /* Pods_MockAppTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5ED870C3537D34F5A291E3A2 /* Pods_MockAppTests.framework */; };
@@ -147,6 +152,11 @@
 		24ADABB82216A1E700499926 /* MyPage.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MyPage.storyboard; sourceTree = "<group>"; };
 		24ADABBD2216A33900499926 /* CustomTabbarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomTabbarController.swift; sourceTree = "<group>"; };
 		24ADABC02216BD9000499926 /* SegmentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegmentView.swift; sourceTree = "<group>"; };
+		24E5466C221BB9AE003D1855 /* PopularRealmModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopularRealmModel.swift; sourceTree = "<group>"; };
+		24E5466E221BB9BC003D1855 /* PopularDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopularDTO.swift; sourceTree = "<group>"; };
+		24E54670221BB9CC003D1855 /* Popular.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Popular.swift; sourceTree = "<group>"; };
+		24E54672221BDA00003D1855 /* Venue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Venue.swift; sourceTree = "<group>"; };
+		24E54674221BDA12003D1855 /* VenueDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VenueDTO.swift; sourceTree = "<group>"; };
 		5ED870C3537D34F5A291E3A2 /* Pods_MockAppTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MockAppTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7B9DAEC9C80AD666325C2E00 /* Pods_MockAppUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MockAppUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B0AE2BE7F466AD7D0B8F7E3F /* Pods-MockAppTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MockAppTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-MockAppTests/Pods-MockAppTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -248,6 +258,8 @@
 			isa = PBXGroup;
 			children = (
 				24A496BA221A486300ABA699 /* News.swift */,
+				24E54670221BB9CC003D1855 /* Popular.swift */,
+				24E54672221BDA00003D1855 /* Venue.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -256,6 +268,8 @@
 			isa = PBXGroup;
 			children = (
 				24A496C7221A605B00ABA699 /* NewsDTO.swift */,
+				24E5466E221BB9BC003D1855 /* PopularDTO.swift */,
+				24E54674221BDA12003D1855 /* VenueDTO.swift */,
 			);
 			path = DTOs;
 			sourceTree = "<group>";
@@ -288,6 +302,7 @@
 			isa = PBXGroup;
 			children = (
 				24A496D5221A917700ABA699 /* NewsRealmModel.swift */,
+				24E5466C221BB9AE003D1855 /* PopularRealmModel.swift */,
 			);
 			path = RealmModel;
 			sourceTree = "<group>";
@@ -629,7 +644,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$SRCROOT/MockApp/Resources/R.generated.swift",
+				$SRCROOT/MockApp/Resources/R.generated.swift,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -751,10 +766,15 @@
 				24ADABAD2216A11400499926 /* NearViewController.swift in Sources */,
 				24A496C4221A5FFC00ABA699 /* HomeService.swift in Sources */,
 				24A496BB221A486300ABA699 /* News.swift in Sources */,
+				24E54671221BB9CC003D1855 /* Popular.swift in Sources */,
+				24E5466D221BB9AE003D1855 /* PopularRealmModel.swift in Sources */,
 				24ADAB4C221695A900499926 /* AppDelegate.swift in Sources */,
 				24A496AF221A3E8100ABA699 /* NewsViewController.swift in Sources */,
+				24E5466F221BB9BC003D1855 /* PopularDTO.swift in Sources */,
 				24A496D0221A8C5C00ABA699 /* UserPresfHelper.swift in Sources */,
+				24E54673221BDA00003D1855 /* Venue.swift in Sources */,
 				24ADAB7C2216997800499926 /* R.generated.swift in Sources */,
+				24E54675221BDA12003D1855 /* VenueDTO.swift in Sources */,
 				24A496D6221A917700ABA699 /* NewsRealmModel.swift in Sources */,
 				24ADAB8022169AB700499926 /* UIColorExtension.swift in Sources */,
 				24A496CB221A8A2D00ABA699 /* Connectivity.swift in Sources */,

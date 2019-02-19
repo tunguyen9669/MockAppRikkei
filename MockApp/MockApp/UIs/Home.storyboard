@@ -89,13 +89,13 @@
                                 <rect key="frame" x="0.0" y="90" width="375" height="577"/>
                                 <subviews>
                                     <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="A8s-i2-FJJ">
-                                        <rect key="frame" x="0.0" y="22" width="375" height="577"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="577"/>
                                         <connections>
                                             <segue destination="kFm-h7-Ukz" kind="embed" identifier="news" id="DqE-HS-7BR"/>
                                         </connections>
                                     </containerView>
                                     <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mFG-Rv-lCf">
-                                        <rect key="frame" x="0.0" y="22" width="375" height="577"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="577"/>
                                         <connections>
                                             <segue destination="61b-vq-mN0" kind="embed" identifier="popular" id="spI-O1-eXW"/>
                                         </connections>
@@ -153,6 +153,7 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <connections>
                                     <outlet property="dataSource" destination="kFm-h7-Ukz" id="DkE-4I-9wo"/>
+                                    <outlet property="delegate" destination="kFm-h7-Ukz" id="1vy-uT-jNH"/>
                                 </connections>
                             </tableView>
                         </subviews>
@@ -163,6 +164,7 @@
                             <constraint firstAttribute="bottom" secondItem="lRm-ps-Bhb" secondAttribute="bottom" id="bWg-bu-oUF"/>
                             <constraint firstItem="lRm-ps-Bhb" firstAttribute="leading" secondItem="P5k-LM-rbs" secondAttribute="leading" constant="5" id="uPi-aH-uic"/>
                         </constraints>
+                        <viewLayoutGuide key="safeArea" id="dPo-Gt-5Fv"/>
                     </view>
                     <connections>
                         <outlet property="tableView" destination="lRm-ps-Bhb" id="roE-7r-k8P"/>
@@ -192,6 +194,7 @@
                             <constraint firstItem="vZ9-c9-TdC" firstAttribute="centerY" secondItem="x5C-Le-1xD" secondAttribute="centerY" id="Mq8-gJ-Pq7"/>
                             <constraint firstItem="vZ9-c9-TdC" firstAttribute="centerX" secondItem="x5C-Le-1xD" secondAttribute="centerX" id="VDF-4B-r9S"/>
                         </constraints>
+                        <viewLayoutGuide key="safeArea" id="1M9-Tu-OAE"/>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="n9D-nC-8t9" userLabel="First Responder" sceneMemberID="firstResponder"/>
