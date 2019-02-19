@@ -176,7 +176,7 @@ struct R: Rswift.Validatable {
     fileprivate init() {}
   }
   
-  /// This `R.image` struct is generated, and contains static references to 9 images.
+  /// This `R.image` struct is generated, and contains static references to 11 images.
   struct image {
     /// Image `browse_selected`.
     static let browse_selected = Rswift.ImageResource(bundle: R.hostingBundle, name: "browse_selected")
@@ -192,10 +192,14 @@ struct R: Rswift.Validatable {
     static let near_selected = Rswift.ImageResource(bundle: R.hostingBundle, name: "near_selected")
     /// Image `near`.
     static let near = Rswift.ImageResource(bundle: R.hostingBundle, name: "near")
+    /// Image `red_star`.
+    static let red_star = Rswift.ImageResource(bundle: R.hostingBundle, name: "red_star")
     /// Image `user_selected`.
     static let user_selected = Rswift.ImageResource(bundle: R.hostingBundle, name: "user_selected")
     /// Image `user`.
     static let user = Rswift.ImageResource(bundle: R.hostingBundle, name: "user")
+    /// Image `yellow_star`.
+    static let yellow_star = Rswift.ImageResource(bundle: R.hostingBundle, name: "yellow_star")
     
     /// `UIImage(named: "browse", bundle: ..., traitCollection: ...)`
     static func browse(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
@@ -232,6 +236,11 @@ struct R: Rswift.Validatable {
       return UIKit.UIImage(resource: R.image.near_selected, compatibleWith: traitCollection)
     }
     
+    /// `UIImage(named: "red_star", bundle: ..., traitCollection: ...)`
+    static func red_star(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.red_star, compatibleWith: traitCollection)
+    }
+    
     /// `UIImage(named: "user", bundle: ..., traitCollection: ...)`
     static func user(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
       return UIKit.UIImage(resource: R.image.user, compatibleWith: traitCollection)
@@ -242,13 +251,20 @@ struct R: Rswift.Validatable {
       return UIKit.UIImage(resource: R.image.user_selected, compatibleWith: traitCollection)
     }
     
+    /// `UIImage(named: "yellow_star", bundle: ..., traitCollection: ...)`
+    static func yellow_star(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.yellow_star, compatibleWith: traitCollection)
+    }
+    
     fileprivate init() {}
   }
   
-  /// This `R.nib` struct is generated, and contains static references to 1 nibs.
+  /// This `R.nib` struct is generated, and contains static references to 2 nibs.
   struct nib {
     /// Nib `NewsCell`.
     static let newsCell = _R.nib._NewsCell()
+    /// Nib `PopularCell`.
+    static let popularCell = _R.nib._PopularCell()
     
     /// `UINib(name: "NewsCell", in: bundle)`
     @available(*, deprecated, message: "Use UINib(resource: R.nib.newsCell) instead")
@@ -256,9 +272,27 @@ struct R: Rswift.Validatable {
       return UIKit.UINib(resource: R.nib.newsCell)
     }
     
+    /// `UINib(name: "PopularCell", in: bundle)`
+    @available(*, deprecated, message: "Use UINib(resource: R.nib.popularCell) instead")
+    static func popularCell(_: Void = ()) -> UIKit.UINib {
+      return UIKit.UINib(resource: R.nib.popularCell)
+    }
+    
     static func newsCell(owner ownerOrNil: AnyObject?, options optionsOrNil: [UINib.OptionsKey : Any]? = nil) -> NewsCell? {
       return R.nib.newsCell.instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? NewsCell
     }
+    
+    static func popularCell(owner ownerOrNil: AnyObject?, options optionsOrNil: [UINib.OptionsKey : Any]? = nil) -> PopularCell? {
+      return R.nib.popularCell.instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? PopularCell
+    }
+    
+    fileprivate init() {}
+  }
+  
+  /// This `R.reuseIdentifier` struct is generated, and contains static references to 1 reuse identifiers.
+  struct reuseIdentifier {
+    /// Reuse identifier `PopularCell`.
+    static let popularCell: Rswift.ReuseIdentifier<PopularCell> = Rswift.ReuseIdentifier(identifier: "PopularCell")
     
     fileprivate init() {}
   }
@@ -362,6 +396,7 @@ struct _R: Rswift.Validatable {
   struct nib: Rswift.Validatable {
     static func validate() throws {
       try _NewsCell.validate()
+      try _PopularCell.validate()
     }
     
     struct _NewsCell: Rswift.NibResourceType, Rswift.Validatable {
@@ -374,6 +409,27 @@ struct _R: Rswift.Validatable {
       
       static func validate() throws {
         if UIKit.UIImage(named: "default_image", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'default_image' is used in nib 'NewsCell', but couldn't be loaded.") }
+        if #available(iOS 11.0, *) {
+        }
+      }
+      
+      fileprivate init() {}
+    }
+    
+    struct _PopularCell: Rswift.NibResourceType, Rswift.ReuseIdentifierType, Rswift.Validatable {
+      typealias ReusableType = PopularCell
+      
+      let bundle = R.hostingBundle
+      let identifier = "PopularCell"
+      let name = "PopularCell"
+      
+      func firstView(owner ownerOrNil: AnyObject?, options optionsOrNil: [UINib.OptionsKey : Any]? = nil) -> PopularCell? {
+        return instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? PopularCell
+      }
+      
+      static func validate() throws {
+        if UIKit.UIImage(named: "default_image", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'default_image' is used in nib 'PopularCell', but couldn't be loaded.") }
+        if UIKit.UIImage(named: "red_star", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'red_star' is used in nib 'PopularCell', but couldn't be loaded.") }
         if #available(iOS 11.0, *) {
         }
       }

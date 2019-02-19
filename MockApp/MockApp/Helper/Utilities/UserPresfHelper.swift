@@ -11,6 +11,7 @@ import Foundation
 struct PrefsKey {
     static let keyUpdateNews = "keyUpdateNews"
     static let keyUpdatePopular = "keyUpdatePopular"
+    static let userToken = "token"
     
 }
 
@@ -35,6 +36,16 @@ class UserPrefsHelper: NSObject {
     
     func getKeyUpdatePopular() -> Int {
         return UserDefaults.standard.integer(forKey: PrefsKey.keyUpdatePopular)
+    }
+    
+    // MARK: - user token
+    
+    func setUserToken(_ token: String) {
+        UserDefaults.standard.set(token, forKey: PrefsKey.userToken)
+    }
+    
+    func getUserToken() -> String {
+        return UserDefaults.standard.string(forKey: PrefsKey.userToken) ?? ""
     }
     
     

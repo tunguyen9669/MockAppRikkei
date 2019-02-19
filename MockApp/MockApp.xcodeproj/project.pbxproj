@@ -67,6 +67,8 @@
 		24E54671221BB9CC003D1855 /* Popular.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24E54670221BB9CC003D1855 /* Popular.swift */; };
 		24E54673221BDA00003D1855 /* Venue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24E54672221BDA00003D1855 /* Venue.swift */; };
 		24E54675221BDA12003D1855 /* VenueDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24E54674221BDA12003D1855 /* VenueDTO.swift */; };
+		24E54678221BFB5F003D1855 /* PopularCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24E54676221BFB5F003D1855 /* PopularCell.swift */; };
+		24E54679221BFB5F003D1855 /* PopularCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 24E54677221BFB5F003D1855 /* PopularCell.xib */; };
 		49CCFFDD49640E5A4226D39B /* Pods_MockApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E34C98BD0C2AD0A4591B8B62 /* Pods_MockApp.framework */; };
 		CEF588C2CD9C42F67E4D07A4 /* Pods_MockAppUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7B9DAEC9C80AD666325C2E00 /* Pods_MockAppUITests.framework */; };
 		DC691732BACE0228F10B3461 /* Pods_MockAppTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5ED870C3537D34F5A291E3A2 /* Pods_MockAppTests.framework */; };
@@ -157,6 +159,8 @@
 		24E54670221BB9CC003D1855 /* Popular.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Popular.swift; sourceTree = "<group>"; };
 		24E54672221BDA00003D1855 /* Venue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Venue.swift; sourceTree = "<group>"; };
 		24E54674221BDA12003D1855 /* VenueDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VenueDTO.swift; sourceTree = "<group>"; };
+		24E54676221BFB5F003D1855 /* PopularCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopularCell.swift; sourceTree = "<group>"; };
+		24E54677221BFB5F003D1855 /* PopularCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PopularCell.xib; sourceTree = "<group>"; };
 		5ED870C3537D34F5A291E3A2 /* Pods_MockAppTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MockAppTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7B9DAEC9C80AD666325C2E00 /* Pods_MockAppUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MockAppUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B0AE2BE7F466AD7D0B8F7E3F /* Pods-MockAppTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MockAppTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-MockAppTests/Pods-MockAppTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -229,6 +233,8 @@
 		24A496B4221A42DA00ABA699 /* PopularCell */ = {
 			isa = PBXGroup;
 			children = (
+				24E54676221BFB5F003D1855 /* PopularCell.swift */,
+				24E54677221BFB5F003D1855 /* PopularCell.xib */,
 			);
 			path = PopularCell;
 			sourceTree = "<group>";
@@ -603,6 +609,7 @@
 				24ADAB9422169B1E00499926 /* Roboto-Regular.ttf in Resources */,
 				24ADABA222169B1E00499926 /* Roboto-CondensedItalic.ttf in Resources */,
 				24ADAB9E22169B1E00499926 /* Roboto-BoldCondensedItalic.ttf in Resources */,
+				24E54679221BFB5F003D1855 /* PopularCell.xib in Resources */,
 				24ADABB72216A1DD00499926 /* Browse.storyboard in Resources */,
 				24ADABA422169B1E00499926 /* Roboto-MediumItalic.ttf in Resources */,
 				24ADABB52216A1CB00499926 /* Near.storyboard in Resources */,
@@ -758,6 +765,7 @@
 				24A496B1221A404500ABA699 /* PopularViewController.swift in Sources */,
 				24A496BE221A5D8800ABA699 /* APIServiceAgent.swift in Sources */,
 				24ADABAB2216A10000499926 /* HomeViewController.swift in Sources */,
+				24E54678221BFB5F003D1855 /* PopularCell.swift in Sources */,
 				24A496E0221A9EF600ABA699 /* UITabbarExtension.swift in Sources */,
 				24A496DC221A9CA500ABA699 /* IntExtension.swift in Sources */,
 				24A496E2221AA3C100ABA699 /* StringExtension.swift in Sources */,

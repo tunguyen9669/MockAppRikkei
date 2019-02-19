@@ -182,20 +182,27 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="577"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Popular" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vZ9-c9-TdC">
-                                <rect key="frame" x="158.5" y="278.5" width="58.5" height="20.5"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="mmO-k5-ZPm">
+                                <rect key="frame" x="5" y="20" width="365" height="557"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="61b-vq-mN0" id="iU4-DK-WA0"/>
+                                    <outlet property="delegate" destination="61b-vq-mN0" id="P8D-My-fp2"/>
+                                </connections>
+                            </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="vZ9-c9-TdC" firstAttribute="centerY" secondItem="x5C-Le-1xD" secondAttribute="centerY" id="Mq8-gJ-Pq7"/>
-                            <constraint firstItem="vZ9-c9-TdC" firstAttribute="centerX" secondItem="x5C-Le-1xD" secondAttribute="centerX" id="VDF-4B-r9S"/>
+                            <constraint firstItem="1M9-Tu-OAE" firstAttribute="trailing" secondItem="mmO-k5-ZPm" secondAttribute="trailing" constant="5" id="2Tx-IA-83M"/>
+                            <constraint firstItem="1M9-Tu-OAE" firstAttribute="bottom" secondItem="mmO-k5-ZPm" secondAttribute="bottom" id="FW7-Yg-AnZ"/>
+                            <constraint firstItem="mmO-k5-ZPm" firstAttribute="leading" secondItem="1M9-Tu-OAE" secondAttribute="leading" constant="5" id="L6e-7I-Xoe"/>
+                            <constraint firstItem="mmO-k5-ZPm" firstAttribute="top" secondItem="1M9-Tu-OAE" secondAttribute="top" id="Rop-dq-rR0"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="1M9-Tu-OAE"/>
                     </view>
+                    <connections>
+                        <outlet property="tableView" destination="mmO-k5-ZPm" id="jy1-qP-wqo"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="n9D-nC-8t9" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
