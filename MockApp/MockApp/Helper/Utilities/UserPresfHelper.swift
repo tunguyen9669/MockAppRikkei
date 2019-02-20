@@ -12,6 +12,7 @@ struct PrefsKey {
     static let keyUpdateNews = "keyUpdateNews"
     static let keyUpdatePopular = "keyUpdatePopular"
     static let userToken = "token"
+    static let isLoggined = "isLogined"
     
 }
 
@@ -38,7 +39,14 @@ class UserPrefsHelper: NSObject {
         return UserDefaults.standard.integer(forKey: PrefsKey.keyUpdatePopular)
     }
     
-    // MARK: - user token
+    // MARK: - user
+    
+    func setIsloggined(_ check: Bool) {
+        UserDefaults.standard.set(check, forKey: PrefsKey.isLoggined)
+    }
+    func getIsLoggined() -> Bool {
+        return UserDefaults.standard.bool(forKey: PrefsKey.isLoggined) ?? false
+    }
     
     func setUserToken(_ token: String) {
         UserDefaults.standard.set(token, forKey: PrefsKey.userToken)

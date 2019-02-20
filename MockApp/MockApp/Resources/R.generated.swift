@@ -176,8 +176,10 @@ struct R: Rswift.Validatable {
     fileprivate init() {}
   }
   
-  /// This `R.image` struct is generated, and contains static references to 11 images.
+  /// This `R.image` struct is generated, and contains static references to 13 images.
   struct image {
+    /// Image `back`.
+    static let back = Rswift.ImageResource(bundle: R.hostingBundle, name: "back")
     /// Image `browse_selected`.
     static let browse_selected = Rswift.ImageResource(bundle: R.hostingBundle, name: "browse_selected")
     /// Image `browse`.
@@ -194,12 +196,19 @@ struct R: Rswift.Validatable {
     static let near = Rswift.ImageResource(bundle: R.hostingBundle, name: "near")
     /// Image `red_star`.
     static let red_star = Rswift.ImageResource(bundle: R.hostingBundle, name: "red_star")
+    /// Image `rikkeisoft-logo`.
+    static let rikkeisoftLogo = Rswift.ImageResource(bundle: R.hostingBundle, name: "rikkeisoft-logo")
     /// Image `user_selected`.
     static let user_selected = Rswift.ImageResource(bundle: R.hostingBundle, name: "user_selected")
     /// Image `user`.
     static let user = Rswift.ImageResource(bundle: R.hostingBundle, name: "user")
     /// Image `yellow_star`.
     static let yellow_star = Rswift.ImageResource(bundle: R.hostingBundle, name: "yellow_star")
+    
+    /// `UIImage(named: "back", bundle: ..., traitCollection: ...)`
+    static func back(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.back, compatibleWith: traitCollection)
+    }
     
     /// `UIImage(named: "browse", bundle: ..., traitCollection: ...)`
     static func browse(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
@@ -239,6 +248,11 @@ struct R: Rswift.Validatable {
     /// `UIImage(named: "red_star", bundle: ..., traitCollection: ...)`
     static func red_star(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
       return UIKit.UIImage(resource: R.image.red_star, compatibleWith: traitCollection)
+    }
+    
+    /// `UIImage(named: "rikkeisoft-logo", bundle: ..., traitCollection: ...)`
+    static func rikkeisoftLogo(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.rikkeisoftLogo, compatibleWith: traitCollection)
     }
     
     /// `UIImage(named: "user", bundle: ..., traitCollection: ...)`
@@ -528,17 +542,43 @@ struct _R: Rswift.Validatable {
     
     struct myPage: Rswift.StoryboardResourceType, Rswift.Validatable {
       let bundle = R.hostingBundle
+      let forgotPasswordViewController = StoryboardViewControllerResource<ForgotPasswordViewController>(identifier: "ForgotPasswordViewController")
+      let loginViewController = StoryboardViewControllerResource<LoginViewController>(identifier: "LoginViewController")
+      let myListEventViewController = StoryboardViewControllerResource<MyListEventViewController>(identifier: "MyListEventViewController")
       let myPageViewController = StoryboardViewControllerResource<MyPageViewController>(identifier: "MyPageViewController")
       let name = "MyPage"
+      let registerViewController = StoryboardViewControllerResource<RegisterViewController>(identifier: "RegisterViewController")
+      
+      func forgotPasswordViewController(_: Void = ()) -> ForgotPasswordViewController? {
+        return UIKit.UIStoryboard(resource: self).instantiateViewController(withResource: forgotPasswordViewController)
+      }
+      
+      func loginViewController(_: Void = ()) -> LoginViewController? {
+        return UIKit.UIStoryboard(resource: self).instantiateViewController(withResource: loginViewController)
+      }
+      
+      func myListEventViewController(_: Void = ()) -> MyListEventViewController? {
+        return UIKit.UIStoryboard(resource: self).instantiateViewController(withResource: myListEventViewController)
+      }
       
       func myPageViewController(_: Void = ()) -> MyPageViewController? {
         return UIKit.UIStoryboard(resource: self).instantiateViewController(withResource: myPageViewController)
       }
       
+      func registerViewController(_: Void = ()) -> RegisterViewController? {
+        return UIKit.UIStoryboard(resource: self).instantiateViewController(withResource: registerViewController)
+      }
+      
       static func validate() throws {
+        if UIKit.UIImage(named: "back", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'back' is used in storyboard 'MyPage', but couldn't be loaded.") }
+        if UIKit.UIImage(named: "rikkeisoft-logo", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'rikkeisoft-logo' is used in storyboard 'MyPage', but couldn't be loaded.") }
         if #available(iOS 11.0, *) {
         }
+        if _R.storyboard.myPage().forgotPasswordViewController() == nil { throw Rswift.ValidationError(description:"[R.swift] ViewController with identifier 'forgotPasswordViewController' could not be loaded from storyboard 'MyPage' as 'ForgotPasswordViewController'.") }
+        if _R.storyboard.myPage().loginViewController() == nil { throw Rswift.ValidationError(description:"[R.swift] ViewController with identifier 'loginViewController' could not be loaded from storyboard 'MyPage' as 'LoginViewController'.") }
+        if _R.storyboard.myPage().myListEventViewController() == nil { throw Rswift.ValidationError(description:"[R.swift] ViewController with identifier 'myListEventViewController' could not be loaded from storyboard 'MyPage' as 'MyListEventViewController'.") }
         if _R.storyboard.myPage().myPageViewController() == nil { throw Rswift.ValidationError(description:"[R.swift] ViewController with identifier 'myPageViewController' could not be loaded from storyboard 'MyPage' as 'MyPageViewController'.") }
+        if _R.storyboard.myPage().registerViewController() == nil { throw Rswift.ValidationError(description:"[R.swift] ViewController with identifier 'registerViewController' could not be loaded from storyboard 'MyPage' as 'RegisterViewController'.") }
       }
       
       fileprivate init() {}
