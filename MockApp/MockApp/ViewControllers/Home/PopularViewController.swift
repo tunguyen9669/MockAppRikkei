@@ -15,26 +15,171 @@ class PopularViewController: UIViewController {
     
     let services = HomeService()
     var populars = [Popular]()
+    let realmManager = PopularRealmManager.shared
+    var pageIndex = 1
+    
+    lazy var refreshControl: UIRefreshControl = {
+        let refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action: #selector(PopularViewController.handleRefresh(_:)), for: UIControl.Event.valueChanged)
+        refreshControl.tintColor = UIColor.tabbarColor
+        
+        return refreshControl
+    }()
     
     
     // MARK: - life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         self.tableView.register(UINib(nibName: "PopularCell", bundle: nil), forCellReuseIdentifier: "PopularCell")
-       
+        self.tableView.addSubview(self.refreshControl)
+        self.tableView.tableFooterView = UIView(frame: .zero)
+        self.tableView.estimatedRowHeight = 300.0
       
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        getPopularList(1) { (populars) in
-            for item in populars {
-                self.populars.append(item)
+        self.populars.removeAll()
+        
+        let keyUpdate = UserPrefsHelper.shared.getKeyUpdatePopular()
+       
+        if keyUpdate.isToday() == false {
+            self.populars.removeAll()
+            UserPrefsHelper.shared.setKeyUpdatePopular(self.getDateNow())
+            getPopularList(1) { (populars) in
+                self.creatDB(populars: populars)
+                self.populars = populars
+                self.reloadTable()
             }
-            self.reloadTable()
+            print("Load tu API")
+        } else {
+            guard let arrPopular = realmManager.getObjects(PopularRealmModel.self)?.toArray(ofType: PopularRealmModel.self) else {
+                return
+            }
+            if arrPopular.count == 0 {
+                getPopularList(1) { (populars) in
+                    self.creatDB(populars: populars)
+                    self.populars = populars
+                    self.reloadTable()
+                }
+            } else {
+                print("Load tu DB")
+                for item in arrPopular {
+                    let popular = Popular()
+                    popular.id = Int(item.id)
+                    popular.status = Int(item.status)
+                    popular.photo = item.photo
+                    popular.name = item.name
+                    popular.descRaw = item.descRaw
+                    popular.descHtml = item.descHtml
+                    popular.permanent = item.permanent
+                    popular.dateWarning = item.dateWarning
+                    popular.timeAlert = item.timeAlert
+                    popular.startDate = item.startDate
+                    popular.startTime = item.startTime
+                    popular.endDate = item.endDate
+                    popular.endTime = item.endTime
+                    popular.oneDayEvent = item.oneDayEvent
+                    popular.extra = item.extra
+                    popular.goingCount = Int(item.goingCount)
+                    popular.wentCount = Int(item.wentCount)
+                    self.populars.append(popular)
+                }
+                self.reloadTable()
+            }
         }
+    }
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        self.pageIndex = 1
     }
     
     // MARK: - function
+    
+    @objc func handleRefresh(_ refreshControl: UIRefreshControl) {
+        self.pageIndex = 1
+        guard let arrPopular = realmManager.getObjects(PopularRealmModel.self)?.toArray(ofType: PopularRealmModel.self) else {
+            return
+        }
+        self.populars.removeAll()
+        if arrPopular.count == 0 {
+            getPopularList(1) { (populars) in
+                self.creatDB(populars: populars)
+                self.populars = populars
+                self.reloadTable()
+            }
+        } else {
+            print("Load tu DB")
+            for item in arrPopular {
+                let popular = Popular()
+                popular.id = Int(item.id)
+                popular.status = Int(item.status)
+                popular.photo = item.photo
+                popular.name = item.name
+                popular.descRaw = item.descRaw
+                popular.descHtml = item.descHtml
+                popular.permanent = item.permanent
+                popular.dateWarning = item.dateWarning
+                popular.timeAlert = item.timeAlert
+                popular.startDate = item.startDate
+                popular.startTime = item.startTime
+                popular.endDate = item.endDate
+                popular.endTime = item.endTime
+                popular.oneDayEvent = item.oneDayEvent
+                popular.extra = item.extra
+                popular.goingCount = Int(item.goingCount)
+                popular.wentCount = Int(item.wentCount)
+                self.populars.append(popular)
+            }
+            self.reloadTable()
+        }
+        refreshControl.endRefreshing()
+        
+    }
+    
+    func creatDB(populars: [Popular]) {
+        realmManager.deleteDabase()
+        for item in populars {
+            let popular = PopularRealmModel()
+            popular.id = item.getId().description
+            popular.status = item.getStatus().description
+            popular.photo = item.getPhoto()
+            popular.name = item.getName()
+            popular.descRaw = item.getDescRaw()
+            popular.descHtml = item.getDescHtml()
+            popular.permanent = item.getPermanent()
+            popular.dateWarning = item.getDateWarning()
+            popular.timeAlert = item.getTimeAlert()
+            popular.startDate = item.getStartDate()
+            popular.startTime = item.getStartTime()
+            popular.endDate = item.getEndDate()
+            popular.endTime = item.getEndTime()
+            popular.oneDayEvent = item.getOneDayEvent()
+            popular.extra = item.getExtra()
+            popular.goingCount = item.getGoingCount().description
+            popular.wentCount = item.getWentCount().description
+            realmManager.addObject(obj: popular)
+        }
+    }
+    
+    func reloadTable() {
+        self.populars = self.populars.sorted { (po1, po2) -> Bool in
+            return po1.getGoingCount() >= po2.getGoingCount()
+        }
+        self.tableView.reloadData()
+    }
+    
+    func getDateNow() -> Int {
+        let date = NSDate()
+        let calendar = Calendar.current
+        let month = calendar.component(.month, from: date as Date)
+        let year = calendar.component(.year, from: date as Date)
+        let day = calendar.component(.day, from: date as Date)
+        let hour = calendar.component(.hour, from: date as Date)
+        let min = calendar.component(.minute, from: date as Date)
+        let second = calendar.component(.second, from: date as Date)
+        let timeNow = "\(year)-0\(month)-\(day) \(hour):\(min):\(second)"
+        return timeNow.convertStringToMilisecond()
+    }
     
     func getPopularList(_ pageIndex: Int, _ completion: @escaping([Popular]) -> Void) {
         if Connectivity.isConnectedToInternet {
@@ -57,13 +202,11 @@ class PopularViewController: UIViewController {
             AppDelegate.shared.tabbar?.alertWith("Thông báo", "Không có kết lỗi Internet, vui lòng kiểm tra!")
         }
     }
-    
-    func reloadTable() {
-//        self.populars = self.populars.sorted { (news1, news2) -> Bool in
-//            return news1.getPublishDate().convertStringToMilisecond() >= news2.getPublishDate().convertStringToMilisecond()
-//        }
+    @objc func loadTable() {
         self.tableView.reloadData()
     }
+    
+
 }
 
 // MARK: - extension
@@ -88,6 +231,26 @@ extension PopularViewController: UITableViewDelegate, UITableViewDataSource {
         cell.customInit(photo, name, descHtml, startDate, endDate, goingCount, permanent)
         return cell
     }
-    
-    
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        // load more
+        if Connectivity.isConnectedToInternet {
+            if indexPath.row == self.populars.count - 1 {
+                print("load more")
+                if pageIndex < 20 {
+                    self.pageIndex += 1
+                }
+                self.getPopularList(pageIndex) { (populars) in
+                    var arr: [Popular] = []
+                    for item in populars {
+                        arr.append(item)
+                    }
+                    self.populars += arr
+                }
+                self.perform(#selector(loadTable), with: nil, afterDelay: 1.0)
+
+            }
+        } else {
+            AppDelegate.shared.tabbar?.alertWith("Thông báo", "Không có kết lỗi Internet, vui lòng kiểm tra!")
+        }
+    }
 }

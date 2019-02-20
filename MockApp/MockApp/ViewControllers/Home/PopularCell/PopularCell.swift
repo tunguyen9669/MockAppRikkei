@@ -28,7 +28,10 @@ class PopularCell: UITableViewCell {
     }
     
     func customInit(_ photo: String,_ name: String,_ descHtml: String, _ startDate: String, _ endDate: String, _ goingCount: Int, _ permanent: String) {
-        self.thumbImageView.kf.setImage(with: URL(string: photo))
+        if photo != "" {
+            self.thumbImageView.kf.setImage(with: URL(string: photo))
+        }
+        
         self.nameLabel.text = name
         self.descHtmlLabel.text = descHtml
         let token = UserPrefsHelper.shared.getUserToken()

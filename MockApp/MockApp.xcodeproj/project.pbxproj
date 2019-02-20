@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2460C606221CE0D300A7817B /* PopularRealmManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2460C605221CE0D300A7817B /* PopularRealmManager.swift */; };
 		24A496AF221A3E8100ABA699 /* NewsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A496AE221A3E8100ABA699 /* NewsViewController.swift */; };
 		24A496B1221A404500ABA699 /* PopularViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A496B0221A404500ABA699 /* PopularViewController.swift */; };
 		24A496B7221A435100ABA699 /* NewsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A496B5221A435100ABA699 /* NewsCell.swift */; };
@@ -93,6 +94,7 @@
 
 /* Begin PBXFileReference section */
 		1532F561EBBDE54645BBC9A5 /* Pods-MockAppTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MockAppTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MockAppTests/Pods-MockAppTests.debug.xcconfig"; sourceTree = "<group>"; };
+		2460C605221CE0D300A7817B /* PopularRealmManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopularRealmManager.swift; sourceTree = "<group>"; };
 		24A496AE221A3E8100ABA699 /* NewsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsViewController.swift; sourceTree = "<group>"; };
 		24A496B0221A404500ABA699 /* PopularViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopularViewController.swift; sourceTree = "<group>"; };
 		24A496B5221A435100ABA699 /* NewsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsCell.swift; sourceTree = "<group>"; };
@@ -300,6 +302,7 @@
 			isa = PBXGroup;
 			children = (
 				24A496D7221A923400ABA699 /* NewsRealmManager.swift */,
+				2460C605221CE0D300A7817B /* PopularRealmManager.swift */,
 			);
 			path = RealmManager;
 			sourceTree = "<group>";
@@ -340,9 +343,9 @@
 			children = (
 				24ADABA622169CEC00499926 /* Assets.xcassets */,
 				24A496BC221A5CC200ABA699 /* Service */,
-				24A496B9221A485500ABA699 /* Models */,
 				24ADABA92216A0DA00499926 /* ViewControllers */,
 				24ADABA82216A0D000499926 /* UIs */,
+				24A496B9221A485500ABA699 /* Models */,
 				24ADAB7D22169A6A00499926 /* Helper */,
 				24ADAB792216986100499926 /* Resources */,
 				24ADAB4B221695A900499926 /* AppDelegate.swift */,
@@ -771,6 +774,7 @@
 				24A496E2221AA3C100ABA699 /* StringExtension.swift in Sources */,
 				24A496C0221A5DD400ABA699 /* APIServiceObject.swift in Sources */,
 				24ADAB4E221695A900499926 /* ViewController.swift in Sources */,
+				2460C606221CE0D300A7817B /* PopularRealmManager.swift in Sources */,
 				24ADABAD2216A11400499926 /* NearViewController.swift in Sources */,
 				24A496C4221A5FFC00ABA699 /* HomeService.swift in Sources */,
 				24A496BB221A486300ABA699 /* News.swift in Sources */,

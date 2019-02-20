@@ -58,7 +58,7 @@ class Popular {
     public func getStartDate() -> String {
         return self.startTime ?? ""
     }
-    public func getstartTime() -> String {
+    public func getStartTime() -> String {
         return self.startTime ?? ""
     }
     public func getEndDate() -> String {

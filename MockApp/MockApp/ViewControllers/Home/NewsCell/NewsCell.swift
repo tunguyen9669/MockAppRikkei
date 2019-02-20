@@ -24,8 +24,9 @@ class NewsCell: UITableViewCell {
     }
     func customInit(_ thumbImg: String, _ title: String, _ publishDate: String,_ author: String, _ feed: String){
         let milisecond = publishDate.convertStringToMilisecond()
-        
-        self.thumbImageView.kf.setImage(with: URL(string: thumbImg))
+        if thumbImg != "" {
+            self.thumbImageView.kf.setImage(with: URL(string: thumbImg))
+        }
         self.titleLabel.text = title
         self.inforNewsLabel.text = "\(milisecond.dayDifference()) by \(author) \(feed)"
     }

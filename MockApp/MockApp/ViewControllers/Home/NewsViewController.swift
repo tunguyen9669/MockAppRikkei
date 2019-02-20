@@ -217,22 +217,26 @@ extension  NewsViewController : UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         // load more
-        if indexPath.row == self.arrNews.count - 1 {
-            print("load more")
-            if pageIndex < 20 {
-                self.pageIndex += 1
-            }
-            self.getNewsList(pageIndex) { (news) in
-                var arr: [News] = []
-                for item in news {
-                    arr.append(item)
+        if Connectivity.isConnectedToInternet {
+            if indexPath.row == self.arrNews.count - 1 {
+                print("load more")
+                if pageIndex < 20 {
+                    self.pageIndex += 1
                 }
-                self.arrNews += arr
+                self.getNewsList(pageIndex) { (news) in
+                    var arr: [News] = []
+                    for item in news {
+                        arr.append(item)
+                    }
+                    self.arrNews += arr
+                }
+                self.perform(#selector(loadTable), with: nil, afterDelay: 1.0)
+                
             }
-            self.perform(#selector(loadTable), with: nil, afterDelay: 1.0)
-
+        } else {
+            AppDelegate.shared.tabbar?.alertWith("Thông báo", "Không có kết lỗi Internet, vui lòng kiểm tra!")
         }
-
+      
     }
     
     
