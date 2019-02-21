@@ -17,6 +17,8 @@
 		246BCA22221E42CA006D6C91 /* UIVCExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 246BCA21221E42CA006D6C91 /* UIVCExtension.swift */; };
 		246BCA26221E9C8F006D6C91 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 246BCA25221E9C8F006D6C91 /* Utils.swift */; };
 		246BCA28221E9D79006D6C91 /* EventDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 246BCA27221E9D79006D6C91 /* EventDetailViewController.swift */; };
+		246BCA2A221EABCD006D6C91 /* GoingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 246BCA29221EABCD006D6C91 /* GoingViewController.swift */; };
+		246BCA2C221EABE0006D6C91 /* WentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 246BCA2B221EABE0006D6C91 /* WentViewController.swift */; };
 		24A496AF221A3E8100ABA699 /* NewsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A496AE221A3E8100ABA699 /* NewsViewController.swift */; };
 		24A496B1221A404500ABA699 /* PopularViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A496B0221A404500ABA699 /* PopularViewController.swift */; };
 		24A496B7221A435100ABA699 /* NewsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A496B5221A435100ABA699 /* NewsCell.swift */; };
@@ -113,6 +115,8 @@
 		246BCA21221E42CA006D6C91 /* UIVCExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIVC\U0010Extension.swift"; sourceTree = "<group>"; };
 		246BCA25221E9C8F006D6C91 /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		246BCA27221E9D79006D6C91 /* EventDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventDetailViewController.swift; sourceTree = "<group>"; };
+		246BCA29221EABCD006D6C91 /* GoingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoingViewController.swift; sourceTree = "<group>"; };
+		246BCA2B221EABE0006D6C91 /* WentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WentViewController.swift; sourceTree = "<group>"; };
 		24A496AE221A3E8100ABA699 /* NewsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsViewController.swift; sourceTree = "<group>"; };
 		24A496B0221A404500ABA699 /* PopularViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopularViewController.swift; sourceTree = "<group>"; };
 		24A496B5221A435100ABA699 /* NewsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsCell.swift; sourceTree = "<group>"; };
@@ -237,6 +241,8 @@
 				2460C60C221D3E5500A7817B /* LoginViewController.swift */,
 				2460C60E221D3E7300A7817B /* ForgotPasswordViewController.swift */,
 				246BCA27221E9D79006D6C91 /* EventDetailViewController.swift */,
+				246BCA29221EABCD006D6C91 /* GoingViewController.swift */,
+				246BCA2B221EABE0006D6C91 /* WentViewController.swift */,
 			);
 			path = MyPage;
 			sourceTree = "<group>";
@@ -815,6 +821,7 @@
 				24ADABAD2216A11400499926 /* NearViewController.swift in Sources */,
 				24A496C4221A5FFC00ABA699 /* HomeService.swift in Sources */,
 				24A496BB221A486300ABA699 /* News.swift in Sources */,
+				246BCA2A221EABCD006D6C91 /* GoingViewController.swift in Sources */,
 				2460C60B221D0F4B00A7817B /* MyListEventViewController.swift in Sources */,
 				24E54671221BB9CC003D1855 /* Popular.swift in Sources */,
 				246BCA26221E9C8F006D6C91 /* Utils.swift in Sources */,
@@ -842,6 +849,7 @@
 				24A496B7221A435100ABA699 /* NewsCell.swift in Sources */,
 				246BCA28221E9D79006D6C91 /* EventDetailViewController.swift in Sources */,
 				24ADABB12216A14800499926 /* MyPageViewController.swift in Sources */,
+				246BCA2C221EABE0006D6C91 /* WentViewController.swift in Sources */,
 				24A496C2221A5E0B00ABA699 /* APIRequestProvider.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

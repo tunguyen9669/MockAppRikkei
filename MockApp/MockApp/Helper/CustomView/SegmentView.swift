@@ -29,7 +29,7 @@ class SegmentView: UIView {
     
     func animateView() {
         selectedView.alpha = 0;
-        if self.title == "Popular" {
+        if self.title == "Popular" || self.title == "Went" {
             self.selectedView.frame.origin.x = self.selectedView.frame.origin.x - 50
             UIView.animate(withDuration: 0.2, animations: { () -> Void in
                 self.selectedView.alpha = 1.0;

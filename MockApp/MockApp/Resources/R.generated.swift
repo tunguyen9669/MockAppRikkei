@@ -311,7 +311,7 @@ struct R: Rswift.Validatable {
     fileprivate init() {}
   }
   
-  /// This `R.segue` struct is generated, and contains static references to 1 view controllers.
+  /// This `R.segue` struct is generated, and contains static references to 2 view controllers.
   struct segue {
     /// This struct is generated for `HomeViewController`, and contains static references to 2 segues.
     struct homeViewController {
@@ -332,6 +332,30 @@ struct R: Rswift.Validatable {
       /// For use inside `prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?)`.
       static func popular(segue: UIKit.UIStoryboardSegue) -> Rswift.TypedStoryboardSegueInfo<UIKit.UIStoryboardSegue, HomeViewController, PopularViewController>? {
         return Rswift.TypedStoryboardSegueInfo(segueIdentifier: R.segue.homeViewController.popular, segue: segue)
+      }
+      
+      fileprivate init() {}
+    }
+    
+    /// This struct is generated for `MyListEventViewController`, and contains static references to 2 segues.
+    struct myListEventViewController {
+      /// Segue identifier `going`.
+      static let going: Rswift.StoryboardSegueIdentifier<UIKit.UIStoryboardSegue, MyListEventViewController, GoingViewController> = Rswift.StoryboardSegueIdentifier(identifier: "going")
+      /// Segue identifier `went`.
+      static let went: Rswift.StoryboardSegueIdentifier<UIKit.UIStoryboardSegue, MyListEventViewController, WentViewController> = Rswift.StoryboardSegueIdentifier(identifier: "went")
+      
+      /// Optionally returns a typed version of segue `going`.
+      /// Returns nil if either the segue identifier, the source, destination, or segue types don't match.
+      /// For use inside `prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?)`.
+      static func going(segue: UIKit.UIStoryboardSegue) -> Rswift.TypedStoryboardSegueInfo<UIKit.UIStoryboardSegue, MyListEventViewController, GoingViewController>? {
+        return Rswift.TypedStoryboardSegueInfo(segueIdentifier: R.segue.myListEventViewController.going, segue: segue)
+      }
+      
+      /// Optionally returns a typed version of segue `went`.
+      /// Returns nil if either the segue identifier, the source, destination, or segue types don't match.
+      /// For use inside `prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?)`.
+      static func went(segue: UIKit.UIStoryboardSegue) -> Rswift.TypedStoryboardSegueInfo<UIKit.UIStoryboardSegue, MyListEventViewController, WentViewController>? {
+        return Rswift.TypedStoryboardSegueInfo(segueIdentifier: R.segue.myListEventViewController.went, segue: segue)
       }
       
       fileprivate init() {}
@@ -544,11 +568,13 @@ struct _R: Rswift.Validatable {
       let bundle = R.hostingBundle
       let eventDetailViewController = StoryboardViewControllerResource<EventDetailViewController>(identifier: "EventDetailViewController")
       let forgotPasswordViewController = StoryboardViewControllerResource<ForgotPasswordViewController>(identifier: "ForgotPasswordViewController")
+      let goingViewController = StoryboardViewControllerResource<GoingViewController>(identifier: "GoingViewController")
       let loginViewController = StoryboardViewControllerResource<LoginViewController>(identifier: "LoginViewController")
       let myListEventViewController = StoryboardViewControllerResource<MyListEventViewController>(identifier: "MyListEventViewController")
       let myPageViewController = StoryboardViewControllerResource<MyPageViewController>(identifier: "MyPageViewController")
       let name = "MyPage"
       let registerViewController = StoryboardViewControllerResource<RegisterViewController>(identifier: "RegisterViewController")
+      let wentViewController = StoryboardViewControllerResource<WentViewController>(identifier: "WentViewController")
       
       func eventDetailViewController(_: Void = ()) -> EventDetailViewController? {
         return UIKit.UIStoryboard(resource: self).instantiateViewController(withResource: eventDetailViewController)
@@ -556,6 +582,10 @@ struct _R: Rswift.Validatable {
       
       func forgotPasswordViewController(_: Void = ()) -> ForgotPasswordViewController? {
         return UIKit.UIStoryboard(resource: self).instantiateViewController(withResource: forgotPasswordViewController)
+      }
+      
+      func goingViewController(_: Void = ()) -> GoingViewController? {
+        return UIKit.UIStoryboard(resource: self).instantiateViewController(withResource: goingViewController)
       }
       
       func loginViewController(_: Void = ()) -> LoginViewController? {
@@ -574,6 +604,10 @@ struct _R: Rswift.Validatable {
         return UIKit.UIStoryboard(resource: self).instantiateViewController(withResource: registerViewController)
       }
       
+      func wentViewController(_: Void = ()) -> WentViewController? {
+        return UIKit.UIStoryboard(resource: self).instantiateViewController(withResource: wentViewController)
+      }
+      
       static func validate() throws {
         if UIKit.UIImage(named: "back", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'back' is used in storyboard 'MyPage', but couldn't be loaded.") }
         if UIKit.UIImage(named: "rikkeisoft-logo", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'rikkeisoft-logo' is used in storyboard 'MyPage', but couldn't be loaded.") }
@@ -581,10 +615,12 @@ struct _R: Rswift.Validatable {
         }
         if _R.storyboard.myPage().eventDetailViewController() == nil { throw Rswift.ValidationError(description:"[R.swift] ViewController with identifier 'eventDetailViewController' could not be loaded from storyboard 'MyPage' as 'EventDetailViewController'.") }
         if _R.storyboard.myPage().forgotPasswordViewController() == nil { throw Rswift.ValidationError(description:"[R.swift] ViewController with identifier 'forgotPasswordViewController' could not be loaded from storyboard 'MyPage' as 'ForgotPasswordViewController'.") }
+        if _R.storyboard.myPage().goingViewController() == nil { throw Rswift.ValidationError(description:"[R.swift] ViewController with identifier 'goingViewController' could not be loaded from storyboard 'MyPage' as 'GoingViewController'.") }
         if _R.storyboard.myPage().loginViewController() == nil { throw Rswift.ValidationError(description:"[R.swift] ViewController with identifier 'loginViewController' could not be loaded from storyboard 'MyPage' as 'LoginViewController'.") }
         if _R.storyboard.myPage().myListEventViewController() == nil { throw Rswift.ValidationError(description:"[R.swift] ViewController with identifier 'myListEventViewController' could not be loaded from storyboard 'MyPage' as 'MyListEventViewController'.") }
         if _R.storyboard.myPage().myPageViewController() == nil { throw Rswift.ValidationError(description:"[R.swift] ViewController with identifier 'myPageViewController' could not be loaded from storyboard 'MyPage' as 'MyPageViewController'.") }
         if _R.storyboard.myPage().registerViewController() == nil { throw Rswift.ValidationError(description:"[R.swift] ViewController with identifier 'registerViewController' could not be loaded from storyboard 'MyPage' as 'RegisterViewController'.") }
+        if _R.storyboard.myPage().wentViewController() == nil { throw Rswift.ValidationError(description:"[R.swift] ViewController with identifier 'wentViewController' could not be loaded from storyboard 'MyPage' as 'WentViewController'.") }
       }
       
       fileprivate init() {}
