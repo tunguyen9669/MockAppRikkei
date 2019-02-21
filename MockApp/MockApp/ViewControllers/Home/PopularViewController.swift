@@ -38,6 +38,9 @@ class PopularViewController: UIViewController {
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        
+        appDelegate.tabbar?.setHidden(false)
+        
         self.populars.removeAll()
         
         let keyUpdate = UserPrefsHelper.shared.getKeyUpdatePopular()
@@ -199,7 +202,7 @@ class PopularViewController: UIViewController {
                 }
             })
         } else {
-            AppDelegate.shared.tabbar?.alertWith("Thông báo", "Không có kết lỗi Internet, vui lòng kiểm tra!")
+           self.alertWith("Không có kết lỗi Internet, vui lòng kiểm tra!")
         }
     }
     @objc func loadTable() {
@@ -250,7 +253,7 @@ extension PopularViewController: UITableViewDelegate, UITableViewDataSource {
 
             }
         } else {
-            AppDelegate.shared.tabbar?.alertWith("Thông báo", "Không có kết lỗi Internet, vui lòng kiểm tra!")
+            self.alertWith("Không có kết lỗi Internet, vui lòng kiểm tra!")
         }
     }
 }

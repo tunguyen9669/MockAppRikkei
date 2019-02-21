@@ -25,4 +25,8 @@ class MyPageViewController: UIViewController {
             myListContainer.isHidden = true
         }
     }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        appDelegate.tabbar?.setHidden(false)
+    }
 }

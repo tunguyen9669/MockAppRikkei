@@ -37,9 +37,7 @@ class HomeViewController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
-       
+        appDelegate.tabbar?.setHidden(false)
     }
     
 //    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

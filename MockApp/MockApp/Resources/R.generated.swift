@@ -542,12 +542,17 @@ struct _R: Rswift.Validatable {
     
     struct myPage: Rswift.StoryboardResourceType, Rswift.Validatable {
       let bundle = R.hostingBundle
+      let eventDetailViewController = StoryboardViewControllerResource<EventDetailViewController>(identifier: "EventDetailViewController")
       let forgotPasswordViewController = StoryboardViewControllerResource<ForgotPasswordViewController>(identifier: "ForgotPasswordViewController")
       let loginViewController = StoryboardViewControllerResource<LoginViewController>(identifier: "LoginViewController")
       let myListEventViewController = StoryboardViewControllerResource<MyListEventViewController>(identifier: "MyListEventViewController")
       let myPageViewController = StoryboardViewControllerResource<MyPageViewController>(identifier: "MyPageViewController")
       let name = "MyPage"
       let registerViewController = StoryboardViewControllerResource<RegisterViewController>(identifier: "RegisterViewController")
+      
+      func eventDetailViewController(_: Void = ()) -> EventDetailViewController? {
+        return UIKit.UIStoryboard(resource: self).instantiateViewController(withResource: eventDetailViewController)
+      }
       
       func forgotPasswordViewController(_: Void = ()) -> ForgotPasswordViewController? {
         return UIKit.UIStoryboard(resource: self).instantiateViewController(withResource: forgotPasswordViewController)
@@ -574,6 +579,7 @@ struct _R: Rswift.Validatable {
         if UIKit.UIImage(named: "rikkeisoft-logo", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'rikkeisoft-logo' is used in storyboard 'MyPage', but couldn't be loaded.") }
         if #available(iOS 11.0, *) {
         }
+        if _R.storyboard.myPage().eventDetailViewController() == nil { throw Rswift.ValidationError(description:"[R.swift] ViewController with identifier 'eventDetailViewController' could not be loaded from storyboard 'MyPage' as 'EventDetailViewController'.") }
         if _R.storyboard.myPage().forgotPasswordViewController() == nil { throw Rswift.ValidationError(description:"[R.swift] ViewController with identifier 'forgotPasswordViewController' could not be loaded from storyboard 'MyPage' as 'ForgotPasswordViewController'.") }
         if _R.storyboard.myPage().loginViewController() == nil { throw Rswift.ValidationError(description:"[R.swift] ViewController with identifier 'loginViewController' could not be loaded from storyboard 'MyPage' as 'LoginViewController'.") }
         if _R.storyboard.myPage().myListEventViewController() == nil { throw Rswift.ValidationError(description:"[R.swift] ViewController with identifier 'myListEventViewController' could not be loaded from storyboard 'MyPage' as 'MyListEventViewController'.") }

@@ -40,7 +40,42 @@ class APIRequestProvider: NSObject {
         alamoFireManager = Alamofire.SessionManager(configuration: configuration)
     }
     // MARK: - Authorization Requests
+    
+    func login(_ email: String, _ password: String) -> DataRequest {
+        let urlRequest = requestURL.appending("login")
+        let params = ["email": email,
+                      "password": password]
+        return alamoFireManager.request(urlRequest,
+                                        method: .post,
+                                        parameters: params,
+                                        encoding: URLEncoding.default,
+                                        headers: nil)
+    }
+    
+    func register(_ fullname: String, _ email: String, _ password: String) -> DataRequest {
+        let urlRequest = requestURL.appending("register")
+        let params = ["name": fullname,
+                      "email": email,
+                      "password": password]
+        return alamoFireManager.request(urlRequest,
+                                        method: .post,
+                                        parameters: params,
+                                        encoding: URLEncoding.default,
+                                        headers: nil)
+    }
+    
+    func resetPass(_ email: String) -> DataRequest {
+        let urlRequest = requestURL.appending("resetPassword")
+        let params = ["email": email]
+        
+        return alamoFireManager.request(urlRequest,
+                                        method: .post,
+                                        parameters: params,
+                                        encoding: URLEncoding.default,
+                                        headers: nil)
+    }
 
+    // MARK: - home request
     func getNewsList(_ pageIndex: Int) -> DataRequest {
         let urlRequest = requestURL.appending("listNews")
         let params = ["pageIndex": "\(pageIndex)",

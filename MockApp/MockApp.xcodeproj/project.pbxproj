@@ -12,6 +12,11 @@
 		2460C60B221D0F4B00A7817B /* MyListEventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2460C60A221D0F4B00A7817B /* MyListEventViewController.swift */; };
 		2460C60D221D3E5500A7817B /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2460C60C221D3E5500A7817B /* LoginViewController.swift */; };
 		2460C60F221D3E7300A7817B /* ForgotPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2460C60E221D3E7300A7817B /* ForgotPasswordViewController.swift */; };
+		246BCA1D221E3299006D6C91 /* UITextFieldExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 246BCA1C221E3299006D6C91 /* UITextFieldExtension.swift */; };
+		246BCA20221E3C29006D6C91 /* MyPageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 246BCA1F221E3C29006D6C91 /* MyPageService.swift */; };
+		246BCA22221E42CA006D6C91 /* UIVCExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 246BCA21221E42CA006D6C91 /* UIVCExtension.swift */; };
+		246BCA26221E9C8F006D6C91 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 246BCA25221E9C8F006D6C91 /* Utils.swift */; };
+		246BCA28221E9D79006D6C91 /* EventDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 246BCA27221E9D79006D6C91 /* EventDetailViewController.swift */; };
 		24A496AF221A3E8100ABA699 /* NewsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A496AE221A3E8100ABA699 /* NewsViewController.swift */; };
 		24A496B1221A404500ABA699 /* PopularViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A496B0221A404500ABA699 /* PopularViewController.swift */; };
 		24A496B7221A435100ABA699 /* NewsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A496B5221A435100ABA699 /* NewsCell.swift */; };
@@ -103,6 +108,11 @@
 		2460C60A221D0F4B00A7817B /* MyListEventViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyListEventViewController.swift; sourceTree = "<group>"; };
 		2460C60C221D3E5500A7817B /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		2460C60E221D3E7300A7817B /* ForgotPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordViewController.swift; sourceTree = "<group>"; };
+		246BCA1C221E3299006D6C91 /* UITextFieldExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITextFieldExtension.swift; sourceTree = "<group>"; };
+		246BCA1F221E3C29006D6C91 /* MyPageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageService.swift; sourceTree = "<group>"; };
+		246BCA21221E42CA006D6C91 /* UIVCExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIVC\U0010Extension.swift"; sourceTree = "<group>"; };
+		246BCA25221E9C8F006D6C91 /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
+		246BCA27221E9D79006D6C91 /* EventDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventDetailViewController.swift; sourceTree = "<group>"; };
 		24A496AE221A3E8100ABA699 /* NewsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsViewController.swift; sourceTree = "<group>"; };
 		24A496B0221A404500ABA699 /* PopularViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopularViewController.swift; sourceTree = "<group>"; };
 		24A496B5221A435100ABA699 /* NewsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsCell.swift; sourceTree = "<group>"; };
@@ -226,6 +236,7 @@
 				2460C60A221D0F4B00A7817B /* MyListEventViewController.swift */,
 				2460C60C221D3E5500A7817B /* LoginViewController.swift */,
 				2460C60E221D3E7300A7817B /* ForgotPasswordViewController.swift */,
+				246BCA27221E9D79006D6C91 /* EventDetailViewController.swift */,
 			);
 			path = MyPage;
 			sourceTree = "<group>";
@@ -277,6 +288,7 @@
 				24A496BF221A5DD400ABA699 /* APIServiceObject.swift */,
 				24A496C1221A5E0B00ABA699 /* APIRequestProvider.swift */,
 				24A496C3221A5FFC00ABA699 /* HomeService.swift */,
+				246BCA1F221E3C29006D6C91 /* MyPageService.swift */,
 			);
 			name = Service;
 			sourceTree = "<group>";
@@ -313,6 +325,7 @@
 			isa = PBXGroup;
 			children = (
 				24A496CF221A8C5C00ABA699 /* UserPresfHelper.swift */,
+				246BCA25221E9C8F006D6C91 /* Utils.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -423,6 +436,8 @@
 				24A496DB221A9CA500ABA699 /* IntExtension.swift */,
 				24A496DF221A9EF600ABA699 /* UITabbarExtension.swift */,
 				24A496E1221AA3C100ABA699 /* StringExtension.swift */,
+				246BCA1C221E3299006D6C91 /* UITextFieldExtension.swift */,
+				246BCA21221E42CA006D6C91 /* UIVCExtension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -792,16 +807,20 @@
 				24A496E0221A9EF600ABA699 /* UITabbarExtension.swift in Sources */,
 				24A496DC221A9CA500ABA699 /* IntExtension.swift in Sources */,
 				24A496E2221AA3C100ABA699 /* StringExtension.swift in Sources */,
+				246BCA1D221E3299006D6C91 /* UITextFieldExtension.swift in Sources */,
 				24A496C0221A5DD400ABA699 /* APIServiceObject.swift in Sources */,
 				24ADAB4E221695A900499926 /* ViewController.swift in Sources */,
+				246BCA20221E3C29006D6C91 /* MyPageService.swift in Sources */,
 				2460C606221CE0D300A7817B /* PopularRealmManager.swift in Sources */,
 				24ADABAD2216A11400499926 /* NearViewController.swift in Sources */,
 				24A496C4221A5FFC00ABA699 /* HomeService.swift in Sources */,
 				24A496BB221A486300ABA699 /* News.swift in Sources */,
 				2460C60B221D0F4B00A7817B /* MyListEventViewController.swift in Sources */,
 				24E54671221BB9CC003D1855 /* Popular.swift in Sources */,
+				246BCA26221E9C8F006D6C91 /* Utils.swift in Sources */,
 				24E5466D221BB9AE003D1855 /* PopularRealmModel.swift in Sources */,
 				24ADAB4C221695A900499926 /* AppDelegate.swift in Sources */,
+				246BCA22221E42CA006D6C91 /* UIVCExtension.swift in Sources */,
 				2460C609221D0F3400A7817B /* RegisterViewController.swift in Sources */,
 				24A496AF221A3E8100ABA699 /* NewsViewController.swift in Sources */,
 				24E5466F221BB9BC003D1855 /* PopularDTO.swift in Sources */,
@@ -821,6 +840,7 @@
 				24A496C8221A605B00ABA699 /* NewsDTO.swift in Sources */,
 				24A496D8221A923400ABA699 /* NewsRealmManager.swift in Sources */,
 				24A496B7221A435100ABA699 /* NewsCell.swift in Sources */,
+				246BCA28221E9D79006D6C91 /* EventDetailViewController.swift in Sources */,
 				24ADABB12216A14800499926 /* MyPageViewController.swift in Sources */,
 				24A496C2221A5E0B00ABA699 /* APIRequestProvider.swift in Sources */,
 			);

@@ -37,6 +37,9 @@ class NewsViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        
+        appDelegate.tabbar?.setHidden(false)
+       
         self.arrNews.removeAll()
         
         let keyUpdate = UserPrefsHelper.shared.getKeyUpdateNews()
@@ -180,7 +183,7 @@ class NewsViewController: UIViewController {
                 }
             })
         } else {
-            AppDelegate.shared.tabbar?.alertWith("Thông báo", "Không có kết lỗi Internet, vui lòng kiểm tra!")
+            self.alertWith("Không có kết lỗi Internet, vui lòng kiểm tra!")
         }
         
     }
@@ -234,7 +237,7 @@ extension  NewsViewController : UITableViewDataSource, UITableViewDelegate {
                 
             }
         } else {
-            AppDelegate.shared.tabbar?.alertWith("Thông báo", "Không có kết lỗi Internet, vui lòng kiểm tra!")
+            self.alertWith("Không có kết lỗi Internet, vui lòng kiểm tra!")
         }
       
     }

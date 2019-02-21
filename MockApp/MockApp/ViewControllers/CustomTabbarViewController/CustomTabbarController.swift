@@ -26,4 +26,8 @@ class CustomTabbarController: UITabBarController {
             appearance.setTitleTextAttributes(attributes, for: .normal)
         }
     }
+    public func setHidden(_ isHidden: Bool) {
+        self.tabBar.isHidden = isHidden
+      
+    }
 }

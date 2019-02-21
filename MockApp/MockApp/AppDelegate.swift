@@ -15,6 +15,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
     var tabbar: CustomTabbarController?
     
+    public func getTabbar() -> CustomTabbarController {
+        return self.tabbar ?? CustomTabbarController()
+    }
+    
     func createTabbarControler() -> CustomTabbarController {
         let tabbarController = CustomTabbarController()
         tabbarController.tabBar.tintColor = UIColor.textColor
