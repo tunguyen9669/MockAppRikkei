@@ -19,12 +19,7 @@ class MyListEventViewController: UIViewController {
     var wentVC: WentViewController?
     var countTapGoing = 1
     var countTapWent = 1
-    
-    @IBAction func onDetailEvent(_ sender: Any) {
-        if let detailVC = R.storyboard.myPage.eventDetailViewController() {
-            self.navigationController?.pushViewController(detailVC, animated: true)
-        }
-    }
+
     
     @IBAction func onLogout(_ sender: Any) {
         

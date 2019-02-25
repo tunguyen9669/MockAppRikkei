@@ -17,12 +17,9 @@ class HomeService: APIServiceObject {
         serviceAgent.startRequest(request) { (json, error) in
             if let error = error {
                 completion(Result.failure(error))
-            } else {
-//                print("Json: \(json)")
-                
+            } else {   
                 let data = json["response"]["news"].arrayValue
-//                print("Data: \(data)")
-                // cho nay a oi
+
                 for item in data {
                     listNews.append(NewsDTO(item))
                 }

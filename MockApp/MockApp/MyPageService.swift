@@ -10,7 +10,7 @@ import Foundation
 import SwiftyJSON
 import Alamofire
 class MyPageService: APIServiceObject {
-
+    // authentication
     func requestRegister(_ fullname: String, _ email: String, _ password: String, completion: @escaping (String) -> Void) {
         let request = APIRequestProvider.shareInstance.register(fullname, email, password)
         serviceAgent.startRequest(request) { (json, error) in
@@ -57,12 +57,31 @@ class MyPageService: APIServiceObject {
                 completion(msg)
             } else {
                 if json["status"].intValue == 1 {
-                    let msg = "Đổi mật khẩu thành công"
+                    let msg = "Đổi mật khẩu thành công, vào email để lấy mật khẩu mới"
                     completion(msg)
                 } else {
                     let msg = "Đổi mật khẩu thất bại"
                     completion(msg)
                 }
+            }
+        }
+    }
+    
+    
+    // events
+    func requestGetMyEvents(_ status: Int, _ completion: @escaping(Result<[PopularDTO]>) -> Void) {
+        let request = APIRequestProvider.shareInstance.getMyEvents(status)
+        var list = [PopularDTO]()
+        serviceAgent.startRequest(request) { (json, error) in
+            if let error = error {
+                let msg = "Data fail: " + error.localizedDescription
+                completion(Result.failure(error))
+            } else {
+                let data = json["response"]["events"].arrayValue
+                for item in data {
+                    list.append(PopularDTO(item))
+                }
+                completion(Result.success(list))
             }
         }
     }

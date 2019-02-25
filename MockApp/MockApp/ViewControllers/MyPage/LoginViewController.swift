@@ -89,6 +89,7 @@ class LoginViewController: UIViewController {
                     self.alertWith("Đăng nhập thành công")
                     UserPrefsHelper.shared.setUserToken(message)
                     UserPrefsHelper.shared.setIsloggined(true)
+                    print("User token token: \(UserPrefsHelper.shared.getUserToken())")
                     
                 }
             }

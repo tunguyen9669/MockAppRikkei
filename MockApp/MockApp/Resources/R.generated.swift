@@ -176,7 +176,7 @@ struct R: Rswift.Validatable {
     fileprivate init() {}
   }
   
-  /// This `R.image` struct is generated, and contains static references to 13 images.
+  /// This `R.image` struct is generated, and contains static references to 14 images.
   struct image {
     /// Image `back`.
     static let back = Rswift.ImageResource(bundle: R.hostingBundle, name: "back")
@@ -186,6 +186,8 @@ struct R: Rswift.Validatable {
     static let browse = Rswift.ImageResource(bundle: R.hostingBundle, name: "browse")
     /// Image `default_image`.
     static let default_image = Rswift.ImageResource(bundle: R.hostingBundle, name: "default_image")
+    /// Image `dropdown`.
+    static let dropdown = Rswift.ImageResource(bundle: R.hostingBundle, name: "dropdown")
     /// Image `home_selected`.
     static let home_selected = Rswift.ImageResource(bundle: R.hostingBundle, name: "home_selected")
     /// Image `home`.
@@ -223,6 +225,11 @@ struct R: Rswift.Validatable {
     /// `UIImage(named: "default_image", bundle: ..., traitCollection: ...)`
     static func default_image(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
       return UIKit.UIImage(resource: R.image.default_image, compatibleWith: traitCollection)
+    }
+    
+    /// `UIImage(named: "dropdown", bundle: ..., traitCollection: ...)`
+    static func dropdown(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.dropdown, compatibleWith: traitCollection)
     }
     
     /// `UIImage(named: "home", bundle: ..., traitCollection: ...)`
@@ -273,12 +280,28 @@ struct R: Rswift.Validatable {
     fileprivate init() {}
   }
   
-  /// This `R.nib` struct is generated, and contains static references to 2 nibs.
+  /// This `R.nib` struct is generated, and contains static references to 4 nibs.
   struct nib {
+    /// Nib `DateHeader`.
+    static let dateHeader = _R.nib._DateHeader()
+    /// Nib `FirstEDCell`.
+    static let firstEDCell = _R.nib._FirstEDCell()
     /// Nib `NewsCell`.
     static let newsCell = _R.nib._NewsCell()
     /// Nib `PopularCell`.
     static let popularCell = _R.nib._PopularCell()
+    
+    /// `UINib(name: "DateHeader", in: bundle)`
+    @available(*, deprecated, message: "Use UINib(resource: R.nib.dateHeader) instead")
+    static func dateHeader(_: Void = ()) -> UIKit.UINib {
+      return UIKit.UINib(resource: R.nib.dateHeader)
+    }
+    
+    /// `UINib(name: "FirstEDCell", in: bundle)`
+    @available(*, deprecated, message: "Use UINib(resource: R.nib.firstEDCell) instead")
+    static func firstEDCell(_: Void = ()) -> UIKit.UINib {
+      return UIKit.UINib(resource: R.nib.firstEDCell)
+    }
     
     /// `UINib(name: "NewsCell", in: bundle)`
     @available(*, deprecated, message: "Use UINib(resource: R.nib.newsCell) instead")
@@ -292,6 +315,14 @@ struct R: Rswift.Validatable {
       return UIKit.UINib(resource: R.nib.popularCell)
     }
     
+    static func dateHeader(owner ownerOrNil: AnyObject?, options optionsOrNil: [UINib.OptionsKey : Any]? = nil) -> DateHeader? {
+      return R.nib.dateHeader.instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? DateHeader
+    }
+    
+    static func firstEDCell(owner ownerOrNil: AnyObject?, options optionsOrNil: [UINib.OptionsKey : Any]? = nil) -> FirstEDCell? {
+      return R.nib.firstEDCell.instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? FirstEDCell
+    }
+    
     static func newsCell(owner ownerOrNil: AnyObject?, options optionsOrNil: [UINib.OptionsKey : Any]? = nil) -> NewsCell? {
       return R.nib.newsCell.instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? NewsCell
     }
@@ -303,8 +334,10 @@ struct R: Rswift.Validatable {
     fileprivate init() {}
   }
   
-  /// This `R.reuseIdentifier` struct is generated, and contains static references to 1 reuse identifiers.
+  /// This `R.reuseIdentifier` struct is generated, and contains static references to 2 reuse identifiers.
   struct reuseIdentifier {
+    /// Reuse identifier `DateHeader`.
+    static let dateHeader: Rswift.ReuseIdentifier<DateHeader> = Rswift.ReuseIdentifier(identifier: "DateHeader")
     /// Reuse identifier `PopularCell`.
     static let popularCell: Rswift.ReuseIdentifier<PopularCell> = Rswift.ReuseIdentifier(identifier: "PopularCell")
     
@@ -433,8 +466,41 @@ struct _R: Rswift.Validatable {
   
   struct nib: Rswift.Validatable {
     static func validate() throws {
+      try _FirstEDCell.validate()
       try _NewsCell.validate()
       try _PopularCell.validate()
+    }
+    
+    struct _DateHeader: Rswift.NibResourceType, Rswift.ReuseIdentifierType {
+      typealias ReusableType = DateHeader
+      
+      let bundle = R.hostingBundle
+      let identifier = "DateHeader"
+      let name = "DateHeader"
+      
+      func firstView(owner ownerOrNil: AnyObject?, options optionsOrNil: [UINib.OptionsKey : Any]? = nil) -> DateHeader? {
+        return instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? DateHeader
+      }
+      
+      fileprivate init() {}
+    }
+    
+    struct _FirstEDCell: Rswift.NibResourceType, Rswift.Validatable {
+      let bundle = R.hostingBundle
+      let name = "FirstEDCell"
+      
+      func firstView(owner ownerOrNil: AnyObject?, options optionsOrNil: [UINib.OptionsKey : Any]? = nil) -> FirstEDCell? {
+        return instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? FirstEDCell
+      }
+      
+      static func validate() throws {
+        if UIKit.UIImage(named: "default_image", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'default_image' is used in nib 'FirstEDCell', but couldn't be loaded.") }
+        if UIKit.UIImage(named: "dropdown", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'dropdown' is used in nib 'FirstEDCell', but couldn't be loaded.") }
+        if #available(iOS 11.0, *) {
+        }
+      }
+      
+      fileprivate init() {}
     }
     
     struct _NewsCell: Rswift.NibResourceType, Rswift.Validatable {

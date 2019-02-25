@@ -18,6 +18,7 @@ class PopularCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        self.selectionStyle = .none
         // Initialization code
     }
 
@@ -27,7 +28,8 @@ class PopularCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
-    func customInit(_ photo: String,_ name: String,_ descHtml: String, _ startDate: String, _ endDate: String, _ goingCount: Int, _ permanent: String) {
+    // update UI
+    func customInit(_ photo: String,_ name: String,_ descHtml: String, _ startDate: String, _ endDate: String, _ goingCount: Int, _ permanent: String, _ myStatus: Int) {
         if photo != "" {
             self.thumbImageView.kf.setImage(with: URL(string: photo))
         }
@@ -35,10 +37,15 @@ class PopularCell: UITableViewCell {
         self.nameLabel.text = name
         self.descHtmlLabel.text = descHtml
         let token = UserPrefsHelper.shared.getUserToken()
-        if token == "" {
+        if token == "" || myStatus == 0 {
             attendImageView.isHidden = true
         } else {
             attendImageView.isHidden = false
+            if myStatus == 1 {
+                attendImageView.image = R.image.red_star()
+            } else {
+                attendImageView.image = R.image.yellow_star()
+            }
         }
         
     }

@@ -16,4 +16,71 @@ extension UIViewController {
         alertController.addAction(okAction)
         present(alertController, animated: true, completion: nil)
     }
+    
+    func getDateNow() -> Int {
+        let date = NSDate()
+        let calendar = Calendar.current
+        let month = calendar.component(.month, from: date as Date)
+        let year = calendar.component(.year, from: date as Date)
+        let day = calendar.component(.day, from: date as Date)
+        let hour = calendar.component(.hour, from: date as Date)
+        let min = calendar.component(.minute, from: date as Date)
+        let second = calendar.component(.second, from: date as Date)
+        let timeNow = "\(year)-0\(month)-\(day) \(hour):\(min):\(second)"
+        return timeNow.convertStringToMilisecond()
+    }
+    
+    func getTimeEndEvent(_ time: Int) -> Int {
+        /*
+         1: Today
+         2: Tomorrow
+         3: This week
+         4: Next week
+         5: This month
+         6: Next month
+         7: Later
+         8: End
+            */
+        
+        let date = NSDate()
+        let calendar = Calendar.current
+        let monthNow = calendar.component(.month, from: date as Date)
+        let yearNow = calendar.component(.year, from: date as Date)
+        let dayNow = calendar.component(.day, from: date as Date)
+        let weekNow = calendar.component(.weekOfMonth, from: date as Date)
+        
+        let endDate = Date(timeIntervalSince1970: TimeInterval(time))
+        let monthEnd = calendar.component(.month, from: endDate as Date)
+        let yearEnd = calendar.component(.year, from: endDate as Date)
+        let dayEnd = calendar.component(.day, from: endDate as Date)
+        let weekEnd = calendar.component(.weekOfMonth, from: endDate as Date)
+        
+        // compare date component
+        if yearEnd < yearNow {
+            return 8
+        } else if yearEnd == yearNow {
+            if monthEnd < monthNow {
+                return 8
+            } else if monthEnd > monthNow {
+                if monthEnd - monthNow > 1 {
+                    return 7
+                } else {
+                    if weekEnd - weekNow == 1 {
+                        return 4
+                    }
+                    if weekEnd == weekNow {
+                        if dayEnd == dayNow {
+                            return 1
+                        }
+                        if dayEnd - dayNow == 1 {
+                            return 2
+                        }
+                        return 3
+                    }
+                    return 6
+                }
+            }
+        }
+        return 7
+    }
 }

@@ -152,18 +152,7 @@ class NewsViewController: UIViewController {
         self.tableView.reloadData()
     }
     
-    func getDateNow() -> Int {
-        let date = NSDate()
-        let calendar = Calendar.current
-        let month = calendar.component(.month, from: date as Date)
-        let year = calendar.component(.year, from: date as Date)
-        let day = calendar.component(.day, from: date as Date)
-        let hour = calendar.component(.hour, from: date as Date)
-        let min = calendar.component(.minute, from: date as Date)
-        let second = calendar.component(.second, from: date as Date)
-        let timeNow = "\(year)-0\(month)-\(day) \(hour):\(min):\(second)"
-        return timeNow.convertStringToMilisecond()
-    }
+  
     
     func getNewsList(_ pageIndex: Int, _ completion: @escaping([News]) -> Void) {
         if Connectivity.isConnectedToInternet {

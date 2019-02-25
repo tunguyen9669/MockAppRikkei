@@ -24,6 +24,7 @@ class Popular {
     public var endTime: String?
     public var oneDayEvent: String?
     public var extra: String?
+    public var myStatus: Int?
     public var goingCount: Int?
     public var wentCount: Int?
     public var venue: Venue
@@ -73,6 +74,9 @@ class Popular {
     public func getExtra() -> String {
         return self.extra ?? ""
     }
+    public func getMyStatus() -> Int {
+        return myStatus ?? 0
+    }
     public func getGoingCount() -> Int {
         return self.goingCount ?? 0
     }
@@ -96,6 +100,7 @@ class Popular {
         self.endTime = ""
         self.oneDayEvent = ""
         self.extra = ""
+        self.myStatus = 0
         self.goingCount = 0
         self.wentCount = 0
         self.venue = Venue()
@@ -117,6 +122,7 @@ class Popular {
         self.endTime = popularDto.getEndTime()
         self.oneDayEvent = popularDto.getOneDayEvent()
         self.extra = popularDto.getExtra()
+        self.myStatus = popularDto.getMyStatus()
         self.goingCount = popularDto.getGoingCount()
         self.wentCount = popularDto.getWentCount()
         self.venue = Venue(popularDto.venueDTO)

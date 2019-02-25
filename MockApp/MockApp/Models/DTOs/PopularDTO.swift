@@ -25,6 +25,7 @@ class PopularDTO {
     public var endTime: String?
     public var oneDayEvent: String?
     public var extra: String?
+    public var myStatus: Int?
     public var goingCount: Int?
     public var wentCount: Int?
     public var venueDTO: VenueDTO
@@ -74,6 +75,9 @@ class PopularDTO {
     public func getExtra() -> String {
         return self.extra ?? ""
     }
+    public func getMyStatus() -> Int {
+        return self.myStatus ?? 0
+    }
     public func getGoingCount() -> Int {
         return self.goingCount ?? 0
     }
@@ -97,6 +101,7 @@ class PopularDTO {
         self.endTime = json["schedule_end_time"].stringValue
         self.oneDayEvent = json["schedule_one_day_event"].stringValue
         self.extra = json["schedule_extra"].stringValue
+        self.myStatus = json["my_status"].intValue
         self.goingCount = json["going_count"].intValue
         self.wentCount = json["went_count"].intValue
         self.venueDTO = VenueDTO(json["venue"])

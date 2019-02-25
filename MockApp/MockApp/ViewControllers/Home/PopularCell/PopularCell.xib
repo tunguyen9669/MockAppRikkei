@@ -34,7 +34,7 @@
                             <constraint firstAttribute="width" constant="320" id="WT1-fU-yXi"/>
                         </constraints>
                     </imageView>
-                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OC3-CS-J2a">
+                    <view alpha="0.5" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OC3-CS-J2a">
                         <rect key="frame" x="0.0" y="220" width="320" height="79.5"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                     </view>

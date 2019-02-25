@@ -11,7 +11,7 @@ import Alamofire
 
 class APIRequestProvider: NSObject {
     // MARK: - variable
-    private var requestURL: String = "http://172.16.18.91/18175d1_mobile_100_fresher/public/api/v0/"
+    private var requestURL: String = "http://172.16.18.81/18175d1_mobile_100_fresher/public/api/v0/"
     
     private var _headers: HTTPHeaders = [:]
     var headers: HTTPHeaders {
@@ -21,7 +21,7 @@ class APIRequestProvider: NSObject {
         get {
             let authorizationCode = UserPrefsHelper.shared.getUserToken()
             let headers: HTTPHeaders = [
-                "Authorization": authorizationCode
+                "Authorization": "Bearer \(authorizationCode)"
             ]
             return headers
         }
@@ -88,15 +88,27 @@ class APIRequestProvider: NSObject {
     }
     
     func getPopularEvents(_ pageIndex: Int) -> DataRequest {
-        let urlRequest = requestURL.appending("listPopularEvents?")
+        let urlRequest = requestURL.appending("listPopularEvents")
         let params = ["pageIndex": "\(pageIndex)",
             "pageSize": "\(10)"]
+        
+        print("Header: \(self.headers)")
         
         return alamoFireManager.request(urlRequest,
                                         method: .get,
                                         parameters: params,
                                         encoding: URLEncoding.default,
-                                        headers: headers)
+                                        headers: self.headers)
         
+    }
+    
+    func getMyEvents(_ status: Int) -> DataRequest{
+        let urlRequest = requestURL.appending("listMyEvents")
+        let params = ["status": status]
+        return alamoFireManager.request(urlRequest,
+                                        method: .get,
+                                        parameters: params,
+                                        encoding: URLEncoding.default,
+                                        headers: headers)
     }
 }

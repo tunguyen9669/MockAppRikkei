@@ -25,6 +25,7 @@ public class PopularRealmModel: Object {
     @objc dynamic var endTime: String = ""
     @objc dynamic var oneDayEvent: String = ""
     @objc dynamic var extra: String = ""
+    @objc dynamic var myStatus: Int = 0
     @objc dynamic var goingCount: String = ""
     @objc dynamic var wentCount: String = ""
 //    @objc dynamic var venue = Venue()

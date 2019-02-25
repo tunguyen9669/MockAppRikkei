@@ -28,24 +28,24 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="default_image" translatesAutoresizingMaskIntoConstraints="NO" id="iI9-4t-Rli">
-                        <rect key="frame" x="0.0" y="10" width="320" height="210"/>
+                        <rect key="frame" x="1" y="10" width="320" height="210"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="210" id="01E-Ek-WrJ"/>
                             <constraint firstAttribute="width" constant="320" id="jlu-8E-BbY"/>
                         </constraints>
                     </imageView>
-                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IMX-ZR-IBG">
-                        <rect key="frame" x="0.0" y="220" width="320" height="49.5"/>
+                    <view alpha="0.5" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IMX-ZR-IBG">
+                        <rect key="frame" x="0.0" y="220" width="139" height="49.5"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                     </view>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Thubaytruyennghe" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AHX-e8-elK">
-                        <rect key="frame" x="5" y="230" width="310" height="14"/>
+                        <rect key="frame" x="5" y="230" width="129" height="14"/>
                         <fontDescription key="fontDescription" name="Roboto-Medium" family="Roboto" pointSize="12"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Today by Brian on Instagram" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oEW-BT-UIY">
-                        <rect key="frame" x="5" y="249" width="310" height="12"/>
+                        <rect key="frame" x="5" y="249" width="129" height="12"/>
                         <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="10"/>
                         <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <nil key="highlightedColor"/>
@@ -64,8 +64,8 @@
                     <constraint firstItem="oEW-BT-UIY" firstAttribute="top" secondItem="AHX-e8-elK" secondAttribute="bottom" constant="5" id="gcJ-oh-zg1"/>
                     <constraint firstAttribute="bottom" secondItem="IMX-ZR-IBG" secondAttribute="bottom" id="hdm-xo-vev"/>
                     <constraint firstItem="AHX-e8-elK" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="5" id="ivE-jR-PAE"/>
-                    <constraint firstItem="iI9-4t-Rli" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="khA-Tq-z8b"/>
-                    <constraint firstAttribute="trailing" secondItem="iI9-4t-Rli" secondAttribute="trailing" id="kqW-VP-xgc"/>
+                    <constraint firstItem="iI9-4t-Rli" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="1" id="khA-Tq-z8b"/>
+                    <constraint firstAttribute="trailing" secondItem="iI9-4t-Rli" secondAttribute="trailing" constant="1" id="kqW-VP-xgc"/>
                     <constraint firstAttribute="bottom" secondItem="oEW-BT-UIY" secondAttribute="bottom" constant="8.5" id="seJ-Bc-Q3i"/>
                 </constraints>
             </tableViewCellContentView>
