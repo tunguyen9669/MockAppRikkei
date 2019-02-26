@@ -30,6 +30,9 @@
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nxc-VD-rgO">
                         <rect key="frame" x="5" y="20" width="24" height="24"/>
                         <state key="normal" image="dropdown"/>
+                        <connections>
+                            <action selector="onClose:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="ZlF-aY-h2x"/>
+                        </connections>
                     </button>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="default_image" translatesAutoresizingMaskIntoConstraints="NO" id="5XH-Tf-uQW">
                         <rect key="frame" x="0.0" y="54" width="320" height="210"/>
@@ -93,6 +96,13 @@
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="detailLabel" destination="7qj-Uy-z1w" id="Ynd-dt-oXH"/>
+                <outlet property="inforLabel" destination="6ir-JY-UhC" id="UuZ-Dv-AV5"/>
+                <outlet property="locationLabel" destination="Ijn-Ba-Xou" id="epJ-fZ-Ra8"/>
+                <outlet property="thumbImg" destination="5XH-Tf-uQW" id="FAJ-qS-pad"/>
+                <outlet property="titleLabel" destination="l7h-TI-dpl" id="2L1-dy-iXe"/>
+            </connections>
         </tableViewCell>
     </objects>
     <resources>

@@ -8,8 +8,23 @@
 
 import UIKit
 
+protocol SecondEDCellDelegate: class {
+    func onFollow()
+}
+
 class SecondEDCell: UITableViewCell {
+    @IBOutlet weak var venueNameLabel: UILabel!
+    @IBOutlet weak var gentreLabel: UILabel!
+    @IBOutlet weak var locationLabel: UILabel!
+    @IBOutlet weak var contactLabel: UILabel!
+    
+    weak var delegate: SecondEDCellDelegate?
+    
+    
     @IBOutlet weak var followButton: UIButton!
+    @IBAction func onFollow(_ sender: Any) {
+        delegate?.onFollow()
+    }
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -23,4 +38,12 @@ class SecondEDCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
+    func customInit(_ venueName: String,_ gentre: String,_ location: String,_ nameContact: String,_ emailContact: String) {
+        self.venueNameLabel.text = venueName
+        self.gentreLabel.text = gentre
+        self.locationLabel.text = location
+        self.contactLabel.text = "\(nameContact) \n \(emailContact)"
+    }
+    
+   
 }

@@ -10,7 +10,7 @@ import Foundation
 extension String {
     func convertStringToMilisecond() -> Int {
         let formater = DateFormatter()
-        formater.dateFormat = "yyyy-MM-dd hh:mm:ss"
+        formater.dateFormat = "yyyy-MM-dd HH:mm:ss"
         if let date = formater.date(from: self) {
             return Int(date.timeIntervalSince1970)
         } else {

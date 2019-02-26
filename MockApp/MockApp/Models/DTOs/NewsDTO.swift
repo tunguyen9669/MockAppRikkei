@@ -53,15 +53,15 @@ class NewsDTO {
     }
     
     init(_ json: JSON) {
-        self.id = json["id"].intValue
-        self.feed = json["feed"].stringValue
-        self.title = json["title"].stringValue
-        self.detailUrl = json["detail_url"].stringValue
-        self.thumb = json["thumb_img"].stringValue
-        self.desc = json["description"].stringValue
-        self.author = json["author"].stringValue
-        self.publishDate = json["publish_date"].stringValue
-        self.creatTime = json["created_at"].stringValue
-        self.updateTime = json["updated_at"].stringValue
+        self.id = json["id"].int
+        self.feed = json["feed"].string
+        self.title = json["title"].string
+        self.detailUrl = json["detail_url"].string
+        self.thumb = json["thumb_img"].string
+        self.desc = json["description"].string
+        self.author = json["author"].string
+        self.publishDate = json["publish_date"].string
+        self.creatTime = json["created_at"].string
+        self.updateTime = json["updated_at"].string
     }
 }

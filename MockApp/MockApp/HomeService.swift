@@ -45,24 +45,44 @@ class HomeService: APIServiceObject {
         }
     }
     
+    
+    
     // MARK: - authentication request
     
-    func requestRegister(_ fullname: String, _ email: String, _ password: String, completion: @escaping (Result<String>) -> Void) {
-        let request = APIRequestProvider.shareInstance.register(fullname, email, password)
+//    func requestRegister(_ fullname: String, _ email: String, _ password: String, completion: @escaping (Result<String>) -> Void) {
+//        let request = APIRequestProvider.shareInstance.register(fullname, email, password)
+//        serviceAgent.startRequest(request) { (json, error) in
+//            if let error = error {
+//                completion(Result.failure(error))
+//            } else {
+//                print("Register JSON: \(json)")
+//                if json["status"].intValue == 1 {
+//                    let data = json["response"]["token"].stringValue
+//                    completion(Result.success(data))
+//                } else {
+//                    let msg = "Tài khoản đã được đăng kí từ trước, vui lòng nhập email khác"
+//                    completion(Result.success(msg))
+//                }
+//            }
+//        }
+//    }
+    
+    func requestGetDetailEvent(_ id: Int,_ completion: @escaping (Result<PopularDTO>) -> Void){
+        let request = APIRequestProvider.shareInstance.getDetailEvent(id)
         serviceAgent.startRequest(request) { (json, error) in
             if let error = error {
                 completion(Result.failure(error))
             } else {
-                print("Register JSON: \(json)")
                 if json["status"].intValue == 1 {
-                    let data = json["response"]["token"].stringValue
-                    completion(Result.success(data))
+                    let popularDTO = PopularDTO(json["response"]["events"])
+                    completion(Result.success(popularDTO))
                 } else {
-                    let msg = "Tài khoản đã được đăng kí từ trước, vui lòng nhập email khác"
-                    completion(Result.success(msg))
+                    let msg = "Lỗi"
+                    completion(Result.failure("Không có event" as! Error))
                 }
             }
         }
+        
     }
 }
 

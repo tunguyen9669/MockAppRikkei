@@ -28,7 +28,7 @@ class UserPrefsHelper: NSObject {
     }
     
     func getKeyUpdateNews() -> Int {
-        return UserDefaults.standard.integer(forKey: PrefsKey.keyUpdateNews) ?? 0
+        return UserDefaults.standard.integer(forKey: PrefsKey.keyUpdateNews)
     }
     
     func setKeyUpdatePopular(_ timeUpdate: Int) {

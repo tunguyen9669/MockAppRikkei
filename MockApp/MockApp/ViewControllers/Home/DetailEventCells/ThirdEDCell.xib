@@ -52,6 +52,9 @@
                         <state key="normal" title="I went">
                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         </state>
+                        <connections>
+                            <action selector="onWent:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="dzU-bd-eVw"/>
+                        </connections>
                     </button>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rad-vX-yIh">
                         <rect key="frame" x="10" y="224.5" width="150" height="40"/>
@@ -63,6 +66,9 @@
                         <state key="normal" title="I'm going">
                             <color key="titleColor" red="0.0" green="0.066666666669999999" blue="0.14117647059999999" alpha="1" colorSpace="calibratedRGB"/>
                         </state>
+                        <connections>
+                            <action selector="onGoing:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="Xf6-p5-pvl"/>
+                        </connections>
                     </button>
                 </subviews>
                 <constraints>
@@ -87,6 +93,8 @@
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
                 <outlet property="fsPagerView" destination="gkr-Y1-XSm" id="Roh-tv-WVg"/>
+                <outlet property="goingButton" destination="rad-vX-yIh" id="22a-aU-piC"/>
+                <outlet property="wentButton" destination="hOy-dr-3av" id="tTg-DJ-JU7"/>
             </connections>
         </tableViewCell>
     </objects>

@@ -21,7 +21,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func createTabbarControler() -> CustomTabbarController {
         let tabbarController = CustomTabbarController()
-        tabbarController.tabBar.tintColor = UIColor.textColor
+        tabbarController.tabBar.tintColor = UIColor.blueColor
         
         guard let homeVC = R.storyboard.home.homeViewController(),
             let nearVC = R.storyboard.near.nearViewController(),

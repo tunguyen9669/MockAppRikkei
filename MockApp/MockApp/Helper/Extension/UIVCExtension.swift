@@ -26,7 +26,7 @@ extension UIViewController {
         let hour = calendar.component(.hour, from: date as Date)
         let min = calendar.component(.minute, from: date as Date)
         let second = calendar.component(.second, from: date as Date)
-        let timeNow = "\(year)-0\(month)-\(day) \(hour):\(min):\(second)"
+        let timeNow = "\(year)-\(month)-\(day) \(hour):\(min):\(second)"
         return timeNow.convertStringToMilisecond()
     }
     

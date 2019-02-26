@@ -121,9 +121,9 @@
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="mt4-8P-zn9" firstAttribute="top" secondItem="dTC-HY-APA" secondAttribute="top" id="1ef-cg-X4W"/>
-                            <constraint firstItem="NEG-kS-U3W" firstAttribute="leading" secondItem="dTC-HY-APA" secondAttribute="leading" id="2Om-K8-qnB"/>
+                            <constraint firstItem="NEG-kS-U3W" firstAttribute="leading" secondItem="AeS-NH-uop" secondAttribute="leading" id="2Om-K8-qnB"/>
                             <constraint firstItem="1fe-3h-zWw" firstAttribute="height" secondItem="mt4-8P-zn9" secondAttribute="height" id="5is-a1-ifk"/>
-                            <constraint firstItem="dTC-HY-APA" firstAttribute="trailing" secondItem="NEG-kS-U3W" secondAttribute="trailing" id="Grk-DT-bBK"/>
+                            <constraint firstAttribute="trailing" secondItem="NEG-kS-U3W" secondAttribute="trailing" id="Grk-DT-bBK"/>
                             <constraint firstItem="Qnt-cs-3HE" firstAttribute="top" secondItem="AeS-NH-uop" secondAttribute="top" id="Jx2-q5-pax"/>
                             <constraint firstItem="dTC-HY-APA" firstAttribute="trailing" secondItem="Qnt-cs-3HE" secondAttribute="trailing" constant="5" id="XW9-mS-LGJ"/>
                             <constraint firstItem="1fe-3h-zWw" firstAttribute="centerY" secondItem="mt4-8P-zn9" secondAttribute="centerY" id="ce0-6K-57B"/>
@@ -156,9 +156,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="582"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="lRm-ps-Bhb">
-                                <rect key="frame" x="5" y="0.0" width="365" height="577"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="lRm-ps-Bhb">
+                                <rect key="frame" x="5" y="0.0" width="365" height="582"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <connections>
                                     <outlet property="dataSource" destination="kFm-h7-Ukz" id="DkE-4I-9wo"/>
@@ -167,6 +166,12 @@
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="dPo-Gt-5Fv" firstAttribute="bottom" secondItem="lRm-ps-Bhb" secondAttribute="bottom" id="5Wx-9j-SWa"/>
+                            <constraint firstItem="lRm-ps-Bhb" firstAttribute="leading" secondItem="dPo-Gt-5Fv" secondAttribute="leading" constant="5" id="hnJ-7D-HvM"/>
+                            <constraint firstItem="dPo-Gt-5Fv" firstAttribute="trailing" secondItem="lRm-ps-Bhb" secondAttribute="trailing" constant="5" id="ocE-ip-MhC"/>
+                            <constraint firstItem="lRm-ps-Bhb" firstAttribute="top" secondItem="P5k-LM-rbs" secondAttribute="top" id="wnr-BT-uQG"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="dPo-Gt-5Fv"/>
                     </view>
                     <connections>

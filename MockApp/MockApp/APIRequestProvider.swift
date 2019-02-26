@@ -111,4 +111,14 @@ class APIRequestProvider: NSObject {
                                         encoding: URLEncoding.default,
                                         headers: headers)
     }
+    
+    func getDetailEvent(_ id: Int) -> DataRequest {
+        let urlRequest = requestURL.appending("getDetailEvent")
+        let params = ["event_id": id]
+        return alamoFireManager.request(urlRequest,
+                                        method: .get,
+                                        parameters: params,
+                                        encoding: URLEncoding.default,
+                                        headers: headers)
+    }
 }

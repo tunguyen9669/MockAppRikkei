@@ -13,6 +13,8 @@ class PopularViewController: UIViewController {
     //MARLK: - outlet and variable
     @IBOutlet weak var tableView: UITableView!
     
+    
+    var popular = Popular()
     let services = HomeService()
     var populars = [Popular]()
     let realmManager = PopularRealmManager.shared
@@ -35,20 +37,12 @@ class PopularViewController: UIViewController {
         self.tableView.tableFooterView = UIView(frame: .zero)
         self.tableView.estimatedRowHeight = 300.0
         self.tableView.delegate = self
-       
-      
-    }
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
         appDelegate.tabbar?.setHidden(false)
         
+        // work with api
         self.populars.removeAll()
-        
         let token = UserPrefsHelper.shared.getUserToken()
-        
         let keyUpdate = UserPrefsHelper.shared.getKeyUpdatePopular()
-       
         if keyUpdate.isToday() == false {
             self.populars.removeAll()
             UserPrefsHelper.shared.setKeyUpdatePopular(self.getDateNow())
@@ -105,38 +99,12 @@ class PopularViewController: UIViewController {
                     self.reloadTable()
                 }
             }
-//            if arrPopular.count == 0 {
-//                getPopularList(1) { (populars) in
-//                    self.creatDB(populars: populars)
-//                    self.populars = populars
-//                    self.reloadTable()
-//                }
-//            } else {
-//                print("Load tu DB")
-//                for item in arrPopular {
-//                    let popular = Popular()
-//                    popular.id = Int(item.id)
-//                    popular.status = Int(item.status)
-//                    popular.photo = item.photo
-//                    popular.name = item.name
-//                    popular.descRaw = item.descRaw
-//                    popular.descHtml = item.descHtml
-//                    popular.permanent = item.permanent
-//                    popular.dateWarning = item.dateWarning
-//                    popular.timeAlert = item.timeAlert
-//                    popular.startDate = item.startDate
-//                    popular.startTime = item.startTime
-//                    popular.endDate = item.endDate
-//                    popular.endTime = item.endTime
-//                    popular.oneDayEvent = item.oneDayEvent
-//                    popular.extra = item.extra
-//                    popular.goingCount = Int(item.goingCount)
-//                    popular.wentCount = Int(item.wentCount)
-//                    self.populars.append(popular)
-//                }
-//                self.reloadTable()
-//            }
         }
+       
+      
+    }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
     }
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
@@ -220,7 +188,6 @@ class PopularViewController: UIViewController {
         self.tableView.reloadData()
     }
     
-   
     
     func getPopularList(_ pageIndex: Int, _ completion: @escaping([Popular]) -> Void) {
         if Connectivity.isConnectedToInternet {
@@ -237,6 +204,7 @@ class PopularViewController: UIViewController {
                 case .failure(let error):
                     print("Fail get data")
                     print(error)
+                    self.alertWith("Fail get data")
                 }
             })
         } else {
@@ -298,6 +266,7 @@ extension PopularViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         print("Click")
         if let eventDetailVC = R.storyboard.myPage.eventDetailViewController() {
+            eventDetailVC.id = populars[indexPath.row].getId()
             self.navigationController?.pushViewController(eventDetailVC, animated: true)
         }
     }

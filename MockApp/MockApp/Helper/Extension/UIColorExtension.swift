@@ -9,7 +9,7 @@
 import UIKit
 
 extension UIColor {
-    @nonobjc class var textColor: UIColor {
+    @nonobjc class var blueColor: UIColor {
         return UIColor(red: 0.0 / 255.0, green: 172.0 / 255.0, blue: 207.0 / 255.0, alpha: 1.0)
     }
     @nonobjc class var tabbarColor: UIColor {

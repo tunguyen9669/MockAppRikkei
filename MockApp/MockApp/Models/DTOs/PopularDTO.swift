@@ -86,24 +86,24 @@ class PopularDTO {
     }
     
     init(_ json: JSON) {
-        self.id = json["id"].intValue
-        self.status = json["status"].intValue
-        self.photo = json["photo"].stringValue
-        self.name = json["name"].stringValue
-        self.descRaw = json["description_raw"].stringValue
-        self.descHtml = json["description_html"].stringValue
-        self.permanent = json["schedule_permanent"].stringValue
-        self.dateWarning = json["schedule_date_warning"].stringValue
-        self.timeAlert = json["schedule_time_alert"].stringValue
-        self.startDate = json["schedule_start_date"].stringValue
-        self.startTime = json["schedule_start_time"].stringValue
-        self.endDate = json["schedule_end_date"].stringValue
-        self.endTime = json["schedule_end_time"].stringValue
-        self.oneDayEvent = json["schedule_one_day_event"].stringValue
-        self.extra = json["schedule_extra"].stringValue
-        self.myStatus = json["my_status"].intValue
-        self.goingCount = json["going_count"].intValue
-        self.wentCount = json["went_count"].intValue
+        self.id = json["id"].int
+        self.status = json["status"].int
+        self.photo = json["photo"].string
+        self.name = json["name"].string
+        self.descRaw = json["description_raw"].string
+        self.descHtml = json["description_html"].string
+        self.permanent = json["schedule_permanent"].string
+        self.dateWarning = json["schedule_date_warning"].string
+        self.timeAlert = json["schedule_time_alert"].string
+        self.startDate = json["schedule_start_date"].string
+        self.startTime = json["schedule_start_time"].string
+        self.endDate = json["schedule_end_date"].string
+        self.endTime = json["schedule_end_time"].string
+        self.oneDayEvent = json["schedule_one_day_event"].string
+        self.extra = json["schedule_extra"].string
+        self.myStatus = json["my_status"].int
+        self.goingCount = json["going_count"].int
+        self.wentCount = json["went_count"].int
         self.venueDTO = VenueDTO(json["venue"])
     }
 }

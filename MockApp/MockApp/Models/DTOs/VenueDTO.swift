@@ -14,6 +14,10 @@ class VenueDTO {
     public var name: String?
     public var type: Int?
     public var desc: String?
+    public var address: String?
+    public var area: String?
+    public var long: Float?
+    public var lat: Float?
     public var scheduleOpening: String?
     public var scheduleClosing: String?
     public var scheduleClosed: String?
@@ -30,6 +34,18 @@ class VenueDTO {
     public func getDesc() -> String {
         return desc ?? ""
     }
+    public func getAdress() -> String {
+        return address ?? ""
+    }
+    public func getArea() -> String {
+        return area ?? ""
+    }
+    public func getLong() -> Float {
+        return long ?? 0.0
+    }
+    public func getLat() -> Float {
+        return lat ?? 0.0
+    }
     public func getOpening() -> String {
         return scheduleOpening ?? ""
     }
@@ -41,12 +57,16 @@ class VenueDTO {
     }
     
     init(_ json: JSON) {
-        self.id = json["id"].intValue
-        self.name = json["name"].stringValue
-        self.type = json["type"].intValue
-        self.desc = json["description"].stringValue
-        self.scheduleOpening = json["schedule_openinghour"].stringValue
-        self.scheduleClosing = json["schedule_closinghour"].stringValue
-        self.scheduleClosed = json["schedule_closed"].stringValue
+        self.id = json["id"].int
+        self.name = json["name"].string
+        self.type = json["type"].int
+        self.desc = json["description"].string
+        self.address = json["contact_address"].string
+        self.area = json["geo_area"].string
+        self.long = json["geo_long"].float
+        self.lat = json["geo_lat"].float
+        self.scheduleOpening = json["schedule_openinghour"].string
+        self.scheduleClosing = json["schedule_closinghour"].string
+        self.scheduleClosed = json["schedule_closed"].string
     }
 }

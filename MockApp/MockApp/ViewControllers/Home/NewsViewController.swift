@@ -38,11 +38,13 @@ class NewsViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
+         print(getDateNow())
         appDelegate.tabbar?.setHidden(false)
        
         self.arrNews.removeAll()
         
         let keyUpdate = UserPrefsHelper.shared.getKeyUpdateNews()
+       
         
         // check data in DB and update table and time for update News
         if keyUpdate.isToday() == false {
@@ -93,6 +95,8 @@ class NewsViewController: UIViewController {
     
     
     // MARK: - function
+   
+    
     // refresh data
     @objc func handleRefresh(_ refreshControl: UIRefreshControl) {
         self.pageIndex = 1
