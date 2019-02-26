@@ -14,10 +14,10 @@ class EventDetailViewController: UIViewController {
     // MARK: - outlet and variable
     @IBOutlet weak var tableView: UITableView!
     
+    let services = HomeService()
     var popular = Popular()
     var id: Int?
     var arrEDs = [EDModel]()
-    let services = HomeService()
     
     // MARK: - lifecycle
     override func viewDidLoad() {
@@ -38,6 +38,18 @@ class EventDetailViewController: UIViewController {
             getDetailEvent(id)
         }
         
+    }
+    
+    func followVenue(_ id: Int) {
+        if Connectivity.isConnectedToInternet {
+            UIApplication.shared.isNetworkActivityIndicatorVisible = true
+            services.requestFollowVenue(id) { (message) in
+                UIApplication.shared.isNetworkActivityIndicatorVisible = false
+                self.alertWith(message)
+            }
+        } else {
+            self.alertWith("Không có kết lỗi Internet, vui lòng kiểm tra!")
+        }
     }
     
     func getDetailEvent(_ id: Int) {
@@ -121,7 +133,8 @@ extension EventDetailViewController: SecondEDCellDelegate {
                 appDelegate.tabbar?.selectedIndex = 3
             }
         } else {
-            //
+            print(self.popular.venue.getId())
+            followVenue(self.popular.venue.getId())
         }
     }
 }

@@ -84,5 +84,23 @@ class HomeService: APIServiceObject {
         }
         
     }
+    
+    func requestFollowVenue(_ id: Int, _ completion: @escaping (String) -> Void) {
+        let request = APIRequestProvider.shareInstance.followVenue(id)
+        serviceAgent.startRequest(request) { (json, error) in
+            if let error = error {
+                let msg = "Data fail: " + error.localizedDescription
+                completion(msg)
+            } else {
+                if json["status"].intValue == 1 {
+                    let msg = "Thao tác thành công"
+                    completion(msg)
+                } else {
+                    let msg = "Thao tác lỗi"
+                    completion(msg)
+                }
+            }
+        }
+    }
 }
 

@@ -121,4 +121,14 @@ class APIRequestProvider: NSObject {
                                         encoding: URLEncoding.default,
                                         headers: headers)
     }
+    
+    func followVenue(_ id: Int) -> DataRequest {
+        let urlRequest = requestURL.appending("doFollowVenue")
+        let params = ["venue_id": id]
+        return alamoFireManager.request(urlRequest,
+                                        method: .post,
+                                        parameters: params,
+                                        encoding: URLEncoding.default,
+                                        headers: headers)
+    }
 }

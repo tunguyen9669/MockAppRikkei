@@ -38,7 +38,20 @@ class PopularViewController: UIViewController {
         self.tableView.estimatedRowHeight = 300.0
         self.tableView.delegate = self
         appDelegate.tabbar?.setHidden(false)
-        
+        getData()
+ 
+    }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+    }
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        self.pageIndex = 1
+    }
+    
+    // MARK: - function
+    
+    func getData() {
         // work with api
         self.populars.removeAll()
         let token = UserPrefsHelper.shared.getUserToken()
@@ -100,18 +113,7 @@ class PopularViewController: UIViewController {
                 }
             }
         }
-       
-      
     }
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-    }
-    override func viewDidDisappear(_ animated: Bool) {
-        super.viewDidDisappear(animated)
-        self.pageIndex = 1
-    }
-    
-    // MARK: - function
     
     @objc func handleRefresh(_ refreshControl: UIRefreshControl) {
         self.pageIndex = 1
