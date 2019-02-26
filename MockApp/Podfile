@@ -9,6 +9,7 @@ target 'MockApp' do
  	pod 'Alamofire', '~> 4.7'
     pod 'SwiftyJSON', '~> 3.1.4'
     pod 'Kingfisher'
+    pod 'FSPagerView'
 
   # Pods for MockApp
 

@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		240C652B2224C92900D57103 /* SecondEDCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 240C65292224C92900D57103 /* SecondEDCell.swift */; };
+		240C652C2224C92900D57103 /* SecondEDCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 240C652A2224C92900D57103 /* SecondEDCell.xib */; };
+		240C652F2224D9AF00D57103 /* ThirdEDCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 240C652D2224D9AF00D57103 /* ThirdEDCell.swift */; };
+		240C65302224D9AF00D57103 /* ThirdEDCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 240C652E2224D9AF00D57103 /* ThirdEDCell.xib */; };
+		240C65332224DD1B00D57103 /* PopularPagerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 240C65312224DD1B00D57103 /* PopularPagerCell.swift */; };
+		240C65342224DD1B00D57103 /* PopularPagerCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 240C65322224DD1B00D57103 /* PopularPagerCell.xib */; };
 		243A1A2A2223796B00967001 /* DateHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 243A1A282223796B00967001 /* DateHeader.swift */; };
 		243A1A2B2223796B00967001 /* DateHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = 243A1A292223796B00967001 /* DateHeader.xib */; };
 		243A1A2D22237DC400967001 /* CommonTableModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 243A1A2C22237DC400967001 /* CommonTableModel.swift */; };
@@ -111,6 +117,12 @@
 
 /* Begin PBXFileReference section */
 		1532F561EBBDE54645BBC9A5 /* Pods-MockAppTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MockAppTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MockAppTests/Pods-MockAppTests.debug.xcconfig"; sourceTree = "<group>"; };
+		240C65292224C92900D57103 /* SecondEDCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondEDCell.swift; sourceTree = "<group>"; };
+		240C652A2224C92900D57103 /* SecondEDCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SecondEDCell.xib; sourceTree = "<group>"; };
+		240C652D2224D9AF00D57103 /* ThirdEDCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThirdEDCell.swift; sourceTree = "<group>"; };
+		240C652E2224D9AF00D57103 /* ThirdEDCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ThirdEDCell.xib; sourceTree = "<group>"; };
+		240C65312224DD1B00D57103 /* PopularPagerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopularPagerCell.swift; sourceTree = "<group>"; };
+		240C65322224DD1B00D57103 /* PopularPagerCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PopularPagerCell.xib; sourceTree = "<group>"; };
 		243A1A282223796B00967001 /* DateHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateHeader.swift; sourceTree = "<group>"; };
 		243A1A292223796B00967001 /* DateHeader.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DateHeader.xib; sourceTree = "<group>"; };
 		243A1A2C22237DC400967001 /* CommonTableModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonTableModel.swift; sourceTree = "<group>"; };
@@ -274,6 +286,10 @@
 			children = (
 				249532642223DB1600E1563F /* FirstEDCell.swift */,
 				249532652223DB1600E1563F /* FirstEDCell.xib */,
+				240C65292224C92900D57103 /* SecondEDCell.swift */,
+				240C652A2224C92900D57103 /* SecondEDCell.xib */,
+				240C652D2224D9AF00D57103 /* ThirdEDCell.swift */,
+				240C652E2224D9AF00D57103 /* ThirdEDCell.xib */,
 			);
 			path = DetailEventCells;
 			sourceTree = "<group>";
@@ -305,6 +321,8 @@
 			children = (
 				24E54676221BFB5F003D1855 /* PopularCell.swift */,
 				24E54677221BFB5F003D1855 /* PopularCell.xib */,
+				240C65312224DD1B00D57103 /* PopularPagerCell.swift */,
+				240C65322224DD1B00D57103 /* PopularPagerCell.xib */,
 			);
 			path = PopularCell;
 			sourceTree = "<group>";
@@ -669,12 +687,14 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				240C65302224D9AF00D57103 /* ThirdEDCell.xib in Resources */,
 				24ADABA122169B1E00499926 /* Roboto-Condensed.ttf in Resources */,
 				24ADABB32216A1C200499926 /* Home.storyboard in Resources */,
 				24ADAB9522169B1E00499926 /* Roboto_Specimen_Book.pdf in Resources */,
 				24ADAB9622169B1E00499926 /* Roboto-Italic.ttf in Resources */,
 				24ADABA522169B1E00499926 /* Roboto-ThinItalic.ttf in Resources */,
 				24ADABA722169CEC00499926 /* Assets.xcassets in Resources */,
+				240C652C2224C92900D57103 /* SecondEDCell.xib in Resources */,
 				24ADAB9C22169B1E00499926 /* Roboto-LightItalic.ttf in Resources */,
 				24ADAB9F22169B1E00499926 /* Roboto-BoldItalic.ttf in Resources */,
 				24ADAB9A22169B1E00499926 /* Roboto-Bold.ttf in Resources */,
@@ -690,6 +710,7 @@
 				24ADAB9E22169B1E00499926 /* Roboto-BoldCondensedItalic.ttf in Resources */,
 				24E54679221BFB5F003D1855 /* PopularCell.xib in Resources */,
 				24ADABB72216A1DD00499926 /* Browse.storyboard in Resources */,
+				240C65342224DD1B00D57103 /* PopularPagerCell.xib in Resources */,
 				24ADABA422169B1E00499926 /* Roboto-MediumItalic.ttf in Resources */,
 				24ADABB52216A1CB00499926 /* Near.storyboard in Resources */,
 				24ADABB92216A1E700499926 /* MyPage.storyboard in Resources */,
@@ -747,6 +768,7 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-MockApp/Pods-MockApp-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/FSPagerView/FSPagerView.framework",
 				"${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework",
 				"${BUILT_PRODUCTS_DIR}/R.swift.Library/Rswift.framework",
 				"${BUILT_PRODUCTS_DIR}/Realm/Realm.framework",
@@ -758,6 +780,7 @@
 			);
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FSPagerView.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Kingfisher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Rswift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Realm.framework",
@@ -857,9 +880,11 @@
 				24ADABAD2216A11400499926 /* NearViewController.swift in Sources */,
 				24A496C4221A5FFC00ABA699 /* HomeService.swift in Sources */,
 				24A496BB221A486300ABA699 /* News.swift in Sources */,
+				240C652F2224D9AF00D57103 /* ThirdEDCell.swift in Sources */,
 				246BCA2A221EABCD006D6C91 /* GoingViewController.swift in Sources */,
 				2460C60B221D0F4B00A7817B /* MyListEventViewController.swift in Sources */,
 				24E54671221BB9CC003D1855 /* Popular.swift in Sources */,
+				240C652B2224C92900D57103 /* SecondEDCell.swift in Sources */,
 				246BCA26221E9C8F006D6C91 /* Utils.swift in Sources */,
 				24E5466D221BB9AE003D1855 /* PopularRealmModel.swift in Sources */,
 				24ADAB4C221695A900499926 /* AppDelegate.swift in Sources */,
@@ -879,6 +904,7 @@
 				243A1A2D22237DC400967001 /* CommonTableModel.swift in Sources */,
 				2460C60F221D3E7300A7817B /* ForgotPasswordViewController.swift in Sources */,
 				24ADAB8022169AB700499926 /* UIColorExtension.swift in Sources */,
+				240C65332224DD1B00D57103 /* PopularPagerCell.swift in Sources */,
 				24A496CB221A8A2D00ABA699 /* Connectivity.swift in Sources */,
 				24ADABAF2216A12C00499926 /* BrowseViewController.swift in Sources */,
 				24A496DA221A943400ABA699 /* ResultsExtension.swift in Sources */,

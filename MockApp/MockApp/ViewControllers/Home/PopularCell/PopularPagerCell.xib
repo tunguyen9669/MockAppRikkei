@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="Roboto-Medium.ttf">
+            <string>Roboto-Medium</string>
+        </array>
+        <array key="Roboto-Regular.ttf">
+            <string>Roboto-Regular</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="PopularPagerCell" id="gTV-IL-0wX" customClass="PopularPagerCell" customModule="MockApp" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="380" height="122"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="380" height="122"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="M2q-MT-aya" userLabel="ContentView">
+                        <rect key="frame" x="0.0" y="0.0" width="380" height="122"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="default_image" translatesAutoresizingMaskIntoConstraints="NO" id="lWj-t6-XL7">
+                                <rect key="frame" x="0.0" y="0.0" width="110" height="80"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="80" id="4na-Fl-olT"/>
+                                    <constraint firstAttribute="width" constant="110" id="iSF-Pd-nLj"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="D1 - Thứ 7 truyền nghề" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="01X-hC-5xQ">
+                                <rect key="frame" x="115" y="10" width="265" height="18"/>
+                                <fontDescription key="fontDescription" name="Roboto-Medium" family="Roboto" pointSize="15"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" alpha="0.80000000000000004" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Phát triển ứng dụng Android theo mô hình MVP sử dụng Dagger 2. Áp dụng vào việc phát triển phần mềm" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="R2v-dC-hGd">
+                                <rect key="frame" x="115" y="33" width="265" height="30.5"/>
+                                <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="13"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="26/02/2019 -  40 người tham gia" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xFb-vw-zvz">
+                                <rect key="frame" x="0.0" y="95" width="380" height="17"/>
+                                <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="13"/>
+                                <color key="textColor" red="0.26666666666666666" green="0.26666666666666666" blue="0.26666666666666666" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="R2v-dC-hGd" firstAttribute="leading" secondItem="01X-hC-5xQ" secondAttribute="leading" id="BKZ-1I-ADG"/>
+                            <constraint firstAttribute="trailing" secondItem="01X-hC-5xQ" secondAttribute="trailing" id="IMD-kU-aTH"/>
+                            <constraint firstItem="xFb-vw-zvz" firstAttribute="leading" secondItem="lWj-t6-XL7" secondAttribute="leading" id="Im3-Oh-fMv"/>
+                            <constraint firstAttribute="bottom" secondItem="xFb-vw-zvz" secondAttribute="bottom" constant="10" id="NEo-gS-0jg"/>
+                            <constraint firstItem="01X-hC-5xQ" firstAttribute="leading" secondItem="lWj-t6-XL7" secondAttribute="trailing" constant="5" id="Num-ZC-iCt"/>
+                            <constraint firstItem="lWj-t6-XL7" firstAttribute="top" secondItem="M2q-MT-aya" secondAttribute="top" id="SVc-WT-DWb"/>
+                            <constraint firstItem="01X-hC-5xQ" firstAttribute="top" secondItem="M2q-MT-aya" secondAttribute="top" constant="10" id="ZT6-Cm-Uki"/>
+                            <constraint firstAttribute="trailing" secondItem="xFb-vw-zvz" secondAttribute="trailing" id="eV4-zy-0f0"/>
+                            <constraint firstItem="R2v-dC-hGd" firstAttribute="trailing" secondItem="01X-hC-5xQ" secondAttribute="trailing" id="ghD-Oa-boO"/>
+                            <constraint firstItem="R2v-dC-hGd" firstAttribute="top" secondItem="01X-hC-5xQ" secondAttribute="bottom" constant="5" id="h3O-Ha-uyH"/>
+                            <constraint firstItem="lWj-t6-XL7" firstAttribute="leading" secondItem="M2q-MT-aya" secondAttribute="leading" id="lO3-Wm-TVq"/>
+                            <constraint firstItem="xFb-vw-zvz" firstAttribute="top" secondItem="lWj-t6-XL7" secondAttribute="bottom" constant="15" id="o59-xc-Pk2"/>
+                        </constraints>
+                    </view>
+                </subviews>
+            </view>
+            <constraints>
+                <constraint firstItem="M2q-MT-aya" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="3EQ-UL-7O6"/>
+                <constraint firstAttribute="trailing" secondItem="M2q-MT-aya" secondAttribute="trailing" id="6U0-4L-2vN"/>
+                <constraint firstItem="M2q-MT-aya" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="FLn-QG-9HN"/>
+                <constraint firstAttribute="bottom" secondItem="M2q-MT-aya" secondAttribute="bottom" id="kxe-eS-gEY"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
+            <size key="customSize" width="382" height="122"/>
+            <point key="canvasLocation" x="48" y="86.35682158920541"/>
+        </collectionViewCell>
+    </objects>
+    <resources>
+        <image name="default_image" width="285" height="160"/>
+    </resources>
+</document>

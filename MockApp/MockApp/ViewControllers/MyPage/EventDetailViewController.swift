@@ -21,7 +21,11 @@ class EventDetailViewController: UIViewController {
         super.viewDidLoad()
         appDelegate.tabbar?.setHidden(true)
         self.arrEDs.append(EDModel("first"))
+        self.arrEDs.append(EDModel("second"))
+        self.arrEDs.append(EDModel("third"))
         self.tableView.register(UINib(nibName: "FirstEDCell", bundle: nil), forCellReuseIdentifier: "FirstEDCell")
+        self.tableView.register(UINib(nibName: "SecondEDCell", bundle: nil), forCellReuseIdentifier: "SecondEDCell")
+        self.tableView.register(UINib(nibName: "ThirdEDCell", bundle: nil), forCellReuseIdentifier: "ThirdEDCell")
     }
     
 }
@@ -32,12 +36,22 @@ extension EventDetailViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-//        if self.arrEDs[indexPath.row].getIdentifier() == "first" {
+        if self.arrEDs[indexPath.row].getIdentifier() == "first" {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: "FirstEDCell", for: indexPath) as? FirstEDCell else {
                 return UITableViewCell()
             }
             return cell
-//        }
+        } else if self.arrEDs[indexPath.row].getIdentifier() == "second" {
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: "SecondEDCell", for: indexPath) as? SecondEDCell else {
+                return UITableViewCell()
+            }
+            return cell
+        } else {
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: "ThirdEDCell", for: indexPath) as? ThirdEDCell else {
+                return UITableViewCell()
+            }
+            return cell
+        }
     }
     
     

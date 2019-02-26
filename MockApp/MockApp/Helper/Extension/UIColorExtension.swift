@@ -21,6 +21,9 @@ extension UIColor {
     @nonobjc class var pumpkinOrange: UIColor {
         return UIColor(red: 242.0 / 255.0, green: 139.0 / 255.0, blue: 15.0 / 255.0, alpha: 1.0)
     }
+    @nonobjc class var disableSecondColor: UIColor {
+        return UIColor(red: 0.0/255.0, green: 172.0/255.0, blue: 207.0/255.0, alpha: 0.2)
+    }
     
 }
 
