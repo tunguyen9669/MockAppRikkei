@@ -32,10 +32,14 @@ class PopularCell: UITableViewCell {
     func customInit(_ photo: String,_ name: String,_ descHtml: String, _ startDate: String, _ endDate: String, _ goingCount: Int, _ permanent: String, _ myStatus: Int) {
         if photo != "" {
             self.thumbImageView.kf.setImage(with: URL(string: photo))
+        } else {
+            self.thumbImageView.image = R.image.default_image()
         }
         
+        
+         self.inforLabel.text = "\(endDate) - \(goingCount) them gia"
         self.nameLabel.text = name
-        self.descHtmlLabel.text = descHtml
+        self.descHtmlLabel.text = descHtml.htmlToString
         let token = UserPrefsHelper.shared.getUserToken()
         if token == "" || myStatus == 0 {
             attendImageView.isHidden = true

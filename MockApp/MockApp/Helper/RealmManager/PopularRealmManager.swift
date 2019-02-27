@@ -68,5 +68,17 @@ class PopularRealmManager: NSObject {
             print(error.description)
         }
     }
+    
+    func editObject(obj: Object) {
+        do {
+            let realm = try Realm()
+            try realm.write {
+                realm.add(obj, update: true)
+                print("Sửa thành công")
+            }
+        } catch let error as NSError {
+            print(error.description)
+        }
+    }
 }
 

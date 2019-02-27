@@ -38,17 +38,22 @@ class EventDetailViewController: UIViewController {
             getDetailEvent(id)
         }
         
+        let firstIndexPath = NSIndexPath(row: 0, section: 0)
+        self.tableView.selectRow(at: firstIndexPath as IndexPath, animated: true, scrollPosition: .top)
+        
     }
     
     // MARK: - function
     
-    func updateStatusEvent(_ status: Int, _ id: Int) {
+    func updateStatusEvent(_ status: Int, _ id: Int, _ completion: @escaping(Bool) -> Void) {
         if Connectivity.isConnectedToInternet {
             UIApplication.shared.isNetworkActivityIndicatorVisible = true
             services.requestUpdateStatusEvent(status, id) { (message) in
                 self.alertWith(message)
                 if message == "Thao tác thành công" {
-                    UserPrefsHelper.shared.setIsEventUpdated(true)
+                    completion(true)
+                } else {
+                    completion(false)
                 }
             }
         } else {
@@ -108,12 +113,13 @@ extension EventDetailViewController: UITableViewDataSource {
         let goingCount = popular.getGoingCount()
         let venueName = popular.venue.getArea()
         let gentre = popular.venue.getDesc()
+        let html = popular.getDescHtml()
         
         if self.arrEDs[indexPath.row].getIdentifier() == "first" {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: "FirstEDCell", for: indexPath) as? FirstEDCell else {
                 return UITableViewCell()
             }
-            cell.customInit(title, photo, "", date, goingCount, location)
+            cell.customInit(title, photo, html, date, goingCount, location)
             cell.delegate = self
             return cell
         } else if self.arrEDs[indexPath.row].getIdentifier() == "second" {
@@ -172,7 +178,13 @@ extension EventDetailViewController: ThirđEDCellDelegate {
             }
         } else {
             if let id = self.id {
-                self.updateStatusEvent(1, id)
+                self.updateStatusEvent(1, id) { (result) in
+                    if result == true {
+                        // send notification
+                        NotificationCenter.default.post(name: Notification.Name.kUpdateGoingEvent, object: nil, userInfo: ["popular": self.popular])
+                    }
+                }
+                
             }
         }
     }
@@ -184,7 +196,12 @@ extension EventDetailViewController: ThirđEDCellDelegate {
             }
         } else {
             if let id = self.id {
-                self.updateStatusEvent(2, id)
+                self.updateStatusEvent(2, id) { (result) in
+                    if result == true {
+                        NotificationCenter.default.post(name: Notification.Name.kUpdateWentEvent, object: nil, userInfo: ["popular": self.popular])
+                    }
+                }
+                
             }
         }
     }

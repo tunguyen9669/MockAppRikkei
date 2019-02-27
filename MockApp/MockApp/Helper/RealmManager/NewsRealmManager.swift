@@ -68,4 +68,14 @@ class NewsRealmManager: NSObject {
             print(error.description)
         }
     }
+    
+    func getObjectsQuery<Element: Object>(_ type: Element.Type) -> Results<Element>? {
+        do {
+            let realm = try Realm()
+            return realm.objects(type).filter("name = 'Nhạc điện tử & VJ'")
+        } catch let error as NSError {
+            print(error.description)
+        }
+        return nil
+    }
 }

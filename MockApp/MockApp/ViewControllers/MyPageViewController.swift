@@ -15,6 +15,12 @@ class MyPageViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+       
+    }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        appDelegate.tabbar?.setHidden(false)
         // check Loggined
         let checkLogin = UserPrefsHelper.shared.getIsLoggined()
         if checkLogin == true {
@@ -24,9 +30,5 @@ class MyPageViewController: UIViewController {
             registerContainer.isHidden = false
             myListContainer.isHidden = true
         }
-    }
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        appDelegate.tabbar?.setHidden(false)
     }
 }

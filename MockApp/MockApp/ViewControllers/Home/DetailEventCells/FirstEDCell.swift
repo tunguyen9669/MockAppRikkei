@@ -38,6 +38,7 @@ class FirstEDCell: UITableViewCell {
         }
         self.locationLabel.text = location
         self.inforLabel.text = "\(date) - \(goingCount) them gia"
+        self.detailLabel.text = detail.htmlToString
         
     }
 

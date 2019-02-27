@@ -22,6 +22,9 @@ class CommonTableModel {
     init(_ title: String, _ arrPopulars: [Popular]) {
         self.title = title
         self.arrPopulars = arrPopulars
+        self.arrPopulars = getPopulars().sorted { (po1, po2) -> Bool in
+            return "\(po1.getEndDate()) \(po1.getEndTime())".convertStringToMilisecond() >= "\(po2.getEndDate()) \(po2.getEndTime())".convertStringToMilisecond()
+        }
     }
     
 }

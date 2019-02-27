@@ -15,6 +15,16 @@ class DateHeader: UITableViewHeaderFooterView {
         super.awakeFromNib()
         // Initialization code
     }
+    
+    func customInit(_ type: String) {
+        if type == "Took place" {
+            self.titleLabel.text = type
+        } else {
+            self.titleLabel.text = "End this \(type)"
+        }
+       
+    }
+    
 
   
 }

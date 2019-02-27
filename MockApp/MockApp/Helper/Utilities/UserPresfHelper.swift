@@ -8,6 +8,13 @@
 
 import Foundation
 
+extension Notification.Name {
+    static let kUpdateGoingEvent = NSNotification.Name("kUpdateGoingEvent")
+    static let kUpdateWentEvent = NSNotification.Name("kUpdateWentEvent")
+    static let kLogin = NSNotification.Name("kLogin")
+    static let kLogout = NSNotification.Name("kLogout")
+}
+
 struct PrefsKey {
     static let keyUpdateNews = "keyUpdateNews"
     static let keyUpdatePopular = "keyUpdatePopular"

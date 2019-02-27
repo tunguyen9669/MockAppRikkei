@@ -32,6 +32,7 @@ class MyListEventViewController: UIViewController {
                                      style: .destructive) { (_ ) in
                                         UserPrefsHelper.shared.setIsloggined(false)
                                         UserPrefsHelper.shared.setUserToken("")
+                                        NotificationCenter.default.post(name: Notification.Name.kLogout, object: nil, userInfo: ["type": "logout"])
                                         if let registerVC = R.storyboard.myPage.registerViewController() {
                                             self.navigationController?.pushViewController(registerVC, animated: true)
                                         }

@@ -33,20 +33,18 @@ class NewsViewController: UIViewController {
         self.tableView.addSubview(self.refreshControl)
         self.tableView.tableFooterView = UIView(frame: .zero)
         self.tableView.estimatedRowHeight = 270.0
+        appDelegate.tabbar?.setHidden(false)
+        getData()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-         print(getDateNow())
-        appDelegate.tabbar?.setHidden(false)
-       
+    }
+    
+    func getData() {
         self.arrNews.removeAll()
-        
         let keyUpdate = UserPrefsHelper.shared.getKeyUpdateNews()
-       
-        
-        // check data in DB and update table and time for update News
         if keyUpdate.isToday() == false {
             self.arrNews.removeAll()
             UserPrefsHelper.shared.setkeyUpdateNews(self.getDateNow())
@@ -86,7 +84,6 @@ class NewsViewController: UIViewController {
                 self.reloadTable()
             }
         }
-
     }
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
