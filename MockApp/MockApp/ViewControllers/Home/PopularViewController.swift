@@ -43,6 +43,17 @@ class PopularViewController: UIViewController {
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        // update status event
+        if UserPrefsHelper.shared.getIsEventUpdated() == true {
+            self.populars.removeAll()
+            print("Update status event")
+            UserPrefsHelper.shared.setIsEventUpdated(false)
+            getPopularList(1) { (populars) in
+                self.creatDB(populars: populars)
+                self.populars = populars
+                self.reloadTable()
+            }
+        }
     }
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)

@@ -40,12 +40,29 @@ class EventDetailViewController: UIViewController {
         
     }
     
+    // MARK: - function
+    
+    func updateStatusEvent(_ status: Int, _ id: Int) {
+        if Connectivity.isConnectedToInternet {
+            UIApplication.shared.isNetworkActivityIndicatorVisible = true
+            services.requestUpdateStatusEvent(status, id) { (message) in
+                self.alertWith(message)
+                if message == "Thao tác thành công" {
+                    UserPrefsHelper.shared.setIsEventUpdated(true)
+                }
+            }
+        } else {
+            self.alertWith("Không có kết lỗi Internet, vui lòng kiểm tra!")
+        }
+    }
+    
     func followVenue(_ id: Int) {
         if Connectivity.isConnectedToInternet {
             UIApplication.shared.isNetworkActivityIndicatorVisible = true
             services.requestFollowVenue(id) { (message) in
                 UIApplication.shared.isNetworkActivityIndicatorVisible = false
                 self.alertWith(message)
+               
             }
         } else {
             self.alertWith("Không có kết lỗi Internet, vui lòng kiểm tra!")
@@ -154,7 +171,9 @@ extension EventDetailViewController: ThirđEDCellDelegate {
                 appDelegate.tabbar?.selectedIndex = 3          
             }
         } else {
-            
+            if let id = self.id {
+                self.updateStatusEvent(1, id)
+            }
         }
     }
     
@@ -164,7 +183,9 @@ extension EventDetailViewController: ThirđEDCellDelegate {
                 appDelegate.tabbar?.selectedIndex = 3
             }
         } else {
-            //
+            if let id = self.id {
+                self.updateStatusEvent(2, id)
+            }
         }
     }
     

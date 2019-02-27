@@ -13,6 +13,7 @@ struct PrefsKey {
     static let keyUpdatePopular = "keyUpdatePopular"
     static let userToken = "token"
     static let isLoggined = "isLogined"
+    static let isEventUpdated = "isEventUpdated"
     
 }
 
@@ -22,6 +23,13 @@ class UserPrefsHelper: NSObject {
     private override init() {}
     
     // MARK: - update DB
+    
+    func setIsEventUpdated(_ updated: Bool) {
+        UserDefaults.standard.set(updated, forKey: PrefsKey.isEventUpdated)
+    }
+    func getIsEventUpdated() -> Bool {
+        return UserDefaults.standard.bool(forKey: PrefsKey.isEventUpdated)
+    }
     
     func setkeyUpdateNews(_ timeUpdate: Int) {
         UserDefaults.standard.set(timeUpdate, forKey: PrefsKey.keyUpdateNews)

@@ -96,7 +96,25 @@ class HomeService: APIServiceObject {
                     let msg = "Thao tác thành công"
                     completion(msg)
                 } else {
-                    let msg = "Thao tác lỗi"
+                    let msg = "Thao tác thất bại"
+                    completion(msg)
+                }
+            }
+        }
+    }
+    
+    func requestUpdateStatusEvent(_ status: Int, _ id: Int, _ completion: @escaping (String) -> Void) {
+        let request = APIRequestProvider.shareInstance.updateEvent(status, id)
+        serviceAgent.startRequest(request) { (json, error) in
+            if let error = error {
+                let msg = "Data fail: " + error.localizedDescription
+                completion(msg)
+            } else {
+                if json["status"].intValue == 1 {
+                    let msg = "Thao tác thành công"
+                    completion(msg)
+                } else {
+                    let msg = "Thao tác thất bại"
                     completion(msg)
                 }
             }

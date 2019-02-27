@@ -73,9 +73,6 @@ class RegisterViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        fullnameTextField.setIsOnFocus(true)
-        emailTextField.setIsOnFocus(true)
-        passTextField.setIsOnFocus(true)
     }
     
     
