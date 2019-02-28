@@ -10,7 +10,7 @@ import Foundation
 import RealmSwift
 
 public class EventRealmModel: Object {
-    @objc dynamic var id: String = ""
+    @objc dynamic var id: Int = 0
     @objc dynamic var status: String = ""
     @objc dynamic var photo: String = ""
     @objc dynamic var name: String = ""

@@ -13,6 +13,7 @@
 		240C65302224D9AF00D57103 /* ThirdEDCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 240C652E2224D9AF00D57103 /* ThirdEDCell.xib */; };
 		240C65332224DD1B00D57103 /* PopularPagerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 240C65312224DD1B00D57103 /* PopularPagerCell.swift */; };
 		240C65342224DD1B00D57103 /* PopularPagerCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 240C65322224DD1B00D57103 /* PopularPagerCell.xib */; };
+		242137F622278CBA00F817B1 /* MyEventsRealmManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 242137F522278CBA00F817B1 /* MyEventsRealmManager.swift */; };
 		243A1A2A2223796B00967001 /* DateHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 243A1A282223796B00967001 /* DateHeader.swift */; };
 		243A1A2B2223796B00967001 /* DateHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = 243A1A292223796B00967001 /* DateHeader.xib */; };
 		243A1A2D22237DC400967001 /* CommonTableModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 243A1A2C22237DC400967001 /* CommonTableModel.swift */; };
@@ -123,6 +124,7 @@
 		240C652E2224D9AF00D57103 /* ThirdEDCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ThirdEDCell.xib; sourceTree = "<group>"; };
 		240C65312224DD1B00D57103 /* PopularPagerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopularPagerCell.swift; sourceTree = "<group>"; };
 		240C65322224DD1B00D57103 /* PopularPagerCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PopularPagerCell.xib; sourceTree = "<group>"; };
+		242137F522278CBA00F817B1 /* MyEventsRealmManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyEventsRealmManager.swift; sourceTree = "<group>"; };
 		243A1A282223796B00967001 /* DateHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateHeader.swift; sourceTree = "<group>"; };
 		243A1A292223796B00967001 /* DateHeader.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DateHeader.xib; sourceTree = "<group>"; };
 		243A1A2C22237DC400967001 /* CommonTableModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonTableModel.swift; sourceTree = "<group>"; };
@@ -393,6 +395,7 @@
 			children = (
 				24A496D7221A923400ABA699 /* NewsRealmManager.swift */,
 				2460C605221CE0D300A7817B /* EventRealmManager.swift */,
+				242137F522278CBA00F817B1 /* MyEventsRealmManager.swift */,
 			);
 			path = RealmManager;
 			sourceTree = "<group>";
@@ -904,6 +907,7 @@
 				243A1A2D22237DC400967001 /* CommonTableModel.swift in Sources */,
 				2460C60F221D3E7300A7817B /* ForgotPasswordViewController.swift in Sources */,
 				24ADAB8022169AB700499926 /* UIColorExtension.swift in Sources */,
+				242137F622278CBA00F817B1 /* MyEventsRealmManager.swift in Sources */,
 				240C65332224DD1B00D57103 /* PopularPagerCell.swift in Sources */,
 				24A496CB221A8A2D00ABA699 /* Connectivity.swift in Sources */,
 				24ADABAF2216A12C00499926 /* BrowseViewController.swift in Sources */,

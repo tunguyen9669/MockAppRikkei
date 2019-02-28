@@ -9,13 +9,24 @@
 import UIKit
 import Kingfisher
 
+protocol EventCellDelegate: class {
+    func onClick(_ id: Int)
+}
+
 class EventCell: UITableViewCell {
     @IBOutlet weak var thumbImageView: UIImageView!
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var descHtmlLabel: UILabel!
     @IBOutlet weak var inforLabel: UILabel!
     @IBOutlet weak var attendImageView: UIImageView!
+    var id: Int = 0
+    var delegate: EventCellDelegate?
     
+    @IBAction func onClick(_ sender: Any) {
+        print("Click")
+        self.delegate?.onClick(self.id)
+
+    }
     override func awakeFromNib() {
         super.awakeFromNib()
         self.selectionStyle = .none

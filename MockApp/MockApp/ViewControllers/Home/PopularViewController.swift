@@ -276,7 +276,7 @@ class PopularViewController: UIViewController {
         realmManager.deleteDabase()
         for item in populars {
             let popular = EventRealmModel()
-            popular.id = item.getId().description
+            popular.id = item.getId()
             popular.status = item.getStatus().description
             popular.photo = item.getPhoto()
             popular.name = item.getName()
@@ -356,12 +356,12 @@ extension PopularViewController: UITableViewDelegate, UITableViewDataSource {
             let permanent = self.populars[indexPath.row].getPermanent()
             let myStatus = self.populars[indexPath.row].getMyStatus()
             cell.customInit(photo, name, descHtml, startDate, endDate, goingCount, permanent, myStatus)
-
+            cell.delegate = self
+            cell.id = populars[indexPath.row].getId()
         return cell
     }
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         // load more
-        if Connectivity.isConnectedToInternet {
             if indexPath.row == self.populars.count - 1 {
                 print("load more")
                 if pageIndex < 20 {
@@ -403,17 +403,18 @@ extension PopularViewController: UITableViewDelegate, UITableViewDataSource {
                     self.populars += arr
                 }
                 self.perform(#selector(loadTable), with: nil, afterDelay: 1.0)
-
             }
-        } else {
-            self.alertWith("Không có kết lỗi Internet, vui lòng kiểm tra!")
-        }
     }
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print("Click")
+}
+
+// extension
+extension PopularViewController: EventCellDelegate {
+    func onClick(_ id: Int) {
         if let eventDetailVC = R.storyboard.myPage.eventDetailViewController() {
-            eventDetailVC.id = populars[indexPath.row].getId()
+            eventDetailVC.id = id
             self.navigationController?.pushViewController(eventDetailVC, animated: true)
         }
     }
+    
+    
 }

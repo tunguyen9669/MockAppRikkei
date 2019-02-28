@@ -21,6 +21,7 @@ struct PrefsKey {
     static let userToken = "token"
     static let isLoggined = "isLogined"
     static let isEventUpdated = "isEventUpdated"
+    static let isCallMyEventAPI = "isCallMyEventAPI"
     
 }
 
@@ -69,6 +70,14 @@ class UserPrefsHelper: NSObject {
     
     func getUserToken() -> String {
         return UserDefaults.standard.string(forKey: PrefsKey.userToken) ?? ""
+    }
+    
+    func setIsCallMyEventAPI(_ check: Bool) {
+        UserDefaults.standard.set(check, forKey: PrefsKey.isCallMyEventAPI)
+    }
+    
+    func getIsCallMyEventAPI() -> Bool {
+        return UserDefaults.standard.bool(forKey: PrefsKey.isCallMyEventAPI) ?? false
     }
     
     
