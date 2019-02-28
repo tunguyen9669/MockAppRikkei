@@ -151,6 +151,7 @@ class NewsViewController: UIViewController {
             return news1.getPublishDate().convertStringToMilisecond() >= news2.getPublishDate().convertStringToMilisecond()
         }
         self.tableView.reloadData()
+        self.tableView.contentOffset = .zero
     }
     
   

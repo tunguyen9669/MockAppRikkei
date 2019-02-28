@@ -188,8 +188,6 @@ extension EventDetailViewController: ThirđEDCellDelegate {
                             var event = self.popular
                             event.myStatus = 1
                             self.realmManager.editObject(event)
-                            
-
                         }
                     }
                 }

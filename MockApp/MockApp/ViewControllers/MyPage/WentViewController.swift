@@ -32,7 +32,9 @@ class WentViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         countTap = 1
-        getData()
+        if UserPrefsHelper.shared.getIsLoggined() == true {
+            getData()
+        }
     }
     deinit {
         NotificationCenter.default.removeObserver(self)
@@ -42,7 +44,6 @@ class WentViewController: UIViewController {
     
     func getData() {
         // work with api
-        self.events.removeAll()
         let keyUpdate = UserPrefsHelper.shared.getKeyUpdatePopular()
         if keyUpdate.isToday() == false {
             self.getMyEvents(2) { (events) in
@@ -60,7 +61,7 @@ class WentViewController: UIViewController {
                 self.getMyEvents(2) { (events) in
                     print("Count Popular: \(events.count)")
                     self.creatDB(events: events)
-                    self.events = events
+                    self.getDataSourceTable(events)
                     UserPrefsHelper.shared.setIsCallMyEventWentAPI(true)
                 }
             } else {
@@ -87,15 +88,10 @@ class WentViewController: UIViewController {
                     popular.wentCount = Int(item.wentCount)
                     events.append(popular)
                 }
-                self.getDataSourceTable(events)
-               
+                    self.getDataSourceTable(events)      
             }
         }
     }
-    
-    
-    
-    // MARK: - function
     
     func creatDB(events: [Event]) {
         guard let arrEvent = realmManager.getObjects(EventRealmModel.self)?.filter("myStatus == 2").toArray(ofType: EventRealmModel.self) else {
@@ -109,7 +105,7 @@ class WentViewController: UIViewController {
     }
     
     func getDataSourceTable(_ events: [Event]) {
-        self.arrCommonTables.removeAll()
+        var arr = [CommonTableModel]()
         var todayEvents = [Event]()
         var tomorrowEvents = [Event]()
         var thisWeekEvents = [Event]()
@@ -143,14 +139,16 @@ class WentViewController: UIViewController {
             }
         }
         
-        self.arrCommonTables.append(CommonTableModel("Today", todayEvents))
-        self.arrCommonTables.append(CommonTableModel("Tomorrow", tomorrowEvents))
-        self.arrCommonTables.append(CommonTableModel("This week", thisWeekEvents))
-        self.arrCommonTables.append(CommonTableModel("Next week", nextWeekEvents))
-        self.arrCommonTables.append(CommonTableModel("This month", thisMonthEvents))
-        self.arrCommonTables.append(CommonTableModel("Next month", nextMonthEvents))
-        self.arrCommonTables.append(CommonTableModel("Later", latersEvents))
-        self.arrCommonTables.append(CommonTableModel("Took place", tookPlaceEvents))
+        arr.append(CommonTableModel("Today", todayEvents))
+        arr.append(CommonTableModel("Tomorrow", tomorrowEvents))
+        arr.append(CommonTableModel("This week", thisWeekEvents))
+        arr.append(CommonTableModel("Next week", nextWeekEvents))
+        arr.append(CommonTableModel("This month", thisMonthEvents))
+        arr.append(CommonTableModel("Next month", nextMonthEvents))
+        arr.append(CommonTableModel("Later", latersEvents))
+        arr.append(CommonTableModel("Took place", tookPlaceEvents))
+        
+        self.arrCommonTables = arr
         
         self.tableView.reloadData()
     }

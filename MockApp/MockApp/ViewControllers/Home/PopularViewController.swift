@@ -276,6 +276,7 @@ class PopularViewController: UIViewController {
             return po1.getGoingCount() >= po2.getGoingCount()
         }
         self.tableView.reloadData()
+        self.tableView.contentOffset = .zero
     }
     
     
