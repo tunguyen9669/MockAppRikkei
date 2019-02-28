@@ -9,7 +9,7 @@
 import Foundation
 import SwiftyJSON
 
-class PopularDTO {
+class EventDTO {
     public var id: Int?
     public var status: Int?
     public var photo: String?

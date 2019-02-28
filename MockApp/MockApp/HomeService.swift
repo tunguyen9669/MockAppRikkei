@@ -28,8 +28,8 @@ class HomeService: APIServiceObject {
         }
     }
     
-    func requestGetPopularEvents(_ pageIndex :Int, completion: @escaping (Result<[PopularDTO]>) -> Void) {
-        var listPopular = [PopularDTO]()
+    func requestGetPopularEvents(_ pageIndex :Int, completion: @escaping (Result<[EventDTO]>) -> Void) {
+        var listPopular = [EventDTO]()
         let request = APIRequestProvider.shareInstance.getPopularEvents(pageIndex)
         serviceAgent.startRequest(request) { (json, error) in
             if let error = error {
@@ -38,7 +38,7 @@ class HomeService: APIServiceObject {
                 print("Popular JSON: \(json)")
                 let data = json["response"]["events"].arrayValue
                 for item in data {
-                    listPopular.append(PopularDTO(item))
+                    listPopular.append(EventDTO(item))
                 }
                 completion(Result.success(listPopular))
             }
@@ -67,14 +67,14 @@ class HomeService: APIServiceObject {
 //        }
 //    }
     
-    func requestGetDetailEvent(_ id: Int,_ completion: @escaping (Result<PopularDTO>) -> Void){
+    func requestGetDetailEvent(_ id: Int,_ completion: @escaping (Result<EventDTO>) -> Void){
         let request = APIRequestProvider.shareInstance.getDetailEvent(id)
         serviceAgent.startRequest(request) { (json, error) in
             if let error = error {
                 completion(Result.failure(error))
             } else {
                 if json["status"].intValue == 1 {
-                    let popularDTO = PopularDTO(json["response"]["events"])
+                    let popularDTO = EventDTO(json["response"]["events"])
                     completion(Result.success(popularDTO))
                 } else {
                     let msg = "Lỗi"

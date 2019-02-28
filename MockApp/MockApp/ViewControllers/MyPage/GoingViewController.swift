@@ -20,7 +20,7 @@ class GoingViewController: UIViewController {
     // MARK: - life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.tableView.register(UINib(nibName: "PopularCell", bundle: nil), forCellReuseIdentifier: "PopularCell")
+        self.tableView.register(UINib(nibName: "EventCell", bundle: nil), forCellReuseIdentifier: "EventCell")
         self.tableView.register(UINib(nibName: "DateHeader", bundle: nil), forHeaderFooterViewReuseIdentifier: "DateHeader")
     }
     override func viewWillAppear(_ animated: Bool) {
@@ -37,52 +37,52 @@ class GoingViewController: UIViewController {
          8: End
          */
         countTap = 1
-        var todayPopulars = [Popular]()
-        var tomorrowPopulars = [Popular]()
-        var thisWeekPopulars = [Popular]()
-        var nextWeekPopulars = [Popular]()
-        var thisMonthPopulars = [Popular]()
-        var nextMonthPopulars = [Popular]()
-        var latersPopulars = [Popular]()
-        var tookPlacePopulars = [Popular]()
+        var todayEvents = [Event]()
+        var tomorrowEvents = [Event]()
+        var thisWeekEvents = [Event]()
+        var nextWeekEvents = [Event]()
+        var thisMonthEvents = [Event]()
+        var nextMonthEvents = [Event]()
+        var latersEvents = [Event]()
+        var tookPlaceEvents = [Event]()
         
         // get Data from API
-        self.getMyEvents(1) { (populars) in
-            print("Count Popular: \(populars.count)")
+        self.getMyEvents(1) { (events) in
+            print("Count Popular: \(events.count)")
             self.arrCommonTables.removeAll()
-            for item in populars {
+            for item in events {
                 let date = "\(item.getEndDate()) \(item.getEndTime())".convertStringToMilisecond()
                 print("Date: \(date)")
                 print("Case: \(self.getTimeEndEvent(date))")
                 switch self.getTimeEndEvent(date) {
                 case 1:
-                    todayPopulars.append(item)
+                    todayEvents.append(item)
                 case 2:
-                    tomorrowPopulars.append(item)
+                    tomorrowEvents.append(item)
                 case 3:
-                    thisWeekPopulars.append(item)
+                    thisWeekEvents.append(item)
                 case 4:
-                    nextWeekPopulars.append(item)
+                    nextWeekEvents.append(item)
                 case 5:
-                    thisMonthPopulars.append(item)
+                    thisMonthEvents.append(item)
                 case 6:
-                    nextMonthPopulars.append(item)
+                    nextMonthEvents.append(item)
                 case 7:
-                    latersPopulars.append(item)
+                    latersEvents.append(item)
                 case 8:
-                    tookPlacePopulars.append(item)
+                    tookPlaceEvents.append(item)
                 default: break
                 }
             }
             
-            self.arrCommonTables.append(CommonTableModel("Today", todayPopulars))
-            self.arrCommonTables.append(CommonTableModel("Tomorrow", tomorrowPopulars))
-            self.arrCommonTables.append(CommonTableModel("This week", thisWeekPopulars))
-            self.arrCommonTables.append(CommonTableModel("Next week", nextWeekPopulars))
-            self.arrCommonTables.append(CommonTableModel("This month", thisMonthPopulars))
-            self.arrCommonTables.append(CommonTableModel("Next month", nextMonthPopulars))
-            self.arrCommonTables.append(CommonTableModel("Later", latersPopulars))
-            self.arrCommonTables.append(CommonTableModel("Took place", tookPlacePopulars))
+            self.arrCommonTables.append(CommonTableModel("Today", todayEvents))
+            self.arrCommonTables.append(CommonTableModel("Tomorrow", tomorrowEvents))
+            self.arrCommonTables.append(CommonTableModel("This week", thisWeekEvents))
+            self.arrCommonTables.append(CommonTableModel("Next week", nextWeekEvents))
+            self.arrCommonTables.append(CommonTableModel("This month", thisMonthEvents))
+            self.arrCommonTables.append(CommonTableModel("Next month", nextMonthEvents))
+            self.arrCommonTables.append(CommonTableModel("Later", latersEvents))
+            self.arrCommonTables.append(CommonTableModel("Took place", tookPlaceEvents))
             
             self.tableView.reloadData()
             
@@ -95,16 +95,16 @@ class GoingViewController: UIViewController {
     
     // MARK: - function
     
-    func getMyEvents(_ status: Int, _ completion: @escaping([Popular]) -> Void) {
+    func getMyEvents(_ status: Int, _ completion: @escaping([Event]) -> Void) {
         if Connectivity.isConnectedToInternet == true {
             UIApplication.shared.isNetworkActivityIndicatorVisible = true
             services.requestGetMyEvents(status) { (result) in
                 UIApplication.shared.isNetworkActivityIndicatorVisible = false
                 switch result {
                 case .success(let result):
-                    var arr: [Popular] = []
+                    var arr: [Event] = []
                     for item in result {
-                        arr.append(Popular(item))
+                        arr.append(Event(item))
                     }
                     completion(arr)
                 case .failure(let error):
@@ -125,12 +125,12 @@ extension GoingViewController: UITableViewDelegate, UITableViewDataSource {
         return self.arrCommonTables.count
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.arrCommonTables[section].getPopulars().count
+        return self.arrCommonTables[section].getEvents().count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let indexList = arrCommonTables[indexPath.section].getPopulars()[indexPath.row]
-        guard let cell = self.tableView.dequeueReusableCell(withIdentifier: "PopularCell", for: indexPath) as? PopularCell else {
+        let indexList = arrCommonTables[indexPath.section].getEvents()[indexPath.row]
+        guard let cell = self.tableView.dequeueReusableCell(withIdentifier: "EventCell", for: indexPath) as? EventCell else {
             return UITableViewCell()
         }
         cell.customInit(indexList.getPhoto(), indexList.getName(), indexList.getDescHtml(), indexList.getStartDate(), indexList.getEndDate(), indexList.getGoingCount(), indexList.getPermanent(), indexList.getMyStatus())

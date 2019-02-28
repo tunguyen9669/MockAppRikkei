@@ -9,7 +9,7 @@
 import Foundation
 import RealmSwift
 
-public class PopularRealmModel: Object {
+public class EventRealmModel: Object {
     @objc dynamic var id: String = ""
     @objc dynamic var status: String = ""
     @objc dynamic var photo: String = ""

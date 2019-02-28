@@ -10,19 +10,19 @@ import Foundation
 
 class CommonTableModel {
     public var title: String?
-    public var arrPopulars: [Popular]?
+    public var arrEvents: [Event]?
     
     public func getTitle() -> String {
         return title ?? ""
     }
-    public func getPopulars() -> [Popular] {
-        return arrPopulars ?? []
+    public func getEvents() -> [Event] {
+        return arrEvents ?? []
     }
     
-    init(_ title: String, _ arrPopulars: [Popular]) {
+    init(_ title: String, _ arrEvents: [Event]) {
         self.title = title
-        self.arrPopulars = arrPopulars
-        self.arrPopulars = getPopulars().sorted { (po1, po2) -> Bool in
+        self.arrEvents = arrEvents
+        self.arrEvents = getEvents().sorted { (po1, po2) -> Bool in
             return "\(po1.getEndDate()) \(po1.getEndTime())".convertStringToMilisecond() >= "\(po2.getEndDate()) \(po2.getEndTime())".convertStringToMilisecond()
         }
     }

@@ -8,7 +8,7 @@
 
 import Foundation
 
-class Popular {
+class Event {
     public var id: Int?
     public var status: Int?
     public var photo: String?
@@ -106,7 +106,7 @@ class Popular {
         self.venue = Venue()
     }
     
-    init(_ popularDto: PopularDTO) {
+    init(_ popularDto: EventDTO) {
         self.id = popularDto.getId()
         self.status = popularDto.getStatus()
         self.photo = popularDto.getPhoto()

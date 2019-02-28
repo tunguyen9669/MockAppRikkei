@@ -14,10 +14,10 @@ class PopularViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     
     
-    var popular = Popular()
+    var popular = Event()
     let services = HomeService()
-    var populars = [Popular]()
-    let realmManager = PopularRealmManager.shared
+    var populars = [Event]()
+    let realmManager = EventRealmManager.shared
     var pageIndex = 1
     
     lazy var refreshControl: UIRefreshControl = {
@@ -32,7 +32,7 @@ class PopularViewController: UIViewController {
     // MARK: - life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.tableView.register(UINib(nibName: "PopularCell", bundle: nil), forCellReuseIdentifier: "PopularCell")
+        self.tableView.register(UINib(nibName: "EventCell", bundle: nil), forCellReuseIdentifier: "EventCell")
         self.tableView.addSubview(self.refreshControl)
         self.tableView.tableFooterView = UIView(frame: .zero)
         self.tableView.estimatedRowHeight = 300.0
@@ -70,7 +70,7 @@ class PopularViewController: UIViewController {
     
     
     @objc func onWent(_ sender: Notification) {
-        if let popular = sender.userInfo?["popular"] as? Popular {
+        if let popular = sender.userInfo?["popular"] as? Event {
 //            let popularRealm = PopularRealmModel()
 //            popularRealm.id = popular.getId().description
 //            popularRealm.status = popular.getStatus().description
@@ -107,7 +107,7 @@ class PopularViewController: UIViewController {
     
     
     @objc func onGoing(_ sender: Notification) {
-        if let popular = sender.userInfo?["popular"] as? Popular {
+        if let popular = sender.userInfo?["popular"] as? Event {
 //            let popularRealm = PopularRealmModel()
 //            popularRealm.id = popular.getId().description
 //            popularRealm.status = popular.getStatus().description
@@ -146,30 +146,38 @@ class PopularViewController: UIViewController {
     }
     @objc func onLogout(_ sender: Notification) {
         self.populars.removeAll()
-        print("Update status")
-        getPopularList(1) { (populars) in
-            self.creatDB(populars: populars)
-            self.populars = populars
-            print("Popular count: \(populars.count)")
+        let firstIndexPath = NSIndexPath(row: 0, section: 0)
+        self.tableView.selectRow(at: firstIndexPath as IndexPath, animated: true, scrollPosition: .top)
+        self.tableView.reloadData()
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+            print("Update status")
+            self.getPopularList(1) { (populars) in
+                self.creatDB(populars: populars)
+                self.populars = populars
+                print("Popular count: \(populars.count)")
+                
+                self.reloadTable()
+            }
             
-            self.reloadTable()
         }
+     
     }
     
     @objc func onGetNewData(_ sender: Notification) {
-        // notification center
         self.populars.removeAll()
-        print("Update status")
-        getPopularList(1) { (populars) in
-            self.creatDB(populars: populars)
-            self.populars = populars
-            print("Popular count: \(populars.count)")
-            
-            self.reloadTable()
-        }
-        
         let firstIndexPath = NSIndexPath(row: 0, section: 0)
         self.tableView.selectRow(at: firstIndexPath as IndexPath, animated: true, scrollPosition: .top)
+        self.tableView.reloadData()
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+            print("Update status")
+            self.getPopularList(1) { (populars) in
+                self.creatDB(populars: populars)
+                self.populars = populars
+                print("Popular count: \(populars.count)")
+                
+                self.reloadTable()
+            }
+        }
     }
     
     func getData() {
@@ -185,7 +193,7 @@ class PopularViewController: UIViewController {
             }
             print("Load tu API")
         } else {
-            guard let arrPopular = realmManager.getObjects(PopularRealmModel.self)?.toArray(ofType: PopularRealmModel.self) else {
+            guard let arrPopular = realmManager.getObjects(EventRealmModel.self)?.toArray(ofType: EventRealmModel.self) else {
                 return
             }
                 if arrPopular.count == 0 {
@@ -197,7 +205,7 @@ class PopularViewController: UIViewController {
                 } else {
                     print("Load tu DB")
                     for item in arrPopular {
-                        let popular = Popular()
+                        let popular = Event()
                         popular.id = Int(item.id)
                         popular.status = Int(item.status)
                         popular.photo = item.photo
@@ -225,7 +233,7 @@ class PopularViewController: UIViewController {
     
     @objc func handleRefresh(_ refreshControl: UIRefreshControl) {
         self.pageIndex = 1
-        guard let arrPopular = realmManager.getObjects(PopularRealmModel.self)?.toArray(ofType: PopularRealmModel.self) else {
+        guard let arrPopular = realmManager.getObjects(EventRealmModel.self)?.toArray(ofType: EventRealmModel.self) else {
             return
         }
         self.populars.removeAll()
@@ -238,7 +246,7 @@ class PopularViewController: UIViewController {
         } else {
             print("Load tu DB")
             for item in arrPopular {
-                let popular = Popular()
+                let popular = Event()
                 popular.id = Int(item.id)
                 popular.status = Int(item.status)
                 popular.photo = item.photo
@@ -264,10 +272,10 @@ class PopularViewController: UIViewController {
         
     }
     
-    func creatDB(populars: [Popular]) {
+    func creatDB(populars: [Event]) {
         realmManager.deleteDabase()
         for item in populars {
-            let popular = PopularRealmModel()
+            let popular = EventRealmModel()
             popular.id = item.getId().description
             popular.status = item.getStatus().description
             popular.photo = item.getPhoto()
@@ -299,16 +307,16 @@ class PopularViewController: UIViewController {
     }
     
     
-    func getPopularList(_ pageIndex: Int, _ completion: @escaping([Popular]) -> Void) {
+    func getPopularList(_ pageIndex: Int, _ completion: @escaping([Event]) -> Void) {
         if Connectivity.isConnectedToInternet {
             UIApplication.shared.isNetworkActivityIndicatorVisible = true
             services.requestGetPopularEvents(pageIndex, completion: { (result) in
                 UIApplication.shared.isNetworkActivityIndicatorVisible = false
                 switch result {
                 case .success(let result):
-                    var arr: [Popular] = []
+                    var arr: [Event] = []
                     for item in result {
-                        arr.append(Popular(item))
+                        arr.append(Event(item))
                     }
                     completion(arr)
                 case .failure(let error):
@@ -335,7 +343,7 @@ extension PopularViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = self.tableView.dequeueReusableCell(withIdentifier: "PopularCell", for: indexPath) as? PopularCell else {
+        guard let cell = self.tableView.dequeueReusableCell(withIdentifier: "EventCell", for: indexPath) as? EventCell else {
             return UITableViewCell()
             
         }
@@ -360,13 +368,13 @@ extension PopularViewController: UITableViewDelegate, UITableViewDataSource {
                     self.pageIndex += 1
                 }
                 
-                guard let arrPopular = realmManager.getObjects(PopularRealmModel.self)?.toArray(ofType: PopularRealmModel.self) else {
+                guard let arrPopular = realmManager.getObjects(EventRealmModel.self)?.toArray(ofType: EventRealmModel.self) else {
                     return
                 }
                 
                 self.getPopularList(pageIndex) { (populars) in
                     
-                    var arr: [Popular] = []
+                    var arr: [Event] = []
                     for item in populars {
                         arr.append(item)
                     }

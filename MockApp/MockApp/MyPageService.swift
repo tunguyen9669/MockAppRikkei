@@ -69,9 +69,9 @@ class MyPageService: APIServiceObject {
     
     
     // events
-    func requestGetMyEvents(_ status: Int, _ completion: @escaping(Result<[PopularDTO]>) -> Void) {
+    func requestGetMyEvents(_ status: Int, _ completion: @escaping(Result<[EventDTO]>) -> Void) {
         let request = APIRequestProvider.shareInstance.getMyEvents(status)
-        var list = [PopularDTO]()
+        var list = [EventDTO]()
         serviceAgent.startRequest(request) { (json, error) in
             if let error = error {
                 let msg = "Data fail: " + error.localizedDescription
@@ -79,7 +79,7 @@ class MyPageService: APIServiceObject {
             } else {
                 let data = json["response"]["events"].arrayValue
                 for item in data {
-                    list.append(PopularDTO(item))
+                    list.append(EventDTO(item))
                 }
                 completion(Result.success(list))
             }

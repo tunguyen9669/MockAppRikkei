@@ -9,7 +9,7 @@
 import UIKit
 import Kingfisher
 
-class PopularCell: UITableViewCell {
+class EventCell: UITableViewCell {
     @IBOutlet weak var thumbImageView: UIImageView!
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var descHtmlLabel: UILabel!

@@ -10,8 +10,8 @@ import Foundation
 import RealmSwift
 import Realm
 
-class PopularRealmManager: NSObject {
-    public static let shared = PopularRealmManager()
+class EventRealmManager: NSObject {
+    public static let shared = EventRealmManager()
     override init() {
         //
     }
@@ -29,7 +29,7 @@ class PopularRealmManager: NSObject {
             let realm = try Realm()
             try realm.write {
                 realm.add(obj)
-                if let news = obj as? PopularRealmModel {
+                if let news = obj as? EventRealmModel {
                     realm.add(news)
                     print("Complete add Popular")
                 }

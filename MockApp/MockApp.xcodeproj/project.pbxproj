@@ -16,7 +16,7 @@
 		243A1A2A2223796B00967001 /* DateHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 243A1A282223796B00967001 /* DateHeader.swift */; };
 		243A1A2B2223796B00967001 /* DateHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = 243A1A292223796B00967001 /* DateHeader.xib */; };
 		243A1A2D22237DC400967001 /* CommonTableModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 243A1A2C22237DC400967001 /* CommonTableModel.swift */; };
-		2460C606221CE0D300A7817B /* PopularRealmManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2460C605221CE0D300A7817B /* PopularRealmManager.swift */; };
+		2460C606221CE0D300A7817B /* EventRealmManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2460C605221CE0D300A7817B /* EventRealmManager.swift */; };
 		2460C609221D0F3400A7817B /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2460C608221D0F3400A7817B /* RegisterViewController.swift */; };
 		2460C60B221D0F4B00A7817B /* MyListEventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2460C60A221D0F4B00A7817B /* MyListEventViewController.swift */; };
 		2460C60D221D3E5500A7817B /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2460C60C221D3E5500A7817B /* LoginViewController.swift */; };
@@ -86,13 +86,13 @@
 		24ADABB92216A1E700499926 /* MyPage.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 24ADABB82216A1E700499926 /* MyPage.storyboard */; };
 		24ADABBE2216A33900499926 /* CustomTabbarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24ADABBD2216A33900499926 /* CustomTabbarController.swift */; };
 		24ADABC12216BD9000499926 /* SegmentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24ADABC02216BD9000499926 /* SegmentView.swift */; };
-		24E5466D221BB9AE003D1855 /* PopularRealmModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24E5466C221BB9AE003D1855 /* PopularRealmModel.swift */; };
-		24E5466F221BB9BC003D1855 /* PopularDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24E5466E221BB9BC003D1855 /* PopularDTO.swift */; };
-		24E54671221BB9CC003D1855 /* Popular.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24E54670221BB9CC003D1855 /* Popular.swift */; };
+		24E5466D221BB9AE003D1855 /* EventRealmModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24E5466C221BB9AE003D1855 /* EventRealmModel.swift */; };
+		24E5466F221BB9BC003D1855 /* EventDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24E5466E221BB9BC003D1855 /* EventDTO.swift */; };
+		24E54671221BB9CC003D1855 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24E54670221BB9CC003D1855 /* Event.swift */; };
 		24E54673221BDA00003D1855 /* Venue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24E54672221BDA00003D1855 /* Venue.swift */; };
 		24E54675221BDA12003D1855 /* VenueDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24E54674221BDA12003D1855 /* VenueDTO.swift */; };
-		24E54678221BFB5F003D1855 /* PopularCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24E54676221BFB5F003D1855 /* PopularCell.swift */; };
-		24E54679221BFB5F003D1855 /* PopularCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 24E54677221BFB5F003D1855 /* PopularCell.xib */; };
+		24E54678221BFB5F003D1855 /* EventCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24E54676221BFB5F003D1855 /* EventCell.swift */; };
+		24E54679221BFB5F003D1855 /* EventCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 24E54677221BFB5F003D1855 /* EventCell.xib */; };
 		49CCFFDD49640E5A4226D39B /* Pods_MockApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E34C98BD0C2AD0A4591B8B62 /* Pods_MockApp.framework */; };
 		CEF588C2CD9C42F67E4D07A4 /* Pods_MockAppUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7B9DAEC9C80AD666325C2E00 /* Pods_MockAppUITests.framework */; };
 		DC691732BACE0228F10B3461 /* Pods_MockAppTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5ED870C3537D34F5A291E3A2 /* Pods_MockAppTests.framework */; };
@@ -126,7 +126,7 @@
 		243A1A282223796B00967001 /* DateHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateHeader.swift; sourceTree = "<group>"; };
 		243A1A292223796B00967001 /* DateHeader.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DateHeader.xib; sourceTree = "<group>"; };
 		243A1A2C22237DC400967001 /* CommonTableModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonTableModel.swift; sourceTree = "<group>"; };
-		2460C605221CE0D300A7817B /* PopularRealmManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopularRealmManager.swift; sourceTree = "<group>"; };
+		2460C605221CE0D300A7817B /* EventRealmManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventRealmManager.swift; sourceTree = "<group>"; };
 		2460C608221D0F3400A7817B /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		2460C60A221D0F4B00A7817B /* MyListEventViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyListEventViewController.swift; sourceTree = "<group>"; };
 		2460C60C221D3E5500A7817B /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
@@ -202,13 +202,13 @@
 		24ADABB82216A1E700499926 /* MyPage.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MyPage.storyboard; sourceTree = "<group>"; };
 		24ADABBD2216A33900499926 /* CustomTabbarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomTabbarController.swift; sourceTree = "<group>"; };
 		24ADABC02216BD9000499926 /* SegmentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegmentView.swift; sourceTree = "<group>"; };
-		24E5466C221BB9AE003D1855 /* PopularRealmModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopularRealmModel.swift; sourceTree = "<group>"; };
-		24E5466E221BB9BC003D1855 /* PopularDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopularDTO.swift; sourceTree = "<group>"; };
-		24E54670221BB9CC003D1855 /* Popular.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Popular.swift; sourceTree = "<group>"; };
+		24E5466C221BB9AE003D1855 /* EventRealmModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventRealmModel.swift; sourceTree = "<group>"; };
+		24E5466E221BB9BC003D1855 /* EventDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventDTO.swift; sourceTree = "<group>"; };
+		24E54670221BB9CC003D1855 /* Event.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
 		24E54672221BDA00003D1855 /* Venue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Venue.swift; sourceTree = "<group>"; };
 		24E54674221BDA12003D1855 /* VenueDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VenueDTO.swift; sourceTree = "<group>"; };
-		24E54676221BFB5F003D1855 /* PopularCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopularCell.swift; sourceTree = "<group>"; };
-		24E54677221BFB5F003D1855 /* PopularCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PopularCell.xib; sourceTree = "<group>"; };
+		24E54676221BFB5F003D1855 /* EventCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventCell.swift; sourceTree = "<group>"; };
+		24E54677221BFB5F003D1855 /* EventCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EventCell.xib; sourceTree = "<group>"; };
 		5ED870C3537D34F5A291E3A2 /* Pods_MockAppTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MockAppTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7B9DAEC9C80AD666325C2E00 /* Pods_MockAppUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MockAppUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B0AE2BE7F466AD7D0B8F7E3F /* Pods-MockAppTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MockAppTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-MockAppTests/Pods-MockAppTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -319,8 +319,8 @@
 		24A496B4221A42DA00ABA699 /* PopularCell */ = {
 			isa = PBXGroup;
 			children = (
-				24E54676221BFB5F003D1855 /* PopularCell.swift */,
-				24E54677221BFB5F003D1855 /* PopularCell.xib */,
+				24E54676221BFB5F003D1855 /* EventCell.swift */,
+				24E54677221BFB5F003D1855 /* EventCell.xib */,
 				240C65312224DD1B00D57103 /* PopularPagerCell.swift */,
 				240C65322224DD1B00D57103 /* PopularPagerCell.xib */,
 			);
@@ -353,7 +353,7 @@
 			isa = PBXGroup;
 			children = (
 				24A496BA221A486300ABA699 /* News.swift */,
-				24E54670221BB9CC003D1855 /* Popular.swift */,
+				24E54670221BB9CC003D1855 /* Event.swift */,
 				24E54672221BDA00003D1855 /* Venue.swift */,
 				243A1A2C22237DC400967001 /* CommonTableModel.swift */,
 				249532692223E06D00E1563F /* EventCellModel.swift */,
@@ -365,7 +365,7 @@
 			isa = PBXGroup;
 			children = (
 				24A496C7221A605B00ABA699 /* NewsDTO.swift */,
-				24E5466E221BB9BC003D1855 /* PopularDTO.swift */,
+				24E5466E221BB9BC003D1855 /* EventDTO.swift */,
 				24E54674221BDA12003D1855 /* VenueDTO.swift */,
 			);
 			path = DTOs;
@@ -392,7 +392,7 @@
 			isa = PBXGroup;
 			children = (
 				24A496D7221A923400ABA699 /* NewsRealmManager.swift */,
-				2460C605221CE0D300A7817B /* PopularRealmManager.swift */,
+				2460C605221CE0D300A7817B /* EventRealmManager.swift */,
 			);
 			path = RealmManager;
 			sourceTree = "<group>";
@@ -401,7 +401,7 @@
 			isa = PBXGroup;
 			children = (
 				24A496D5221A917700ABA699 /* NewsRealmModel.swift */,
-				24E5466C221BB9AE003D1855 /* PopularRealmModel.swift */,
+				24E5466C221BB9AE003D1855 /* EventRealmModel.swift */,
 			);
 			path = RealmModel;
 			sourceTree = "<group>";
@@ -708,7 +708,7 @@
 				24ADAB9422169B1E00499926 /* Roboto-Regular.ttf in Resources */,
 				24ADABA222169B1E00499926 /* Roboto-CondensedItalic.ttf in Resources */,
 				24ADAB9E22169B1E00499926 /* Roboto-BoldCondensedItalic.ttf in Resources */,
-				24E54679221BFB5F003D1855 /* PopularCell.xib in Resources */,
+				24E54679221BFB5F003D1855 /* EventCell.xib in Resources */,
 				24ADABB72216A1DD00499926 /* Browse.storyboard in Resources */,
 				240C65342224DD1B00D57103 /* PopularPagerCell.xib in Resources */,
 				24ADABA422169B1E00499926 /* Roboto-MediumItalic.ttf in Resources */,
@@ -868,7 +868,7 @@
 				24A496B1221A404500ABA699 /* PopularViewController.swift in Sources */,
 				24A496BE221A5D8800ABA699 /* APIServiceAgent.swift in Sources */,
 				24ADABAB2216A10000499926 /* HomeViewController.swift in Sources */,
-				24E54678221BFB5F003D1855 /* PopularCell.swift in Sources */,
+				24E54678221BFB5F003D1855 /* EventCell.swift in Sources */,
 				24A496E0221A9EF600ABA699 /* UITabbarExtension.swift in Sources */,
 				24A496DC221A9CA500ABA699 /* IntExtension.swift in Sources */,
 				24A496E2221AA3C100ABA699 /* StringExtension.swift in Sources */,
@@ -876,22 +876,22 @@
 				24A496C0221A5DD400ABA699 /* APIServiceObject.swift in Sources */,
 				24ADAB4E221695A900499926 /* ViewController.swift in Sources */,
 				246BCA20221E3C29006D6C91 /* MyPageService.swift in Sources */,
-				2460C606221CE0D300A7817B /* PopularRealmManager.swift in Sources */,
+				2460C606221CE0D300A7817B /* EventRealmManager.swift in Sources */,
 				24ADABAD2216A11400499926 /* NearViewController.swift in Sources */,
 				24A496C4221A5FFC00ABA699 /* HomeService.swift in Sources */,
 				24A496BB221A486300ABA699 /* News.swift in Sources */,
 				240C652F2224D9AF00D57103 /* ThirdEDCell.swift in Sources */,
 				246BCA2A221EABCD006D6C91 /* GoingViewController.swift in Sources */,
 				2460C60B221D0F4B00A7817B /* MyListEventViewController.swift in Sources */,
-				24E54671221BB9CC003D1855 /* Popular.swift in Sources */,
+				24E54671221BB9CC003D1855 /* Event.swift in Sources */,
 				240C652B2224C92900D57103 /* SecondEDCell.swift in Sources */,
 				246BCA26221E9C8F006D6C91 /* Utils.swift in Sources */,
-				24E5466D221BB9AE003D1855 /* PopularRealmModel.swift in Sources */,
+				24E5466D221BB9AE003D1855 /* EventRealmModel.swift in Sources */,
 				24ADAB4C221695A900499926 /* AppDelegate.swift in Sources */,
 				246BCA22221E42CA006D6C91 /* UIVCExtension.swift in Sources */,
 				2460C609221D0F3400A7817B /* RegisterViewController.swift in Sources */,
 				24A496AF221A3E8100ABA699 /* NewsViewController.swift in Sources */,
-				24E5466F221BB9BC003D1855 /* PopularDTO.swift in Sources */,
+				24E5466F221BB9BC003D1855 /* EventDTO.swift in Sources */,
 				24A496D0221A8C5C00ABA699 /* UserPresfHelper.swift in Sources */,
 				24E54673221BDA00003D1855 /* Venue.swift in Sources */,
 				24ADAB7C2216997800499926 /* R.generated.swift in Sources */,

@@ -15,7 +15,7 @@ class EventDetailViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     
     let services = HomeService()
-    var popular = Popular()
+    var popular = Event()
     var id: Int?
     var arrEDs = [EDModel]()
     
@@ -81,7 +81,7 @@ class EventDetailViewController: UIViewController {
                 UIApplication.shared.isNetworkActivityIndicatorVisible = false
                 switch result {
                 case .success(let result):
-                    self.popular = Popular(result)
+                    self.popular = Event(result)
                     self.tableView.reloadData()
                 case .failure(let error):
                     print("Fail get data")
