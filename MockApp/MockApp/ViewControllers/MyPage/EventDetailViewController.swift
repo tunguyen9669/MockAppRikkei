@@ -14,6 +14,7 @@ class EventDetailViewController: UIViewController {
     // MARK: - outlet and variable
     @IBOutlet weak var tableView: UITableView!
     
+    let realmManager = MyEventsRealmManager()
     let services = HomeService()
     var popular = Event()
     var id: Int?
@@ -182,6 +183,14 @@ extension EventDetailViewController: ThirđEDCellDelegate {
                     if result == true {
                         // send notification
                         NotificationCenter.default.post(name: Notification.Name.kUpdateGoingEvent, object: nil, userInfo: ["popular": self.popular])
+                        // save to DB
+                        if UserPrefsHelper.shared.getIsCallMyEventGoingAPI() == true {
+                            var event = self.popular
+                            event.myStatus = 1
+                            self.realmManager.editObject(event)
+                            
+
+                        }
                     }
                 }
                 
@@ -199,6 +208,12 @@ extension EventDetailViewController: ThirđEDCellDelegate {
                 self.updateStatusEvent(2, id) { (result) in
                     if result == true {
                         NotificationCenter.default.post(name: Notification.Name.kUpdateWentEvent, object: nil, userInfo: ["popular": self.popular])
+                        // save to DB
+                        if UserPrefsHelper.shared.getIsCallMyEventWentAPI() == true {
+                            var event = self.popular
+                            event.myStatus = 2
+                            self.realmManager.editObject(event)
+                        }
                     }
                 }
                 

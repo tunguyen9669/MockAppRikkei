@@ -108,26 +108,6 @@ class PopularViewController: UIViewController {
     
     @objc func onGoing(_ sender: Notification) {
         if let popular = sender.userInfo?["popular"] as? Event {
-//            let popularRealm = PopularRealmModel()
-//            popularRealm.id = popular.getId().description
-//            popularRealm.status = popular.getStatus().description
-//            popularRealm.photo = popular.getPhoto()
-//            popularRealm.name = popular.getName()
-//            popularRealm.descRaw = popular.getDescRaw()
-//            popularRealm.descHtml = popular.getDescHtml()
-//            popularRealm.permanent = popular.getPermanent()
-//            popularRealm.dateWarning = popular.getDateWarning()
-//            popularRealm.timeAlert = popular.getTimeAlert()
-//            popularRealm.startDate = popular.getStartDate()
-//            popularRealm.startTime = popular.getStartTime()
-//            popularRealm.endDate = popular.getEndDate()
-//            popularRealm.endTime = popular.getEndTime()
-//            popularRealm.oneDayEvent = popular.getOneDayEvent()
-//            popularRealm.extra = popular.getExtra()
-//            popularRealm.myStatus = 1
-//            popularRealm.goingCount = popular.getGoingCount().description
-//            popularRealm.wentCount = popular.getWentCount().description
-//            realmManager.editObject(obj: popularRealm)
             
             
             // update table
@@ -145,10 +125,6 @@ class PopularViewController: UIViewController {
         
     }
     @objc func onLogout(_ sender: Notification) {
-        self.populars.removeAll()
-        let firstIndexPath = NSIndexPath(row: 0, section: 0)
-        self.tableView.selectRow(at: firstIndexPath as IndexPath, animated: true, scrollPosition: .top)
-        self.tableView.reloadData()
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
             print("Update status")
             self.getPopularList(1) { (populars) in
@@ -164,10 +140,6 @@ class PopularViewController: UIViewController {
     }
     
     @objc func onGetNewData(_ sender: Notification) {
-        self.populars.removeAll()
-        let firstIndexPath = NSIndexPath(row: 0, section: 0)
-        self.tableView.selectRow(at: firstIndexPath as IndexPath, animated: true, scrollPosition: .top)
-        self.tableView.reloadData()
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
             print("Update status")
             self.getPopularList(1) { (populars) in

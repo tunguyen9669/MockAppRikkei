@@ -69,11 +69,32 @@ class MyEventsRealmManager: NSObject {
         }
     }
     
-    func editObject(obj: Object) {
+    func editObject(_ event: Event) {
+        
+        let eventRealm = EventRealmModel()
+        eventRealm.id = event.getId()
+        eventRealm.status = event.getStatus().description
+        eventRealm.photo = event.getPhoto()
+        eventRealm.name = event.getName()
+        eventRealm.descRaw = event.getDescRaw()
+        eventRealm.descHtml = event.getDescHtml()
+        eventRealm.permanent = event.getPermanent()
+        eventRealm.dateWarning = event.getDateWarning()
+        eventRealm.timeAlert = event.getTimeAlert()
+        eventRealm.startDate = event.getStartDate()
+        eventRealm.startTime = event.getStartTime()
+        eventRealm.endDate = event.getEndDate()
+        eventRealm.endTime = event.getEndTime()
+        eventRealm.oneDayEvent = event.getOneDayEvent()
+        eventRealm.extra = event.getExtra()
+        eventRealm.myStatus = event.getMyStatus()
+        eventRealm.goingCount = event.getGoingCount().description
+        eventRealm.wentCount = event.getWentCount().description
+        
         do {
             let realm = try Realm()
             try realm.write {
-                realm.add(obj, update: true)
+                realm.add(eventRealm, update: true)
                 print("Sửa thành công")
             }
         } catch let error as NSError {

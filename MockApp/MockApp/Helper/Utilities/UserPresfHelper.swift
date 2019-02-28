@@ -21,7 +21,8 @@ struct PrefsKey {
     static let userToken = "token"
     static let isLoggined = "isLogined"
     static let isEventUpdated = "isEventUpdated"
-    static let isCallMyEventAPI = "isCallMyEventAPI"
+    static let isCallMyEventGoingAPI = "isCallMyEventGoingAPI"
+    static let isCallMyEventWentAPI = "isCallMyEventWentAPI"
     
 }
 
@@ -72,13 +73,20 @@ class UserPrefsHelper: NSObject {
         return UserDefaults.standard.string(forKey: PrefsKey.userToken) ?? ""
     }
     
-    func setIsCallMyEventAPI(_ check: Bool) {
-        UserDefaults.standard.set(check, forKey: PrefsKey.isCallMyEventAPI)
+    func setIsCallMyEventGoingAPI(_ check: Bool) {
+        UserDefaults.standard.set(check, forKey: PrefsKey.isCallMyEventGoingAPI)
     }
     
-    func getIsCallMyEventAPI() -> Bool {
-        return UserDefaults.standard.bool(forKey: PrefsKey.isCallMyEventAPI) ?? false
+    func getIsCallMyEventGoingAPI() -> Bool {
+        return UserDefaults.standard.bool(forKey: PrefsKey.isCallMyEventGoingAPI) ?? false
     }
     
+    func setIsCallMyEventWentAPI(_ check: Bool) {
+        UserDefaults.standard.set(check, forKey: PrefsKey.isCallMyEventWentAPI)
+    }
+    
+    func getIsCallMyEventWentAPI() -> Bool {
+        return UserDefaults.standard.bool(forKey: PrefsKey.isCallMyEventWentAPI) ?? false
+    }
     
 }

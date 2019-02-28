@@ -25,16 +25,17 @@ class GoingViewController: UIViewController {
         self.tableView.register(UINib(nibName: "EventCell", bundle: nil), forCellReuseIdentifier: "EventCell")
         self.tableView.register(UINib(nibName: "DateHeader", bundle: nil), forHeaderFooterViewReuseIdentifier: "DateHeader")
         notificationAction()
-        getData()
-        getDataSourceTable(self.events)
+       
        
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         countTap = 1
-        getData()
-        getDataSourceTable(self.events)
+        if UserPrefsHelper.shared.getIsLoggined() == true {
+            getData()
+        }
+       
     }
     deinit {
         NotificationCenter.default.removeObserver(self)
@@ -48,10 +49,10 @@ class GoingViewController: UIViewController {
         let keyUpdate = UserPrefsHelper.shared.getKeyUpdatePopular()
         if keyUpdate.isToday() == false {
             self.getMyEvents(1) { (events) in
-                print("Count Popular: \(events.count)")
                 self.creatDB(events: events)
                 self.events = events
-                UserPrefsHelper.shared.setIsCallMyEventAPI(true)
+                UserPrefsHelper.shared.setIsCallMyEventGoingAPI(true)
+                self.getDataSourceTable(events)
             }
             print("Load tu API")
         } else {
@@ -63,10 +64,12 @@ class GoingViewController: UIViewController {
                     print("Count Popular: \(events.count)")
                     self.creatDB(events: events)
                     self.events = events
-                    UserPrefsHelper.shared.setIsCallMyEventAPI(true)
+                    UserPrefsHelper.shared.setIsCallMyEventGoingAPI(true)
                 }
             } else {
                 print("Load Going Event tu DB")
+                var events = [Event]()
+                
                 for item in arrEvent {
                     let popular = Event()
                     popular.id = Int(item.id)
@@ -87,8 +90,10 @@ class GoingViewController: UIViewController {
                     popular.myStatus = item.myStatus
                     popular.goingCount = Int(item.goingCount)
                     popular.wentCount = Int(item.wentCount)
-                    self.events.append(popular)
+                    events.append(popular)
                 }
+                self.getDataSourceTable(events)
+                
             }
         }
     }
@@ -103,26 +108,7 @@ class GoingViewController: UIViewController {
         }
         realmManager.deleteObjects(objs: arrEvent)
         for item in events {
-            let popular = EventRealmModel()
-            popular.id = item.getId()
-            popular.status = item.getStatus().description
-            popular.photo = item.getPhoto()
-            popular.name = item.getName()
-            popular.descRaw = item.getDescRaw()
-            popular.descHtml = item.getDescHtml()
-            popular.permanent = item.getPermanent()
-            popular.dateWarning = item.getDateWarning()
-            popular.timeAlert = item.getTimeAlert()
-            popular.startDate = item.getStartDate()
-            popular.startTime = item.getStartTime()
-            popular.endDate = item.getEndDate()
-            popular.endTime = item.getEndTime()
-            popular.oneDayEvent = item.getOneDayEvent()
-            popular.extra = item.getExtra()
-            popular.myStatus = item.getMyStatus()
-            popular.goingCount = item.getGoingCount().description
-            popular.wentCount = item.getWentCount().description
-            realmManager.editObject(obj: popular)
+            realmManager.editObject(item)
         }
         UserPrefsHelper.shared.setKeyUpdatePopular(self.getDateNow())
     }
@@ -175,29 +161,12 @@ class GoingViewController: UIViewController {
     }
     
     func notificationAction() {
-        
-        NotificationCenter.default.addObserver(self, selector: #selector(onWent(_:)), name: .kUpdateWentEvent, object: nil)
-        
+        NotificationCenter.default.addObserver(self, selector: #selector(onLogin(_:)), name: .kLogin, object: nil)
     }
-    
-    @objc func onWent(_ sender: Notification) {
-        if let popular = sender.userInfo?["popular"] as? Event {
-            // update table
-            var arr = self.arrCommonTables
-            for i in 0..<self.arrCommonTables.count {
-                let events = arrCommonTables[i].getEvents()
-                var newEvents = events
-                for j in 0..<events.count {
-                    if events[j].getId() == popular.getId() {
-                        newEvents.remove(at: j)
-                    }
-                }
-                arr[i].arrEvents = newEvents
-            }
-            self.arrCommonTables.removeAll()
-            self.arrCommonTables = arr
-            self.tableView.reloadData()
-        }
+
+    @objc func onLogin(_ sender: Notification) {
+        print("going list event")
+        getData()
     }
     
     func getMyEvents(_ status: Int, _ completion: @escaping([Event]) -> Void) {
