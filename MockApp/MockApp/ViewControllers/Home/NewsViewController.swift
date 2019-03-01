@@ -14,7 +14,7 @@ class NewsViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     var arrNews: [News] = []
     let services = HomeService()
-    let realmManager =  NewsRealmManager.shared
+    let realmManager =  RealmManager.shared
     var pageIndex = 1
     
     lazy var refreshControl: UIRefreshControl = {
@@ -34,57 +34,24 @@ class NewsViewController: UIViewController {
         self.tableView.tableFooterView = UIView(frame: .zero)
         self.tableView.estimatedRowHeight = 270.0
         appDelegate.tabbar?.setHidden(false)
-        getData()
+        
+        // get data from api
+        getNewsList(1) { (news) in
+            self.creatDB(news: news)
+            self.arrNews = news
+            self.reloadTable()
+        }
+       
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        getDataCheckToday()
+        getDataFromDB()
         
     }
     
-    func getData() {
-        self.arrNews.removeAll()
-        let keyUpdate = UserPrefsHelper.shared.getKeyUpdateNews()
-        if keyUpdate.isToday() == false {
-            self.arrNews.removeAll()
-            UserPrefsHelper.shared.setkeyUpdateNews(self.getDateNow())
-            getNewsList(1) { (news) in
-                self.creatDB(news: news)
-                self.arrNews = news
-                self.reloadTable()
-            }
-            print("Load từ API")
-        } else {
-            guard let arrNewsDB = realmManager.getObjects(NewsRealmModel.self)?.toArray(ofType: NewsRealmModel.self) else {
-                return
-            }
-            if arrNewsDB.count  == 0 {
-                getNewsList(1) { (news) in
-                    self.creatDB(news: news)
-                    self.arrNews = news
-                    self.reloadTable()
-                }
-                print(arrNewsDB.count)
-            } else {
-                print("Load từ DB")
-                for item in arrNewsDB {
-                    let news = News()
-                    news.id  = Int(item.id)
-                    news.feed = item.feed
-                    news.title = item.title
-                    news.detailUrl = item.detailUrl
-                    news.thumb = item.thumb
-                    news.desc = item.desc
-                    news.author = item.author
-                    news.publishDate = item.publishDate
-                    news.creatTime = item.creatTime
-                    news.updateTime = item.updateTime
-                    self.arrNews.append(news)
-                }
-                self.reloadTable()
-            }
-        }
-    }
+    
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
         self.pageIndex = 1
@@ -92,44 +59,59 @@ class NewsViewController: UIViewController {
     
     
     // MARK: - function
-   
     
-    // refresh data
-    @objc func handleRefresh(_ refreshControl: UIRefreshControl) {
-        self.pageIndex = 1
+    func getDataFromDB() {
+        self.arrNews.removeAll()
         guard let arrNewsDB = realmManager.getObjects(NewsRealmModel.self)?.toArray(ofType: NewsRealmModel.self) else {
             return
         }
+        
+        
+        // update index for load more
+        self.pageIndex = arrNewsDB.count / 10
+        
+        
+        print("Load từ News DB")
+        for item in arrNewsDB {
+            let news = News()
+            news.id  = Int(item.id)
+            news.feed = item.feed
+            news.title = item.title
+            news.detailUrl = item.detailUrl
+            news.thumb = item.thumb
+            news.desc = item.desc
+            news.author = item.author
+            news.publishDate = item.publishDate
+            news.creatTime = item.creatTime
+            news.updateTime = item.updateTime
+            self.arrNews.append(news)
+        }
+        self.reloadTable()
+    }
+   
+    func getDataCheckToday() {
         self.arrNews.removeAll()
-        if arrNewsDB.count  == 0 {
+        let keyUpdate = UserPrefsHelper.shared.getKeyUpdateNews()
+        if keyUpdate.isToday() == false {
+            UserPrefsHelper.shared.setkeyUpdateNews(self.getDateNow())
             getNewsList(1) { (news) in
                 self.creatDB(news: news)
                 self.arrNews = news
                 self.reloadTable()
             }
-            print(arrNewsDB.count)
-        } else { print("Load từ DB")
-            for item in arrNewsDB {
-                let news = News()
-                news.id  = Int(item.id)
-                news.feed = item.feed
-                news.title = item.title
-                news.detailUrl = item.detailUrl
-                news.thumb = item.thumb
-                news.desc = item.desc
-                news.author = item.author
-                news.publishDate = item.publishDate
-                news.creatTime = item.creatTime
-                news.updateTime = item.updateTime
-                self.arrNews.append(news)
-            }
-            self.reloadTable()
+            print("Load từ News API")
+        } else {
+          //
         }
+    }
+    
+    // refresh data
+    @objc func handleRefresh(_ refreshControl: UIRefreshControl) {
+        getDataFromDB()
         refreshControl.endRefreshing()
     }
     
     func creatDB(news: [News]) {
-        realmManager.deleteDabase()
         for item in news {
             let news = NewsRealmModel()
             news.id = item.getId().description
@@ -142,10 +124,11 @@ class NewsViewController: UIViewController {
             news.publishDate = item.getPublishDate()
             news.creatTime = item.getCreatTime()
             news.updateTime = item.getUpdateTime()
-            realmManager.addObject(obj: news)
+            realmManager.editObject(news)
         }
     }
-    
+
+
     func reloadTable() {
         self.arrNews = self.arrNews.sorted { (news1, news2) -> Bool in
             return news1.getPublishDate().convertStringToMilisecond() >= news2.getPublishDate().convertStringToMilisecond()
@@ -176,8 +159,8 @@ class NewsViewController: UIViewController {
         } else {
             self.alertWith("Không có kết lỗi Internet, vui lòng kiểm tra!")
         }
-        
     }
+    
     @objc func loadTable() {
         self.tableView.reloadData()
     }
@@ -223,6 +206,7 @@ extension  NewsViewController : UITableViewDataSource, UITableViewDelegate {
                         arr.append(item)
                     }
                     self.arrNews += arr
+                    self.creatDB(news: news)
                 }
                 self.perform(#selector(loadTable), with: nil, afterDelay: 1.0)
                 

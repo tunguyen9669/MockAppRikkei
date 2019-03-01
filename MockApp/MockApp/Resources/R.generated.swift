@@ -176,7 +176,7 @@ struct R: Rswift.Validatable {
     fileprivate init() {}
   }
   
-  /// This `R.image` struct is generated, and contains static references to 14 images.
+  /// This `R.image` struct is generated, and contains static references to 16 images.
   struct image {
     /// Image `back`.
     static let back = Rswift.ImageResource(bundle: R.hostingBundle, name: "back")
@@ -188,6 +188,8 @@ struct R: Rswift.Validatable {
     static let default_image = Rswift.ImageResource(bundle: R.hostingBundle, name: "default_image")
     /// Image `dropdown`.
     static let dropdown = Rswift.ImageResource(bundle: R.hostingBundle, name: "dropdown")
+    /// Image `foward`.
+    static let foward = Rswift.ImageResource(bundle: R.hostingBundle, name: "foward")
     /// Image `home_selected`.
     static let home_selected = Rswift.ImageResource(bundle: R.hostingBundle, name: "home_selected")
     /// Image `home`.
@@ -200,6 +202,8 @@ struct R: Rswift.Validatable {
     static let red_star = Rswift.ImageResource(bundle: R.hostingBundle, name: "red_star")
     /// Image `rikkeisoft-logo`.
     static let rikkeisoftLogo = Rswift.ImageResource(bundle: R.hostingBundle, name: "rikkeisoft-logo")
+    /// Image `search`.
+    static let search = Rswift.ImageResource(bundle: R.hostingBundle, name: "search")
     /// Image `user_selected`.
     static let user_selected = Rswift.ImageResource(bundle: R.hostingBundle, name: "user_selected")
     /// Image `user`.
@@ -232,6 +236,11 @@ struct R: Rswift.Validatable {
       return UIKit.UIImage(resource: R.image.dropdown, compatibleWith: traitCollection)
     }
     
+    /// `UIImage(named: "foward", bundle: ..., traitCollection: ...)`
+    static func foward(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.foward, compatibleWith: traitCollection)
+    }
+    
     /// `UIImage(named: "home", bundle: ..., traitCollection: ...)`
     static func home(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
       return UIKit.UIImage(resource: R.image.home, compatibleWith: traitCollection)
@@ -262,6 +271,11 @@ struct R: Rswift.Validatable {
       return UIKit.UIImage(resource: R.image.rikkeisoftLogo, compatibleWith: traitCollection)
     }
     
+    /// `UIImage(named: "search", bundle: ..., traitCollection: ...)`
+    static func search(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.search, compatibleWith: traitCollection)
+    }
+    
     /// `UIImage(named: "user", bundle: ..., traitCollection: ...)`
     static func user(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
       return UIKit.UIImage(resource: R.image.user, compatibleWith: traitCollection)
@@ -280,8 +294,10 @@ struct R: Rswift.Validatable {
     fileprivate init() {}
   }
   
-  /// This `R.nib` struct is generated, and contains static references to 7 nibs.
+  /// This `R.nib` struct is generated, and contains static references to 8 nibs.
   struct nib {
+    /// Nib `CategoryCell`.
+    static let categoryCell = _R.nib._CategoryCell()
     /// Nib `DateHeader`.
     static let dateHeader = _R.nib._DateHeader()
     /// Nib `EventCell`.
@@ -296,6 +312,12 @@ struct R: Rswift.Validatable {
     static let secondEDCell = _R.nib._SecondEDCell()
     /// Nib `ThirdEDCell`.
     static let thirdEDCell = _R.nib._ThirdEDCell()
+    
+    /// `UINib(name: "CategoryCell", in: bundle)`
+    @available(*, deprecated, message: "Use UINib(resource: R.nib.categoryCell) instead")
+    static func categoryCell(_: Void = ()) -> UIKit.UINib {
+      return UIKit.UINib(resource: R.nib.categoryCell)
+    }
     
     /// `UINib(name: "DateHeader", in: bundle)`
     @available(*, deprecated, message: "Use UINib(resource: R.nib.dateHeader) instead")
@@ -339,6 +361,10 @@ struct R: Rswift.Validatable {
       return UIKit.UINib(resource: R.nib.thirdEDCell)
     }
     
+    static func categoryCell(owner ownerOrNil: AnyObject?, options optionsOrNil: [UINib.OptionsKey : Any]? = nil) -> CategoryCell? {
+      return R.nib.categoryCell.instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? CategoryCell
+    }
+    
     static func dateHeader(owner ownerOrNil: AnyObject?, options optionsOrNil: [UINib.OptionsKey : Any]? = nil) -> DateHeader? {
       return R.nib.dateHeader.instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? DateHeader
     }
@@ -370,8 +396,10 @@ struct R: Rswift.Validatable {
     fileprivate init() {}
   }
   
-  /// This `R.reuseIdentifier` struct is generated, and contains static references to 6 reuse identifiers.
+  /// This `R.reuseIdentifier` struct is generated, and contains static references to 7 reuse identifiers.
   struct reuseIdentifier {
+    /// Reuse identifier `CategoryCell`.
+    static let categoryCell: Rswift.ReuseIdentifier<CategoryCell> = Rswift.ReuseIdentifier(identifier: "CategoryCell")
     /// Reuse identifier `DateHeader`.
     static let dateHeader: Rswift.ReuseIdentifier<DateHeader> = Rswift.ReuseIdentifier(identifier: "DateHeader")
     /// Reuse identifier `EventCell`.
@@ -510,10 +538,31 @@ struct _R: Rswift.Validatable {
   
   struct nib: Rswift.Validatable {
     static func validate() throws {
+      try _CategoryCell.validate()
       try _EventCell.validate()
       try _FirstEDCell.validate()
       try _NewsCell.validate()
       try _PopularPagerCell.validate()
+    }
+    
+    struct _CategoryCell: Rswift.NibResourceType, Rswift.ReuseIdentifierType, Rswift.Validatable {
+      typealias ReusableType = CategoryCell
+      
+      let bundle = R.hostingBundle
+      let identifier = "CategoryCell"
+      let name = "CategoryCell"
+      
+      func firstView(owner ownerOrNil: AnyObject?, options optionsOrNil: [UINib.OptionsKey : Any]? = nil) -> CategoryCell? {
+        return instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? CategoryCell
+      }
+      
+      static func validate() throws {
+        if UIKit.UIImage(named: "foward", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'foward' is used in nib 'CategoryCell', but couldn't be loaded.") }
+        if #available(iOS 11.0, *) {
+        }
+      }
+      
+      fileprivate init() {}
     }
     
     struct _DateHeader: Rswift.NibResourceType, Rswift.ReuseIdentifierType {
@@ -660,6 +709,7 @@ struct _R: Rswift.Validatable {
       }
       
       static func validate() throws {
+        if UIKit.UIImage(named: "search", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'search' is used in storyboard 'Browse', but couldn't be loaded.") }
         if #available(iOS 11.0, *) {
         }
         if _R.storyboard.browse().browseViewController() == nil { throw Rswift.ValidationError(description:"[R.swift] ViewController with identifier 'browseViewController' could not be loaded from storyboard 'Browse' as 'BrowseViewController'.") }

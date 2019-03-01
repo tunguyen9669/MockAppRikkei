@@ -23,6 +23,8 @@ struct PrefsKey {
     static let isEventUpdated = "isEventUpdated"
     static let isCallMyEventGoingAPI = "isCallMyEventGoingAPI"
     static let isCallMyEventWentAPI = "isCallMyEventWentAPI"
+    static let email = "email"
+    static let password = "password"
     
 }
 
@@ -87,6 +89,22 @@ class UserPrefsHelper: NSObject {
     
     func getIsCallMyEventWentAPI() -> Bool {
         return UserDefaults.standard.bool(forKey: PrefsKey.isCallMyEventWentAPI) ?? false
+    }
+    
+    func setEmail(_ email: String) {
+        UserDefaults.standard.set(email, forKey: PrefsKey.email)
+    }
+    
+    func getEmail() -> String {
+        return UserDefaults.standard.string(forKey: PrefsKey.email) ?? ""
+    }
+    
+    func setPassword(_ email: String) {
+        UserDefaults.standard.set(email, forKey: PrefsKey.password)
+    }
+    
+    func getPassword() -> String {
+        return UserDefaults.standard.string(forKey: PrefsKey.password) ?? ""
     }
     
 }

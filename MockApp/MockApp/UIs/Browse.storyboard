@@ -9,6 +9,11 @@
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="Roboto-Medium.ttf">
+            <string>Roboto-Medium</string>
+        </array>
+    </customFonts>
     <scenes>
         <!--Browse View Controller-->
         <scene sceneID="QtA-6N-i9y">
@@ -18,24 +23,62 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Browse" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OMj-q0-Ma4">
-                                <rect key="frame" x="159.5" y="333" width="56.5" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
+                            <view alpha="0.5" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wdl-eQ-Nk7">
+                                <rect key="frame" x="0.0" y="67" width="375" height="1"/>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="1" id="ATE-X4-V0D"/>
+                                </constraints>
+                            </view>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="yZt-xl-EEa">
+                                <rect key="frame" x="5" y="70" width="365" height="597"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="05y-B2-g1k" id="7OX-4E-gGL"/>
+                                    <outlet property="delegate" destination="05y-B2-g1k" id="LXp-xG-pgP"/>
+                                </connections>
+                            </tableView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Genre" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rL3-0z-3Qp">
+                                <rect key="frame" x="30" y="30" width="335" height="20"/>
+                                <fontDescription key="fontDescription" name="Roboto-Medium" family="Roboto" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.066666666666666666" blue="0.14117647058823529" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LNx-cz-gDP">
+                                <rect key="frame" x="336" y="28" width="24" height="24"/>
+                                <state key="normal" image="search"/>
+                                <connections>
+                                    <action selector="onSearch:" destination="05y-B2-g1k" eventType="touchUpInside" id="dB6-nx-ArV"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="OMj-q0-Ma4" firstAttribute="centerX" secondItem="LjK-3L-0my" secondAttribute="centerX" id="7Xg-U8-nkB"/>
-                            <constraint firstItem="OMj-q0-Ma4" firstAttribute="centerY" secondItem="LjK-3L-0my" secondAttribute="centerY" id="adP-HP-90m"/>
+                            <constraint firstItem="LjK-3L-0my" firstAttribute="trailing" secondItem="yZt-xl-EEa" secondAttribute="trailing" constant="5" id="BfS-LG-ceD"/>
+                            <constraint firstItem="LjK-3L-0my" firstAttribute="trailing" secondItem="wdl-eQ-Nk7" secondAttribute="trailing" id="EBd-Rc-y6e"/>
+                            <constraint firstItem="yZt-xl-EEa" firstAttribute="top" secondItem="wdl-eQ-Nk7" secondAttribute="bottom" constant="2" id="GG2-Il-JvR"/>
+                            <constraint firstItem="LjK-3L-0my" firstAttribute="bottom" secondItem="yZt-xl-EEa" secondAttribute="bottom" id="GvK-bO-HkQ"/>
+                            <constraint firstItem="yZt-xl-EEa" firstAttribute="leading" secondItem="LjK-3L-0my" secondAttribute="leading" constant="5" id="K9R-bd-ff4"/>
+                            <constraint firstItem="LNx-cz-gDP" firstAttribute="centerY" secondItem="rL3-0z-3Qp" secondAttribute="centerY" id="XjL-LZ-OoG"/>
+                            <constraint firstItem="LjK-3L-0my" firstAttribute="trailing" secondItem="rL3-0z-3Qp" secondAttribute="trailing" constant="10" id="YBq-XX-CL0"/>
+                            <constraint firstItem="LjK-3L-0my" firstAttribute="trailing" secondItem="LNx-cz-gDP" secondAttribute="trailing" constant="15" id="aHg-xP-cgr"/>
+                            <constraint firstItem="wdl-eQ-Nk7" firstAttribute="leading" secondItem="LjK-3L-0my" secondAttribute="leading" id="ncl-C8-bc4"/>
+                            <constraint firstItem="yZt-xl-EEa" firstAttribute="top" secondItem="rL3-0z-3Qp" secondAttribute="bottom" constant="20" id="sMD-l7-okK"/>
+                            <constraint firstItem="rL3-0z-3Qp" firstAttribute="leading" secondItem="LjK-3L-0my" secondAttribute="leading" constant="30" id="seH-oJ-VIy"/>
+                            <constraint firstItem="rL3-0z-3Qp" firstAttribute="top" secondItem="LjK-3L-0my" secondAttribute="top" constant="10" id="vve-or-spZ"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="LjK-3L-0my"/>
                     </view>
+                    <connections>
+                        <outlet property="tableView" destination="yZt-xl-EEa" id="CAw-fa-7Zf"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wON-i4-MYq" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="332" y="-264"/>
+            <point key="canvasLocation" x="332" y="-264.01799100449779"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="search" width="24" height="24"/>
+    </resources>
 </document>

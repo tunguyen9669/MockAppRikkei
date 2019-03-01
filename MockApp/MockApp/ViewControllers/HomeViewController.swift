@@ -16,7 +16,7 @@ class HomeViewController: UIViewController {
     @IBOutlet weak var newsContainer: UIView!
     @IBOutlet weak var popularContainer: UIView!
     
-    
+    let myPageServices = MyPageService()
     let services = HomeService()
     var arrNews: [News] = []
     var newsVC: NewsViewController?
@@ -29,6 +29,33 @@ class HomeViewController: UIViewController {
         popularSegment.setSelected(false)
         newsContainer.isHidden = false
         popularContainer.isHidden = true
+        
+        // check login update token
+        
+        let email = UserPrefsHelper.shared.getEmail()
+        let password = UserPrefsHelper.shared.getPassword()
+        if UserPrefsHelper.shared.getIsLoggined() == true {
+            if email != "" || password != "" {
+                if Connectivity.isConnectedToInternet {
+                    UIApplication.shared.isNetworkActivityIndicatorVisible = true
+                    myPageServices.requestLogin(email, password) { (message) in
+                        UIApplication.shared.isNetworkActivityIndicatorVisible = false
+                        if message.isEqual("Tài khoản hoặc mật khẩu không đúng, vui lòng nhập lại") {
+                            //
+                        } else {
+                            UserPrefsHelper.shared.setUserToken(message)
+                            UserPrefsHelper.shared.setIsloggined(true)
+                            print("User token token: \(UserPrefsHelper.shared.getUserToken())")
+                            
+                        }
+                    }
+                } else {
+                    self.alertWith("Không có kết lỗi Internet, vui lòng kiểm tra!")
+                }
+            }
+        }
+       
+       
         
         // click on Tab
         newsSegment.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(onTapNewsView(_:))))

@@ -14,7 +14,7 @@ class EventDetailViewController: UIViewController {
     // MARK: - outlet and variable
     @IBOutlet weak var tableView: UITableView!
     
-    let realmManager = MyEventsRealmManager()
+    let realmManager = RealmManager.shared
     let services = HomeService()
     var popular = Event()
     var id: Int?
@@ -96,7 +96,30 @@ class EventDetailViewController: UIViewController {
         }
     }
     
+    func creatDB(event: Event) {
+        let popular = EventRealmModel()
+        popular.id = event.getId()
+        popular.status = event.getStatus().description
+        popular.photo = event.getPhoto()
+        popular.name = event.getName()
+        popular.descRaw = event.getDescRaw()
+        popular.descHtml = event.getDescHtml()
+        popular.permanent = event.getPermanent()
+        popular.dateWarning = event.getDateWarning()
+        popular.timeAlert = event.getTimeAlert()
+        popular.startDate = event.getStartDate()
+        popular.startTime = event.getStartTime()
+        popular.endDate = event.getEndDate()
+        popular.endTime = event.getEndTime()
+        popular.oneDayEvent = event.getOneDayEvent()
+        popular.extra = event.getExtra()
+        popular.myStatus = event.getMyStatus()
+        popular.goingCount = event.getGoingCount().description
+        popular.wentCount = event.getWentCount().description
+        realmManager.editObject(popular)
+    }
 }
+
 // MARK: - extension
 extension EventDetailViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -166,10 +189,7 @@ extension EventDetailViewController: SecondEDCellDelegate {
 // third cell delegate
 extension EventDetailViewController: ThirđEDCellDelegate {
     func sendIdItem(_ id: Int) {
-        self.id = id
-        let firstIndexPath = NSIndexPath(row: 0, section: 0)
-        self.tableView.selectRow(at: firstIndexPath as IndexPath, animated: true, scrollPosition: .top)
-        self.tableView.reloadData()
+        //
     }
     
     func onGoing() {
@@ -182,13 +202,12 @@ extension EventDetailViewController: ThirđEDCellDelegate {
                 self.updateStatusEvent(1, id) { (result) in
                     if result == true {
                         // send notification
-                        NotificationCenter.default.post(name: Notification.Name.kUpdateGoingEvent, object: nil, userInfo: ["popular": self.popular])
+//                        NotificationCenter.default.post(name: Notification.Name.kUpdateGoingEvent, object: nil, userInfo: ["popular": self.popular])
                         // save to DB
-                        if UserPrefsHelper.shared.getIsCallMyEventGoingAPI() == true {
-                            var event = self.popular
-                            event.myStatus = 1
-                            self.realmManager.editObject(event)
-                        }
+                        var event = self.popular
+                        event.myStatus = 1
+                        self.creatDB(event: event)
+                        
                     }
                 }
                 
@@ -205,19 +224,14 @@ extension EventDetailViewController: ThirđEDCellDelegate {
             if let id = self.id {
                 self.updateStatusEvent(2, id) { (result) in
                     if result == true {
-                        NotificationCenter.default.post(name: Notification.Name.kUpdateWentEvent, object: nil, userInfo: ["popular": self.popular])
+//                        NotificationCenter.default.post(name: Notification.Name.kUpdateWentEvent, object: nil, userInfo: ["popular": self.popular])
                         // save to DB
-                        if UserPrefsHelper.shared.getIsCallMyEventWentAPI() == true {
-                            var event = self.popular
-                            event.myStatus = 2
-                            self.realmManager.editObject(event)
-                        }
+                        var event = self.popular
+                        event.myStatus = 2
+                        self.creatDB(event: event)
                     }
                 }
-                
             }
         }
     }
-    
-    
 }

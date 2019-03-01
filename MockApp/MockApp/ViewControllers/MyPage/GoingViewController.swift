@@ -15,7 +15,7 @@ class GoingViewController: UIViewController {
     var arrCommonTables = [CommonTableModel]()
     var countTap = 1
     let services = MyPageService()
-    let realmManager = MyEventsRealmManager()
+    let realmManager = RealmManager.shared
     var events = [Event]()
     
     
@@ -24,7 +24,13 @@ class GoingViewController: UIViewController {
         super.viewDidLoad()
         self.tableView.register(UINib(nibName: "EventCell", bundle: nil), forCellReuseIdentifier: "EventCell")
         self.tableView.register(UINib(nibName: "DateHeader", bundle: nil), forHeaderFooterViewReuseIdentifier: "DateHeader")
-        notificationAction()
+        
+        // get data from api
+        self.getMyEvents(1) { (events) in
+            self.creatDB(events: events)
+            UserPrefsHelper.shared.setIsCallMyEventGoingAPI(true)
+            self.getDataSourceTable(events)
+        }
        
        
     }
@@ -33,20 +39,18 @@ class GoingViewController: UIViewController {
         super.viewWillAppear(animated)
         countTap = 1
         if UserPrefsHelper.shared.getIsLoggined() == true {
-            getData()
+            getDataCheckToday()
+            getDataFromDB()
         }
        
-    }
-    deinit {
-        NotificationCenter.default.removeObserver(self)
     }
     
     // MARK: - function
     
-    func getData() {
-        // work with api
+    func getDataCheckToday() {
         let keyUpdate = UserPrefsHelper.shared.getKeyUpdatePopular()
         if keyUpdate.isToday() == false {
+            UserPrefsHelper.shared.setKeyUpdatePopular(self.getDateNow())
             self.getMyEvents(1) { (events) in
                 self.creatDB(events: events)
                 UserPrefsHelper.shared.setIsCallMyEventGoingAPI(true)
@@ -54,56 +58,66 @@ class GoingViewController: UIViewController {
             }
             print("Load tu API")
         } else {
-            guard let arrEvent = realmManager.getObjects(EventRealmModel.self)?.filter("myStatus == 1").toArray(ofType: EventRealmModel.self) else {
-                return
-            }
-            if arrEvent.count == 0 {
-                self.getMyEvents(1) { (events) in
-                    print("Count Popular: \(events.count)")
-                    self.creatDB(events: events)
-                    self.getDataSourceTable(events)
-                    UserPrefsHelper.shared.setIsCallMyEventGoingAPI(true)
-                }
-            } else {
-                print("Load Going Event tu DB")
-                var events = [Event]()
-                for item in arrEvent {
-                    let popular = Event()
-                    popular.id = Int(item.id)
-                    popular.status = Int(item.status)
-                    popular.photo = item.photo
-                    popular.name = item.name
-                    popular.descRaw = item.descRaw
-                    popular.descHtml = item.descHtml
-                    popular.permanent = item.permanent
-                    popular.dateWarning = item.dateWarning
-                    popular.timeAlert = item.timeAlert
-                    popular.startDate = item.startDate
-                    popular.startTime = item.startTime
-                    popular.endDate = item.endDate
-                    popular.endTime = item.endTime
-                    popular.oneDayEvent = item.oneDayEvent
-                    popular.extra = item.extra
-                    popular.myStatus = item.myStatus
-                    popular.goingCount = Int(item.goingCount)
-                    popular.wentCount = Int(item.wentCount)
-                    events.append(popular)
-                }
-                    self.getDataSourceTable(events)
-            }
+            //
         }
+        
     }
-  
     
-    func creatDB(events: [Event]) {
+    func getDataFromDB() {
         guard let arrEvent = realmManager.getObjects(EventRealmModel.self)?.filter("myStatus == 1").toArray(ofType: EventRealmModel.self) else {
             return
         }
-        realmManager.deleteObjects(objs: arrEvent)
-        for item in events {
-            realmManager.editObject(item)
+        
+        print("Load Going Event tu DB")
+        var events = [Event]()
+        for item in arrEvent {
+            let popular = Event()
+            popular.id = Int(item.id)
+            popular.status = Int(item.status)
+            popular.photo = item.photo
+            popular.name = item.name
+            popular.descRaw = item.descRaw
+            popular.descHtml = item.descHtml
+            popular.permanent = item.permanent
+            popular.dateWarning = item.dateWarning
+            popular.timeAlert = item.timeAlert
+            popular.startDate = item.startDate
+            popular.startTime = item.startTime
+            popular.endDate = item.endDate
+            popular.endTime = item.endTime
+            popular.oneDayEvent = item.oneDayEvent
+            popular.extra = item.extra
+            popular.myStatus = item.myStatus
+            popular.goingCount = Int(item.goingCount)
+            popular.wentCount = Int(item.wentCount)
+            events.append(popular)
         }
-        UserPrefsHelper.shared.setKeyUpdatePopular(self.getDateNow())
+        self.getDataSourceTable(events)
+    }
+
+    func creatDB(events: [Event]) {
+        for item in events {
+            let eventRealm = EventRealmModel()
+            eventRealm.id = item.getId()
+            eventRealm.status = item.getStatus().description
+            eventRealm.photo = item.getPhoto()
+            eventRealm.name = item.getName()
+            eventRealm.descRaw = item.getDescRaw()
+            eventRealm.descHtml = item.getDescHtml()
+            eventRealm.permanent = item.getPermanent()
+            eventRealm.dateWarning = item.getDateWarning()
+            eventRealm.timeAlert = item.getTimeAlert()
+            eventRealm.startDate = item.getStartDate()
+            eventRealm.startTime = item.getStartTime()
+            eventRealm.endDate = item.getEndDate()
+            eventRealm.endTime = item.getEndTime()
+            eventRealm.oneDayEvent = item.getOneDayEvent()
+            eventRealm.extra = item.getExtra()
+            eventRealm.myStatus = item.getMyStatus()
+            eventRealm.goingCount = item.getGoingCount().description
+            eventRealm.wentCount = item.getWentCount().description
+            realmManager.editObject(eventRealm)
+        }
     }
     
     func getDataSourceTable(_ events: [Event]) {
@@ -153,15 +167,6 @@ class GoingViewController: UIViewController {
         self.arrCommonTables = arr
         
         self.tableView.reloadData()
-    }
-    
-    func notificationAction() {
-        NotificationCenter.default.addObserver(self, selector: #selector(onLogin(_:)), name: .kLogin, object: nil)
-    }
-
-    @objc func onLogin(_ sender: Notification) {
-        print("going list event")
-        getData()
     }
     
     func getMyEvents(_ status: Int, _ completion: @escaping([Event]) -> Void) {

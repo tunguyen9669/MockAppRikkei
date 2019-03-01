@@ -1,17 +1,17 @@
 //
-//  MyEventsRealmManager.swift
+//  RealmManager.swift
 //  MockApp
 //
-//  Created by tund on 2/28/19.
+//  Created by tund on 3/1/19.
 //  Copyright © 2019 tund. All rights reserved.
 //
 
 import Foundation
-import RealmSwift
 import Realm
+import RealmSwift
 
-class MyEventsRealmManager: NSObject {
-    public static let shared = MyEventsRealmManager()
+class RealmManager: NSObject {
+    public static let shared = RealmManager()
     override init() {
         //
     }
@@ -29,10 +29,7 @@ class MyEventsRealmManager: NSObject {
             let realm = try Realm()
             try realm.write {
                 realm.add(obj)
-                if let news = obj as? EventRealmModel {
-                    realm.add(news)
-                    print("Complete add Event")
-                }
+                print("Complete add Object")
             }
         } catch let error as NSError {
             print(error.description)
@@ -69,37 +66,16 @@ class MyEventsRealmManager: NSObject {
         }
     }
     
-    func editObject(_ event: Event) {
-        
-        let eventRealm = EventRealmModel()
-        eventRealm.id = event.getId()
-        eventRealm.status = event.getStatus().description
-        eventRealm.photo = event.getPhoto()
-        eventRealm.name = event.getName()
-        eventRealm.descRaw = event.getDescRaw()
-        eventRealm.descHtml = event.getDescHtml()
-        eventRealm.permanent = event.getPermanent()
-        eventRealm.dateWarning = event.getDateWarning()
-        eventRealm.timeAlert = event.getTimeAlert()
-        eventRealm.startDate = event.getStartDate()
-        eventRealm.startTime = event.getStartTime()
-        eventRealm.endDate = event.getEndDate()
-        eventRealm.endTime = event.getEndTime()
-        eventRealm.oneDayEvent = event.getOneDayEvent()
-        eventRealm.extra = event.getExtra()
-        eventRealm.myStatus = event.getMyStatus()
-        eventRealm.goingCount = event.getGoingCount().description
-        eventRealm.wentCount = event.getWentCount().description
+    func editObject(_ obj: Object) {
         
         do {
             let realm = try Realm()
             try realm.write {
-                realm.add(eventRealm, update: true)
-                print("Sửa thành công")
+                realm.add(obj, update: true)
+                print("Complete edit object")
             }
         } catch let error as NSError {
             print(error.description)
         }
     }
 }
-
