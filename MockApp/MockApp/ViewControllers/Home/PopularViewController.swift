@@ -39,7 +39,7 @@ class PopularViewController: UIViewController {
         self.tableView.delegate = self
         appDelegate.tabbar?.setHidden(false)
         notificationAction()
-        
+        checkDataDB()
         
        
  
@@ -47,7 +47,6 @@ class PopularViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         getDataCheckToday()
-        checkDataDB()
         getDataFromDB()
    
     }
@@ -62,7 +61,6 @@ class PopularViewController: UIViewController {
     // MARK: - function
     
     func checkDataDB() {
-        
         print("check data in db")
         guard let arrPopular = realmManager.getObjects(EventRealmModel.self)?.toArray(ofType: EventRealmModel.self) else {
             return
@@ -70,6 +68,7 @@ class PopularViewController: UIViewController {
         if arrPopular.count == 0 {
             getPopularList(1) { (populars) in
                 self.creatDB(populars: populars)
+                self.reloadTable(populars)
             }
         }
         
@@ -90,10 +89,9 @@ class PopularViewController: UIViewController {
             print("Update status")
             self.getPopularList(1) { (populars) in
                 self.creatDB(populars: populars)
-                self.populars = populars
                 print("Popular count: \(populars.count)")
                 
-                self.reloadTable()
+                self.reloadTable(populars)
             }
             
         }
@@ -105,23 +103,18 @@ class PopularViewController: UIViewController {
             print("Update status")
             self.getPopularList(1) { (populars) in
                 self.creatDB(populars: populars)
-                self.populars = populars
                 print("Popular count: \(populars.count)")
-                
-                self.reloadTable()
+                self.reloadTable(populars)
             }
         }
     }
     
     func getDataCheckToday() {
-        self.populars.removeAll()
         let keyUpdate = UserPrefsHelper.shared.getKeyUpdatePopular()
         if keyUpdate.isToday() == false {
             UserPrefsHelper.shared.setKeyUpdatePopular(self.getDateNow())
             getPopularList(1) { (populars) in
                 self.creatDB(populars: populars)
-                self.populars = populars
-                self.reloadTable()
             }
             print("Load từ  Popular API")
         } else {
@@ -129,13 +122,14 @@ class PopularViewController: UIViewController {
         }
     }
     func getDataFromDB() {
-        self.populars.removeAll()
         guard let arrPopular = realmManager.getObjects(EventRealmModel.self)?.toArray(ofType: EventRealmModel.self) else {
             return
         }
         
         // update index for load more
         self.pageIndex = arrPopular.count / 10
+        
+        var arr = [Event]()
         
         print("Load từ event DB")
         for item in arrPopular {
@@ -158,9 +152,9 @@ class PopularViewController: UIViewController {
             popular.myStatus = item.myStatus
             popular.goingCount = Int(item.goingCount)
             popular.wentCount = Int(item.wentCount)
-            self.populars.append(popular)
+            arr.append(popular)
         }
-        self.reloadTable()
+        self.reloadTable(arr)
         
     }
     
@@ -196,10 +190,12 @@ class PopularViewController: UIViewController {
         
     }
     
-    func reloadTable() {
+    func reloadTable(_ arr: [Event]) {
         self.populars = self.populars.sorted { (po1, po2) -> Bool in
             return po1.getGoingCount() >= po2.getGoingCount()
         }
+        self.populars.removeAll()
+        self.populars += arr
         self.tableView.reloadData()
         self.tableView.contentOffset = .zero
     }

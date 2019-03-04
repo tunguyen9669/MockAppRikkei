@@ -24,6 +24,9 @@ class WentViewController: UIViewController {
         super.viewDidLoad()
         self.tableView.register(UINib(nibName: "EventCell", bundle: nil), forCellReuseIdentifier: "EventCell")
         self.tableView.register(UINib(nibName: "DateHeader", bundle: nil), forHeaderFooterViewReuseIdentifier: "DateHeader")
+        if UserPrefsHelper.shared.getIsLoggined() == true {
+            checkDataDB()
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -49,6 +52,7 @@ class WentViewController: UIViewController {
             self.getMyEvents(2) { (events) in
                 self.creatDB(events: events)
                 UserPrefsHelper.shared.setIsCallMyEventGoingAPI(true)
+                self.getDataSourceTable(events)
             }
         }
     }
@@ -60,7 +64,6 @@ class WentViewController: UIViewController {
             self.getMyEvents(2) { (events) in
                 self.creatDB(events: events)
                 UserPrefsHelper.shared.setIsCallMyEventGoingAPI(true)
-                self.getDataSourceTable(events)
             }
             print("Load tu API")
         } else {

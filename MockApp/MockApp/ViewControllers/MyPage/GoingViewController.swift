@@ -24,7 +24,7 @@ class GoingViewController: UIViewController {
         super.viewDidLoad()
         self.tableView.register(UINib(nibName: "EventCell", bundle: nil), forCellReuseIdentifier: "EventCell")
         self.tableView.register(UINib(nibName: "DateHeader", bundle: nil), forHeaderFooterViewReuseIdentifier: "DateHeader")
-        
+         checkDataDB()
       
        
        
@@ -35,7 +35,6 @@ class GoingViewController: UIViewController {
         countTap = 1
         if UserPrefsHelper.shared.getIsLoggined() == true {
             getDataCheckToday()
-            checkDataDB()
             getDataFromDB()
         }
        
@@ -53,6 +52,7 @@ class GoingViewController: UIViewController {
             self.getMyEvents(1) { (events) in
                 self.creatDB(events: events)
                 UserPrefsHelper.shared.setIsCallMyEventGoingAPI(true)
+                self.getDataSourceTable(events)
             }
         }
     }
@@ -64,7 +64,6 @@ class GoingViewController: UIViewController {
             self.getMyEvents(1) { (events) in
                 self.creatDB(events: events)
                 UserPrefsHelper.shared.setIsCallMyEventGoingAPI(true)
-                self.getDataSourceTable(events)
             }
             print("Load tu API")
         } else {

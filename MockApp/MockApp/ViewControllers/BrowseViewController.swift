@@ -38,13 +38,13 @@ class BrowseViewController: UIViewController {
         self.tableView.addSubview(self.refreshControl)
         self.tableView.tableFooterView = UIView(frame: .zero)
         self.tableView.estimatedRowHeight = 270.0
+        checkDataDB()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         appDelegate.tabbar?.setHidden(false)
         getDataCheckToday()
-        checkDataDB()
         getDataFromDB()
         
     }
@@ -62,6 +62,8 @@ class BrowseViewController: UIViewController {
             // get data from api
             self.getCategories(1) { (categories) in
                 self.creatDB(categories: categories)
+                self.categories.removeAll()
+                self.categories += categories
             }
         }
     }
@@ -106,8 +108,6 @@ class BrowseViewController: UIViewController {
             UserPrefsHelper.shared.setkeyUpdateNews(self.getDateNow())
             self.getCategories(1) { (categories) in
                 self.creatDB(categories: categories)
-                self.categories = categories
-                self.tableView.reloadData()
             }
         } else {
             //

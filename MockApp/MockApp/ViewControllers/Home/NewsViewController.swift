@@ -34,6 +34,7 @@ class NewsViewController: UIViewController {
         self.tableView.tableFooterView = UIView(frame: .zero)
         self.tableView.estimatedRowHeight = 270.0
         appDelegate.tabbar?.setHidden(false)
+        checkDataDB()
         
        
        
@@ -42,7 +43,6 @@ class NewsViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         getDataCheckToday()
-        checkDataDB()
         getDataFromDB()
         
     }
@@ -64,12 +64,12 @@ class NewsViewController: UIViewController {
             // get data from api
             getNewsList(1) { (news) in
                 self.creatDB(news: news)
+                self.reloadTable(news)
             }
         }
     }
     
     func getDataFromDB() {
-        self.arrNews.removeAll()
         guard let arrNewsDB = realmManager.getObjects(NewsRealmModel.self)?.toArray(ofType: NewsRealmModel.self) else {
             return
         }
@@ -78,6 +78,7 @@ class NewsViewController: UIViewController {
         // update index for load more
         self.pageIndex = arrNewsDB.count / 10
         
+        var arr = [News]()
         
         print("Load từ News DB")
         for item in arrNewsDB {
@@ -92,20 +93,17 @@ class NewsViewController: UIViewController {
             news.publishDate = item.publishDate
             news.creatTime = item.creatTime
             news.updateTime = item.updateTime
-            self.arrNews.append(news)
+            arr.append(news)
         }
-        self.reloadTable()
+        self.reloadTable(arr)
     }
    
     func getDataCheckToday() {
-        self.arrNews.removeAll()
         let keyUpdate = UserPrefsHelper.shared.getKeyUpdatePopular()
         if keyUpdate.isToday() == false {
             UserPrefsHelper.shared.setKeyUpdatePopular(self.getDateNow())
             getNewsList(1) { (news) in
                 self.creatDB(news: news)
-                self.arrNews = news
-                self.reloadTable()
             }
             print("Load từ News API")
         } else {
@@ -137,10 +135,12 @@ class NewsViewController: UIViewController {
     }
 
 
-    func reloadTable() {
+    func reloadTable(_ arr: [News]) {
         self.arrNews = self.arrNews.sorted { (news1, news2) -> Bool in
             return news1.getPublishDate().convertStringToMilisecond() >= news2.getPublishDate().convertStringToMilisecond()
         }
+        self.arrNews.removeAll()
+        self.arrNews += arr
         self.tableView.reloadData()
         self.tableView.contentOffset = .zero
     }
