@@ -146,7 +146,7 @@ class APIRequestProvider: NSObject {
     func getCategories(_ pageIndex: Int) -> DataRequest {
         let urlRequest = requestURL.appending("listCategories")
         let params = ["pageIndex": pageIndex,
-                      "pageSize": 10]
+                      "pageSize": 15]
         return alamoFireManager.request(urlRequest,
                                         method: .get,
                                         parameters: params,

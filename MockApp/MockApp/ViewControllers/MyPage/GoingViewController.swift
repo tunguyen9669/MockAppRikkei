@@ -25,12 +25,7 @@ class GoingViewController: UIViewController {
         self.tableView.register(UINib(nibName: "EventCell", bundle: nil), forCellReuseIdentifier: "EventCell")
         self.tableView.register(UINib(nibName: "DateHeader", bundle: nil), forHeaderFooterViewReuseIdentifier: "DateHeader")
         
-        // get data from api
-        self.getMyEvents(1) { (events) in
-            self.creatDB(events: events)
-            UserPrefsHelper.shared.setIsCallMyEventGoingAPI(true)
-            self.getDataSourceTable(events)
-        }
+      
        
        
     }
@@ -40,12 +35,28 @@ class GoingViewController: UIViewController {
         countTap = 1
         if UserPrefsHelper.shared.getIsLoggined() == true {
             getDataCheckToday()
+            checkDataDB()
             getDataFromDB()
         }
        
     }
     
     // MARK: - function
+    
+    func checkDataDB() {
+        guard let arrEvent = realmManager.getObjects(EventRealmModel.self)?.filter("myStatus == 1").toArray(ofType: EventRealmModel.self) else {
+            return
+        }
+        print("check data in db")
+        if arrEvent.count == 0 {
+            // get data from api
+            self.getMyEvents(1) { (events) in
+                self.creatDB(events: events)
+                UserPrefsHelper.shared.setIsCallMyEventGoingAPI(true)
+                self.getDataSourceTable(events)
+            }
+        }
+    }
     
     func getDataCheckToday() {
         let keyUpdate = UserPrefsHelper.shared.getKeyUpdatePopular()

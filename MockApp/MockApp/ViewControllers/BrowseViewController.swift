@@ -20,6 +20,14 @@ class BrowseViewController: UIViewController {
         //
     }
     let services = BrowseService()
+    lazy var refreshControl: UIRefreshControl = {
+        let refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action: #selector(BrowseViewController.handleRefresh(_:)), for: UIControl.Event.valueChanged)
+        refreshControl.tintColor = UIColor.tabbarColor
+        
+        return refreshControl
+    }()
+    var pageIndex = 1
     
     
     // MARK: - life cycle
@@ -27,24 +35,39 @@ class BrowseViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.tableView.register(UINib(nibName: "CategoryCell", bundle: nil), forCellReuseIdentifier: "CategoryCell")
-        
-        // get data from api
-        self.getCategories(1) { (categories) in
-            self.creatDB(categories: categories)
-            self.categories = categories
-            self.tableView.reloadData()
-        }
+        self.tableView.addSubview(self.refreshControl)
+        self.tableView.tableFooterView = UIView(frame: .zero)
+        self.tableView.estimatedRowHeight = 50.0
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         appDelegate.tabbar?.setHidden(false)
         getDataCheckToday()
+        checkDataDB()
         getDataFromDB()
         
     }
     
     // MARK: - function
+    
+    func checkDataDB() {
+        self.categories.removeAll()
+        guard let arrDB = realmManager.getObjects(CategoryRealmModel.self)?.toArray(ofType: CategoryRealmModel.self) else {
+            return
+        }
+        
+        print("check data in db")
+        
+        if arrDB.count == 0 {
+            // get data from api
+            self.getCategories(1) { (categories) in
+                self.creatDB(categories: categories)
+                self.categories = categories
+                self.tableView.reloadData()
+            }
+        }
+    }
     
     func creatDB(categories: [Category]) {
         for item in categories {
@@ -64,6 +87,9 @@ class BrowseViewController: UIViewController {
             return
         }
         print("Load từ Browse DB")
+        
+        self.pageIndex = arrDB.count / 15
+        
         for item in arrDB {
             let category = Category()
             category.id  = item.id
@@ -90,6 +116,12 @@ class BrowseViewController: UIViewController {
             //
         }
     }
+    
+    // refresh data
+    @objc func handleRefresh(_ refreshControl: UIRefreshControl) {
+        getDataFromDB()
+        refreshControl.endRefreshing()
+    }
 
     
     func getCategories(_ pageIndex: Int, _ completion: @escaping([Category]) -> Void) {
@@ -114,6 +146,11 @@ class BrowseViewController: UIViewController {
         }
     }
     
+    @objc func loadTable() {
+        self.tableView.reloadData()
+    }
+    
+    
 }
 
 // MARK: - extension
@@ -129,6 +166,31 @@ extension BrowseViewController: UITableViewDelegate, UITableViewDataSource {
         }
         cell.titleLabel.text = self.categories[indexPath.row].getName()
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        // load more
+        if Connectivity.isConnectedToInternet {
+            if indexPath.row == self.categories.count - 1 {
+                print("load more")
+                if pageIndex < 10 {
+                    self.pageIndex += 1
+                }
+                self.getCategories(pageIndex) { (categories) in
+                    var arr: [Category] = []
+                    for item in categories {
+                        arr.append(item)
+                    }
+                    self.categories += arr
+                    self.creatDB(categories: categories)
+                }
+                self.perform(#selector(loadTable), with: nil, afterDelay: 1.0)
+                
+            }
+        } else {
+            self.alertWith("Không có kết lỗi Internet, vui lòng kiểm tra!")
+        }
+        
     }
     
     

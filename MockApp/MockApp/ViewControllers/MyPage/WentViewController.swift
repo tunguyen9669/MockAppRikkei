@@ -24,17 +24,6 @@ class WentViewController: UIViewController {
         super.viewDidLoad()
         self.tableView.register(UINib(nibName: "EventCell", bundle: nil), forCellReuseIdentifier: "EventCell")
         self.tableView.register(UINib(nibName: "DateHeader", bundle: nil), forHeaderFooterViewReuseIdentifier: "DateHeader")
-        
-        
-        // get data from api
-        self.getMyEvents(2) { (events) in
-            print("Count Popular: \(events.count)")
-            self.creatDB(events: events)
-            UserPrefsHelper.shared.setIsCallMyEventWentAPI(true)
-            self.getDataSourceTable(events)
-        }
-       
-        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -42,12 +31,29 @@ class WentViewController: UIViewController {
         countTap = 1
         if UserPrefsHelper.shared.getIsLoggined() == true {
             getDataCheckToday()
+            checkDataDB()
             getDataFromDB()
         }
     }
 
     
     // MARK: - function
+    
+    func checkDataDB() {
+        guard let arrEvent = realmManager.getObjects(EventRealmModel.self)?.filter("myStatus == 2").toArray(ofType: EventRealmModel.self) else {
+            return
+        }
+        print("check data in db")
+        if arrEvent.count == 0 {
+            // get data from api
+            self.getMyEvents(2) { (events) in
+                self.creatDB(events: events)
+                UserPrefsHelper.shared.setIsCallMyEventGoingAPI(true)
+                self.getDataSourceTable(events)
+            }
+        }
+    }
+    
     func getDataCheckToday() {
         let keyUpdate = UserPrefsHelper.shared.getKeyUpdatePopular()
         if keyUpdate.isToday() == false {

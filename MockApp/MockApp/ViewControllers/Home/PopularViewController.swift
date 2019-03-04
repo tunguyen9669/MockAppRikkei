@@ -41,17 +41,13 @@ class PopularViewController: UIViewController {
         notificationAction()
         
         
-        // get data from API
-        getPopularList(1) { (populars) in
-            self.creatDB(populars: populars)
-            self.populars = populars
-            self.reloadTable()
-        }
+       
  
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         getDataCheckToday()
+        checkDataDB()
         getDataFromDB()
    
     }
@@ -65,6 +61,26 @@ class PopularViewController: UIViewController {
     
     // MARK: - function
     
+    func checkDataDB() {
+        
+        print("check data in db")
+        
+        self.populars.removeAll()
+        guard let arrPopular = realmManager.getObjects(EventRealmModel.self)?.toArray(ofType: EventRealmModel.self) else {
+            return
+        }
+        if arrPopular.count == 0 {
+            getPopularList(1) { (populars) in
+                self.creatDB(populars: populars)
+                self.populars = populars
+                self.reloadTable()
+            }
+        }
+        
+        // get data from API
+   
+    }
+    
     func notificationAction() {
         NotificationCenter.default.addObserver(self, selector: #selector(onLogout(_:)), name: .kLogout, object: nil)
 
@@ -73,41 +89,6 @@ class PopularViewController: UIViewController {
        
     }
     
-    
-//    @objc func onWent(_ sender: Notification) {
-//        if let popular = sender.userInfo?["popular"] as? Event {
-//
-//            // update table
-//            var arr = self.populars
-//            for i in 0..<self.populars.count {
-//                if self.populars[i].getId() == popular.getId() {
-//                    arr[i].myStatus = 2
-//                }
-//            }
-//            self.populars.removeAll()
-//            self.populars = arr
-//            self.tableView.reloadData()
-//        }
-//    }
-//
-//
-//    @objc func onGoing(_ sender: Notification) {
-//        if let popular = sender.userInfo?["popular"] as? Event {
-//
-//            // update table
-//            var arr = self.populars
-//            for i in 0..<self.populars.count {
-//                if self.populars[i].getId() == popular.getId() {
-//                    arr[i].myStatus = 1
-//                }
-//            }
-//            self.populars.removeAll()
-//            self.populars = arr
-//            self.tableView.reloadData()
-//
-//        }
-//
-//    }
     @objc func onLogout(_ sender: Notification) {
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
             print("Update status")

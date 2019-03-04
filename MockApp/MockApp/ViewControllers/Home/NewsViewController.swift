@@ -35,18 +35,14 @@ class NewsViewController: UIViewController {
         self.tableView.estimatedRowHeight = 270.0
         appDelegate.tabbar?.setHidden(false)
         
-        // get data from api
-        getNewsList(1) { (news) in
-            self.creatDB(news: news)
-            self.arrNews = news
-            self.reloadTable()
-        }
+       
        
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         getDataCheckToday()
+        checkDataDB()
         getDataFromDB()
         
     }
@@ -54,11 +50,26 @@ class NewsViewController: UIViewController {
     
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
-        self.pageIndex = 1
     }
     
     
     // MARK: - function
+    
+    func checkDataDB() {
+        self.arrNews.removeAll()
+        guard let arrNewsDB = realmManager.getObjects(NewsRealmModel.self)?.toArray(ofType: NewsRealmModel.self) else {
+            return
+        }
+        print("Check data in db")
+        if arrNewsDB.count == 0 {
+            // get data from api
+            getNewsList(1) { (news) in
+                self.creatDB(news: news)
+                self.arrNews = news
+                self.reloadTable()
+            }
+        }
+    }
     
     func getDataFromDB() {
         self.arrNews.removeAll()
