@@ -25,6 +25,7 @@
 		245883A72228CC1500635AB9 /* CategoryCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 245883A52228CC1500635AB9 /* CategoryCell.xib */; };
 		245CA1FE222CBCC00061BF7A /* EventByCategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 245CA1FD222CBCC00061BF7A /* EventByCategoryViewController.swift */; };
 		245CA202222D11CB0061BF7A /* VenueRealmModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 245CA201222D11CB0061BF7A /* VenueRealmModel.swift */; };
+		245CA204222D27780061BF7A /* SortTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 245CA203222D27780061BF7A /* SortTitleView.swift */; };
 		2460C609221D0F3400A7817B /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2460C608221D0F3400A7817B /* RegisterViewController.swift */; };
 		2460C60B221D0F4B00A7817B /* MyListEventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2460C60A221D0F4B00A7817B /* MyListEventViewController.swift */; };
 		2460C60D221D3E5500A7817B /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2460C60C221D3E5500A7817B /* LoginViewController.swift */; };
@@ -142,6 +143,7 @@
 		245883A52228CC1500635AB9 /* CategoryCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CategoryCell.xib; sourceTree = "<group>"; };
 		245CA1FD222CBCC00061BF7A /* EventByCategoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventByCategoryViewController.swift; sourceTree = "<group>"; };
 		245CA201222D11CB0061BF7A /* VenueRealmModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VenueRealmModel.swift; sourceTree = "<group>"; };
+		245CA203222D27780061BF7A /* SortTitleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SortTitleView.swift; sourceTree = "<group>"; };
 		2460C608221D0F3400A7817B /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		2460C60A221D0F4B00A7817B /* MyListEventViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyListEventViewController.swift; sourceTree = "<group>"; };
 		2460C60C221D3E5500A7817B /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
@@ -598,6 +600,7 @@
 			isa = PBXGroup;
 			children = (
 				24ADABC02216BD9000499926 /* SegmentView.swift */,
+				245CA203222D27780061BF7A /* SortTitleView.swift */,
 			);
 			path = CustomView;
 			sourceTree = "<group>";
@@ -921,6 +924,7 @@
 				240C652F2224D9AF00D57103 /* ThirdEDCell.swift in Sources */,
 				246BCA2A221EABCD006D6C91 /* GoingViewController.swift in Sources */,
 				2458839D2228C79000635AB9 /* CategoryDTO.swift in Sources */,
+				245CA204222D27780061BF7A /* SortTitleView.swift in Sources */,
 				2460C60B221D0F4B00A7817B /* MyListEventViewController.swift in Sources */,
 				24E54671221BB9CC003D1855 /* Event.swift in Sources */,
 				240C652B2224C92900D57103 /* SecondEDCell.swift in Sources */,

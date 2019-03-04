@@ -136,11 +136,11 @@ class NewsViewController: UIViewController {
 
 
     func reloadTable(_ arr: [News]) {
+        self.arrNews.removeAll()
+        self.arrNews += arr
         self.arrNews = self.arrNews.sorted { (news1, news2) -> Bool in
             return news1.getPublishDate().convertStringToMilisecond() >= news2.getPublishDate().convertStringToMilisecond()
         }
-        self.arrNews.removeAll()
-        self.arrNews += arr
         self.tableView.reloadData()
         self.tableView.contentOffset = .zero
     }

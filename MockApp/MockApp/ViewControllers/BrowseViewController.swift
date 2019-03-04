@@ -64,6 +64,7 @@ class BrowseViewController: UIViewController {
                 self.creatDB(categories: categories)
                 self.categories.removeAll()
                 self.categories += categories
+                self.tableView.reloadData()
             }
         }
     }

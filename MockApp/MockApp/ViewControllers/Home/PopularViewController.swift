@@ -203,11 +203,11 @@ class PopularViewController: UIViewController {
     }
     
     func reloadTable(_ arr: [Event]) {
+        self.populars.removeAll()
+        self.populars += arr
         self.populars = self.populars.sorted { (po1, po2) -> Bool in
             return po1.getGoingCount() >= po2.getGoingCount()
         }
-        self.populars.removeAll()
-        self.populars += arr
         self.tableView.reloadData()
         self.tableView.contentOffset = .zero
     }
