@@ -56,7 +56,6 @@ class NewsViewController: UIViewController {
     // MARK: - function
     
     func checkDataDB() {
-        self.arrNews.removeAll()
         guard let arrNewsDB = realmManager.getObjects(NewsRealmModel.self)?.toArray(ofType: NewsRealmModel.self) else {
             return
         }
@@ -65,8 +64,6 @@ class NewsViewController: UIViewController {
             // get data from api
             getNewsList(1) { (news) in
                 self.creatDB(news: news)
-                self.arrNews = news
-                self.reloadTable()
             }
         }
     }
@@ -102,9 +99,9 @@ class NewsViewController: UIViewController {
    
     func getDataCheckToday() {
         self.arrNews.removeAll()
-        let keyUpdate = UserPrefsHelper.shared.getKeyUpdateNews()
+        let keyUpdate = UserPrefsHelper.shared.getKeyUpdatePopular()
         if keyUpdate.isToday() == false {
-            UserPrefsHelper.shared.setkeyUpdateNews(self.getDateNow())
+            UserPrefsHelper.shared.setKeyUpdatePopular(self.getDateNow())
             getNewsList(1) { (news) in
                 self.creatDB(news: news)
                 self.arrNews = news

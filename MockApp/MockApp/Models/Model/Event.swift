@@ -127,4 +127,6 @@ class Event {
         self.wentCount = popularDto.getWentCount()
         self.venue = Venue(popularDto.venueDTO)
     }
+    
+ 
 }

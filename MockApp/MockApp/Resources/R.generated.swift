@@ -702,17 +702,24 @@ struct _R: Rswift.Validatable {
     struct browse: Rswift.StoryboardResourceType, Rswift.Validatable {
       let browseViewController = StoryboardViewControllerResource<BrowseViewController>(identifier: "BrowseViewController")
       let bundle = R.hostingBundle
+      let eventByCategoryViewController = StoryboardViewControllerResource<EventByCategoryViewController>(identifier: "EventByCategoryViewController")
       let name = "Browse"
       
       func browseViewController(_: Void = ()) -> BrowseViewController? {
         return UIKit.UIStoryboard(resource: self).instantiateViewController(withResource: browseViewController)
       }
       
+      func eventByCategoryViewController(_: Void = ()) -> EventByCategoryViewController? {
+        return UIKit.UIStoryboard(resource: self).instantiateViewController(withResource: eventByCategoryViewController)
+      }
+      
       static func validate() throws {
+        if UIKit.UIImage(named: "back", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'back' is used in storyboard 'Browse', but couldn't be loaded.") }
         if UIKit.UIImage(named: "search", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'search' is used in storyboard 'Browse', but couldn't be loaded.") }
         if #available(iOS 11.0, *) {
         }
         if _R.storyboard.browse().browseViewController() == nil { throw Rswift.ValidationError(description:"[R.swift] ViewController with identifier 'browseViewController' could not be loaded from storyboard 'Browse' as 'BrowseViewController'.") }
+        if _R.storyboard.browse().eventByCategoryViewController() == nil { throw Rswift.ValidationError(description:"[R.swift] ViewController with identifier 'eventByCategoryViewController' could not be loaded from storyboard 'Browse' as 'EventByCategoryViewController'.") }
       }
       
       fileprivate init() {}

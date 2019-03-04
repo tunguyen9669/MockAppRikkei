@@ -53,7 +53,6 @@ class GoingViewController: UIViewController {
             self.getMyEvents(1) { (events) in
                 self.creatDB(events: events)
                 UserPrefsHelper.shared.setIsCallMyEventGoingAPI(true)
-                self.getDataSourceTable(events)
             }
         }
     }

@@ -27,5 +27,22 @@ class BrowseService: APIServiceObject {
             }
         }
     }
+    
+    func requestGetListEventsByCT(_ pageIndex: Int, _ id: Int, completion: @escaping (Result<[EventDTO]>) -> Void) {
+        var events = [EventDTO]()
+        let request = APIRequestProvider.shareInstance.getEventsByCategory(pageIndex, id)
+        serviceAgent.startRequest(request) { (json, error) in
+            if let error = error {
+                completion(Result.failure(error))
+            } else {
+                let data = json["response"]["events"].arrayValue
+                
+                for item in data {
+                    events.append(EventDTO(item))
+                }
+                completion(Result.success(events))
+            }
+        }
+    }
 }
 

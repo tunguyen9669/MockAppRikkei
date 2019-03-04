@@ -64,16 +64,12 @@ class PopularViewController: UIViewController {
     func checkDataDB() {
         
         print("check data in db")
-        
-        self.populars.removeAll()
         guard let arrPopular = realmManager.getObjects(EventRealmModel.self)?.toArray(ofType: EventRealmModel.self) else {
             return
         }
         if arrPopular.count == 0 {
             getPopularList(1) { (populars) in
                 self.creatDB(populars: populars)
-                self.populars = populars
-                self.reloadTable()
             }
         }
         

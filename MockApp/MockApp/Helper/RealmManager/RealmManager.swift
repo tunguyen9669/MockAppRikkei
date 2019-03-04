@@ -15,6 +15,7 @@ class RealmManager: NSObject {
     override init() {
         //
     }
+    
     func getObjects<Element: Object>(_ type: Element.Type) -> Results<Element>? {
         do {
             let realm = try Realm()

@@ -153,4 +153,16 @@ class APIRequestProvider: NSObject {
                                         encoding: URLEncoding.default,
                                         headers: headers)
     }
+    
+    func getEventsByCategory(_ pageIndex: Int, _ id: Int) -> DataRequest {
+        let urlRequest = requestURL.appending("listEventsByCategory")
+        let params = ["pageIndex": pageIndex,
+                      "pageSize": 10,
+                      "category_id": id]
+        return alamoFireManager.request(urlRequest,
+                                        method: .get,
+                                        parameters: params,
+                                        encoding: URLEncoding.default,
+                                        headers: headers)
+    }
 }

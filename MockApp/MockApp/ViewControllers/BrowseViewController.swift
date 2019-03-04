@@ -37,7 +37,7 @@ class BrowseViewController: UIViewController {
         self.tableView.register(UINib(nibName: "CategoryCell", bundle: nil), forCellReuseIdentifier: "CategoryCell")
         self.tableView.addSubview(self.refreshControl)
         self.tableView.tableFooterView = UIView(frame: .zero)
-        self.tableView.estimatedRowHeight = 50.0
+        self.tableView.estimatedRowHeight = 270.0
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -52,7 +52,6 @@ class BrowseViewController: UIViewController {
     // MARK: - function
     
     func checkDataDB() {
-        self.categories.removeAll()
         guard let arrDB = realmManager.getObjects(CategoryRealmModel.self)?.toArray(ofType: CategoryRealmModel.self) else {
             return
         }
@@ -63,8 +62,6 @@ class BrowseViewController: UIViewController {
             // get data from api
             self.getCategories(1) { (categories) in
                 self.creatDB(categories: categories)
-                self.categories = categories
-                self.tableView.reloadData()
             }
         }
     }
@@ -191,6 +188,13 @@ extension BrowseViewController: UITableViewDelegate, UITableViewDataSource {
             self.alertWith("Không có kết lỗi Internet, vui lòng kiểm tra!")
         }
         
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if let eventByCategoryVC = R.storyboard.browse.eventByCategoryViewController() {
+            eventByCategoryVC.category = self.categories[indexPath.row]
+            self.navigationController?.pushViewController(eventByCategoryVC, animated: true)
+        }
     }
     
     

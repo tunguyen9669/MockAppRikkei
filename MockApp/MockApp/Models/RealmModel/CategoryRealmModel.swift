@@ -14,6 +14,7 @@ public class CategoryRealmModel: Object {
     @objc dynamic var name: String = ""
     @objc dynamic var slug: String = ""
     @objc dynamic var parentId: Int = 0
+    let events = List<EventRealmModel>()
     
     override public static func primaryKey() -> String? {
         return "id"
