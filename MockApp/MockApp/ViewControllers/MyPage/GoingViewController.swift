@@ -99,6 +99,7 @@ class GoingViewController: UIViewController {
             popular.myStatus = item.myStatus
             popular.goingCount = Int(item.goingCount)
             popular.wentCount = Int(item.wentCount)
+            popular.venue = Venue(item.getVenue().id, item.getVenue().name, item.getVenue().type, item.getVenue().desc, item.getVenue().area, item.getVenue().address, item.getVenue().lat, item.getVenue().long, item.getVenue().scheduleOpening, item.getVenue().scheduleClosing, item.getVenue().scheduleClosed)
             events.append(popular)
         }
         self.getDataSourceTable(events)
@@ -125,6 +126,17 @@ class GoingViewController: UIViewController {
             eventRealm.myStatus = item.getMyStatus()
             eventRealm.goingCount = item.getGoingCount().description
             eventRealm.wentCount = item.getWentCount().description
+            eventRealm.getVenue().id = item.venue.getId()
+            eventRealm.getVenue().name = item.venue.getName()
+            eventRealm.getVenue().type = item.venue.getType()
+            eventRealm.getVenue().desc = item.venue.getDesc()
+            eventRealm.getVenue().area = item.venue.getArea()
+            eventRealm.getVenue().address = item.venue.getAdress()
+            eventRealm.getVenue().lat = item.venue.getLat()
+            eventRealm.getVenue().long = item.venue.getLong()
+            eventRealm.getVenue().scheduleOpening = item.venue.getOpening()
+            eventRealm.getVenue().scheduleClosing = item.venue.getClosing()
+            eventRealm.getVenue().scheduleClosed = item.venue.getClosed()
             realmManager.editObject(eventRealm)
         }
     }

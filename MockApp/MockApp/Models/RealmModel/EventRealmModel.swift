@@ -28,7 +28,11 @@ public class EventRealmModel: Object {
     @objc dynamic var myStatus: Int = 0
     @objc dynamic var goingCount: String = ""
     @objc dynamic var wentCount: String = ""
-//    @objc dynamic var venue = Venue()
+    @objc dynamic var venue: VenueRealmModel?
+    
+    func getVenue() -> VenueRealmModel {
+        return venue ?? VenueRealmModel()
+    }
  
     override public static func primaryKey() -> String? {
         return "id"

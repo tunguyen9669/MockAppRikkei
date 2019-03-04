@@ -55,14 +55,18 @@ class Venue {
         return scheduleClosed ?? ""
     }
     
-    init() {
-        self.id = 0
-        self.name = ""
-        self.type = 0
-        self.desc = ""
-        self.scheduleOpening = ""
-        self.scheduleClosing = ""
-        self.scheduleClosed = ""
+    init(_ id: Int, _ name: String, _ type: Int, _ desc: String, _ area: String, _ address: String,  _ lat: Float, _ long: Float, _ openHour: String, _ closingHour: String,_ closedHour: String){
+        self.id = id
+        self.name = name
+        self.type = type
+        self.desc = desc
+        self.area = area
+        self.address = address
+        self.lat = lat
+        self.long = long
+        self.scheduleOpening = openHour
+        self.scheduleClosing = closingHour
+        self.scheduleClosed = closedHour
     }
     init(_ venueDto: VenueDTO) {
         self.id = venueDto.getId()
@@ -76,6 +80,10 @@ class Venue {
         self.scheduleClosing = venueDto.getClosing()
         self.scheduleOpening = venueDto.getOpening()
         self.scheduleClosed = venueDto.getClosed()
+    }
+    
+    init() {
+        //
     }
     
 }
