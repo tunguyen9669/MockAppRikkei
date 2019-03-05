@@ -108,6 +108,7 @@ class EventByCategoryViewController: UIViewController {
         
         self.arrCommonTables = arr
         self.tableView.contentOffset = .zero
+        self.tableView.reloadData()
         
     }
     
@@ -132,6 +133,7 @@ class EventByCategoryViewController: UIViewController {
         }
         self.titleLabel.text = "\(self.category.getName()) (\(events.count))"
         self.tableView.contentOffset = .zero
+        self.tableView.reloadData()
     }
     
     func checkDataDB() {
@@ -139,7 +141,15 @@ class EventByCategoryViewController: UIViewController {
         guard let arrCategory = realmManager.getObjects(CategoryRealmModel.self)?.filter("id == \(self.category.getId())").toArray(ofType: CategoryRealmModel.self) else {
             return
         }
-        if arrCategory.count == 0 {
+       
+        
+        var events = [EventRealmModel]()
+        for item in arrCategory {
+            events = Array(item.events)
+        }
+        print(events.count)
+        
+        if events.count == 0 {
             getEventsByCategory(1, self.category.getId()) { (events) in
                 self.creatDB(populars: events)
                 self.reloadTable(events)
@@ -188,6 +198,7 @@ class EventByCategoryViewController: UIViewController {
         }
         self.reloadTable(arr)
         self.getDataSourceTable(arr)
+       
     }
     
     func creatDB(populars: [Event]) {
@@ -200,7 +211,6 @@ class EventByCategoryViewController: UIViewController {
             let event = self.parseToRealm(event: item)
             categoryRealm.events.append(event)
         }
-        print(categoryRealm.events.count)
         realmManager.editObject(categoryRealm)
         
     }
