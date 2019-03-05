@@ -99,6 +99,7 @@
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
                 <outlet property="attendImageView" destination="kLY-uz-7x2" id="j0l-of-J9a"/>
+                <outlet property="contentView" destination="H2p-sc-9uM" id="FJI-EY-IDH"/>
                 <outlet property="descHtmlLabel" destination="FSj-6s-ltJ" id="pW1-rd-WHn"/>
                 <outlet property="inforLabel" destination="FXX-J1-e7I" id="ahB-Z7-6II"/>
                 <outlet property="nameLabel" destination="dsN-fC-Vzt" id="Fr2-c1-thB"/>

@@ -194,6 +194,7 @@ extension SearchViewController: UITextFieldDelegate {
                 self.upcomingEvents.removeAll()
                 self.pastEvents.removeAll()
                 self.updateDataSource(arr)
+                self.tableView.contentOffset = .zero
                 self.tableView.reloadData()
             }
         }
