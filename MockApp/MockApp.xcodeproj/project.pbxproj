@@ -36,6 +36,7 @@
 		246BCA28221E9D79006D6C91 /* EventDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 246BCA27221E9D79006D6C91 /* EventDetailViewController.swift */; };
 		246BCA2A221EABCD006D6C91 /* GoingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 246BCA29221EABCD006D6C91 /* GoingViewController.swift */; };
 		246BCA2C221EABE0006D6C91 /* WentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 246BCA2B221EABE0006D6C91 /* WentViewController.swift */; };
+		2472A870222E5363009758AD /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2472A86F222E5363009758AD /* SearchViewController.swift */; };
 		249532662223DB1700E1563F /* FirstEDCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 249532642223DB1600E1563F /* FirstEDCell.swift */; };
 		249532672223DB1700E1563F /* FirstEDCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 249532652223DB1600E1563F /* FirstEDCell.xib */; };
 		2495326A2223E06D00E1563F /* EventCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 249532692223E06D00E1563F /* EventCellModel.swift */; };
@@ -153,6 +154,7 @@
 		246BCA27221E9D79006D6C91 /* EventDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventDetailViewController.swift; sourceTree = "<group>"; };
 		246BCA29221EABCD006D6C91 /* GoingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoingViewController.swift; sourceTree = "<group>"; };
 		246BCA2B221EABE0006D6C91 /* WentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WentViewController.swift; sourceTree = "<group>"; };
+		2472A86F222E5363009758AD /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		249532642223DB1600E1563F /* FirstEDCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstEDCell.swift; sourceTree = "<group>"; };
 		249532652223DB1600E1563F /* FirstEDCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FirstEDCell.xib; sourceTree = "<group>"; };
 		249532692223E06D00E1563F /* EventCellModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventCellModel.swift; sourceTree = "<group>"; };
@@ -285,6 +287,7 @@
 			children = (
 				245883A32228CBF200635AB9 /* CategoryCell */,
 				245CA1FD222CBCC00061BF7A /* EventByCategoryViewController.swift */,
+				2472A86F222E5363009758AD /* SearchViewController.swift */,
 			);
 			path = Browse;
 			sourceTree = "<group>";
@@ -917,6 +920,7 @@
 				246BCA20221E3C29006D6C91 /* MyPageService.swift in Sources */,
 				24ADABAD2216A11400499926 /* NearViewController.swift in Sources */,
 				24A496C4221A5FFC00ABA699 /* HomeService.swift in Sources */,
+				2472A870222E5363009758AD /* SearchViewController.swift in Sources */,
 				24A496BB221A486300ABA699 /* News.swift in Sources */,
 				240C652F2224D9AF00D57103 /* ThirdEDCell.swift in Sources */,
 				246BCA2A221EABCD006D6C91 /* GoingViewController.swift in Sources */,

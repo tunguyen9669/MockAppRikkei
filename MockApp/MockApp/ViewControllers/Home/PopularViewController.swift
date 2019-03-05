@@ -293,7 +293,6 @@ extension PopularViewController: UITableViewDelegate, UITableViewDataSource {
     }
 }
 
-// extension
 extension PopularViewController: EventCellDelegate {
     func onClick(_ id: Int) {
         if let eventDetailVC = R.storyboard.myPage.eventDetailViewController() {

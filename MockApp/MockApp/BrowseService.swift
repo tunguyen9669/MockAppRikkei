@@ -44,5 +44,23 @@ class BrowseService: APIServiceObject {
             }
         }
     }
+    
+    func requestSearch(_ pageIndex: Int, _ keyword: String,_ completion: @escaping (Result<[EventDTO]>) -> Void) {
+        var events = [EventDTO]()
+        let request = APIRequestProvider.shareInstance.search(pageIndex, keyword)
+        serviceAgent.startRequest(request) { (json, error) in
+            if let error = error {
+                completion(Result.failure(error))
+            } else {
+                let data = json["response"]["events"].arrayValue
+                
+                for item in data {
+                    events.append(EventDTO(item))
+                }
+                completion(Result.success(events))
+            }
+        }
+        
+    }
 }
 

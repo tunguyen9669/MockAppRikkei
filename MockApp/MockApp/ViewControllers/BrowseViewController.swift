@@ -17,7 +17,9 @@ class BrowseViewController: UIViewController {
     var categories = [Category]()
     let realmManager = RealmManager.shared
     @IBAction func onSearch(_ sender: Any) {
-        //
+        if let searchVC = R.storyboard.browse.searchViewController() {
+            self.navigationController?.pushViewController(searchVC, animated: true)
+        }
     }
     let services = BrowseService()
     lazy var refreshControl: UIRefreshControl = {

@@ -704,6 +704,7 @@ struct _R: Rswift.Validatable {
       let bundle = R.hostingBundle
       let eventByCategoryViewController = StoryboardViewControllerResource<EventByCategoryViewController>(identifier: "EventByCategoryViewController")
       let name = "Browse"
+      let searchViewController = StoryboardViewControllerResource<SearchViewController>(identifier: "SearchViewController")
       
       func browseViewController(_: Void = ()) -> BrowseViewController? {
         return UIKit.UIStoryboard(resource: self).instantiateViewController(withResource: browseViewController)
@@ -713,6 +714,10 @@ struct _R: Rswift.Validatable {
         return UIKit.UIStoryboard(resource: self).instantiateViewController(withResource: eventByCategoryViewController)
       }
       
+      func searchViewController(_: Void = ()) -> SearchViewController? {
+        return UIKit.UIStoryboard(resource: self).instantiateViewController(withResource: searchViewController)
+      }
+      
       static func validate() throws {
         if UIKit.UIImage(named: "back", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'back' is used in storyboard 'Browse', but couldn't be loaded.") }
         if UIKit.UIImage(named: "search", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'search' is used in storyboard 'Browse', but couldn't be loaded.") }
@@ -720,6 +725,7 @@ struct _R: Rswift.Validatable {
         }
         if _R.storyboard.browse().browseViewController() == nil { throw Rswift.ValidationError(description:"[R.swift] ViewController with identifier 'browseViewController' could not be loaded from storyboard 'Browse' as 'BrowseViewController'.") }
         if _R.storyboard.browse().eventByCategoryViewController() == nil { throw Rswift.ValidationError(description:"[R.swift] ViewController with identifier 'eventByCategoryViewController' could not be loaded from storyboard 'Browse' as 'EventByCategoryViewController'.") }
+        if _R.storyboard.browse().searchViewController() == nil { throw Rswift.ValidationError(description:"[R.swift] ViewController with identifier 'searchViewController' could not be loaded from storyboard 'Browse' as 'SearchViewController'.") }
       }
       
       fileprivate init() {}

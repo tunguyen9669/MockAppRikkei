@@ -328,7 +328,7 @@ extension EventByCategoryViewController: UITableViewDelegate, UITableViewDataSou
             let goingCount = self.events[indexPath.row].getGoingCount()
             let permanent = self.events[indexPath.row].getPermanent()
             let myStatus = self.events[indexPath.row].getMyStatus()
-            cell.customInit(photo, name, descHtml, startDate, endDate, goingCount, permanent, myStatus)
+            cell.customInit(photo, name, descHtml, startDate, endDate, goingCount, permanent, 0)
             cell.id = self.events[indexPath.row].getId()
         } else {
             let indexList = arrCommonTables[indexPath.section].getEvents()[indexPath.row]

@@ -165,4 +165,16 @@ class APIRequestProvider: NSObject {
                                         encoding: URLEncoding.default,
                                         headers: headers)
     }
+    
+    func search(_ pageIndex: Int,_ keyword: String) -> DataRequest {
+        let urlRequest = requestURL.appending("search")
+        let params = ["pageIndex": pageIndex,
+                      "pageSize": 10,
+                      "keyword": keyword] as [String : Any]
+        return alamoFireManager.request(urlRequest,
+                                        method: .get,
+                                        parameters: params,
+                                        encoding: URLEncoding.default,
+                                        headers: headers)
+    }
 }
