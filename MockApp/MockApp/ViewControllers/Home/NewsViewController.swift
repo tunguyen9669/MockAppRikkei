@@ -214,7 +214,7 @@ extension  NewsViewController : UITableViewDataSource, UITableViewDelegate {
                         arr.append(item)
                     }
                     self.arrNews += arr
-                    self.creatDB(news: news)
+                    self.creatDB(news: self.arrNews)
                 }
                 self.perform(#selector(loadTable), with: nil, afterDelay: 1.0)
                 

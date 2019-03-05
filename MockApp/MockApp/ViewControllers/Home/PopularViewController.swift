@@ -283,7 +283,7 @@ extension PopularViewController: UITableViewDelegate, UITableViewDataSource {
                         arr.append(item)
                     }
                     self.populars += arr
-                    self.creatDB(populars: arr)
+                    self.creatDB(populars: self.populars)
                 }
                 self.perform(#selector(loadTable), with: nil, afterDelay: 1.0)
             }

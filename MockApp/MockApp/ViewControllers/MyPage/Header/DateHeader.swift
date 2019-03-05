@@ -20,7 +20,7 @@ class DateHeader: UITableViewHeaderFooterView {
         if type == "Took place" {
             self.titleLabel.text = type
         } else {
-            self.titleLabel.text = "End this \(type)"
+            self.titleLabel.text = "End \(type)"
         }
        
     }

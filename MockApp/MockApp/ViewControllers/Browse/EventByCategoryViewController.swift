@@ -29,24 +29,33 @@ class EventByCategoryViewController: UIViewController {
         dateTitle.textColor = UIColor.black
         popularTitle.textColor = UIColor.white
         indexStyle = 1
-        self.tableView.reloadData()
+        self.getDataFromDB()
     }
     @IBAction func sortByDate(_ sender: Any) {
         dateTitle.textColor = UIColor.white
         popularTitle.textColor = UIColor.black
         indexStyle = 2
-        self.tableView.reloadData()
+        self.getDataFromDB()
     }
     
     @IBOutlet weak var titleLabel: UILabel!
     var indexStyle = 1
+    
+    lazy var refreshControl: UIRefreshControl = {
+        let refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action: #selector(EventByCategoryViewController.handleRefresh(_:)), for: UIControl.Event.valueChanged)
+        refreshControl.tintColor = UIColor.tabbarColor
+        
+        return refreshControl
+    }()
     
     // MARK: - life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         self.tableView.register(UINib(nibName: "EventCell", bundle: nil), forCellReuseIdentifier: "EventCell")
         self.tableView.register(UINib(nibName: "DateHeader", bundle: nil), forHeaderFooterViewReuseIdentifier: "DateHeader")
-        
+        self.tableView.addSubview(self.refreshControl)
+        self.tableView.tableFooterView = UIView(frame: .zero)
         self.tableView.estimatedRowHeight = 300.0
         
         checkDataDB()
@@ -61,6 +70,16 @@ class EventByCategoryViewController: UIViewController {
     }
     
     // MARK: - function
+    
+    @objc func loadTable() {
+        self.tableView.reloadData()
+    }
+    
+    // refresh data
+    @objc func handleRefresh(_ refreshControl: UIRefreshControl) {
+        getDataFromDB()
+        refreshControl.endRefreshing()
+    }
     
     func getDataSourceTable(_ events: [Event]) {
         var arr = [CommonTableModel]()
@@ -106,6 +125,8 @@ class EventByCategoryViewController: UIViewController {
         arr.append(CommonTableModel("Later", latersEvents))
         arr.append(CommonTableModel("Took place", tookPlaceEvents))
         
+        
+        self.titleLabel.text = "\(self.category.getName()) (\(events.count))"
         self.arrCommonTables = arr
         self.tableView.contentOffset = .zero
         self.tableView.reloadData()
@@ -131,7 +152,7 @@ class EventByCategoryViewController: UIViewController {
         self.events = self.events.sorted { (po1, po2) -> Bool in
             return po1.getGoingCount() >= po2.getGoingCount()
         }
-        self.titleLabel.text = "\(self.category.getName()) (\(events.count))"
+        self.titleLabel.text = "\(self.category.getName()) (\(arr.count))"
         self.tableView.contentOffset = .zero
         self.tableView.reloadData()
     }
@@ -196,8 +217,10 @@ class EventByCategoryViewController: UIViewController {
             popular.venue = Venue(item.getVenue().id, item.getVenue().name, item.getVenue().type, item.getVenue().desc, item.getVenue().area, item.getVenue().address, item.getVenue().lat, item.getVenue().long, item.getVenue().scheduleOpening, item.getVenue().scheduleClosing, item.getVenue().scheduleClosed)
             arr.append(popular)
         }
+        print("Array: \(arr.count)")
         self.reloadTable(arr)
         self.getDataSourceTable(arr)
+        
        
     }
     
@@ -294,6 +317,24 @@ extension EventByCategoryViewController: UITableViewDelegate, UITableViewDataSou
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "EventCell", for: indexPath) as? EventCell else {
             return UITableViewCell()
         }
+        
+        cell.delegate = self
+        if indexStyle == 1 {
+            let photo = self.events[indexPath.row].getPhoto()
+            let name = self.events[indexPath.row].getName()
+            let startDate = self.events[indexPath.row].getStartDate()
+            let endDate = self.events[indexPath.row].getEndDate()
+            let descHtml = self.events[indexPath.row].getDescHtml()
+            let goingCount = self.events[indexPath.row].getGoingCount()
+            let permanent = self.events[indexPath.row].getPermanent()
+            let myStatus = self.events[indexPath.row].getMyStatus()
+            cell.customInit(photo, name, descHtml, startDate, endDate, goingCount, permanent, myStatus)
+            cell.id = self.events[indexPath.row].getId()
+        } else {
+            let indexList = arrCommonTables[indexPath.section].getEvents()[indexPath.row]
+            cell.customInit(indexList.getPhoto(), indexList.getName(), indexList.getDescHtml(), indexList.getStartDate(), indexList.getEndDate(), indexList.getGoingCount(), indexList.getPermanent(), 0)
+            cell.id = arrCommonTables[indexPath.section].getEvents()[indexPath.row].getId()
+        }
         return cell
     }
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
@@ -307,6 +348,52 @@ extension EventByCategoryViewController: UITableViewDelegate, UITableViewDataSou
             header.isHidden = false
         }
         return header
+    }
+    
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        // load more
+        if Connectivity.isConnectedToInternet {
+            if indexStyle == 1 {
+                if indexPath.row == self.events.count - 1 {
+                    print("load more")
+                    if pageIndex < 20 {
+                        self.pageIndex += 1
+                    }
+                    print(pageIndex)
+                    
+                    self.getEventsByCategory(self.pageIndex, self.category.getId()) { (events) in
+                        var arr: [Event] = []
+                        for item in events {
+                            arr.append(item)
+                        }
+                        if arr.count > 0{
+                            self.events += arr
+                            self.creatDB(populars: self.events)
+//
+//                            self.getDataSourceTable(self.events)
+//                            self.reloadTable(self.events)
+                        }
+                        
+                    }
+                    self.perform(#selector(loadTable), with: nil, afterDelay: 1.0)
+                }
+            } else {
+                //
+            }
+            
+        } else {
+            self.alertWith("Không có kết lỗi Internet, vui lòng kiểm tra!")
+        }
+        
+    }
+}
+// extension
+extension EventByCategoryViewController: EventCellDelegate {
+    func onClick(_ id: Int) {
+        if let eventDetailVC = R.storyboard.myPage.eventDetailViewController() {
+            eventDetailVC.id = id
+            self.navigationController?.pushViewController(eventDetailVC, animated: true)
+        }
     }
     
     
