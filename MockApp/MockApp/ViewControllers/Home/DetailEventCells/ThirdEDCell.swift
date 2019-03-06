@@ -29,32 +29,15 @@ class ThirdEDCell: UITableViewCell {
     }
     @IBOutlet weak var wentButton: UIButton!
     @IBOutlet weak var goingButton: UIButton!
-    var arr = [1, 2, 3, 4, 5, 6]
     var id: Int = 0
-    @IBOutlet weak var fsPagerView: FSPagerView! {
-        didSet {
-            self.fsPagerView.automaticSlidingInterval = 0
-            self.fsPagerView.isInfinite = false
-            
-        }
-    }
     override func awakeFromNib() {
         super.awakeFromNib()
         self.setNeedsLayout()
         self.layoutIfNeeded()
         
-        self.fsPagerView.register(UINib(nibName: "EventPagerCell", bundle: nil), forCellWithReuseIdentifier: "EventPagerCell")
-        
-        self.fsPagerView.interitemSpacing = 8
-        self.fsPagerView.delegate = self
-        self.fsPagerView.dataSource = self
-        self.fsPagerView.reloadData()
+    
     }
-    override func layoutSubviews() {
-        super.layoutSubviews()
-        self.fsPagerView.itemSize = CGSize(width: UIScreen.main.bounds.width - 48, height: self.fsPagerView.frame.size.height)
-        self.fsPagerView.clipsToBounds = true
-    }
+ 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 
@@ -67,22 +50,4 @@ class ThirdEDCell: UITableViewCell {
     }
     
 }
-// - extension
 
-extension ThirdEDCell: FSPagerViewDataSource, FSPagerViewDelegate {
-    func numberOfItems(in pagerView: FSPagerView) -> Int {
-        return self.arr.count
-    }
-    
-    func pagerView(_ pagerView: FSPagerView, cellForItemAt index: Int) -> FSPagerViewCell {
-        let cell = pagerView.dequeueReusableCell(withReuseIdentifier: "EventPagerCell", at: index)
-        guard let aCell = cell as? EventPagerCell else {
-            return FSPagerViewCell()
-        }
-        
-        return cell
-    }
-   
-    
-    
-}
