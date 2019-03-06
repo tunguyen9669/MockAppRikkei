@@ -176,7 +176,7 @@ struct R: Rswift.Validatable {
     fileprivate init() {}
   }
   
-  /// This `R.image` struct is generated, and contains static references to 16 images.
+  /// This `R.image` struct is generated, and contains static references to 22 images.
   struct image {
     /// Image `back`.
     static let back = Rswift.ImageResource(bundle: R.hostingBundle, name: "back")
@@ -198,6 +198,10 @@ struct R: Rswift.Validatable {
     static let near_selected = Rswift.ImageResource(bundle: R.hostingBundle, name: "near_selected")
     /// Image `near`.
     static let near = Rswift.ImageResource(bundle: R.hostingBundle, name: "near")
+    /// Image `red_snippet_HL`.
+    static let red_snippet_HL = Rswift.ImageResource(bundle: R.hostingBundle, name: "red_snippet_HL")
+    /// Image `red_snippet`.
+    static let red_snippet = Rswift.ImageResource(bundle: R.hostingBundle, name: "red_snippet")
     /// Image `red_star`.
     static let red_star = Rswift.ImageResource(bundle: R.hostingBundle, name: "red_star")
     /// Image `rikkeisoft-logo`.
@@ -208,6 +212,14 @@ struct R: Rswift.Validatable {
     static let user_selected = Rswift.ImageResource(bundle: R.hostingBundle, name: "user_selected")
     /// Image `user`.
     static let user = Rswift.ImageResource(bundle: R.hostingBundle, name: "user")
+    /// Image `white_snippet_HL`.
+    static let white_snippet_HL = Rswift.ImageResource(bundle: R.hostingBundle, name: "white_snippet_HL")
+    /// Image `white_snippet`.
+    static let white_snippet = Rswift.ImageResource(bundle: R.hostingBundle, name: "white_snippet")
+    /// Image `yellow_snippet_HL`.
+    static let yellow_snippet_HL = Rswift.ImageResource(bundle: R.hostingBundle, name: "yellow_snippet_HL")
+    /// Image `yellow_snippet`.
+    static let yellow_snippet = Rswift.ImageResource(bundle: R.hostingBundle, name: "yellow_snippet")
     /// Image `yellow_star`.
     static let yellow_star = Rswift.ImageResource(bundle: R.hostingBundle, name: "yellow_star")
     
@@ -261,6 +273,16 @@ struct R: Rswift.Validatable {
       return UIKit.UIImage(resource: R.image.near_selected, compatibleWith: traitCollection)
     }
     
+    /// `UIImage(named: "red_snippet", bundle: ..., traitCollection: ...)`
+    static func red_snippet(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.red_snippet, compatibleWith: traitCollection)
+    }
+    
+    /// `UIImage(named: "red_snippet_HL", bundle: ..., traitCollection: ...)`
+    static func red_snippet_HL(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.red_snippet_HL, compatibleWith: traitCollection)
+    }
+    
     /// `UIImage(named: "red_star", bundle: ..., traitCollection: ...)`
     static func red_star(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
       return UIKit.UIImage(resource: R.image.red_star, compatibleWith: traitCollection)
@@ -284,6 +306,26 @@ struct R: Rswift.Validatable {
     /// `UIImage(named: "user_selected", bundle: ..., traitCollection: ...)`
     static func user_selected(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
       return UIKit.UIImage(resource: R.image.user_selected, compatibleWith: traitCollection)
+    }
+    
+    /// `UIImage(named: "white_snippet", bundle: ..., traitCollection: ...)`
+    static func white_snippet(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.white_snippet, compatibleWith: traitCollection)
+    }
+    
+    /// `UIImage(named: "white_snippet_HL", bundle: ..., traitCollection: ...)`
+    static func white_snippet_HL(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.white_snippet_HL, compatibleWith: traitCollection)
+    }
+    
+    /// `UIImage(named: "yellow_snippet", bundle: ..., traitCollection: ...)`
+    static func yellow_snippet(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.yellow_snippet, compatibleWith: traitCollection)
+    }
+    
+    /// `UIImage(named: "yellow_snippet_HL", bundle: ..., traitCollection: ...)`
+    static func yellow_snippet_HL(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.yellow_snippet_HL, compatibleWith: traitCollection)
     }
     
     /// `UIImage(named: "yellow_star", bundle: ..., traitCollection: ...)`

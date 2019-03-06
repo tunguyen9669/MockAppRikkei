@@ -16,8 +16,8 @@ class VenueRealmModel: Object {
     @objc dynamic var desc: String = ""
     @objc dynamic var address: String = ""
     @objc dynamic var area: String = ""
-    @objc dynamic var long: Float = 0.0
-    @objc dynamic var lat: Float = 0.0
+    @objc dynamic var long: String = ""
+    @objc dynamic var lat: String = ""
     @objc dynamic var scheduleOpening: String = ""
     @objc dynamic var scheduleClosing: String = ""
     @objc dynamic var scheduleClosed: String = ""

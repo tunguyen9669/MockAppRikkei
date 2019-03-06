@@ -218,7 +218,7 @@ class EventByCategoryViewController: UIViewController {
             popular.myStatus = item.myStatus
             popular.goingCount = Int(item.goingCount)
             popular.wentCount = Int(item.wentCount)
-            popular.venue = Venue(item.getVenue().id, item.getVenue().name, item.getVenue().type, item.getVenue().desc, item.getVenue().area, item.getVenue().address, item.getVenue().lat, item.getVenue().long, item.getVenue().scheduleOpening, item.getVenue().scheduleClosing, item.getVenue().scheduleClosed)
+            popular.venue = Venue(item.getVenue().id, item.getVenue().name, item.getVenue().type, item.getVenue().desc, item.getVenue().area, item.getVenue().address, item.getVenue().lat.description, item.getVenue().long.description, item.getVenue().scheduleOpening, item.getVenue().scheduleClosing, item.getVenue().scheduleClosed)
             arr.append(popular)
         }
         print("Array: \(arr.count)")

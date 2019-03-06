@@ -177,4 +177,15 @@ class APIRequestProvider: NSObject {
                                         encoding: URLEncoding.default,
                                         headers: headers)
     }
+    func listNearlyEvent(_ radius: Float,_ longitude: Float, _ latitude: Float) -> DataRequest {
+        let urlRequest = requestURL.appending("listNearlyEvents")
+        let params = ["radius": radius,
+                      "longitue": longitude,
+                      "latitude": latitude]
+        return alamoFireManager.request(urlRequest,
+                                        method: .get,
+                                        parameters: params,
+                                        encoding: URLEncoding.default,
+                                        headers: headers)
+    }
 }

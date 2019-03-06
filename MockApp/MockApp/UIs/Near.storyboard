@@ -18,9 +18,9 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zeu-Gc-3aF">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zeu-Gc-3aF" customClass="GMSMapView">
                                 <rect key="frame" x="0.0" y="20" width="375" height="647"/>
-                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wMF-Ks-Tma" customClass="FSPagerView" customModule="FSPagerView">
                                 <rect key="frame" x="10" y="519" width="355" height="128"/>
@@ -45,6 +45,7 @@
                     </view>
                     <connections>
                         <outlet property="fsPagerView" destination="wMF-Ks-Tma" id="7JF-21-tsR"/>
+                        <outlet property="mapView" destination="zeu-Gc-3aF" id="gcH-nY-rRp"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PI0-14-UMr" userLabel="First Responder" sceneMemberID="firstResponder"/>

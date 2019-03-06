@@ -24,6 +24,7 @@ class Event {
     public var endTime: String?
     public var oneDayEvent: String?
     public var extra: String?
+    public var distance: Float?
     public var myStatus: Int?
     public var goingCount: Int?
     public var wentCount: Int?
@@ -83,6 +84,9 @@ class Event {
     public func getWentCount() -> Int {
         return self.wentCount ?? 0
     }
+    public func getDistance() -> Float{
+        return self.distance ?? 0.0
+    }
     
     init() {
         self.id = 0
@@ -100,6 +104,7 @@ class Event {
         self.endTime = ""
         self.oneDayEvent = ""
         self.extra = ""
+        self.distance = 0.0
         self.myStatus = 0
         self.goingCount = 0
         self.wentCount = 0
@@ -122,6 +127,7 @@ class Event {
         self.endTime = popularDto.getEndTime()
         self.oneDayEvent = popularDto.getOneDayEvent()
         self.extra = popularDto.getExtra()
+        self.distance = popularDto.getDistance()
         self.myStatus = popularDto.getMyStatus()
         self.goingCount = popularDto.getGoingCount()
         self.wentCount = popularDto.getWentCount()

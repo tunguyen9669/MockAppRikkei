@@ -25,6 +25,7 @@ class EventDTO {
     public var endTime: String?
     public var oneDayEvent: String?
     public var extra: String?
+    public var distance: Float?
     public var myStatus: Int?
     public var goingCount: Int?
     public var wentCount: Int?
@@ -84,6 +85,9 @@ class EventDTO {
     public func getWentCount() -> Int {
         return self.wentCount ?? 0
     }
+    public func getDistance() -> Float{
+        return self.distance ?? 0.0
+    }
     
     init(_ json: JSON) {
         self.id = json["id"].int
@@ -101,6 +105,7 @@ class EventDTO {
         self.endTime = json["schedule_end_time"].string
         self.oneDayEvent = json["schedule_one_day_event"].string
         self.extra = json["schedule_extra"].string
+        self.distance = json["distance"].float
         self.myStatus = json["my_status"].int
         self.goingCount = json["going_count"].int
         self.wentCount = json["went_count"].int

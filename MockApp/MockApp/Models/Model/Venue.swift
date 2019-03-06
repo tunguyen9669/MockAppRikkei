@@ -15,8 +15,8 @@ class Venue {
     public var desc: String?
     public var address: String?
     public var area: String?
-    public var long: Float?
-    public var lat: Float?
+    public var long: String?
+    public var lat: String?
     public var scheduleOpening: String?
     public var scheduleClosing: String?
     public var scheduleClosed: String?
@@ -39,11 +39,11 @@ class Venue {
     public func getArea() -> String {
         return area ?? ""
     }
-    public func getLong() -> Float {
-        return long ?? 0.0
+    public func getLong() -> String {
+        return long ?? ""
     }
-    public func getLat() -> Float {
-        return lat ?? 0.0
+    public func getLat() -> String {
+        return lat ?? ""
     }
     public func getOpening() -> String {
         return scheduleOpening ?? ""
@@ -55,7 +55,7 @@ class Venue {
         return scheduleClosed ?? ""
     }
     
-    init(_ id: Int, _ name: String, _ type: Int, _ desc: String, _ area: String, _ address: String,  _ lat: Float, _ long: Float, _ openHour: String, _ closingHour: String,_ closedHour: String){
+    init(_ id: Int, _ name: String, _ type: Int, _ desc: String, _ area: String, _ address: String,  _ lat: String, _ long: String, _ openHour: String, _ closingHour: String,_ closedHour: String){
         self.id = id
         self.name = name
         self.type = type
