@@ -20,7 +20,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="PopularPagerCell" id="gTV-IL-0wX" customClass="PopularPagerCell" customModule="MockApp" customModuleProvider="target">
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="EventPagerCell" id="gTV-IL-0wX" customClass="EventPagerCell" customModule="MockApp" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="380" height="122"/>
             <autoresizingMask key="autoresizingMask"/>
             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
@@ -31,7 +31,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="380" height="122"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="default_image" translatesAutoresizingMaskIntoConstraints="NO" id="lWj-t6-XL7">
-                                <rect key="frame" x="0.0" y="0.0" width="110" height="80"/>
+                                <rect key="frame" x="0.0" y="5" width="110" height="80"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="80" id="4na-Fl-olT"/>
                                     <constraint firstAttribute="width" constant="110" id="iSF-Pd-nLj"/>
@@ -50,7 +50,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="26/02/2019 -  40 người tham gia" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xFb-vw-zvz">
-                                <rect key="frame" x="0.0" y="95" width="380" height="17"/>
+                                <rect key="frame" x="0.0" y="100" width="380" height="12"/>
                                 <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="13"/>
                                 <color key="textColor" red="0.26666666666666666" green="0.26666666666666666" blue="0.26666666666666666" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
@@ -63,7 +63,7 @@
                             <constraint firstItem="xFb-vw-zvz" firstAttribute="leading" secondItem="lWj-t6-XL7" secondAttribute="leading" id="Im3-Oh-fMv"/>
                             <constraint firstAttribute="bottom" secondItem="xFb-vw-zvz" secondAttribute="bottom" constant="10" id="NEo-gS-0jg"/>
                             <constraint firstItem="01X-hC-5xQ" firstAttribute="leading" secondItem="lWj-t6-XL7" secondAttribute="trailing" constant="5" id="Num-ZC-iCt"/>
-                            <constraint firstItem="lWj-t6-XL7" firstAttribute="top" secondItem="M2q-MT-aya" secondAttribute="top" id="SVc-WT-DWb"/>
+                            <constraint firstItem="lWj-t6-XL7" firstAttribute="top" secondItem="M2q-MT-aya" secondAttribute="top" constant="5" id="SVc-WT-DWb"/>
                             <constraint firstItem="01X-hC-5xQ" firstAttribute="top" secondItem="M2q-MT-aya" secondAttribute="top" constant="10" id="ZT6-Cm-Uki"/>
                             <constraint firstAttribute="trailing" secondItem="xFb-vw-zvz" secondAttribute="trailing" id="eV4-zy-0f0"/>
                             <constraint firstItem="R2v-dC-hGd" firstAttribute="trailing" secondItem="01X-hC-5xQ" secondAttribute="trailing" id="ghD-Oa-boO"/>

@@ -64,8 +64,12 @@ class EventByCategoryViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         getDataCheckIsToday()
+        if UserPrefsHelper.shared.getIsLoggined() == true {
+            self.getEventsByCategory(1, self.category.getId()) { (events) in
+                self.creatDB(populars: events)
+            }
+        }
         getDataFromDB()
-
         
     }
     
@@ -128,7 +132,6 @@ class EventByCategoryViewController: UIViewController {
         
         self.titleLabel.text = "\(self.category.getName()) (\(events.count))"
         self.arrCommonTables = arr
-        self.tableView.contentOffset = .zero
         self.tableView.reloadData()
         
     }
@@ -153,7 +156,6 @@ class EventByCategoryViewController: UIViewController {
             return po1.getGoingCount() >= po2.getGoingCount()
         }
         self.titleLabel.text = "\(self.category.getName()) (\(arr.count))"
-        self.tableView.contentOffset = .zero
         self.tableView.reloadData()
     }
     
@@ -328,7 +330,7 @@ extension EventByCategoryViewController: UITableViewDelegate, UITableViewDataSou
             let goingCount = self.events[indexPath.row].getGoingCount()
             let permanent = self.events[indexPath.row].getPermanent()
             let myStatus = self.events[indexPath.row].getMyStatus()
-            cell.customInit(photo, name, descHtml, startDate, endDate, goingCount, permanent, 0)
+            cell.customInit(photo, name, descHtml, startDate, endDate, goingCount, permanent, myStatus)
             cell.id = self.events[indexPath.row].getId()
         } else {
             let indexList = arrCommonTables[indexPath.section].getEvents()[indexPath.row]
@@ -369,9 +371,6 @@ extension EventByCategoryViewController: UITableViewDelegate, UITableViewDataSou
                         if arr.count > 0{
                             self.events += arr
                             self.creatDB(populars: self.events)
-//
-//                            self.getDataSourceTable(self.events)
-//                            self.reloadTable(self.events)
                         }
                         
                     }

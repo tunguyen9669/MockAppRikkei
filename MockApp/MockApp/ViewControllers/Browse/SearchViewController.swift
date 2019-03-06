@@ -65,9 +65,58 @@ class SearchViewController: UIViewController {
         self.tableView.tableFooterView = UIView(frame: .zero)
         self.tableView.estimatedRowHeight = 300.0
         
+        notificationAction()
+        
+    }
+    deinit {
+        NotificationCenter.default.removeObserver(self)
     }
     
     // MARK: - function
+    
+    func notificationAction() {
+        NotificationCenter.default.addObserver(self, selector: #selector(onGoing(_:)), name: .kUpdateGoingEvent, object: nil)
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(onWent(_:)), name: .kUpdateWentEvent, object: nil)
+    }
+    
+    @objc func onGoing(_ sender: Notification) {
+        if let popular = sender.userInfo?["popular"] as? Event {
+            if indexStyle == 1 {
+                self.upcomingEvents = updateStatusTable(popular, 1, self.upcomingEvents)
+            } else {
+                 self.pastEvents = updateStatusTable(popular, 1, self.pastEvents)
+            }
+            self.tableView.reloadData()
+        }
+    }
+    
+    @objc func onWent(_ sender: Notification) {
+        if let popular = sender.userInfo?["popular"] as? Event {
+            if indexStyle == 1 {
+                self.upcomingEvents = updateStatusTable(popular, 2, self.upcomingEvents)
+            } else {
+                self.pastEvents = updateStatusTable(popular, 2, self.pastEvents)
+            }
+             self.tableView.reloadData()
+        }
+        
+    }
+    
+    func updateStatusTable(_ event: Event, _ status: Int,_ events: [Event]) -> [Event] {
+        var arr = events
+        for i in 0..<events.count {
+            if upcomingEvents[i].getId() == event.getId() {
+                arr[i].myStatus = status
+            }
+        }
+        arr = arr.sorted { (po1, po2) -> Bool in
+            return po1.getGoingCount() >= po2.getGoingCount()
+        }
+        
+        return arr
+    }
+    
     @objc func onTapView(_ sender: UITapGestureRecognizer) {
         view.endEditing(true)
     }
@@ -148,7 +197,7 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
             let permanent = self.upcomingEvents[indexPath.row].getPermanent()
             let myStatus = self.upcomingEvents[indexPath.row].getMyStatus()
             cell.id = self.upcomingEvents[indexPath.row].getId()
-            cell.customInit(photo, name, descHtml, startDate, endDate, goingCount, permanent, 0)
+            cell.customInit(photo, name, descHtml, startDate, endDate, goingCount, permanent, myStatus)
         } else {
             let photo = self.pastEvents[indexPath.row].getPhoto()
             let name = self.pastEvents[indexPath.row].getName()
@@ -159,7 +208,7 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
             let permanent = self.pastEvents[indexPath.row].getPermanent()
             let myStatus = self.pastEvents[indexPath.row].getMyStatus()
             cell.id = self.pastEvents[indexPath.row].getId()
-            cell.customInit(photo, name, descHtml, startDate, endDate, goingCount, permanent, 0)
+            cell.customInit(photo, name, descHtml, startDate, endDate, goingCount, permanent, myStatus)
         }
         return cell
     }

@@ -302,12 +302,12 @@ struct R: Rswift.Validatable {
     static let dateHeader = _R.nib._DateHeader()
     /// Nib `EventCell`.
     static let eventCell = _R.nib._EventCell()
+    /// Nib `EventPagerCell`.
+    static let eventPagerCell = _R.nib._EventPagerCell()
     /// Nib `FirstEDCell`.
     static let firstEDCell = _R.nib._FirstEDCell()
     /// Nib `NewsCell`.
     static let newsCell = _R.nib._NewsCell()
-    /// Nib `PopularPagerCell`.
-    static let popularPagerCell = _R.nib._PopularPagerCell()
     /// Nib `SecondEDCell`.
     static let secondEDCell = _R.nib._SecondEDCell()
     /// Nib `ThirdEDCell`.
@@ -331,6 +331,12 @@ struct R: Rswift.Validatable {
       return UIKit.UINib(resource: R.nib.eventCell)
     }
     
+    /// `UINib(name: "EventPagerCell", in: bundle)`
+    @available(*, deprecated, message: "Use UINib(resource: R.nib.eventPagerCell) instead")
+    static func eventPagerCell(_: Void = ()) -> UIKit.UINib {
+      return UIKit.UINib(resource: R.nib.eventPagerCell)
+    }
+    
     /// `UINib(name: "FirstEDCell", in: bundle)`
     @available(*, deprecated, message: "Use UINib(resource: R.nib.firstEDCell) instead")
     static func firstEDCell(_: Void = ()) -> UIKit.UINib {
@@ -341,12 +347,6 @@ struct R: Rswift.Validatable {
     @available(*, deprecated, message: "Use UINib(resource: R.nib.newsCell) instead")
     static func newsCell(_: Void = ()) -> UIKit.UINib {
       return UIKit.UINib(resource: R.nib.newsCell)
-    }
-    
-    /// `UINib(name: "PopularPagerCell", in: bundle)`
-    @available(*, deprecated, message: "Use UINib(resource: R.nib.popularPagerCell) instead")
-    static func popularPagerCell(_: Void = ()) -> UIKit.UINib {
-      return UIKit.UINib(resource: R.nib.popularPagerCell)
     }
     
     /// `UINib(name: "SecondEDCell", in: bundle)`
@@ -373,16 +373,16 @@ struct R: Rswift.Validatable {
       return R.nib.eventCell.instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? EventCell
     }
     
+    static func eventPagerCell(owner ownerOrNil: AnyObject?, options optionsOrNil: [UINib.OptionsKey : Any]? = nil) -> EventPagerCell? {
+      return R.nib.eventPagerCell.instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? EventPagerCell
+    }
+    
     static func firstEDCell(owner ownerOrNil: AnyObject?, options optionsOrNil: [UINib.OptionsKey : Any]? = nil) -> FirstEDCell? {
       return R.nib.firstEDCell.instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? FirstEDCell
     }
     
     static func newsCell(owner ownerOrNil: AnyObject?, options optionsOrNil: [UINib.OptionsKey : Any]? = nil) -> NewsCell? {
       return R.nib.newsCell.instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? NewsCell
-    }
-    
-    static func popularPagerCell(owner ownerOrNil: AnyObject?, options optionsOrNil: [UINib.OptionsKey : Any]? = nil) -> PopularPagerCell? {
-      return R.nib.popularPagerCell.instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? PopularPagerCell
     }
     
     static func secondEDCell(owner ownerOrNil: AnyObject?, options optionsOrNil: [UINib.OptionsKey : Any]? = nil) -> SecondEDCell? {
@@ -404,10 +404,10 @@ struct R: Rswift.Validatable {
     static let dateHeader: Rswift.ReuseIdentifier<DateHeader> = Rswift.ReuseIdentifier(identifier: "DateHeader")
     /// Reuse identifier `EventCell`.
     static let eventCell: Rswift.ReuseIdentifier<EventCell> = Rswift.ReuseIdentifier(identifier: "EventCell")
+    /// Reuse identifier `EventPagerCell`.
+    static let eventPagerCell: Rswift.ReuseIdentifier<EventPagerCell> = Rswift.ReuseIdentifier(identifier: "EventPagerCell")
     /// Reuse identifier `FirstEDCell`.
     static let firstEDCell: Rswift.ReuseIdentifier<FirstEDCell> = Rswift.ReuseIdentifier(identifier: "FirstEDCell")
-    /// Reuse identifier `PopularPagerCell`.
-    static let popularPagerCell: Rswift.ReuseIdentifier<PopularPagerCell> = Rswift.ReuseIdentifier(identifier: "PopularPagerCell")
     /// Reuse identifier `SecondEDCell`.
     static let secondEDCell: Rswift.ReuseIdentifier<SecondEDCell> = Rswift.ReuseIdentifier(identifier: "SecondEDCell")
     /// Reuse identifier `ThirdEDCell`.
@@ -540,9 +540,9 @@ struct _R: Rswift.Validatable {
     static func validate() throws {
       try _CategoryCell.validate()
       try _EventCell.validate()
+      try _EventPagerCell.validate()
       try _FirstEDCell.validate()
       try _NewsCell.validate()
-      try _PopularPagerCell.validate()
     }
     
     struct _CategoryCell: Rswift.NibResourceType, Rswift.ReuseIdentifierType, Rswift.Validatable {
@@ -600,6 +600,26 @@ struct _R: Rswift.Validatable {
       fileprivate init() {}
     }
     
+    struct _EventPagerCell: Rswift.NibResourceType, Rswift.ReuseIdentifierType, Rswift.Validatable {
+      typealias ReusableType = EventPagerCell
+      
+      let bundle = R.hostingBundle
+      let identifier = "EventPagerCell"
+      let name = "EventPagerCell"
+      
+      func firstView(owner ownerOrNil: AnyObject?, options optionsOrNil: [UINib.OptionsKey : Any]? = nil) -> EventPagerCell? {
+        return instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? EventPagerCell
+      }
+      
+      static func validate() throws {
+        if UIKit.UIImage(named: "default_image", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'default_image' is used in nib 'EventPagerCell', but couldn't be loaded.") }
+        if #available(iOS 11.0, *) {
+        }
+      }
+      
+      fileprivate init() {}
+    }
+    
     struct _FirstEDCell: Rswift.NibResourceType, Rswift.ReuseIdentifierType, Rswift.Validatable {
       typealias ReusableType = FirstEDCell
       
@@ -631,26 +651,6 @@ struct _R: Rswift.Validatable {
       
       static func validate() throws {
         if UIKit.UIImage(named: "default_image", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'default_image' is used in nib 'NewsCell', but couldn't be loaded.") }
-        if #available(iOS 11.0, *) {
-        }
-      }
-      
-      fileprivate init() {}
-    }
-    
-    struct _PopularPagerCell: Rswift.NibResourceType, Rswift.ReuseIdentifierType, Rswift.Validatable {
-      typealias ReusableType = PopularPagerCell
-      
-      let bundle = R.hostingBundle
-      let identifier = "PopularPagerCell"
-      let name = "PopularPagerCell"
-      
-      func firstView(owner ownerOrNil: AnyObject?, options optionsOrNil: [UINib.OptionsKey : Any]? = nil) -> PopularPagerCell? {
-        return instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? PopularPagerCell
-      }
-      
-      static func validate() throws {
-        if UIKit.UIImage(named: "default_image", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'default_image' is used in nib 'PopularPagerCell', but couldn't be loaded.") }
         if #available(iOS 11.0, *) {
         }
       }

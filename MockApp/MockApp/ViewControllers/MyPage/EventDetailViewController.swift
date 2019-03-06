@@ -202,7 +202,7 @@ extension EventDetailViewController: ThirđEDCellDelegate {
                 self.updateStatusEvent(1, id) { (result) in
                     if result == true {
                         // send notification
-//                        NotificationCenter.default.post(name: Notification.Name.kUpdateGoingEvent, object: nil, userInfo: ["popular": self.popular])
+                        NotificationCenter.default.post(name: Notification.Name.kUpdateGoingEvent, object: nil, userInfo: ["popular": self.popular])
                         // save to DB
                         var event = self.popular
                         event.myStatus = 1
@@ -224,7 +224,7 @@ extension EventDetailViewController: ThirđEDCellDelegate {
             if let id = self.id {
                 self.updateStatusEvent(2, id) { (result) in
                     if result == true {
-//                        NotificationCenter.default.post(name: Notification.Name.kUpdateWentEvent, object: nil, userInfo: ["popular": self.popular])
+                        NotificationCenter.default.post(name: Notification.Name.kUpdateWentEvent, object: nil, userInfo: ["popular": self.popular])
                         // save to DB
                         var event = self.popular
                         event.myStatus = 2

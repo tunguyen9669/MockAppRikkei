@@ -11,8 +11,8 @@
 		240C652C2224C92900D57103 /* SecondEDCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 240C652A2224C92900D57103 /* SecondEDCell.xib */; };
 		240C652F2224D9AF00D57103 /* ThirdEDCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 240C652D2224D9AF00D57103 /* ThirdEDCell.swift */; };
 		240C65302224D9AF00D57103 /* ThirdEDCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 240C652E2224D9AF00D57103 /* ThirdEDCell.xib */; };
-		240C65332224DD1B00D57103 /* PopularPagerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 240C65312224DD1B00D57103 /* PopularPagerCell.swift */; };
-		240C65342224DD1B00D57103 /* PopularPagerCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 240C65322224DD1B00D57103 /* PopularPagerCell.xib */; };
+		240C65332224DD1B00D57103 /* EventPagerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 240C65312224DD1B00D57103 /* EventPagerCell.swift */; };
+		240C65342224DD1B00D57103 /* EventPagerCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 240C65322224DD1B00D57103 /* EventPagerCell.xib */; };
 		243A1A2A2223796B00967001 /* DateHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 243A1A282223796B00967001 /* DateHeader.swift */; };
 		243A1A2B2223796B00967001 /* DateHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = 243A1A292223796B00967001 /* DateHeader.xib */; };
 		243A1A2D22237DC400967001 /* CommonTableModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 243A1A2C22237DC400967001 /* CommonTableModel.swift */; };
@@ -129,8 +129,8 @@
 		240C652A2224C92900D57103 /* SecondEDCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SecondEDCell.xib; sourceTree = "<group>"; };
 		240C652D2224D9AF00D57103 /* ThirdEDCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThirdEDCell.swift; sourceTree = "<group>"; };
 		240C652E2224D9AF00D57103 /* ThirdEDCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ThirdEDCell.xib; sourceTree = "<group>"; };
-		240C65312224DD1B00D57103 /* PopularPagerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopularPagerCell.swift; sourceTree = "<group>"; };
-		240C65322224DD1B00D57103 /* PopularPagerCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PopularPagerCell.xib; sourceTree = "<group>"; };
+		240C65312224DD1B00D57103 /* EventPagerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventPagerCell.swift; sourceTree = "<group>"; };
+		240C65322224DD1B00D57103 /* EventPagerCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EventPagerCell.xib; sourceTree = "<group>"; };
 		243A1A282223796B00967001 /* DateHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateHeader.swift; sourceTree = "<group>"; };
 		243A1A292223796B00967001 /* DateHeader.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DateHeader.xib; sourceTree = "<group>"; };
 		243A1A2C22237DC400967001 /* CommonTableModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonTableModel.swift; sourceTree = "<group>"; };
@@ -355,8 +355,8 @@
 			children = (
 				24E54676221BFB5F003D1855 /* EventCell.swift */,
 				24E54677221BFB5F003D1855 /* EventCell.xib */,
-				240C65312224DD1B00D57103 /* PopularPagerCell.swift */,
-				240C65322224DD1B00D57103 /* PopularPagerCell.xib */,
+				240C65312224DD1B00D57103 /* EventPagerCell.swift */,
+				240C65322224DD1B00D57103 /* EventPagerCell.xib */,
 			);
 			path = PopularCell;
 			sourceTree = "<group>";
@@ -751,7 +751,7 @@
 				24ADAB9E22169B1E00499926 /* Roboto-BoldCondensedItalic.ttf in Resources */,
 				24E54679221BFB5F003D1855 /* EventCell.xib in Resources */,
 				24ADABB72216A1DD00499926 /* Browse.storyboard in Resources */,
-				240C65342224DD1B00D57103 /* PopularPagerCell.xib in Resources */,
+				240C65342224DD1B00D57103 /* EventPagerCell.xib in Resources */,
 				24ADABA422169B1E00499926 /* Roboto-MediumItalic.ttf in Resources */,
 				24ADABB52216A1CB00499926 /* Near.storyboard in Resources */,
 				24ADABB92216A1E700499926 /* MyPage.storyboard in Resources */,
@@ -949,7 +949,7 @@
 				243A1A2D22237DC400967001 /* CommonTableModel.swift in Sources */,
 				2460C60F221D3E7300A7817B /* ForgotPasswordViewController.swift in Sources */,
 				24ADAB8022169AB700499926 /* UIColorExtension.swift in Sources */,
-				240C65332224DD1B00D57103 /* PopularPagerCell.swift in Sources */,
+				240C65332224DD1B00D57103 /* EventPagerCell.swift in Sources */,
 				245883972228C59D00635AB9 /* RealmManager.swift in Sources */,
 				24A496CB221A8A2D00ABA699 /* Connectivity.swift in Sources */,
 				245CA202222D11CB0061BF7A /* VenueRealmModel.swift in Sources */,

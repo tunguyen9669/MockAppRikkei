@@ -9,7 +9,7 @@
 import UIKit
 import FSPagerView
 
-class PopularPagerCell: FSPagerViewCell {
+class EventPagerCell: FSPagerViewCell {
 
     override func awakeFromNib() {
         super.awakeFromNib()

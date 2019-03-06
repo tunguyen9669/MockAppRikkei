@@ -43,7 +43,7 @@ class ThirdEDCell: UITableViewCell {
         self.setNeedsLayout()
         self.layoutIfNeeded()
         
-        self.fsPagerView.register(UINib(nibName: "PopularPagerCell", bundle: nil), forCellWithReuseIdentifier: "PopularPagerCell")
+        self.fsPagerView.register(UINib(nibName: "EventPagerCell", bundle: nil), forCellWithReuseIdentifier: "EventPagerCell")
         
         self.fsPagerView.interitemSpacing = 8
         self.fsPagerView.delegate = self
@@ -75,8 +75,8 @@ extension ThirdEDCell: FSPagerViewDataSource, FSPagerViewDelegate {
     }
     
     func pagerView(_ pagerView: FSPagerView, cellForItemAt index: Int) -> FSPagerViewCell {
-        let cell = pagerView.dequeueReusableCell(withReuseIdentifier: "PopularPagerCell", at: index)
-        guard let aCell = cell as? PopularPagerCell else {
+        let cell = pagerView.dequeueReusableCell(withReuseIdentifier: "EventPagerCell", at: index)
+        guard let aCell = cell as? EventPagerCell else {
             return FSPagerViewCell()
         }
         
