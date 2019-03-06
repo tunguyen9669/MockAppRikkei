@@ -29,12 +29,14 @@ class EventByCategoryViewController: UIViewController {
         dateTitle.textColor = UIColor.black
         popularTitle.textColor = UIColor.white
         indexStyle = 1
+        self.tableView.contentOffset = .zero
         self.getDataFromDB()
     }
     @IBAction func sortByDate(_ sender: Any) {
         dateTitle.textColor = UIColor.white
         popularTitle.textColor = UIColor.black
         indexStyle = 2
+        self.tableView.contentOffset = .zero
         self.getDataFromDB()
     }
     
@@ -334,7 +336,7 @@ extension EventByCategoryViewController: UITableViewDelegate, UITableViewDataSou
             cell.id = self.events[indexPath.row].getId()
         } else {
             let indexList = arrCommonTables[indexPath.section].getEvents()[indexPath.row]
-            cell.customInit(indexList.getPhoto(), indexList.getName(), indexList.getDescHtml(), indexList.getStartDate(), indexList.getEndDate(), indexList.getGoingCount(), indexList.getPermanent(), 0)
+            cell.customInit(indexList.getPhoto(), indexList.getName(), indexList.getDescHtml(), indexList.getStartDate(), indexList.getEndDate(), indexList.getGoingCount(), indexList.getPermanent(), indexList.getStatus())
             cell.id = arrCommonTables[indexPath.section].getEvents()[indexPath.row].getId()
         }
         return cell
@@ -371,6 +373,8 @@ extension EventByCategoryViewController: UITableViewDelegate, UITableViewDataSou
                         if arr.count > 0{
                             self.events += arr
                             self.creatDB(populars: self.events)
+                            self.getDataSourceTable(self.events)
+                            self.reloadTable(self.events)
                         }
                         
                     }
