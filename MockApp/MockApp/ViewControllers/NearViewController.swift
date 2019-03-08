@@ -85,7 +85,7 @@ class NearViewController: UIViewController {
     }
     
     func setupMap(_ longitude: Float, _ latitude: Float){
-        let camera = GMSCameraPosition.camera(withLatitude: CLLocationDegrees(latitude), longitude: CLLocationDegrees(longitude), zoom: 10.0)
+        let camera = GMSCameraPosition.camera(withLatitude: CLLocationDegrees(latitude), longitude: CLLocationDegrees(longitude), zoom: 15.0)
         self.mapView.camera = camera
         self.mapView.isMyLocationEnabled = true 
     }
@@ -255,7 +255,7 @@ extension NearViewController: CLLocationManagerDelegate {
             return
         }
         // get location now, now is fake
-        mapView.camera = GMSCameraPosition(target: location.coordinate, zoom: 10.0, bearing: 0, viewingAngle: 0)
+        mapView.camera = GMSCameraPosition(target: location.coordinate, zoom: 15.0, bearing: 0, viewingAngle: 0)
         locationManager.stopUpdatingLocation()
     }
 }
@@ -272,6 +272,15 @@ extension NearViewController: GMSMapViewDelegate {
             }
         }
         return true
+    }
+    
+    func mapView(_ mapView: GMSMapView, didChange position: GMSCameraPosition) {
+        let latitude = mapView.camera.target.latitude
+        let longitude = mapView.camera.target.longitude
+        let coordinate0 = CLLocation(latitude: latitude, longitude: longitude)
+        let coordinate1 = CLLocation(latitude: CLLocationDegrees(37.891628), longitude: CLLocationDegrees(-122.123161))
+        let distanceInMeters = coordinate0.distance(from: coordinate1)
+        print(distanceInMeters)
     }
     
 }
