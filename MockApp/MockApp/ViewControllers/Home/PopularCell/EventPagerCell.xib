@@ -55,14 +55,23 @@
                                 <color key="textColor" red="0.26666666666666666" green="0.26666666666666666" blue="0.26666666666666666" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="red_star" translatesAutoresizingMaskIntoConstraints="NO" id="Bj9-Ic-hNL">
+                                <rect key="frame" x="351" y="10" width="24" height="24"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="24" id="gPd-WA-v67"/>
+                                    <constraint firstAttribute="width" constant="24" id="pAB-cw-Ayq"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="Bj9-Ic-hNL" firstAttribute="top" secondItem="M2q-MT-aya" secondAttribute="top" constant="10" id="9fb-HQ-e6D"/>
                             <constraint firstItem="R2v-dC-hGd" firstAttribute="leading" secondItem="01X-hC-5xQ" secondAttribute="leading" id="BKZ-1I-ADG"/>
                             <constraint firstAttribute="trailing" secondItem="01X-hC-5xQ" secondAttribute="trailing" id="IMD-kU-aTH"/>
                             <constraint firstItem="xFb-vw-zvz" firstAttribute="leading" secondItem="lWj-t6-XL7" secondAttribute="leading" id="Im3-Oh-fMv"/>
                             <constraint firstAttribute="bottom" secondItem="xFb-vw-zvz" secondAttribute="bottom" constant="10" id="NEo-gS-0jg"/>
                             <constraint firstItem="01X-hC-5xQ" firstAttribute="leading" secondItem="lWj-t6-XL7" secondAttribute="trailing" constant="5" id="Num-ZC-iCt"/>
+                            <constraint firstAttribute="trailing" secondItem="Bj9-Ic-hNL" secondAttribute="trailing" constant="5" id="OCL-Fw-1cb"/>
                             <constraint firstItem="lWj-t6-XL7" firstAttribute="top" secondItem="M2q-MT-aya" secondAttribute="top" constant="5" id="SVc-WT-DWb"/>
                             <constraint firstItem="01X-hC-5xQ" firstAttribute="top" secondItem="M2q-MT-aya" secondAttribute="top" constant="10" id="ZT6-Cm-Uki"/>
                             <constraint firstAttribute="trailing" secondItem="xFb-vw-zvz" secondAttribute="trailing" id="eV4-zy-0f0"/>
@@ -82,10 +91,18 @@
             </constraints>
             <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
             <size key="customSize" width="382" height="122"/>
+            <connections>
+                <outlet property="attendImageView" destination="Bj9-Ic-hNL" id="1yg-59-zID"/>
+                <outlet property="descLabel" destination="R2v-dC-hGd" id="Ym5-pa-h7k"/>
+                <outlet property="inforLabel" destination="xFb-vw-zvz" id="M4t-Op-3aR"/>
+                <outlet property="thumbImageView" destination="lWj-t6-XL7" id="tHT-Me-MHS"/>
+                <outlet property="titleLabel" destination="01X-hC-5xQ" id="RhR-h7-QCj"/>
+            </connections>
             <point key="canvasLocation" x="48" y="86.35682158920541"/>
         </collectionViewCell>
     </objects>
     <resources>
         <image name="default_image" width="285" height="160"/>
+        <image name="red_star" width="23" height="23"/>
     </resources>
 </document>

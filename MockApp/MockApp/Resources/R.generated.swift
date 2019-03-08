@@ -176,7 +176,7 @@ struct R: Rswift.Validatable {
     fileprivate init() {}
   }
   
-  /// This `R.image` struct is generated, and contains static references to 22 images.
+  /// This `R.image` struct is generated, and contains static references to 20 images.
   struct image {
     /// Image `back`.
     static let back = Rswift.ImageResource(bundle: R.hostingBundle, name: "back")
@@ -198,28 +198,24 @@ struct R: Rswift.Validatable {
     static let near_selected = Rswift.ImageResource(bundle: R.hostingBundle, name: "near_selected")
     /// Image `near`.
     static let near = Rswift.ImageResource(bundle: R.hostingBundle, name: "near")
-    /// Image `red_snippet_HL`.
-    static let red_snippet_HL = Rswift.ImageResource(bundle: R.hostingBundle, name: "red_snippet_HL")
-    /// Image `red_snippet`.
-    static let red_snippet = Rswift.ImageResource(bundle: R.hostingBundle, name: "red_snippet")
+    /// Image `red_anotation`.
+    static let red_anotation = Rswift.ImageResource(bundle: R.hostingBundle, name: "red_anotation")
     /// Image `red_star`.
     static let red_star = Rswift.ImageResource(bundle: R.hostingBundle, name: "red_star")
     /// Image `rikkeisoft-logo`.
     static let rikkeisoftLogo = Rswift.ImageResource(bundle: R.hostingBundle, name: "rikkeisoft-logo")
     /// Image `search`.
     static let search = Rswift.ImageResource(bundle: R.hostingBundle, name: "search")
+    /// Image `triangle`.
+    static let triangle = Rswift.ImageResource(bundle: R.hostingBundle, name: "triangle")
     /// Image `user_selected`.
     static let user_selected = Rswift.ImageResource(bundle: R.hostingBundle, name: "user_selected")
     /// Image `user`.
     static let user = Rswift.ImageResource(bundle: R.hostingBundle, name: "user")
-    /// Image `white_snippet_HL`.
-    static let white_snippet_HL = Rswift.ImageResource(bundle: R.hostingBundle, name: "white_snippet_HL")
-    /// Image `white_snippet`.
-    static let white_snippet = Rswift.ImageResource(bundle: R.hostingBundle, name: "white_snippet")
-    /// Image `yellow_snippet_HL`.
-    static let yellow_snippet_HL = Rswift.ImageResource(bundle: R.hostingBundle, name: "yellow_snippet_HL")
-    /// Image `yellow_snippet`.
-    static let yellow_snippet = Rswift.ImageResource(bundle: R.hostingBundle, name: "yellow_snippet")
+    /// Image `white_anotation`.
+    static let white_anotation = Rswift.ImageResource(bundle: R.hostingBundle, name: "white_anotation")
+    /// Image `yellow_anotation`.
+    static let yellow_anotation = Rswift.ImageResource(bundle: R.hostingBundle, name: "yellow_anotation")
     /// Image `yellow_star`.
     static let yellow_star = Rswift.ImageResource(bundle: R.hostingBundle, name: "yellow_star")
     
@@ -273,14 +269,9 @@ struct R: Rswift.Validatable {
       return UIKit.UIImage(resource: R.image.near_selected, compatibleWith: traitCollection)
     }
     
-    /// `UIImage(named: "red_snippet", bundle: ..., traitCollection: ...)`
-    static func red_snippet(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
-      return UIKit.UIImage(resource: R.image.red_snippet, compatibleWith: traitCollection)
-    }
-    
-    /// `UIImage(named: "red_snippet_HL", bundle: ..., traitCollection: ...)`
-    static func red_snippet_HL(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
-      return UIKit.UIImage(resource: R.image.red_snippet_HL, compatibleWith: traitCollection)
+    /// `UIImage(named: "red_anotation", bundle: ..., traitCollection: ...)`
+    static func red_anotation(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.red_anotation, compatibleWith: traitCollection)
     }
     
     /// `UIImage(named: "red_star", bundle: ..., traitCollection: ...)`
@@ -298,6 +289,11 @@ struct R: Rswift.Validatable {
       return UIKit.UIImage(resource: R.image.search, compatibleWith: traitCollection)
     }
     
+    /// `UIImage(named: "triangle", bundle: ..., traitCollection: ...)`
+    static func triangle(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.triangle, compatibleWith: traitCollection)
+    }
+    
     /// `UIImage(named: "user", bundle: ..., traitCollection: ...)`
     static func user(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
       return UIKit.UIImage(resource: R.image.user, compatibleWith: traitCollection)
@@ -308,24 +304,14 @@ struct R: Rswift.Validatable {
       return UIKit.UIImage(resource: R.image.user_selected, compatibleWith: traitCollection)
     }
     
-    /// `UIImage(named: "white_snippet", bundle: ..., traitCollection: ...)`
-    static func white_snippet(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
-      return UIKit.UIImage(resource: R.image.white_snippet, compatibleWith: traitCollection)
+    /// `UIImage(named: "white_anotation", bundle: ..., traitCollection: ...)`
+    static func white_anotation(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.white_anotation, compatibleWith: traitCollection)
     }
     
-    /// `UIImage(named: "white_snippet_HL", bundle: ..., traitCollection: ...)`
-    static func white_snippet_HL(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
-      return UIKit.UIImage(resource: R.image.white_snippet_HL, compatibleWith: traitCollection)
-    }
-    
-    /// `UIImage(named: "yellow_snippet", bundle: ..., traitCollection: ...)`
-    static func yellow_snippet(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
-      return UIKit.UIImage(resource: R.image.yellow_snippet, compatibleWith: traitCollection)
-    }
-    
-    /// `UIImage(named: "yellow_snippet_HL", bundle: ..., traitCollection: ...)`
-    static func yellow_snippet_HL(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
-      return UIKit.UIImage(resource: R.image.yellow_snippet_HL, compatibleWith: traitCollection)
+    /// `UIImage(named: "yellow_anotation", bundle: ..., traitCollection: ...)`
+    static func yellow_anotation(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.yellow_anotation, compatibleWith: traitCollection)
     }
     
     /// `UIImage(named: "yellow_star", bundle: ..., traitCollection: ...)`
@@ -511,10 +497,12 @@ struct R: Rswift.Validatable {
     fileprivate init() {}
   }
   
-  /// This `R.storyboard` struct is generated, and contains static references to 6 storyboards.
+  /// This `R.storyboard` struct is generated, and contains static references to 7 storyboards.
   struct storyboard {
     /// Storyboard `Browse`.
     static let browse = _R.storyboard.browse()
+    /// Storyboard `Custom`.
+    static let custom = _R.storyboard.custom()
     /// Storyboard `Home`.
     static let home = _R.storyboard.home()
     /// Storyboard `LaunchScreen`.
@@ -529,6 +517,11 @@ struct R: Rswift.Validatable {
     /// `UIStoryboard(name: "Browse", bundle: ...)`
     static func browse(_: Void = ()) -> UIKit.UIStoryboard {
       return UIKit.UIStoryboard(resource: R.storyboard.browse)
+    }
+    
+    /// `UIStoryboard(name: "Custom", bundle: ...)`
+    static func custom(_: Void = ()) -> UIKit.UIStoryboard {
+      return UIKit.UIStoryboard(resource: R.storyboard.custom)
     }
     
     /// `UIStoryboard(name: "Home", bundle: ...)`
@@ -655,6 +648,7 @@ struct _R: Rswift.Validatable {
       
       static func validate() throws {
         if UIKit.UIImage(named: "default_image", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'default_image' is used in nib 'EventPagerCell', but couldn't be loaded.") }
+        if UIKit.UIImage(named: "red_star", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'red_star' is used in nib 'EventPagerCell', but couldn't be loaded.") }
         if #available(iOS 11.0, *) {
         }
       }
@@ -734,6 +728,7 @@ struct _R: Rswift.Validatable {
   struct storyboard: Rswift.Validatable {
     static func validate() throws {
       try browse.validate()
+      try custom.validate()
       try home.validate()
       try launchScreen.validate()
       try main.validate()
@@ -768,6 +763,25 @@ struct _R: Rswift.Validatable {
         if _R.storyboard.browse().browseViewController() == nil { throw Rswift.ValidationError(description:"[R.swift] ViewController with identifier 'browseViewController' could not be loaded from storyboard 'Browse' as 'BrowseViewController'.") }
         if _R.storyboard.browse().eventByCategoryViewController() == nil { throw Rswift.ValidationError(description:"[R.swift] ViewController with identifier 'eventByCategoryViewController' could not be loaded from storyboard 'Browse' as 'EventByCategoryViewController'.") }
         if _R.storyboard.browse().searchViewController() == nil { throw Rswift.ValidationError(description:"[R.swift] ViewController with identifier 'searchViewController' could not be loaded from storyboard 'Browse' as 'SearchViewController'.") }
+      }
+      
+      fileprivate init() {}
+    }
+    
+    struct custom: Rswift.StoryboardResourceType, Rswift.Validatable {
+      let bundle = R.hostingBundle
+      let markerDetailViewController = StoryboardViewControllerResource<MarkerDetailViewController>(identifier: "MarkerDetailViewController")
+      let name = "Custom"
+      
+      func markerDetailViewController(_: Void = ()) -> MarkerDetailViewController? {
+        return UIKit.UIStoryboard(resource: self).instantiateViewController(withResource: markerDetailViewController)
+      }
+      
+      static func validate() throws {
+        if UIKit.UIImage(named: "triangle", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'triangle' is used in storyboard 'Custom', but couldn't be loaded.") }
+        if #available(iOS 11.0, *) {
+        }
+        if _R.storyboard.custom().markerDetailViewController() == nil { throw Rswift.ValidationError(description:"[R.swift] ViewController with identifier 'markerDetailViewController' could not be loaded from storyboard 'Custom' as 'MarkerDetailViewController'.") }
       }
       
       fileprivate init() {}

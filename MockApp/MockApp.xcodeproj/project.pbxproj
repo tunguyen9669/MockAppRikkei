@@ -13,6 +13,8 @@
 		240C65302224D9AF00D57103 /* ThirdEDCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 240C652E2224D9AF00D57103 /* ThirdEDCell.xib */; };
 		240C65332224DD1B00D57103 /* EventPagerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 240C65312224DD1B00D57103 /* EventPagerCell.swift */; };
 		240C65342224DD1B00D57103 /* EventPagerCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 240C65322224DD1B00D57103 /* EventPagerCell.xib */; };
+		241F4A9322320B3B001051F6 /* Custom.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 241F4A9222320B3B001051F6 /* Custom.storyboard */; };
+		241F4A9622320B96001051F6 /* MarkerDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 241F4A9522320B96001051F6 /* MarkerDetailViewController.swift */; };
 		243A1A2A2223796B00967001 /* DateHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 243A1A282223796B00967001 /* DateHeader.swift */; };
 		243A1A2B2223796B00967001 /* DateHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = 243A1A292223796B00967001 /* DateHeader.xib */; };
 		243A1A2D22237DC400967001 /* CommonTableModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 243A1A2C22237DC400967001 /* CommonTableModel.swift */; };
@@ -132,6 +134,8 @@
 		240C652E2224D9AF00D57103 /* ThirdEDCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ThirdEDCell.xib; sourceTree = "<group>"; };
 		240C65312224DD1B00D57103 /* EventPagerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventPagerCell.swift; sourceTree = "<group>"; };
 		240C65322224DD1B00D57103 /* EventPagerCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EventPagerCell.xib; sourceTree = "<group>"; };
+		241F4A9222320B3B001051F6 /* Custom.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Custom.storyboard; sourceTree = "<group>"; };
+		241F4A9522320B96001051F6 /* MarkerDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarkerDetailViewController.swift; sourceTree = "<group>"; };
 		243A1A282223796B00967001 /* DateHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateHeader.swift; sourceTree = "<group>"; };
 		243A1A292223796B00967001 /* DateHeader.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DateHeader.xib; sourceTree = "<group>"; };
 		243A1A2C22237DC400967001 /* CommonTableModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonTableModel.swift; sourceTree = "<group>"; };
@@ -273,6 +277,14 @@
 				7B9DAEC9C80AD666325C2E00 /* Pods_MockAppUITests.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		241F4A9422320B6C001051F6 /* Near */ = {
+			isa = PBXGroup;
+			children = (
+				241F4A9522320B96001051F6 /* MarkerDetailViewController.swift */,
+			);
+			path = Near;
 			sourceTree = "<group>";
 		};
 		243A1A272223792A00967001 /* Header */ = {
@@ -573,6 +585,7 @@
 				24ADABB42216A1CB00499926 /* Near.storyboard */,
 				24ADABB62216A1DD00499926 /* Browse.storyboard */,
 				24ADABB82216A1E700499926 /* MyPage.storyboard */,
+				241F4A9222320B3B001051F6 /* Custom.storyboard */,
 			);
 			path = UIs;
 			sourceTree = "<group>";
@@ -580,6 +593,7 @@
 		24ADABA92216A0DA00499926 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				241F4A9422320B6C001051F6 /* Near */,
 				245883A22228CBBA00635AB9 /* Browse */,
 				2460C607221D0F0E00A7817B /* MyPage */,
 				24A496B2221A42BD00ABA699 /* Home */,
@@ -742,6 +756,7 @@
 				24ADAB9C22169B1E00499926 /* Roboto-LightItalic.ttf in Resources */,
 				24ADAB9F22169B1E00499926 /* Roboto-BoldItalic.ttf in Resources */,
 				24ADAB9A22169B1E00499926 /* Roboto-Bold.ttf in Resources */,
+				241F4A9322320B3B001051F6 /* Custom.storyboard in Resources */,
 				24ADAB56221695AA00499926 /* LaunchScreen.storyboard in Resources */,
 				249532672223DB1700E1563F /* FirstEDCell.xib in Resources */,
 				24ADAB9822169B1E00499926 /* Roboto-Black.ttf in Resources */,
@@ -797,7 +812,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$SRCROOT/MockApp/Resources/R.generated.swift",
+				$SRCROOT/MockApp/Resources/R.generated.swift,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -958,6 +973,7 @@
 				2460C60B221D0F4B00A7817B /* MyListEventViewController.swift in Sources */,
 				24E54671221BB9CC003D1855 /* Event.swift in Sources */,
 				240C652B2224C92900D57103 /* SecondEDCell.swift in Sources */,
+				241F4A9622320B96001051F6 /* MarkerDetailViewController.swift in Sources */,
 				246BCA26221E9C8F006D6C91 /* Utils.swift in Sources */,
 				24C4AA28222FA1B70039B3D4 /* NearService.swift in Sources */,
 				245883992228C66300635AB9 /* Category.swift in Sources */,

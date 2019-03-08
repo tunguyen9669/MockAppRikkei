@@ -25,6 +25,8 @@ class NearViewController: UIViewController {
         }
     }
     let services = NearService()
+    let locationManager = CLLocationManager()
+
     
     // MARK: - life cycle
     override func viewDidLoad() {
@@ -36,6 +38,18 @@ class NearViewController: UIViewController {
         self.fsPagerView.delegate = self
         self.fsPagerView.dataSource = self
         self.fsPagerView.reloadData()
+        
+        // map
+        mapView.delegate = self
+        self.getNearlyEvents(1000.0, -122.123161, 37.891628) { (events) in
+            self.reloadFsPager(events)
+            self.showPartyMarkers(events)
+        }
+        setupMap(-122.123161, 37.891628)
+        
+        locationManager.delegate = self
+       
+        
         
        
     }
@@ -49,40 +63,30 @@ class NearViewController: UIViewController {
         super.viewWillAppear(animated)
         appDelegate.tabbar?.setHidden(false)
         
-        self.getNearlyEvents(1000.0, -122.123161, 37.891628) { (events) in
-            self.arr = events
-            self.fsPagerView.reloadData()
-            self.showPartyMarkers(events)
-            print(events.count)
-            for item in events {
-                print("Location: \(item.venue.getLat()) \(item.venue.getLong())")
-            }
-        }
-        
-         initGoogleMaps()
-        
-       
+       locationManager.requestWhenInUseAuthorization()  
     }
     
     // MARK: - function
     
     func showPartyMarkers(_ events: [Event]) {
         mapView.clear()
-        for item in events {
-            if let lat = Float(item.venue.getLat()),
-                let long = Float(item.venue.getLong()) {
+        for i in 0..<events.count {
+            if let lat = Float(events[i].venue.getLat()),
+                let long = Float(events[i].venue.getLong()) {
                 let marker = GMSMarker()
-                marker.icon = R.image.red_snippet()
+                marker.icon = R.image.red_anotation()
+                marker.title = "\(events[i].venue.getName()) \n \(events[i].getDistance()) km"
+                marker.userData = i
                 marker.position = CLLocationCoordinate2DMake(CLLocationDegrees(lat), CLLocationDegrees(long))
                 marker.map = self.mapView
             }
         }
     }
     
-    func initGoogleMaps() {
-        let camera = GMSCameraPosition.camera(withLatitude: 45.531334, longitude: -122.830231, zoom: 14.0)
+    func setupMap(_ longitude: Float, _ latitude: Float){
+        let camera = GMSCameraPosition.camera(withLatitude: CLLocationDegrees(latitude), longitude: CLLocationDegrees(longitude), zoom: 10.0)
         self.mapView.camera = camera
-        self.mapView.isMyLocationEnabled = true
+        self.mapView.isMyLocationEnabled = true 
     }
     
     func getNearlyEvents(_ radius: Float, _ longitude: Float, _ latitude: Float,_ completion: @escaping ([Event]) -> Void) {
@@ -107,9 +111,83 @@ class NearViewController: UIViewController {
             self.alertWith("Không có kết lỗi Internet, vui lòng kiểm tra!")
         }
     }
+    
+    func reloadFsPager(_ arr: [Event]) {
+        self.arr.removeAll()
+        self.arr += arr
+        self.arr = self.arr.sorted { (po1, po2) -> Bool in
+            return po1.getGoingCount() >= po2.getGoingCount()
+        }
+        self.fsPagerView.reloadData()
+    }
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self)
+    }
+    
+    // MARK: - function
+    
+    func notificationAction() {
+        // bug
+//        NotificationCenter.default.addObserver(self, selector: #selector(onGoing(_:)), name: .kUpdateGoingEvent, object: nil)
+//
+//        NotificationCenter.default.addObserver(self, selector: #selector(onWent(_:)), name: .kUpdateWentEvent, object: nil)
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(onLogout(_:)), name: .kLogout, object: nil)
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(onGetNewData(_:)), name: .kLogin, object: nil)
+    }
+    
+    
+    @objc func onLogout(_ sender: Notification) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+            self.getNearlyEvents(1000.0, -122.123161, 37.891628) { (events) in
+                self.reloadFsPager(events)
+                self.showPartyMarkers(events)
+            }
+        }
+        
+    }
+    
+    @objc func onGetNewData(_ sender: Notification) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+            self.getNearlyEvents(1000.0, -122.123161, 37.891628) { (events) in
+                self.reloadFsPager(events)
+                self.showPartyMarkers(events)
+            }
+        }
+    }
+    // bug
+    
+//    @objc func onGoing(_ sender: Notification) {
+//        if let popular = sender.userInfo?["popular"] as? Event {
+//            var events = self.arr
+//            for i in 0..<self.arr.count {
+//                if events[i].getId() == popular.getId() {
+//                    events[i].myStatus = 1
+//                }
+//            }
+//            self.reloadFsPager(events)
+//        }
+//    }
+//
+//    @objc func onWent(_ sender: Notification) {
+//        if let popular = sender.userInfo?["popular"] as? Event {
+//            var events = self.arr
+//            for i in 0..<self.arr.count {
+//                if arr[i].getId() == popular.getId() {
+//                    events[i].myStatus = 2
+//                }
+//            }
+//            self.reloadFsPager(events)
+//        }
+//
+//    }
+    
 }
-// - extension
+// MARK: - extension
 
+// fspagerview
 extension NearViewController: FSPagerViewDataSource, FSPagerViewDelegate {
     func numberOfItems(in pagerView: FSPagerView) -> Int {
         return self.arr.count
@@ -120,10 +198,77 @@ extension NearViewController: FSPagerViewDataSource, FSPagerViewDelegate {
         guard let aCell = cell as? EventPagerCell else {
             return FSPagerViewCell()
         }
-        
-        return cell
+        let photo = self.arr[index].getPhoto()
+        let name = self.arr[index].getName()
+        let startDate = self.arr[index].getStartDate()
+        let endDate = self.arr[index].getEndDate()
+        let descHtml = self.arr[index].getDescHtml()
+        let goingCount = self.arr[index].getGoingCount()
+        let permanent = self.arr[index].getPermanent()
+        let myStatus = self.arr[index].getMyStatus()
+        aCell.customInit(photo, name, descHtml, startDate, endDate, goingCount, permanent, myStatus)
+//        aCell.delegate = self
+//        aCell.id = populars[indexPath.row].getId()
+        return aCell
     }
     
+    public func pagerView(_ pagerView: FSPagerView, didSelectItemAt index: Int) {
+        if let long = Float(self.arr[index].venue.getLong()),
+            let lat = Float(self.arr[index].venue.getLat()) {
+            let id = self.arr[index].getId()
+            setupMap(long, lat)
+            if let eventDetailVC = R.storyboard.myPage.eventDetailViewController() {
+                eventDetailVC.id = id
+                self.navigationController?.pushViewController(eventDetailVC, animated: true)
+            }
+        }
+        
+    }
     
+    func pagerViewDidEndDecelerating(_ pagerView: FSPagerView) {
+        let index = pagerView.currentIndex
+        if let long = Float(self.arr[index].venue.getLong()),
+            let lat = Float(self.arr[index].venue.getLat()) {
+            setupMap(long, lat)
+            
+        }
+    }
+    
+}
+
+// location
+extension NearViewController: CLLocationManagerDelegate {
+    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus){
+        guard status == .authorizedWhenInUse else {
+            return
+        }
+        locationManager.startUpdatingLocation()
+        mapView.isMyLocationEnabled = true
+        mapView.settings.myLocationButton = true
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        guard let location = locations.first else {
+            return
+        }
+        // get location now, now is fake
+        mapView.camera = GMSCameraPosition(target: location.coordinate, zoom: 10.0, bearing: 0, viewingAngle: 0)
+        locationManager.stopUpdatingLocation()
+    }
+}
+
+// mapview
+extension NearViewController: GMSMapViewDelegate {
+    func mapView(_ mapView: GMSMapView, didTap marker: GMSMarker) -> Bool {
+        if let data = marker.userData as? Int {
+            self.fsPagerView.scrollToItem(at: data, animated: true)
+            if let long = Float(self.arr[data].venue.getLong()),
+                let lat = Float(self.arr[data].venue.getLat()) {
+                print("\(long) \(lat)")
+                setupMap(long, lat)
+            }
+        }
+        return true
+    }
     
 }
