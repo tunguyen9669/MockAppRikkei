@@ -48,6 +48,7 @@ class NearViewController: UIViewController {
         setupMap(-122.123161, 37.891628)
         
         locationManager.delegate = self
+        notificationAction()
        
         
         
@@ -129,9 +130,9 @@ class NearViewController: UIViewController {
     
     func notificationAction() {
         // bug
-//        NotificationCenter.default.addObserver(self, selector: #selector(onGoing(_:)), name: .kUpdateGoingEvent, object: nil)
-//
-//        NotificationCenter.default.addObserver(self, selector: #selector(onWent(_:)), name: .kUpdateWentEvent, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(onGoing(_:)), name: .kUpdateGoingEvent, object: nil)
+
+        NotificationCenter.default.addObserver(self, selector: #selector(onWent(_:)), name: .kUpdateWentEvent, object: nil)
         
         NotificationCenter.default.addObserver(self, selector: #selector(onLogout(_:)), name: .kLogout, object: nil)
         
@@ -159,30 +160,32 @@ class NearViewController: UIViewController {
     }
     // bug
     
-//    @objc func onGoing(_ sender: Notification) {
-//        if let popular = sender.userInfo?["popular"] as? Event {
-//            var events = self.arr
-//            for i in 0..<self.arr.count {
-//                if events[i].getId() == popular.getId() {
-//                    events[i].myStatus = 1
-//                }
-//            }
-//            self.reloadFsPager(events)
-//        }
-//    }
+    @objc func onGoing(_ sender: Notification) {
+        if let popular = sender.userInfo?["popular"] as? Event {
+            print("Near da nhan Going")
+            var events = self.arr
+            for i in 0..<self.arr.count {
+                if events[i].getId() == popular.getId() {
+                    events[i].myStatus = 1
+                }
+            }
+            self.fsPagerView.reloadData()
+        }
+    }
 //
-//    @objc func onWent(_ sender: Notification) {
-//        if let popular = sender.userInfo?["popular"] as? Event {
-//            var events = self.arr
-//            for i in 0..<self.arr.count {
-//                if arr[i].getId() == popular.getId() {
-//                    events[i].myStatus = 2
-//                }
-//            }
-//            self.reloadFsPager(events)
-//        }
-//
-//    }
+    @objc func onWent(_ sender: Notification) {
+        if let popular = sender.userInfo?["popular"] as? Event {
+            print("Near da nhan went")
+            var events = self.arr
+            for i in 0..<self.arr.count {
+                if arr[i].getId() == popular.getId() {
+                    events[i].myStatus = 2
+                }
+            }
+            self.fsPagerView.reloadData()
+        }
+
+    }
     
 }
 // MARK: - extension
