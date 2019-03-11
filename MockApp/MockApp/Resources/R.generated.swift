@@ -176,7 +176,7 @@ struct R: Rswift.Validatable {
     fileprivate init() {}
   }
   
-  /// This `R.image` struct is generated, and contains static references to 20 images.
+  /// This `R.image` struct is generated, and contains static references to 21 images.
   struct image {
     /// Image `back`.
     static let back = Rswift.ImageResource(bundle: R.hostingBundle, name: "back")
@@ -190,6 +190,8 @@ struct R: Rswift.Validatable {
     static let dropdown = Rswift.ImageResource(bundle: R.hostingBundle, name: "dropdown")
     /// Image `foward`.
     static let foward = Rswift.ImageResource(bundle: R.hostingBundle, name: "foward")
+    /// Image `gray_anotation`.
+    static let gray_anotation = Rswift.ImageResource(bundle: R.hostingBundle, name: "gray_anotation")
     /// Image `home_selected`.
     static let home_selected = Rswift.ImageResource(bundle: R.hostingBundle, name: "home_selected")
     /// Image `home`.
@@ -247,6 +249,11 @@ struct R: Rswift.Validatable {
     /// `UIImage(named: "foward", bundle: ..., traitCollection: ...)`
     static func foward(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
       return UIKit.UIImage(resource: R.image.foward, compatibleWith: traitCollection)
+    }
+    
+    /// `UIImage(named: "gray_anotation", bundle: ..., traitCollection: ...)`
+    static func gray_anotation(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.gray_anotation, compatibleWith: traitCollection)
     }
     
     /// `UIImage(named: "home", bundle: ..., traitCollection: ...)`

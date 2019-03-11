@@ -12,3 +12,6 @@ import UIKit
 
 // MARK: - appdelegate instance
 let appDelegate = UIApplication.shared.delegate as! AppDelegate
+
+// location fake
+let ZOOM: Float = 17.0
