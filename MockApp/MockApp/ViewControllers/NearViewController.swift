@@ -28,7 +28,7 @@ class NearViewController: UIViewController {
     }
     let services = NearService()
     let locationManager = CLLocationManager()
-
+    var clusterManager: GMUClusterManager!
     
     // MARK: - life cycle
     override func viewDidLoad() {
@@ -53,6 +53,7 @@ class NearViewController: UIViewController {
         
         locationManager.delegate = self
         notificationAction()
+        initializeClusterItems()
        
         
         
@@ -71,6 +72,25 @@ class NearViewController: UIViewController {
     }
     
     // MARK: - function
+    
+    // MARK: INITIALIZE CLUSTER ITEMS
+    func initializeClusterItems() {
+        let iconGenerator = GMUDefaultClusterIconGenerator()
+        let algorithm = GMUGridBasedClusterAlgorithm()
+        let renderer = GMUDefaultClusterRenderer(mapView: mapView, clusterIconGenerator: iconGenerator)
+        self.clusterManager = GMUClusterManager(map: mapView, algorithm: algorithm, renderer: renderer)
+        self.clusterManager.cluster()
+        self.clusterManager.setDelegate(self as GMUClusterManagerDelegate, mapDelegate: self)
+    }
+    // MARK: ADD MARKER TO CLUSTER
+    func generatePOIItems(_ accessibilityLabel: String, position: CLLocationCoordinate2D, icon: UIImage?) {
+        guard let guardIcon = icon else {
+            return
+        }
+        let item = POIItem(position: position, name: accessibilityLabel, icon: guardIcon)
+            
+        self.clusterManager.add(item)
+    }
     
     func showPartyMarkers(_ events: [Event]) {
         mapView.clear()
@@ -108,7 +128,9 @@ class NearViewController: UIViewController {
                 marker.userData = i
                 marker.position = CLLocationCoordinate2DMake(CLLocationDegrees(lat), CLLocationDegrees(long))
                 marker.map = self.mapView
+                self.generatePOIItems(events[i].getName(), position: marker.position, icon: marker.icon)
             }
+            self.clusterManager.cluster()
         }
     }
     
@@ -334,12 +356,8 @@ extension NearViewController: GMSMapViewDelegate {
     
 }
 
-// MARK: INITIALIZE CLUSTER ITEMS
-//func initializeClusterItems() {
-//    let iconGenerator = GMUDefaultClusterIconGenerator()
-//    let algorithm = GMUGridBasedClusterAlgorithm()
-//    let renderer = GMUDefaultClusterRenderer(mapView: mapView, clusterIconGenerator: iconGenerator)
-//    self.clusterManager = GMUClusterManager(map: mapView, algorithm: algorithm, renderer: renderer)
-//    self.clusterManager.cluster()
-//    self.clusterManager.setDelegate(self as GMUClusterManagerDelegate, mapDelegate: self)
-//}
+// MARK: - cluster
+extension NearViewController: GMUClusterManagerDelegate {
+    
+}
+

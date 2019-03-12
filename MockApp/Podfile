@@ -13,8 +13,7 @@ target 'MockApp' do
     pod 'FSPagerView'
     pod 'GooglePlaces'
     pod 'GoogleMaps'
-
-
+   
 
   # Pods for MockApp
 

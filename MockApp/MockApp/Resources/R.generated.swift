@@ -176,7 +176,7 @@ struct R: Rswift.Validatable {
     fileprivate init() {}
   }
   
-  /// This `R.image` struct is generated, and contains static references to 21 images.
+  /// This `R.image` struct is generated, and contains static references to 22 images.
   struct image {
     /// Image `back`.
     static let back = Rswift.ImageResource(bundle: R.hostingBundle, name: "back")
@@ -200,6 +200,8 @@ struct R: Rswift.Validatable {
     static let near_selected = Rswift.ImageResource(bundle: R.hostingBundle, name: "near_selected")
     /// Image `near`.
     static let near = Rswift.ImageResource(bundle: R.hostingBundle, name: "near")
+    /// Image `null_image`.
+    static let null_image = Rswift.ImageResource(bundle: R.hostingBundle, name: "null_image")
     /// Image `red_anotation`.
     static let red_anotation = Rswift.ImageResource(bundle: R.hostingBundle, name: "red_anotation")
     /// Image `red_star`.
@@ -274,6 +276,11 @@ struct R: Rswift.Validatable {
     /// `UIImage(named: "near_selected", bundle: ..., traitCollection: ...)`
     static func near_selected(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
       return UIKit.UIImage(resource: R.image.near_selected, compatibleWith: traitCollection)
+    }
+    
+    /// `UIImage(named: "null_image", bundle: ..., traitCollection: ...)`
+    static func null_image(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.null_image, compatibleWith: traitCollection)
     }
     
     /// `UIImage(named: "red_anotation", bundle: ..., traitCollection: ...)`
