@@ -6,9 +6,6 @@ PODS:
   - GoogleMaps/Base (2.7.0)
   - GoogleMaps/Maps (2.7.0):
     - GoogleMaps/Base
-  - GooglePlacePicker (2.7.0):
-    - GoogleMaps (= 2.7.0)
-    - GooglePlaces (= 2.7.0)
   - GooglePlaces (2.7.0):
     - GoogleMaps/Base (= 2.7.0)
   - Kingfisher (5.1.0)
@@ -26,7 +23,6 @@ DEPENDENCIES:
   - Alamofire (~> 4.7)
   - FSPagerView
   - GoogleMaps
-  - GooglePlacePicker
   - GooglePlaces
   - Kingfisher
   - R.swift
@@ -38,7 +34,6 @@ SPEC REPOS:
     - Alamofire
     - FSPagerView
     - GoogleMaps
-    - GooglePlacePicker
     - GooglePlaces
     - Kingfisher
     - R.swift
@@ -51,7 +46,6 @@ SPEC CHECKSUMS:
   Alamofire: 16ce2c353fb72865124ddae8a57c5942388f4f11
   FSPagerView: 816a18842306973cc7cc6df8a5332272f7815c30
   GoogleMaps: f79af95cb24d869457b1f961c93d3ce8b2f3b848
-  GooglePlacePicker: 59ea44db173c58486ad6123993e81feefcbce9c3
   GooglePlaces: 3d06e6c99654545b4738ce49648745779c25f2ef
   Kingfisher: fcec238063d17404fca89bf0a850583211c4cbf6
   R.swift: 81455d81467763cbd3f4d79d938d05f4ac4c0228
@@ -60,6 +54,6 @@ SPEC CHECKSUMS:
   RealmSwift: 8a1e6a02b7a08cd17a31e3115143fb69fe5f3fb9
   SwiftyJSON: c2842d878f95482ffceec5709abc3d05680c0220
 
-PODFILE CHECKSUM: 985ff9c324bb4bce2385dae2299879b58027b728
+PODFILE CHECKSUM: 875323008b37ea14a354a9125fcf1fbfb0b4f03b
 
 COCOAPODS: 1.5.3

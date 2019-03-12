@@ -62,7 +62,6 @@
 		24ADAB4C221695A900499926 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24ADAB4B221695A900499926 /* AppDelegate.swift */; };
 		24ADAB4E221695A900499926 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24ADAB4D221695A900499926 /* ViewController.swift */; };
 		24ADAB51221695A900499926 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 24ADAB4F221695A900499926 /* Main.storyboard */; };
-		24ADAB56221695AA00499926 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 24ADAB54221695AA00499926 /* LaunchScreen.storyboard */; };
 		24ADAB61221695AA00499926 /* MockAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24ADAB60221695AA00499926 /* MockAppTests.swift */; };
 		24ADAB6C221695AB00499926 /* MockAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24ADAB6B221695AB00499926 /* MockAppUITests.swift */; };
 		24ADAB7C2216997800499926 /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24ADAB7B2216997800499926 /* R.generated.swift */; };
@@ -757,7 +756,6 @@
 				24ADAB9F22169B1E00499926 /* Roboto-BoldItalic.ttf in Resources */,
 				24ADAB9A22169B1E00499926 /* Roboto-Bold.ttf in Resources */,
 				241F4A9322320B3B001051F6 /* Custom.storyboard in Resources */,
-				24ADAB56221695AA00499926 /* LaunchScreen.storyboard in Resources */,
 				249532672223DB1700E1563F /* FirstEDCell.xib in Resources */,
 				24ADAB9822169B1E00499926 /* Roboto-Black.ttf in Resources */,
 				24ADABA322169B1E00499926 /* Roboto-BlackItalic.ttf in Resources */,
@@ -862,7 +860,6 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-MockApp/Pods-MockApp-resources.sh",
 				"${PODS_ROOT}/GoogleMaps/Maps/Frameworks/GoogleMaps.framework/Resources/GoogleMaps.bundle",
-				"${PODS_ROOT}/GooglePlacePicker/Frameworks/GooglePlacePicker.framework/Resources/GooglePlacePicker.bundle",
 				"${PODS_ROOT}/GooglePlaces/Frameworks/GooglePlaces.framework/Resources/GooglePlaces.bundle",
 			);
 			name = "[CP] Copy Pods Resources";
@@ -870,7 +867,6 @@
 			);
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/GoogleMaps.bundle",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/GooglePlacePicker.bundle",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/GooglePlaces.bundle",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1195,6 +1191,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.rikkei.MockApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -1213,6 +1210,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.rikkei.MockApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

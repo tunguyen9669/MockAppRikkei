@@ -244,6 +244,7 @@ class PopularViewController: UIViewController {
 
 // MARK: - extension
 extension PopularViewController: UITableViewDelegate, UITableViewDataSource {
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.populars.count
     }

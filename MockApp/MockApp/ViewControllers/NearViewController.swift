@@ -12,6 +12,7 @@ import FSPagerView
 import GooglePlaces
 import GoogleMaps
 
+
 class NearViewController: UIViewController {
     // MARK: - outlet and variable
     @IBOutlet weak var mapView: GMSMapView!
@@ -332,3 +333,13 @@ extension NearViewController: GMSMapViewDelegate {
     }
     
 }
+
+// MARK: INITIALIZE CLUSTER ITEMS
+//func initializeClusterItems() {
+//    let iconGenerator = GMUDefaultClusterIconGenerator()
+//    let algorithm = GMUGridBasedClusterAlgorithm()
+//    let renderer = GMUDefaultClusterRenderer(mapView: mapView, clusterIconGenerator: iconGenerator)
+//    self.clusterManager = GMUClusterManager(map: mapView, algorithm: algorithm, renderer: renderer)
+//    self.clusterManager.cluster()
+//    self.clusterManager.setDelegate(self as GMUClusterManagerDelegate, mapDelegate: self)
+//}

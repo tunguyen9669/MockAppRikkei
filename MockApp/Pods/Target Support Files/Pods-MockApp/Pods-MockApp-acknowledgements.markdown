@@ -51,10 +51,6 @@ THE SOFTWARE.
 
 Copyright 2018 Google
 
-## GooglePlacePicker
-
-Copyright 2018 Google
-
 ## GooglePlaces
 
 Copyright 2018 Google

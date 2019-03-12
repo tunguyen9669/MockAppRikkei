@@ -48,7 +48,7 @@ class EventCell: UITableViewCell {
         }
         
         
-         self.inforLabel.text = "\(endDate) - \(goingCount) them gia"
+        self.inforLabel.text = "\(endDate) - \(goingCount) them gia"
         self.nameLabel.text = name
         self.descHtmlLabel.text = descHtml.htmlToString
         let token = UserPrefsHelper.shared.getUserToken()

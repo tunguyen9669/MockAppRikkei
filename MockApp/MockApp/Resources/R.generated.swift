@@ -504,7 +504,7 @@ struct R: Rswift.Validatable {
     fileprivate init() {}
   }
   
-  /// This `R.storyboard` struct is generated, and contains static references to 7 storyboards.
+  /// This `R.storyboard` struct is generated, and contains static references to 6 storyboards.
   struct storyboard {
     /// Storyboard `Browse`.
     static let browse = _R.storyboard.browse()
@@ -512,8 +512,6 @@ struct R: Rswift.Validatable {
     static let custom = _R.storyboard.custom()
     /// Storyboard `Home`.
     static let home = _R.storyboard.home()
-    /// Storyboard `LaunchScreen`.
-    static let launchScreen = _R.storyboard.launchScreen()
     /// Storyboard `Main`.
     static let main = _R.storyboard.main()
     /// Storyboard `MyPage`.
@@ -534,11 +532,6 @@ struct R: Rswift.Validatable {
     /// `UIStoryboard(name: "Home", bundle: ...)`
     static func home(_: Void = ()) -> UIKit.UIStoryboard {
       return UIKit.UIStoryboard(resource: R.storyboard.home)
-    }
-    
-    /// `UIStoryboard(name: "LaunchScreen", bundle: ...)`
-    static func launchScreen(_: Void = ()) -> UIKit.UIStoryboard {
-      return UIKit.UIStoryboard(resource: R.storyboard.launchScreen)
     }
     
     /// `UIStoryboard(name: "Main", bundle: ...)`
@@ -737,7 +730,6 @@ struct _R: Rswift.Validatable {
       try browse.validate()
       try custom.validate()
       try home.validate()
-      try launchScreen.validate()
       try main.validate()
       try myPage.validate()
       try near.validate()
@@ -819,20 +811,6 @@ struct _R: Rswift.Validatable {
         if _R.storyboard.home().homeViewController() == nil { throw Rswift.ValidationError(description:"[R.swift] ViewController with identifier 'homeViewController' could not be loaded from storyboard 'Home' as 'HomeViewController'.") }
         if _R.storyboard.home().newsViewController() == nil { throw Rswift.ValidationError(description:"[R.swift] ViewController with identifier 'newsViewController' could not be loaded from storyboard 'Home' as 'NewsViewController'.") }
         if _R.storyboard.home().popularViewController() == nil { throw Rswift.ValidationError(description:"[R.swift] ViewController with identifier 'popularViewController' could not be loaded from storyboard 'Home' as 'PopularViewController'.") }
-      }
-      
-      fileprivate init() {}
-    }
-    
-    struct launchScreen: Rswift.StoryboardResourceWithInitialControllerType, Rswift.Validatable {
-      typealias InitialController = UIKit.UIViewController
-      
-      let bundle = R.hostingBundle
-      let name = "LaunchScreen"
-      
-      static func validate() throws {
-        if #available(iOS 11.0, *) {
-        }
       }
       
       fileprivate init() {}
