@@ -21,7 +21,7 @@ class SearchViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     let services = BrowseService()
     var pageIndex = 1
-    
+    let dataSource = NoHeaderTableViewDS()
     var indexStyle = 1
     
     var keyword: String = ""
@@ -40,6 +40,7 @@ class SearchViewController: UIViewController {
         upcomingLabel.textColor = UIColor.white
         pastLabel.textColor = UIColor.black
         indexStyle = 1
+        dataSource.arrEvent = upcomingEvents
         self.tableView.reloadData()
     }
     
@@ -47,6 +48,7 @@ class SearchViewController: UIViewController {
         upcomingLabel.textColor = UIColor.black
         pastLabel.textColor = UIColor.white
         indexStyle = 2
+        dataSource.arrEvent = pastEvents
         self.tableView.reloadData()
     }
     // MARK: - life cycle
@@ -64,6 +66,8 @@ class SearchViewController: UIViewController {
         self.tableView.addSubview(self.refreshControl)
         self.tableView.tableFooterView = UIView(frame: .zero)
         self.tableView.estimatedRowHeight = 300.0
+        self.tableView.dataSource = dataSource
+        self.tableView.delegate = self
         
         notificationAction()
         
@@ -128,6 +132,7 @@ class SearchViewController: UIViewController {
             self.updateDataSource(arr)
             self.tableView.reloadData()
         }
+        refreshControl.endRefreshing()
         
     }
     
@@ -167,51 +172,16 @@ class SearchViewController: UIViewController {
         }
         self.upcomingLabel.text = "Current & upcoming (\(self.upcomingEvents.count))"
         self.pastLabel.text = "Past (\(self.pastEvents.count))"
+        if indexStyle == 1 {
+            dataSource.arrEvent = self.upcomingEvents
+        } else {
+            dataSource.arrEvent = self.pastEvents
+        }
     }
 }
 
 // extension
-
-extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if indexStyle == 1 {
-            return self.upcomingEvents.count
-        } else {
-            return self.pastEvents.count
-        }
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = self.tableView.dequeueReusableCell(withIdentifier: "EventCell", for: indexPath) as? EventCell else {
-            return UITableViewCell()
-            
-        }
-        cell.delegate = self
-        if indexStyle == 1 {
-            let photo = self.upcomingEvents[indexPath.row].getPhoto()
-            let name = self.upcomingEvents[indexPath.row].getName()
-            let startDate = self.upcomingEvents[indexPath.row].getStartDate()
-            let endDate = self.upcomingEvents[indexPath.row].getEndDate()
-            let descHtml = self.upcomingEvents[indexPath.row].getDescHtml()
-            let goingCount = self.upcomingEvents[indexPath.row].getGoingCount()
-            let permanent = self.upcomingEvents[indexPath.row].getPermanent()
-            let myStatus = self.upcomingEvents[indexPath.row].getMyStatus()
-            cell.id = self.upcomingEvents[indexPath.row].getId()
-            cell.customInit(photo, name, descHtml, startDate, endDate, goingCount, permanent, myStatus)
-        } else {
-            let photo = self.pastEvents[indexPath.row].getPhoto()
-            let name = self.pastEvents[indexPath.row].getName()
-            let startDate = self.pastEvents[indexPath.row].getStartDate()
-            let endDate = self.pastEvents[indexPath.row].getEndDate()
-            let descHtml = self.pastEvents[indexPath.row].getDescHtml()
-            let goingCount = self.pastEvents[indexPath.row].getGoingCount()
-            let permanent = self.pastEvents[indexPath.row].getPermanent()
-            let myStatus = self.pastEvents[indexPath.row].getMyStatus()
-            cell.id = self.pastEvents[indexPath.row].getId()
-            cell.customInit(photo, name, descHtml, startDate, endDate, goingCount, permanent, myStatus)
-        }
-        return cell
-    }
+extension SearchViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         // load more
         if Connectivity.isConnectedToInternet {
@@ -252,13 +222,3 @@ extension SearchViewController: UITextFieldDelegate {
     }
 }
 
-extension SearchViewController: EventCellDelegate {
-    func onClick(_ id: Int) {
-        if let eventDetailVC = R.storyboard.myPage.eventDetailViewController() {
-            eventDetailVC.id = id
-            self.navigationController?.pushViewController(eventDetailVC, animated: true)
-        }
-    }
-    
-    
-}

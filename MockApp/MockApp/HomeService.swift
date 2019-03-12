@@ -114,7 +114,7 @@ class HomeService: APIServiceObject {
                     let msg = "Thao tác thành công"
                     completion(msg)
                 } else {
-                    let msg = "Thao tác thất bại"
+                    let msg = "Mời bạn đăng nhập lại"
                     completion(msg)
                 }
             }

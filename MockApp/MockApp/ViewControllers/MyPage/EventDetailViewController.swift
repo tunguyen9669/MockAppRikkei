@@ -37,6 +37,7 @@ class EventDetailViewController: UIViewController {
         super.viewWillAppear(animated)
         if let id = self.id {
             getDetailEvent(id)
+            
         }
         
         let firstIndexPath = NSIndexPath(row: 0, section: 0)
@@ -97,25 +98,26 @@ class EventDetailViewController: UIViewController {
     }
     
     func creatDB(event: Event) {
-        let popular = EventRealmModel()
-        popular.id = event.getId()
-        popular.status = event.getStatus().description
-        popular.photo = event.getPhoto()
-        popular.name = event.getName()
-        popular.descRaw = event.getDescRaw()
-        popular.descHtml = event.getDescHtml()
-        popular.permanent = event.getPermanent()
-        popular.dateWarning = event.getDateWarning()
-        popular.timeAlert = event.getTimeAlert()
-        popular.startDate = event.getStartDate()
-        popular.startTime = event.getStartTime()
-        popular.endDate = event.getEndDate()
-        popular.endTime = event.getEndTime()
-        popular.oneDayEvent = event.getOneDayEvent()
-        popular.extra = event.getExtra()
-        popular.myStatus = event.getMyStatus()
-        popular.goingCount = event.getGoingCount().description
-        popular.wentCount = event.getWentCount().description
+//        let popular = EventRealmModel()
+//        popular.id = event.getId()
+//        popular.status = event.getStatus().description
+//        popular.photo = event.getPhoto()
+//        popular.name = event.getName()
+//        popular.descRaw = event.getDescRaw()
+//        popular.descHtml = event.getDescHtml()
+//        popular.permanent = event.getPermanent()
+//        popular.dateWarning = event.getDateWarning()
+//        popular.timeAlert = event.getTimeAlert()
+//        popular.startDate = event.getStartDate()
+//        popular.startTime = event.getStartTime()
+//        popular.endDate = event.getEndDate()
+//        popular.endTime = event.getEndTime()
+//        popular.oneDayEvent = event.getOneDayEvent()
+//        popular.extra = event.getExtra()
+//        popular.myStatus = event.getMyStatus()
+//        popular.goingCount = event.getGoingCount().description
+//        popular.wentCount = event.getWentCount().description
+        let popular = EventRealmModel(event)
         realmManager.editObject(popular)
     }
 }
@@ -168,7 +170,7 @@ extension EventDetailViewController: UITableViewDataSource {
 // first cell delegate
 extension EventDetailViewController: FirstEDCellDelegate {
     func onClose() {
-        self.navigationController?.popViewController(animated: true)
+        appDelegate.tabbar?.dismiss(animated: true, completion: nil)
     }
 }
 
@@ -178,6 +180,7 @@ extension EventDetailViewController: SecondEDCellDelegate {
         if UserPrefsHelper.shared.getIsLoggined() == false {
             if let registerVC = R.storyboard.myPage.registerViewController() {
                 appDelegate.tabbar?.selectedIndex = 3
+                appDelegate.tabbar?.dismiss(animated: true, completion: nil)
             }
         } else {
             print(self.popular.venue.getId())
@@ -195,7 +198,8 @@ extension EventDetailViewController: ThirđEDCellDelegate {
     func onGoing() {
         if UserPrefsHelper.shared.getIsLoggined() == false {
             if let registerVC = R.storyboard.myPage.registerViewController() {
-                appDelegate.tabbar?.selectedIndex = 3          
+                appDelegate.tabbar?.selectedIndex = 3
+                appDelegate.tabbar?.dismiss(animated: true, completion: nil)
             }
         } else {
             if let id = self.id {
@@ -219,6 +223,7 @@ extension EventDetailViewController: ThirđEDCellDelegate {
         if UserPrefsHelper.shared.getIsLoggined() == false {
             if let registerVC = R.storyboard.myPage.registerViewController() {
                 appDelegate.tabbar?.selectedIndex = 3
+                appDelegate.tabbar?.dismiss(animated: true, completion: nil)
             }
         } else {
             if let id = self.id {

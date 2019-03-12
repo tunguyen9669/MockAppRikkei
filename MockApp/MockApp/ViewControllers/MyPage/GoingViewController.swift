@@ -12,11 +12,11 @@ import UIKit
 class GoingViewController: UIViewController {
     // MARK: - outlet and variable
     @IBOutlet weak var tableView: UITableView!
-    var arrCommonTables = [CommonTableModel]()
     var countTap = 1
     let services = MyPageService()
     let realmManager = RealmManager.shared
     var events = [Event]()
+    let datasource = HeaderTableViewDataSource()
     
     
     // MARK: - life cycle
@@ -24,10 +24,10 @@ class GoingViewController: UIViewController {
         super.viewDidLoad()
         self.tableView.register(UINib(nibName: "EventCell", bundle: nil), forCellReuseIdentifier: "EventCell")
         self.tableView.register(UINib(nibName: "DateHeader", bundle: nil), forHeaderFooterViewReuseIdentifier: "DateHeader")
-         checkDataDB()
-      
-       
-       
+        checkDataDB()
+        self.tableView.dataSource = datasource
+        self.tableView.delegate = datasource
+   
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -80,63 +80,14 @@ class GoingViewController: UIViewController {
         print("Load Going Event tu DB")
         var events = [Event]()
         for item in arrEvent {
-            let popular = Event()
-            popular.id = Int(item.id)
-            popular.status = Int(item.status)
-            popular.photo = item.photo
-            popular.name = item.name
-            popular.descRaw = item.descRaw
-            popular.descHtml = item.descHtml
-            popular.permanent = item.permanent
-            popular.dateWarning = item.dateWarning
-            popular.timeAlert = item.timeAlert
-            popular.startDate = item.startDate
-            popular.startTime = item.startTime
-            popular.endDate = item.endDate
-            popular.endTime = item.endTime
-            popular.oneDayEvent = item.oneDayEvent
-            popular.extra = item.extra
-            popular.myStatus = item.myStatus
-            popular.goingCount = Int(item.goingCount)
-            popular.wentCount = Int(item.wentCount)
-            popular.venue = Venue(item.getVenue().id, item.getVenue().name, item.getVenue().type, item.getVenue().desc, item.getVenue().area, item.getVenue().address, item.getVenue().lat, item.getVenue().long, item.getVenue().scheduleOpening, item.getVenue().scheduleClosing, item.getVenue().scheduleClosed)
-            events.append(popular)
+            events.append(Event(item))
         }
         self.getDataSourceTable(events)
     }
 
     func creatDB(events: [Event]) {
         for item in events {
-            let eventRealm = EventRealmModel()
-            eventRealm.id = item.getId()
-            eventRealm.status = item.getStatus().description
-            eventRealm.photo = item.getPhoto()
-            eventRealm.name = item.getName()
-            eventRealm.descRaw = item.getDescRaw()
-            eventRealm.descHtml = item.getDescHtml()
-            eventRealm.permanent = item.getPermanent()
-            eventRealm.dateWarning = item.getDateWarning()
-            eventRealm.timeAlert = item.getTimeAlert()
-            eventRealm.startDate = item.getStartDate()
-            eventRealm.startTime = item.getStartTime()
-            eventRealm.endDate = item.getEndDate()
-            eventRealm.endTime = item.getEndTime()
-            eventRealm.oneDayEvent = item.getOneDayEvent()
-            eventRealm.extra = item.getExtra()
-            eventRealm.myStatus = item.getMyStatus()
-            eventRealm.goingCount = item.getGoingCount().description
-            eventRealm.wentCount = item.getWentCount().description
-            eventRealm.getVenue().id = item.venue.getId()
-            eventRealm.getVenue().name = item.venue.getName()
-            eventRealm.getVenue().type = item.venue.getType()
-            eventRealm.getVenue().desc = item.venue.getDesc()
-            eventRealm.getVenue().area = item.venue.getArea()
-            eventRealm.getVenue().address = item.venue.getAdress()
-            eventRealm.getVenue().lat = item.venue.getLat()
-            eventRealm.getVenue().long = item.venue.getLong()
-            eventRealm.getVenue().scheduleOpening = item.venue.getOpening()
-            eventRealm.getVenue().scheduleClosing = item.venue.getClosing()
-            eventRealm.getVenue().scheduleClosed = item.venue.getClosed()
+            let eventRealm = EventRealmModel(item)
             realmManager.editObject(eventRealm)
         }
     }
@@ -185,8 +136,7 @@ class GoingViewController: UIViewController {
         arr.append(CommonTableModel("Later", latersEvents))
         arr.append(CommonTableModel("Took place", tookPlaceEvents))
         
-        self.arrCommonTables = arr
-        
+        datasource.arrCommonTables = arr
         self.tableView.reloadData()
     }
     
@@ -214,43 +164,43 @@ class GoingViewController: UIViewController {
     }
 }
 // MARK: - extension
-extension GoingViewController: UITableViewDelegate, UITableViewDataSource {
-    func numberOfSections(in tableView: UITableView) -> Int {
-        return self.arrCommonTables.count
-    }
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.arrCommonTables[section].getEvents().count
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let indexList = arrCommonTables[indexPath.section].getEvents()[indexPath.row]
-        guard let cell = self.tableView.dequeueReusableCell(withIdentifier: "EventCell", for: indexPath) as? EventCell else {
-            return UITableViewCell()
-        }
-        cell.customInit(indexList.getPhoto(), indexList.getName(), indexList.getDescHtml(), indexList.getStartDate(), indexList.getEndDate(), indexList.getGoingCount(), indexList.getPermanent(), 0)
-        cell.delegate = self
-        cell.id = arrCommonTables[indexPath.section].getEvents()[indexPath.row].getId()
-        return cell
-    }
-    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        guard let header = self.tableView.dequeueReusableHeaderFooterView(withIdentifier: "DateHeader") as? DateHeader else {
-            return UITableViewHeaderFooterView()
-        }
-        header.customInit(arrCommonTables[section].getTitle())
-        return header
-    }
-  
-}
+//extension GoingViewController: UITableViewDelegate, UITableViewDataSource {
+//    func numberOfSections(in tableView: UITableView) -> Int {
+//        return self.arrCommonTables.count
+//    }
+//    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+//        return self.arrCommonTables[section].getEvents().count
+//    }
+//    
+//    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+//        let indexList = arrCommonTables[indexPath.section].getEvents()[indexPath.row]
+//        guard let cell = self.tableView.dequeueReusableCell(withIdentifier: "EventCell", for: indexPath) as? EventCell else {
+//            return UITableViewCell()
+//        }
+//        cell.customInit(indexList.getPhoto(), indexList.getName(), indexList.getDescHtml(), indexList.getStartDate(), indexList.getEndDate(), indexList.getGoingCount(), indexList.getPermanent(), 0)
+//        cell.delegate = self
+//        cell.id = arrCommonTables[indexPath.section].getEvents()[indexPath.row].getId()
+//        return cell
+//    }
+//    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+//        guard let header = self.tableView.dequeueReusableHeaderFooterView(withIdentifier: "DateHeader") as? DateHeader else {
+//            return UITableViewHeaderFooterView()
+//        }
+//        header.customInit(arrCommonTables[section].getTitle())
+//        return header
+//    }
+//  
+//}
 
 // extension
-extension GoingViewController: EventCellDelegate {
-    func onClick(_ id: Int) {
-        if let eventDetailVC = R.storyboard.myPage.eventDetailViewController() {
-            eventDetailVC.id = id
-            self.navigationController?.pushViewController(eventDetailVC, animated: true)
-        }
-    }
-    
-    
-}
+//extension GoingViewController: EventCellDelegate {
+//    func onClick(_ id: Int) {
+//        if let eventDetailVC = R.storyboard.myPage.eventDetailViewController() {
+//            eventDetailVC.id = id
+//            self.navigationController?.pushViewController(eventDetailVC, animated: true)
+//        }
+//    }
+//
+//
+//}
 

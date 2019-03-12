@@ -134,5 +134,27 @@ class Event {
         self.venue = Venue(popularDto.venueDTO)
     }
     
+    init(_ eventRealm: EventRealmModel) {
+        self.id = eventRealm.id
+        self.status = eventRealm.status
+        self.photo = eventRealm.photo
+        self.name = eventRealm.name
+        self.descRaw = eventRealm.descRaw
+        self.descHtml = eventRealm.descHtml
+        self.permanent = eventRealm.permanent
+        self.dateWarning = eventRealm.dateWarning
+        self.timeAlert = eventRealm.timeAlert
+        self.startDate = eventRealm.startDate
+        self.startTime = eventRealm.startTime
+        self.endDate = eventRealm.endDate
+        self.endTime = eventRealm.endTime
+        self.oneDayEvent = eventRealm.oneDayEvent
+        self.extra = eventRealm.extra
+        self.myStatus = eventRealm.myStatus
+        self.goingCount = Int(eventRealm.goingCount)
+        self.wentCount = Int(eventRealm.wentCount)
+        self.venue = Venue(eventRealm.getVenue().id, eventRealm.getVenue().name, eventRealm.getVenue().type, eventRealm.getVenue().desc, eventRealm.getVenue().area, eventRealm.getVenue().address, eventRealm.getVenue().lat.description, eventRealm.getVenue().long.description, eventRealm.getVenue().scheduleOpening, eventRealm.getVenue().scheduleClosing, eventRealm.getVenue().scheduleClosed)
+    }
+    
  
 }

@@ -91,4 +91,14 @@ extension UIViewController {
         UIGraphicsEndImageContext()
         return newImage
     }
+    
+    
+    func sortInArrray(_ arr: [Event]) -> [Event] {
+        var events = arr
+        events = events.sorted { (po1, po2) -> Bool in
+            return po1.getGoingCount() >= po2.getGoingCount()
+        }
+        return events
+        
+    }
 }

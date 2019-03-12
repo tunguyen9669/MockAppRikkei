@@ -29,6 +29,8 @@
 		244E98B922374ECB0061BB7A /* GQTPointQuadTreeChild.m in Sources */ = {isa = PBXBuildFile; fileRef = 244E98B222374ECA0061BB7A /* GQTPointQuadTreeChild.m */; };
 		244E98BA22374ECB0061BB7A /* GQTPointQuadTree.m in Sources */ = {isa = PBXBuildFile; fileRef = 244E98B622374ECA0061BB7A /* GQTPointQuadTree.m */; };
 		244E98BC223751930061BB7A /* POIItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 244E98BB223751930061BB7A /* POIItem.swift */; };
+		244E98C1223770520061BB7A /* NoHeaderTableViewDS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 244E98C0223770520061BB7A /* NoHeaderTableViewDS.swift */; };
+		244E98C3223792860061BB7A /* HeaderTableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 244E98C2223792860061BB7A /* HeaderTableViewDataSource.swift */; };
 		245883972228C59D00635AB9 /* RealmManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 245883962228C59D00635AB9 /* RealmManager.swift */; };
 		245883992228C66300635AB9 /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = 245883982228C66300635AB9 /* Category.swift */; };
 		2458839D2228C79000635AB9 /* CategoryDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2458839C2228C79000635AB9 /* CategoryDTO.swift */; };
@@ -183,6 +185,8 @@
 		244E98B722374ECA0061BB7A /* GQTPointQuadTreeChild.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GQTPointQuadTreeChild.h; sourceTree = "<group>"; };
 		244E98B822374ECB0061BB7A /* GQTPointQuadTreeItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GQTPointQuadTreeItem.h; sourceTree = "<group>"; };
 		244E98BB223751930061BB7A /* POIItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = POIItem.swift; sourceTree = "<group>"; };
+		244E98C0223770520061BB7A /* NoHeaderTableViewDS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoHeaderTableViewDS.swift; sourceTree = "<group>"; };
+		244E98C2223792860061BB7A /* HeaderTableViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderTableViewDataSource.swift; sourceTree = "<group>"; };
 		245883962228C59D00635AB9 /* RealmManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmManager.swift; sourceTree = "<group>"; };
 		245883982228C66300635AB9 /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
 		2458839C2228C79000635AB9 /* CategoryDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryDTO.swift; sourceTree = "<group>"; };
@@ -378,6 +382,15 @@
 				244E988F22374AE40061BB7A /* MockApp-Bridging-Header.h */,
 			);
 			path = "Google-Maps-iOS-Utils";
+			sourceTree = "<group>";
+		};
+		244E98BD22376F7F0061BB7A /* Refactor */ = {
+			isa = PBXGroup;
+			children = (
+				244E98C0223770520061BB7A /* NoHeaderTableViewDS.swift */,
+				244E98C2223792860061BB7A /* HeaderTableViewDataSource.swift */,
+			);
+			path = Refactor;
 			sourceTree = "<group>";
 		};
 		245883A22228CBBA00635AB9 /* Browse */ = {
@@ -616,6 +629,7 @@
 		24ADAB7D22169A6A00499926 /* Helper */ = {
 			isa = PBXGroup;
 			children = (
+				244E98BD22376F7F0061BB7A /* Refactor */,
 				24A496D1221A90BA00ABA699 /* RealmManager */,
 				24A496CC221A8B4700ABA699 /* Utilities */,
 				24A496C9221A8A0600ABA699 /* Constant */,
@@ -1056,6 +1070,7 @@
 				2472A870222E5363009758AD /* SearchViewController.swift in Sources */,
 				24A496BB221A486300ABA699 /* News.swift in Sources */,
 				240C652F2224D9AF00D57103 /* ThirdEDCell.swift in Sources */,
+				244E98C1223770520061BB7A /* NoHeaderTableViewDS.swift in Sources */,
 				246BCA2A221EABCD006D6C91 /* GoingViewController.swift in Sources */,
 				244E98AD22374AE80061BB7A /* GMUDefaultClusterIconGenerator.m in Sources */,
 				244E98BC223751930061BB7A /* POIItem.swift in Sources */,
@@ -1077,6 +1092,7 @@
 				245CA1FE222CBCC00061BF7A /* EventByCategoryViewController.swift in Sources */,
 				24A496AF221A3E8100ABA699 /* NewsViewController.swift in Sources */,
 				24E5466F221BB9BC003D1855 /* EventDTO.swift in Sources */,
+				244E98C3223792860061BB7A /* HeaderTableViewDataSource.swift in Sources */,
 				24A496D0221A8C5C00ABA699 /* UserPresfHelper.swift in Sources */,
 				24E54673221BDA00003D1855 /* Venue.swift in Sources */,
 				24ADAB7C2216997800499926 /* R.generated.swift in Sources */,

@@ -93,6 +93,7 @@ class NearViewController: UIViewController {
     }
     
     func showPartyMarkers(_ events: [Event]) {
+   
         mapView.clear()
         // find distance min
         var min: Float = events[0].getDistance()
@@ -127,7 +128,8 @@ class NearViewController: UIViewController {
                 marker.title = "\(events[i].venue.getName()) \n \(events[i].getDistance()) km"
                 marker.userData = i
                 marker.position = CLLocationCoordinate2DMake(CLLocationDegrees(lat), CLLocationDegrees(long))
-                marker.map = self.mapView
+                marker.map = mapView
+                marker.tracksInfoWindowChanges = true
                 self.generatePOIItems(events[i].getName(), position: marker.position, icon: marker.icon)
             }
             self.clusterManager.cluster()
@@ -354,10 +356,13 @@ extension NearViewController: GMSMapViewDelegate {
         }
     }
     
+    
 }
 
 // MARK: - cluster
 extension NearViewController: GMUClusterManagerDelegate {
-    
+    func mapView(_ mapView: GMSMapView, didTapPOIWithPlaceID placeID: String, name: String, location: CLLocationCoordinate2D) {
+        print("a")
+    }
 }
 

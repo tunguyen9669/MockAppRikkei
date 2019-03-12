@@ -18,6 +18,8 @@ class EventByCategoryViewController: UIViewController {
     var pageIndex = 1
     var events = [Event]()
     var arrCommonTables = [CommonTableModel]()
+    let noHeaderDatasource = NoHeaderTableViewDS()
+    let headerDatasource = HeaderTableViewDataSource()
     
     @IBOutlet weak var dateTitle: UILabel!
     @IBOutlet weak var popularTitle: UILabel!
@@ -31,6 +33,10 @@ class EventByCategoryViewController: UIViewController {
         indexStyle = 1
         self.tableView.contentOffset = .zero
         self.getDataFromDB()
+        self.tableView.delegate = self
+        noHeaderDatasource.arrEvent = self.events
+        self.tableView.dataSource = noHeaderDatasource
+        self.tableView.reloadData()
     }
     @IBAction func sortByDate(_ sender: Any) {
         dateTitle.textColor = UIColor.white
@@ -38,6 +44,11 @@ class EventByCategoryViewController: UIViewController {
         indexStyle = 2
         self.tableView.contentOffset = .zero
         self.getDataFromDB()
+        self.tableView.delegate = headerDatasource
+        headerDatasource.arrCommonTables = self.arrCommonTables
+        self.tableView.dataSource = headerDatasource
+        self.tableView.reloadData()
+        
     }
     
     @IBOutlet weak var titleLabel: UILabel!
@@ -61,6 +72,13 @@ class EventByCategoryViewController: UIViewController {
         self.tableView.estimatedRowHeight = 300.0
         
         checkDataDB()
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
+            self.tableView.delegate = self
+            self.noHeaderDatasource.arrEvent = self.events
+            self.tableView.dataSource = self.noHeaderDatasource
+            self.tableView.reloadData()
+        }
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -130,11 +148,9 @@ class EventByCategoryViewController: UIViewController {
         arr.append(CommonTableModel("Next month", nextMonthEvents))
         arr.append(CommonTableModel("Later", latersEvents))
         arr.append(CommonTableModel("Took place", tookPlaceEvents))
-        
-        
-        self.titleLabel.text = "\(self.category.getName()) (\(events.count))"
+        self.titleLabel.text = "\(self.category.getName()) (\(self.events.count))"
         self.arrCommonTables = arr
-        self.tableView.reloadData()
+        
         
     }
     
@@ -157,7 +173,7 @@ class EventByCategoryViewController: UIViewController {
         self.events = self.events.sorted { (po1, po2) -> Bool in
             return po1.getGoingCount() >= po2.getGoingCount()
         }
-        self.titleLabel.text = "\(self.category.getName()) (\(arr.count))"
+        self.titleLabel.text = "\(self.category.getName()) (\(self.events.count))"
         self.tableView.reloadData()
     }
     
@@ -167,7 +183,7 @@ class EventByCategoryViewController: UIViewController {
             return
         }
        
-        
+
         var events = [EventRealmModel]()
         for item in arrCategory {
             events = Array(item.events)
@@ -199,32 +215,12 @@ class EventByCategoryViewController: UIViewController {
         
         print("Load từ event DB")
         for item in events {
-            let popular = Event()
-            popular.id = Int(item.id)
-            popular.status = Int(item.status)
-            popular.photo = item.photo
-            popular.name = item.name
-            popular.descRaw = item.descRaw
-            popular.descHtml = item.descHtml
-            popular.permanent = item.permanent
-            popular.dateWarning = item.dateWarning
-            popular.timeAlert = item.timeAlert
-            popular.startDate = item.startDate
-            popular.startTime = item.startTime
-            popular.endDate = item.endDate
-            popular.endTime = item.endTime
-            popular.oneDayEvent = item.oneDayEvent
-            popular.extra = item.extra
-            popular.myStatus = item.myStatus
-            popular.goingCount = Int(item.goingCount)
-            popular.wentCount = Int(item.wentCount)
-            popular.venue = Venue(item.getVenue().id, item.getVenue().name, item.getVenue().type, item.getVenue().desc, item.getVenue().area, item.getVenue().address, item.getVenue().lat.description, item.getVenue().long.description, item.getVenue().scheduleOpening, item.getVenue().scheduleClosing, item.getVenue().scheduleClosed)
-            arr.append(popular)
+            arr.append(Event(item))
         }
         print("Array: \(arr.count)")
         self.reloadTable(arr)
         self.getDataSourceTable(arr)
-        
+        self.titleLabel.text = "\(self.category.getName()) (\(arr.count))"
        
     }
     
@@ -235,45 +231,11 @@ class EventByCategoryViewController: UIViewController {
         categoryRealm.slug = self.category.getSlug()
         categoryRealm.parentId = self.category.getParentId()
         for item in populars {
-            let event = self.parseToRealm(event: item)
+            let event = EventRealmModel(item)
             categoryRealm.events.append(event)
         }
         realmManager.editObject(categoryRealm)
         
-    }
-    func parseToRealm(event: Event) -> EventRealmModel {
-        let popular = EventRealmModel()
-        popular.id = event.getId()
-        popular.status = event.getStatus().description
-        popular.photo = event.getPhoto()
-        popular.name = event.getName()
-        popular.descRaw = event.getDescRaw()
-        popular.descHtml = event.getDescHtml()
-        popular.permanent = event.getPermanent()
-        popular.dateWarning = event.getDateWarning()
-        popular.timeAlert = event.getTimeAlert()
-        popular.startDate = event.getStartDate()
-        popular.startTime = event.getStartTime()
-        popular.endDate = event.getEndDate()
-        popular.endTime = event.getEndTime()
-        popular.oneDayEvent = event.getOneDayEvent()
-        popular.extra = event.getExtra()
-        popular.myStatus = event.getMyStatus()
-        popular.goingCount = event.getGoingCount().description
-        popular.wentCount = event.getWentCount().description
-        popular.getVenue().id = event.venue.getId()
-        popular.getVenue().name = event.venue.getName()
-        popular.getVenue().type = event.venue.getType()
-        popular.getVenue().desc = event.venue.getDesc()
-        popular.getVenue().area = event.venue.getArea()
-        popular.getVenue().address = event.venue.getAdress()
-        popular.getVenue().lat = event.venue.getLat()
-        popular.getVenue().long = event.venue.getLong()
-        popular.getVenue().scheduleOpening = event.venue.getOpening()
-        popular.getVenue().scheduleClosing = event.venue.getClosing()
-        popular.getVenue().scheduleClosed = event.venue.getClosed()
-        
-        return popular
     }
     
     func getEventsByCategory(_ pageIndex: Int, _ id: Int, _ conpletion: @escaping([Event]) -> Void) {
@@ -301,58 +263,58 @@ class EventByCategoryViewController: UIViewController {
 
 // extension
 
-extension EventByCategoryViewController: UITableViewDelegate, UITableViewDataSource {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if indexStyle == 1 {
-            return events.count
-        }
-        return self.arrCommonTables[section].getEvents().count
-    }
-    
-    func numberOfSections(in tableView: UITableView) -> Int {
-        if indexStyle == 1 {
-            return
-            1
-        }
-        return self.arrCommonTables.count
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "EventCell", for: indexPath) as? EventCell else {
-            return UITableViewCell()
-        }
-        
-        cell.delegate = self
-        if indexStyle == 1 {
-            let photo = self.events[indexPath.row].getPhoto()
-            let name = self.events[indexPath.row].getName()
-            let startDate = self.events[indexPath.row].getStartDate()
-            let endDate = self.events[indexPath.row].getEndDate()
-            let descHtml = self.events[indexPath.row].getDescHtml()
-            let goingCount = self.events[indexPath.row].getGoingCount()
-            let permanent = self.events[indexPath.row].getPermanent()
-            let myStatus = self.events[indexPath.row].getMyStatus()
-            cell.customInit(photo, name, descHtml, startDate, endDate, goingCount, permanent, myStatus)
-            cell.id = self.events[indexPath.row].getId()
-        } else {
-            let indexList = arrCommonTables[indexPath.section].getEvents()[indexPath.row]
-            cell.customInit(indexList.getPhoto(), indexList.getName(), indexList.getDescHtml(), indexList.getStartDate(), indexList.getEndDate(), indexList.getGoingCount(), indexList.getPermanent(), indexList.getStatus())
-            cell.id = arrCommonTables[indexPath.section].getEvents()[indexPath.row].getId()
-        }
-        return cell
-    }
-    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        guard let header = self.tableView.dequeueReusableHeaderFooterView(withIdentifier: "DateHeader") as? DateHeader else {
-            return UITableViewHeaderFooterView()
-        }
-        header.customInit(arrCommonTables[section].getTitle())
-        if indexStyle == 1 {
-            header.isHidden = true
-        } else {
-            header.isHidden = false
-        }
-        return header
-    }
+extension EventByCategoryViewController: UITableViewDelegate {
+//    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+//        if indexStyle == 1 {
+//            return events.count
+//        }
+//        return self.arrCommonTables[section].getEvents().count
+//    }
+//
+//    func numberOfSections(in tableView: UITableView) -> Int {
+//        if indexStyle == 1 {
+//            return
+//            1
+//        }
+//        return self.arrCommonTables.count
+//    }
+//
+//    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+//        guard let cell = tableView.dequeueReusableCell(withIdentifier: "EventCell", for: indexPath) as? EventCell else {
+//            return UITableViewCell()
+//        }
+//
+//        cell.delegate = self
+//        if indexStyle == 1 {
+//            let photo = self.events[indexPath.row].getPhoto()
+//            let name = self.events[indexPath.row].getName()
+//            let startDate = self.events[indexPath.row].getStartDate()
+//            let endDate = self.events[indexPath.row].getEndDate()
+//            let descHtml = self.events[indexPath.row].getDescHtml()
+//            let goingCount = self.events[indexPath.row].getGoingCount()
+//            let permanent = self.events[indexPath.row].getPermanent()
+//            let myStatus = self.events[indexPath.row].getMyStatus()
+//            cell.customInit(photo, name, descHtml, startDate, endDate, goingCount, permanent, myStatus)
+//            cell.id = self.events[indexPath.row].getId()
+//        } else {
+//            let indexList = arrCommonTables[indexPath.section].getEvents()[indexPath.row]
+//            cell.customInit(indexList.getPhoto(), indexList.getName(), indexList.getDescHtml(), indexList.getStartDate(), indexList.getEndDate(), indexList.getGoingCount(), indexList.getPermanent(), indexList.getStatus())
+//            cell.id = arrCommonTables[indexPath.section].getEvents()[indexPath.row].getId()
+//        }
+//        return cell
+//    }
+//    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+//        guard let header = self.tableView.dequeueReusableHeaderFooterView(withIdentifier: "DateHeader") as? DateHeader else {
+//            return UITableViewHeaderFooterView()
+//        }
+//        header.customInit(arrCommonTables[section].getTitle())
+//        if indexStyle == 1 {
+//            header.isHidden = true
+//        } else {
+//            header.isHidden = false
+//        }
+//        return header
+//    }
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         // load more
@@ -375,10 +337,10 @@ extension EventByCategoryViewController: UITableViewDelegate, UITableViewDataSou
                             self.creatDB(populars: self.events)
                             self.getDataSourceTable(self.events)
                             self.reloadTable(self.events)
+                            self.noHeaderDatasource.arrEvent += arr
                         }
-                        
                     }
-                    self.perform(#selector(loadTable), with: nil, afterDelay: 1.0)
+                    self.perform(#selector(self.loadTable), with: nil, afterDelay: 1.0)
                 }
             } else {
                 //
@@ -391,13 +353,13 @@ extension EventByCategoryViewController: UITableViewDelegate, UITableViewDataSou
     }
 }
 // extension
-extension EventByCategoryViewController: EventCellDelegate {
-    func onClick(_ id: Int) {
-        if let eventDetailVC = R.storyboard.myPage.eventDetailViewController() {
-            eventDetailVC.id = id
-            self.navigationController?.pushViewController(eventDetailVC, animated: true)
-        }
-    }
+//extension EventByCategoryViewController: EventCellDelegate {
+//    func onClick(_ id: Int) {
+//        if let eventDetailVC = R.storyboard.myPage.eventDetailViewController() {
+//            eventDetailVC.id = id
+//            self.navigationController?.pushViewController(eventDetailVC, animated: true)
+//        }
+//    }
+
     
-    
-}
+//}
