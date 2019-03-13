@@ -40,7 +40,7 @@ class HomeViewController: UIViewController {
         let timeNow = self.getDateNow() / 3600
         let hour = timeNow - timelogin
         
-        if UserPrefsHelper.shared.getIsLoggined() == true && hour >= 24 {
+        if UserPrefsHelper.shared.getIsLoggined() == true && hour >= 2 {
             if email != "" || password != "" {
                 self.login(email, password)
             }

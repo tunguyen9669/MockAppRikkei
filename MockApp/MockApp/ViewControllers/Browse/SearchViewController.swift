@@ -71,12 +71,35 @@ class SearchViewController: UIViewController {
         
         notificationAction()
         
+        let left = UISwipeGestureRecognizer(target : self, action : #selector(self.goPastTab(_:)))
+        left.direction = .left
+        self.view.addGestureRecognizer(left)
+        
+        let right = UISwipeGestureRecognizer(target : self, action : #selector(self.goUpcomingTab(_:)))
+        right.direction = .right
+        self.view.addGestureRecognizer(right)
+        
     }
     deinit {
         NotificationCenter.default.removeObserver(self)
     }
     
     // MARK: - function
+    
+    @objc func goPastTab(_ sender: UISwipeGestureRecognizer) {
+        upcomingLabel.textColor = UIColor.black
+        pastLabel.textColor = UIColor.white
+        indexStyle = 2
+        dataSource.arrEvent = pastEvents
+        self.tableView.reloadData()
+    }
+    @objc func goUpcomingTab(_ sender: UISwipeGestureRecognizer) {
+        upcomingLabel.textColor = UIColor.white
+        pastLabel.textColor = UIColor.black
+        indexStyle = 1
+        dataSource.arrEvent = upcomingEvents
+        self.tableView.reloadData()
+    }
     
     func notificationAction() {
         NotificationCenter.default.addObserver(self, selector: #selector(onGoing(_:)), name: .kUpdateGoingEvent, object: nil)

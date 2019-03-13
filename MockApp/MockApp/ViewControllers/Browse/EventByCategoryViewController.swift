@@ -42,7 +42,7 @@ class EventByCategoryViewController: UIViewController {
         popularTitle.textColor = UIColor.black
         indexStyle = 2
         self.tableView.contentOffset = .zero
-
+        
         self.tableView.delegate = headerDatasource
         headerDatasource.arrCommonTables = self.arrCommonTables
         self.tableView.dataSource = headerDatasource
@@ -81,6 +81,14 @@ class EventByCategoryViewController: UIViewController {
             self.tableView.reloadData()
         }
         
+        let left = UISwipeGestureRecognizer(target : self, action : #selector(self.goDateTab(_:)))
+        left.direction = .left
+        self.view.addGestureRecognizer(left)
+        
+        let right = UISwipeGestureRecognizer(target : self, action : #selector(self.goPopularTab(_:)))
+        right.direction = .right
+        self.view.addGestureRecognizer(right)
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -96,6 +104,28 @@ class EventByCategoryViewController: UIViewController {
     }
     
     // MARK: - function
+    
+    @objc func goDateTab(_ sender: UISwipeGestureRecognizer) {
+        dateTitle.textColor = UIColor.white
+        popularTitle.textColor = UIColor.black
+        indexStyle = 2
+        self.tableView.contentOffset = .zero
+        
+        self.tableView.delegate = headerDatasource
+        headerDatasource.arrCommonTables = self.arrCommonTables
+        self.tableView.dataSource = headerDatasource
+        self.tableView.reloadData()
+    }
+    @objc func goPopularTab(_ sender: UISwipeGestureRecognizer) {
+        dateTitle.textColor = UIColor.black
+        popularTitle.textColor = UIColor.white
+        indexStyle = 1
+        self.tableView.contentOffset = .zero
+        self.tableView.delegate = self
+        noHeaderDatasource.arrEvent = self.events
+        self.tableView.dataSource = noHeaderDatasource
+        self.tableView.reloadData()
+    }
     
     func notificationAction() {
         NotificationCenter.default.addObserver(self, selector: #selector(onGoing(_:)), name: .kUpdateGoingEvent, object: nil)

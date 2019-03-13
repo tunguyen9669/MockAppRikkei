@@ -72,6 +72,7 @@
 		24A496DC221A9CA500ABA699 /* IntExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A496DB221A9CA500ABA699 /* IntExtension.swift */; };
 		24A496E0221A9EF600ABA699 /* UITabbarExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A496DF221A9EF600ABA699 /* UITabbarExtension.swift */; };
 		24A496E2221AA3C100ABA699 /* StringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A496E1221AA3C100ABA699 /* StringExtension.swift */; };
+		24AC90A62238BB9200B277C8 /* LocationExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24AC90A52238BB9200B277C8 /* LocationExtension.swift */; };
 		24ADAB4C221695A900499926 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24ADAB4B221695A900499926 /* AppDelegate.swift */; };
 		24ADAB4E221695A900499926 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24ADAB4D221695A900499926 /* ViewController.swift */; };
 		24ADAB51221695A900499926 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 24ADAB4F221695A900499926 /* Main.storyboard */; };
@@ -228,6 +229,7 @@
 		24A496DB221A9CA500ABA699 /* IntExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntExtension.swift; sourceTree = "<group>"; };
 		24A496DF221A9EF600ABA699 /* UITabbarExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITabbarExtension.swift; sourceTree = "<group>"; };
 		24A496E1221AA3C100ABA699 /* StringExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExtension.swift; sourceTree = "<group>"; };
+		24AC90A52238BB9200B277C8 /* LocationExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationExtension.swift; sourceTree = "<group>"; };
 		24ADAB48221695A900499926 /* MockApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MockApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		24ADAB4B221695A900499926 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		24ADAB4D221695A900499926 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -649,6 +651,7 @@
 				24A496E1221AA3C100ABA699 /* StringExtension.swift */,
 				246BCA1C221E3299006D6C91 /* UITextFieldExtension.swift */,
 				246BCA21221E42CA006D6C91 /* UIVCExtension.swift */,
+				24AC90A52238BB9200B277C8 /* LocationExtension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -1067,6 +1070,7 @@
 				244E98B022374AE80061BB7A /* GMUNonHierarchicalDistanceBasedAlgorithm.m in Sources */,
 				24A496C4221A5FFC00ABA699 /* HomeService.swift in Sources */,
 				244E98AF22374AE80061BB7A /* GMUStaticCluster.m in Sources */,
+				24AC90A62238BB9200B277C8 /* LocationExtension.swift in Sources */,
 				2472A870222E5363009758AD /* SearchViewController.swift in Sources */,
 				24A496BB221A486300ABA699 /* News.swift in Sources */,
 				240C652F2224D9AF00D57103 /* ThirdEDCell.swift in Sources */,

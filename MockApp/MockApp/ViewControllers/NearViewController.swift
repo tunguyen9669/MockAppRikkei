@@ -35,6 +35,10 @@ class NearViewController: UIViewController {
         super.viewDidLoad()
         print("View did load")
         
+        // test
+        mapView.mapType = .normal
+       
+        
         self.fsPagerView.register(UINib(nibName: "EventPagerCell", bundle: nil), forCellWithReuseIdentifier: "EventPagerCell")
         
         self.fsPagerView.interitemSpacing = 8
@@ -124,16 +128,17 @@ class NearViewController: UIViewController {
                     }
                 }
                 
-                
                 marker.title = "\(events[i].venue.getName()) \n \(events[i].getDistance()) km"
                 marker.userData = i
                 marker.position = CLLocationCoordinate2DMake(CLLocationDegrees(lat), CLLocationDegrees(long))
                 marker.map = mapView
-                marker.tracksInfoWindowChanges = true
-                self.generatePOIItems(events[i].getName(), position: marker.position, icon: marker.icon)
+//                self.generatePOIItems(events[i].getName(), position: marker.position, icon: marker.icon)
             }
-            self.clusterManager.cluster()
+//            self.clusterManager.cluster()
         }
+    }
+    private func randomScale() -> Double {
+        return Double(arc4random()) / Double(UINT32_MAX) * 2.0 - 1.0
     }
     
     func setupMap(_ longitude: Float, _ latitude: Float){
@@ -322,9 +327,11 @@ extension NearViewController: CLLocationManagerDelegate {
 // mapview
 extension NearViewController: GMSMapViewDelegate {
     func mapView(_ mapView: GMSMapView, didTap marker: GMSMarker) -> Bool {
-        if let icon = marker.icon as? UIImage {
-             marker.icon = self.imageWithImage(image: icon, scaledToSize: CGSize(width: 48.0, height: 48.0))
-        }
+//        if let icon = marker.icon as? UIImage {
+//             marker.icon = self.imageWithImage(image: icon, scaledToSize: CGSize(width: 48.0, height: 48.0))
+//        }
+        
+        
        
         if let data = marker.userData as? Int {
             self.fsPagerView.scrollToItem(at: data, animated: true)
@@ -361,8 +368,12 @@ extension NearViewController: GMSMapViewDelegate {
 
 // MARK: - cluster
 extension NearViewController: GMUClusterManagerDelegate {
-    func mapView(_ mapView: GMSMapView, didTapPOIWithPlaceID placeID: String, name: String, location: CLLocationCoordinate2D) {
-        print("a")
+    func clusterManager(_ clusterManager: GMUClusterManager, didTap cluster: GMUCluster) -> Bool {
+        let newCamera = GMSCameraPosition.camera(withTarget: cluster.position,
+                                                 zoom: mapView.camera.zoom + 1)
+        let update = GMSCameraUpdate.setCamera(newCamera)
+        mapView.moveCamera(update)
+        return false
     }
 }
 

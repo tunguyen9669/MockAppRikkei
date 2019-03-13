@@ -58,6 +58,14 @@ class MyListEventViewController: UIViewController {
         goingSegment.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(onTapGoingView(_:))))
         wentSegment.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(onTapWentView(_:))))
         
+        let left = UISwipeGestureRecognizer(target : self, action : #selector(self.onTapWentView(_:)))
+        left.direction = .left
+        self.view.addGestureRecognizer(left)
+        
+        let right = UISwipeGestureRecognizer(target : self, action : #selector(onTapGoingView(_:)))
+        right.direction = .right
+        self.view.addGestureRecognizer(right)
+        
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
