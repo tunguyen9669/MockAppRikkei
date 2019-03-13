@@ -71,12 +71,8 @@ class EventByCategoryViewController: UIViewController {
         self.tableView.estimatedRowHeight = 300.0
         
         checkDataDB()
-        
-//        if UserPrefsHelper.shared.getIsLoggined() == true {
-//            self.getEventsByCategory(1, self.category.getId()) { (events) in
-//                self.creatDB(populars: events)
-//            }
-//        }
+        notificationAction()
+
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
             self.tableView.delegate = self
@@ -94,8 +90,67 @@ class EventByCategoryViewController: UIViewController {
         getDataFromDB()
         
     }
+   
+    deinit {
+        NotificationCenter.default.removeObserver(self)
+    }
     
     // MARK: - function
+    
+    func notificationAction() {
+        NotificationCenter.default.addObserver(self, selector: #selector(onGoing(_:)), name: .kUpdateGoingEvent, object: nil)
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(onWent(_:)), name: .kUpdateWentEvent, object: nil)
+    }
+    
+    @objc func onGoing(_ sender: Notification) {
+        if let popular = sender.userInfo?["popular"] as? Event {
+            var arr = events
+            for i in 0..<self.events.count {
+                if self.events[i].getId() == popular.getId() {
+                    arr[i].myStatus = 1
+                }
+            }
+            let categoryRealm = CategoryRealmModel()
+            categoryRealm.id = self.category.getId()
+            categoryRealm.name = self.category.getName()
+            categoryRealm.slug = self.category.getSlug()
+            categoryRealm.parentId = self.category.getParentId()
+            for item in arr {
+                let event = EventRealmModel(item)
+                categoryRealm.events.append(event)
+            }
+            realmManager.editObject(categoryRealm)
+            getDataFromDB()
+            self.tableView.reloadData()
+        }
+    }
+    
+    @objc func onWent(_ sender: Notification) {
+        if let popular = sender.userInfo?["popular"] as? Event {
+            var arr = events
+            for i in 0..<self.events.count {
+                if events[i].getId() == popular.getId() {
+                    arr[i].myStatus = 2
+                }
+            }
+            let categoryRealm = CategoryRealmModel()
+            categoryRealm.id = self.category.getId()
+            categoryRealm.name = self.category.getName()
+            categoryRealm.slug = self.category.getSlug()
+            categoryRealm.parentId = self.category.getParentId()
+            for item in arr {
+                let event = EventRealmModel(item)
+                categoryRealm.events.append(event)
+            }
+            realmManager.editObject(categoryRealm)
+            getDataFromDB()
+            self.tableView.reloadData()
+        }
+        
+    }
+    
+    
     
     @objc func loadTable() {
         self.tableView.reloadData()
@@ -104,6 +159,7 @@ class EventByCategoryViewController: UIViewController {
     // refresh data
     @objc func handleRefresh(_ refreshControl: UIRefreshControl) {
         getDataFromDB()
+        self.tableView.reloadData()
         refreshControl.endRefreshing()
     }
     
@@ -168,6 +224,10 @@ class EventByCategoryViewController: UIViewController {
         }
     }
     
+    func editEvent(category: CategoryRealmModel) {
+        realmManager.editObject(category)
+    }
+    
     func reloadTable(_ arr: [Event]) {
         self.events.removeAll()
         self.events += arr
@@ -196,6 +256,7 @@ class EventByCategoryViewController: UIViewController {
                 self.creatDB(populars: events)
                 self.reloadTable(events)
                 self.getDataSourceTable(events)
+                self.titleLabel.text = "\(self.category.getName()) (\(events.count))"
             }
         }
         

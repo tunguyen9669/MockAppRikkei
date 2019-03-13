@@ -26,11 +26,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MockApp/ViewControllers/Browse/EventByCategoryViewController.swift"
-            timestampString = "574137130.603487"
+            timestampString = "574140239.120994"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "160"
-            endingLineNumber = "160"
+            startingLineNumber = "216"
+            endingLineNumber = "216"
             landmarkName = "getDataCheckIsToday()"
             landmarkType = "7">
          </BreakpointContent>
