@@ -73,6 +73,8 @@
 		24A496E0221A9EF600ABA699 /* UITabbarExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A496DF221A9EF600ABA699 /* UITabbarExtension.swift */; };
 		24A496E2221AA3C100ABA699 /* StringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A496E1221AA3C100ABA699 /* StringExtension.swift */; };
 		24AC90A62238BB9200B277C8 /* LocationExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24AC90A52238BB9200B277C8 /* LocationExtension.swift */; };
+		24AC90AC2239051400B277C8 /* Background.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 24AC90AB2239051400B277C8 /* Background.storyboard */; };
+		24AC90AF2239053A00B277C8 /* BackgroundViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24AC90AE2239053A00B277C8 /* BackgroundViewController.swift */; };
 		24ADAB4C221695A900499926 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24ADAB4B221695A900499926 /* AppDelegate.swift */; };
 		24ADAB4E221695A900499926 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24ADAB4D221695A900499926 /* ViewController.swift */; };
 		24ADAB51221695A900499926 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 24ADAB4F221695A900499926 /* Main.storyboard */; };
@@ -230,6 +232,8 @@
 		24A496DF221A9EF600ABA699 /* UITabbarExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITabbarExtension.swift; sourceTree = "<group>"; };
 		24A496E1221AA3C100ABA699 /* StringExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExtension.swift; sourceTree = "<group>"; };
 		24AC90A52238BB9200B277C8 /* LocationExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationExtension.swift; sourceTree = "<group>"; };
+		24AC90AB2239051400B277C8 /* Background.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Background.storyboard; sourceTree = "<group>"; };
+		24AC90AE2239053A00B277C8 /* BackgroundViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundViewController.swift; sourceTree = "<group>"; };
 		24ADAB48221695A900499926 /* MockApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MockApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		24ADAB4B221695A900499926 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		24ADAB4D221695A900499926 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -597,6 +601,8 @@
 				24ADAB4F221695A900499926 /* Main.storyboard */,
 				24ADAB54221695AA00499926 /* LaunchScreen.storyboard */,
 				24ADAB57221695AA00499926 /* Info.plist */,
+				24AC90AB2239051400B277C8 /* Background.storyboard */,
+				24AC90AE2239053A00B277C8 /* BackgroundViewController.swift */,
 			);
 			path = MockApp;
 			sourceTree = "<group>";
@@ -813,6 +819,11 @@
 					24ADAB47221695A900499926 = {
 						CreatedOnToolsVersion = 10.1;
 						LastSwiftMigration = 1010;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+						};
 					};
 					24ADAB5B221695AA00499926 = {
 						CreatedOnToolsVersion = 10.1;
@@ -867,6 +878,7 @@
 				24ADAB9B22169B1E00499926 /* Roboto-BoldCondensed.ttf in Resources */,
 				24ADAB9722169B1E00499926 /* Roboto-Medium.ttf in Resources */,
 				24ADABA022169B1E00499926 /* NOTICE.txt in Resources */,
+				24AC90AC2239051400B277C8 /* Background.storyboard in Resources */,
 				24ADAB9422169B1E00499926 /* Roboto-Regular.ttf in Resources */,
 				245883A72228CC1500635AB9 /* CategoryCell.xib in Resources */,
 				24ADABA222169B1E00499926 /* Roboto-CondensedItalic.ttf in Resources */,
@@ -1068,6 +1080,7 @@
 				246BCA20221E3C29006D6C91 /* MyPageService.swift in Sources */,
 				24ADABAD2216A11400499926 /* NearViewController.swift in Sources */,
 				244E98B022374AE80061BB7A /* GMUNonHierarchicalDistanceBasedAlgorithm.m in Sources */,
+				24AC90AF2239053A00B277C8 /* BackgroundViewController.swift in Sources */,
 				24A496C4221A5FFC00ABA699 /* HomeService.swift in Sources */,
 				244E98AF22374AE80061BB7A /* GMUStaticCluster.m in Sources */,
 				24AC90A62238BB9200B277C8 /* LocationExtension.swift in Sources */,

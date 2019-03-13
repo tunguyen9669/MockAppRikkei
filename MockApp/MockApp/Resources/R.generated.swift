@@ -511,8 +511,10 @@ struct R: Rswift.Validatable {
     fileprivate init() {}
   }
   
-  /// This `R.storyboard` struct is generated, and contains static references to 6 storyboards.
+  /// This `R.storyboard` struct is generated, and contains static references to 7 storyboards.
   struct storyboard {
+    /// Storyboard `Background`.
+    static let background = _R.storyboard.background()
     /// Storyboard `Browse`.
     static let browse = _R.storyboard.browse()
     /// Storyboard `Custom`.
@@ -525,6 +527,11 @@ struct R: Rswift.Validatable {
     static let myPage = _R.storyboard.myPage()
     /// Storyboard `Near`.
     static let near = _R.storyboard.near()
+    
+    /// `UIStoryboard(name: "Background", bundle: ...)`
+    static func background(_: Void = ()) -> UIKit.UIStoryboard {
+      return UIKit.UIStoryboard(resource: R.storyboard.background)
+    }
     
     /// `UIStoryboard(name: "Browse", bundle: ...)`
     static func browse(_: Void = ()) -> UIKit.UIStoryboard {
@@ -734,12 +741,32 @@ struct _R: Rswift.Validatable {
   
   struct storyboard: Rswift.Validatable {
     static func validate() throws {
+      try background.validate()
       try browse.validate()
       try custom.validate()
       try home.validate()
       try main.validate()
       try myPage.validate()
       try near.validate()
+    }
+    
+    struct background: Rswift.StoryboardResourceType, Rswift.Validatable {
+      let backgroundViewController = StoryboardViewControllerResource<BackgroundViewController>(identifier: "BackgroundViewController")
+      let bundle = R.hostingBundle
+      let name = "Background"
+      
+      func backgroundViewController(_: Void = ()) -> BackgroundViewController? {
+        return UIKit.UIStoryboard(resource: self).instantiateViewController(withResource: backgroundViewController)
+      }
+      
+      static func validate() throws {
+        if UIKit.UIImage(named: "rikkeisoft-logo", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'rikkeisoft-logo' is used in storyboard 'Background', but couldn't be loaded.") }
+        if #available(iOS 11.0, *) {
+        }
+        if _R.storyboard.background().backgroundViewController() == nil { throw Rswift.ValidationError(description:"[R.swift] ViewController with identifier 'backgroundViewController' could not be loaded from storyboard 'Background' as 'BackgroundViewController'.") }
+      }
+      
+      fileprivate init() {}
     }
     
     struct browse: Rswift.StoryboardResourceType, Rswift.Validatable {

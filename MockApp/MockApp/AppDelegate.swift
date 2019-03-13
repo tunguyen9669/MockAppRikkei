@@ -16,6 +16,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
     var tabbar: CustomTabbarController?
+   
+    // LauchScreen
+    func splashScreen() {
+        if let rootVC = R.storyboard.background.backgroundViewController() {
+            self.window?.rootViewController = rootVC
+            self.window?.makeKeyAndVisible()
+            Timer.scheduledTimer(timeInterval: 3, target: self, selector: #selector(moveToHome), userInfo: nil, repeats: false)
+        }
+        
+    }
     
     public func getTabbar() -> CustomTabbarController {
         return self.tabbar ?? CustomTabbarController()
@@ -65,7 +75,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return tabbarController
     }
     
-    func moveToHome(){
+    @objc func moveToHome(){
         self.tabbar = self.createTabbarControler()
         self.window = UIWindow(frame: UIScreen.main.bounds)
         self.window?.rootViewController = self.tabbar
@@ -81,7 +91,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         GMSServices.provideAPIKey("AIzaSyCrJdKVdwaXIEB2rGAmsWO_ZQWLDZy9ap8")
         GMSPlacesClient.provideAPIKey("AIzaSyCrJdKVdwaXIEB2rGAmsWO_ZQWLDZy9ap8")
         
-        moveToHome()
+        splashScreen()
         return true
     }
 
