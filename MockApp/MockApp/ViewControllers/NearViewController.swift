@@ -283,7 +283,7 @@ extension NearViewController: FSPagerViewDataSource, FSPagerViewDelegate {
             setupMap(MY_LONGITUDE, MY_LATITUDE)
             if let eventDetailVC = R.storyboard.myPage.eventDetailViewController() {
                 eventDetailVC.id = id
-                self.navigationController?.pushViewController(eventDetailVC, animated: true)
+                appDelegate.tabbar?.present(eventDetailVC, animated: true, completion: nil)
             }
         }
         
