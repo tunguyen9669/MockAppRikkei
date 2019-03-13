@@ -32,7 +32,6 @@ class EventByCategoryViewController: UIViewController {
         popularTitle.textColor = UIColor.white
         indexStyle = 1
         self.tableView.contentOffset = .zero
-        self.getDataFromDB()
         self.tableView.delegate = self
         noHeaderDatasource.arrEvent = self.events
         self.tableView.dataSource = noHeaderDatasource
@@ -43,7 +42,7 @@ class EventByCategoryViewController: UIViewController {
         popularTitle.textColor = UIColor.black
         indexStyle = 2
         self.tableView.contentOffset = .zero
-        self.getDataFromDB()
+
         self.tableView.delegate = headerDatasource
         headerDatasource.arrCommonTables = self.arrCommonTables
         self.tableView.dataSource = headerDatasource
@@ -72,6 +71,13 @@ class EventByCategoryViewController: UIViewController {
         self.tableView.estimatedRowHeight = 300.0
         
         checkDataDB()
+        
+//        if UserPrefsHelper.shared.getIsLoggined() == true {
+//            self.getEventsByCategory(1, self.category.getId()) { (events) in
+//                self.creatDB(populars: events)
+//            }
+//        }
+        
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
             self.tableView.delegate = self
             self.noHeaderDatasource.arrEvent = self.events
@@ -84,11 +90,7 @@ class EventByCategoryViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         getDataCheckIsToday()
-        if UserPrefsHelper.shared.getIsLoggined() == true {
-            self.getEventsByCategory(1, self.category.getId()) { (events) in
-                self.creatDB(populars: events)
-            }
-        }
+       
         getDataFromDB()
         
     }
@@ -117,8 +119,7 @@ class EventByCategoryViewController: UIViewController {
         var tookPlaceEvents = [Event]()
         for item in events {
             let date = "\(item.getEndDate()) \(item.getEndTime())".convertStringToMilisecond()
-            print("Date: \(date)")
-            print("Case: \(self.getTimeEndEvent(date))")
+            
             switch self.getTimeEndEvent(date) {
             case 1:
                 todayEvents.append(item)
@@ -148,7 +149,7 @@ class EventByCategoryViewController: UIViewController {
         arr.append(CommonTableModel("Next month", nextMonthEvents))
         arr.append(CommonTableModel("Later", latersEvents))
         arr.append(CommonTableModel("Took place", tookPlaceEvents))
-        self.titleLabel.text = "\(self.category.getName()) (\(self.events.count))"
+        
         self.arrCommonTables = arr
         
         
@@ -173,7 +174,7 @@ class EventByCategoryViewController: UIViewController {
         self.events = self.events.sorted { (po1, po2) -> Bool in
             return po1.getGoingCount() >= po2.getGoingCount()
         }
-        self.titleLabel.text = "\(self.category.getName()) (\(self.events.count))"
+        
         self.tableView.reloadData()
     }
     
@@ -234,7 +235,9 @@ class EventByCategoryViewController: UIViewController {
             let event = EventRealmModel(item)
             categoryRealm.events.append(event)
         }
+        print(categoryRealm.events.count)
         realmManager.editObject(categoryRealm)
+        
         
     }
     
@@ -338,6 +341,7 @@ extension EventByCategoryViewController: UITableViewDelegate {
                             self.getDataSourceTable(self.events)
                             self.reloadTable(self.events)
                             self.noHeaderDatasource.arrEvent += arr
+                            self.titleLabel.text = "\(self.category.getName()) (\(self.events.count))"
                         }
                     }
                     self.perform(#selector(self.loadTable), with: nil, afterDelay: 1.0)

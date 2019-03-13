@@ -19,6 +19,7 @@ class NearService: APIServiceObject {
             if let error = error {
                 completion(Result.failure(error))
             } else {
+                print("Near JSON: \(json)")
                 let data = json["response"]["events"].arrayValue
                 
                 for item in data {

@@ -36,7 +36,9 @@ class NewsViewController: UIViewController {
         appDelegate.tabbar?.setHidden(false)
         checkDataDB()
         
-       
+        if UserPrefsHelper.shared.getIsLoggined() == true {
+            
+        }
        
     }
     

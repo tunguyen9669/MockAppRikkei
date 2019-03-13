@@ -25,6 +25,7 @@ struct PrefsKey {
     static let isCallMyEventWentAPI = "isCallMyEventWentAPI"
     static let email = "email"
     static let password = "password"
+    static let timeLogin = "timeLogin"
     
 }
 
@@ -105,6 +106,14 @@ class UserPrefsHelper: NSObject {
     
     func getPassword() -> String {
         return UserDefaults.standard.string(forKey: PrefsKey.password) ?? ""
+    }
+    
+    func setTimeLogin(_ time: Int) {
+        UserDefaults.standard.set(time, forKey: PrefsKey.timeLogin)
+    }
+    
+    func getTimeLogin() -> Int {
+        return UserDefaults.standard.integer(forKey: PrefsKey.timeLogin)
     }
     
 }

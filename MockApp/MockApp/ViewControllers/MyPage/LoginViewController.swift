@@ -32,6 +32,9 @@ class LoginViewController: UIViewController {
         } else {
             self.login(email, pass) { (result) in
                 if result == true {
+                    UserPrefsHelper.shared.setEmail(email)
+                    UserPrefsHelper.shared.setPassword(pass)
+                    UserPrefsHelper.shared.setTimeLogin(self.getDateNow())
                     NotificationCenter.default.post(name: Notification.Name.kLogin, object: nil, userInfo: ["type": "login"])
                     if let myListEventVC = R.storyboard.myPage.myListEventViewController() {
                         self.navigationController?.pushViewController(myListEventVC, animated: true)

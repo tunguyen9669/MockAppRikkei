@@ -16,6 +16,7 @@ class HomeViewController: UIViewController {
     @IBOutlet weak var newsContainer: UIView!
     @IBOutlet weak var popularContainer: UIView!
     
+    let mypageService = MyPageService()
     let myPageServices = MyPageService()
     let services = HomeService()
     var arrNews: [News] = []
@@ -34,24 +35,14 @@ class HomeViewController: UIViewController {
         
         let email = UserPrefsHelper.shared.getEmail()
         let password = UserPrefsHelper.shared.getPassword()
-        if UserPrefsHelper.shared.getIsLoggined() == true {
+        
+        let timelogin = UserPrefsHelper.shared.getTimeLogin() / 3600
+        let timeNow = self.getDateNow() / 3600
+        let hour = timeNow - timelogin
+        
+        if UserPrefsHelper.shared.getIsLoggined() == true && hour >= 24 {
             if email != "" || password != "" {
-                if Connectivity.isConnectedToInternet {
-                    UIApplication.shared.isNetworkActivityIndicatorVisible = true
-                    myPageServices.requestLogin(email, password) { (message) in
-                        UIApplication.shared.isNetworkActivityIndicatorVisible = false
-                        if message.isEqual("Tài khoản hoặc mật khẩu không đúng, vui lòng nhập lại") {
-                            //
-                        } else {
-                            UserPrefsHelper.shared.setUserToken(message)
-                            UserPrefsHelper.shared.setIsloggined(true)
-                            print("User token token: \(UserPrefsHelper.shared.getUserToken())")
-                            
-                        }
-                    }
-                } else {
-                    self.alertWith("Không có kết lỗi Internet, vui lòng kiểm tra!")
-                }
+                self.login(email, password)
             }
         }
        
@@ -101,5 +92,25 @@ class HomeViewController: UIViewController {
         print("Tap Popular")
     }
     
+    func login(_ email: String,  _ password: String) {
+        if Connectivity.isConnectedToInternet {
+            UIApplication.shared.isNetworkActivityIndicatorVisible = true
+            mypageService.requestLogin(email, password) { (message) in
+                UIApplication.shared.isNetworkActivityIndicatorVisible = false
+                if message.isEqual("Tài khoản hoặc mật khẩu không đúng, vui lòng nhập lại") {
+                    print(message)
+                } else {
+                    print(message)
+                    UserPrefsHelper.shared.setUserToken(message)
+                    UserPrefsHelper.shared.setIsloggined(true)
+                    UserPrefsHelper.shared.setTimeLogin(self.getDateNow())
+                    print("User token token: \(UserPrefsHelper.shared.getUserToken())")
+                    
+                }
+            }
+        } else {
+            self.alertWith("Không có kết lỗi Internet, vui lòng kiểm tra!")
+        }
+    }
    
 }
