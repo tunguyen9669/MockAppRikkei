@@ -5,7 +5,6 @@
 //  Created by tund on 2/15/19.
 //  Copyright © 2019 tund. All rights reserved.
 //
-
 import Foundation
 import UIKit
 import FSPagerView
@@ -19,6 +18,7 @@ class NearViewController: UIViewController {
     var MY_LATITUDE: Float = 37.891628
     var MY_LONGITUDE: Float = -122.123161
     var arr = [Event]()
+    // set up fspager view
     @IBOutlet weak var fsPagerView: FSPagerView! {
         didSet {
             self.fsPagerView.automaticSlidingInterval = 0
@@ -37,8 +37,8 @@ class NearViewController: UIViewController {
         
         // test
         mapView.mapType = .normal
-       
         
+        // setup fspagerview
         self.fsPagerView.register(UINib(nibName: "EventPagerCell", bundle: nil), forCellWithReuseIdentifier: "EventPagerCell")
         
         self.fsPagerView.interitemSpacing = 8
@@ -58,12 +58,13 @@ class NearViewController: UIViewController {
         locationManager.delegate = self
         notificationAction()
         initializeClusterItems()
-       
         
         
-       
+        
+        
     }
     override func viewDidLayoutSubviews() {
+        // set up fspagerview
         super.viewDidLayoutSubviews()
         self.fsPagerView.itemSize = CGSize(width: UIScreen.main.bounds.width - 30, height: self.fsPagerView.frame.size.height)
         self.fsPagerView.clipsToBounds = true
@@ -92,12 +93,12 @@ class NearViewController: UIViewController {
             return
         }
         let item = POIItem(position: position, name: accessibilityLabel, icon: guardIcon)
-            
+        
         self.clusterManager.add(item)
     }
     
     func showPartyMarkers(_ events: [Event]) {
-   
+        
         mapView.clear()
         // find distance min
         var min: Float = events[0].getDistance()
@@ -112,29 +113,32 @@ class NearViewController: UIViewController {
                 let long = Float(events[i].venue.getLong()) {
                 let marker = GMSMarker()
                 // set icon
-                let status = events[i].getMyStatus()
-                if status == 0 {
-                    marker.icon = R.image.gray_anotation()
-                } else if status == 1 {
-                    marker.icon = R.image.red_anotation()
-                } else if status == 2 {
-                    marker.icon = R.image.yellow_anotation()
-                }
+//                let status = events[i].getMyStatus()
+//                if status == 0 {
+//                    marker.icon = R.image.gray_anotation()
+//                } else if status == 1 {
+//                    marker.icon = R.image.red_anotation()
+//                } else if status == 2 {
+//                    marker.icon = R.image.yellow_anotation()
+//                }
+//
+//                // set high light icon
+//                if events[i].getDistance() == min {
+//                    if let icon = marker.icon as? UIImage {
+//                        marker.icon = self.imageWithImage(image: icon, scaledToSize: CGSize(width: 48.0, height: 48.0))
+//                    }
+//                }
                 
-                // set high light icon
-                if events[i].getDistance() == min {
-                    if let icon = marker.icon as? UIImage {
-                        marker.icon = self.imageWithImage(image: icon, scaledToSize: CGSize(width: 48.0, height: 48.0))
-                    }
-                }
-                
+//                let markerViewNew = MarkerView(frame: CGRect(x: 0, y: 0, width: 265, height: 200), index: 1)
+                let markerView = MarkerView(frame: CGRect(x: 0, y: 0, width: 265, height: 200), name: events[i].getName(), photo: events[i].getPhoto(), distance: events[i].getDistance())
+                marker.iconView = markerView // here
                 marker.title = "\(events[i].venue.getName()) \n \(events[i].getDistance()) km"
                 marker.userData = i
                 marker.position = CLLocationCoordinate2DMake(CLLocationDegrees(lat), CLLocationDegrees(long))
                 marker.map = mapView
-//                self.generatePOIItems(events[i].getName(), position: marker.position, icon: marker.icon)
+                //                self.generatePOIItems(events[i].getName(), position: marker.position, icon: marker.icon)
             }
-//            self.clusterManager.cluster()
+            //            self.clusterManager.cluster()
         }
     }
     private func randomScale() -> Double {
@@ -175,9 +179,9 @@ class NearViewController: UIViewController {
         self.arr = self.arr.sorted { (po1, po2) -> Bool in
             return po1.getGoingCount() >= po2.getGoingCount()
         }
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
-            self.fsPagerView.reloadData()
-        }
+        
+        self.fsPagerView.reloadData()
+  
         
     }
     
@@ -190,11 +194,11 @@ class NearViewController: UIViewController {
     func notificationAction() {
         // bug
         NotificationCenter.default.addObserver(self, selector: #selector(onGoing(_:)), name: .kUpdateGoingEvent, object: nil)
-
+        
         NotificationCenter.default.addObserver(self, selector: #selector(onWent(_:)), name: .kUpdateWentEvent, object: nil)
         
         NotificationCenter.default.addObserver(self, selector: #selector(onLogout(_:)), name: .kLogout, object: nil)
-
+        
         NotificationCenter.default.addObserver(self, selector: #selector(onGetNewData(_:)), name: .kLogin, object: nil)
     }
     
@@ -206,9 +210,9 @@ class NearViewController: UIViewController {
                 self.showPartyMarkers(events)
             }
         }
-
+        
     }
-
+    
     @objc func onGetNewData(_ sender: Notification) {
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
             self.getNearlyEvents(1000.0, self.MY_LONGITUDE, self.MY_LATITUDE) { (events) in
@@ -231,7 +235,7 @@ class NearViewController: UIViewController {
             self.fsPagerView.reloadData()
         }
     }
-//
+    //
     @objc func onWent(_ sender: Notification) {
         if let popular = sender.userInfo?["popular"] as? Event {
             print("Near da nhan went")
@@ -243,12 +247,11 @@ class NearViewController: UIViewController {
             }
             self.fsPagerView.reloadData()
         }
-
+        
     }
     
 }
 // MARK: - extension
-
 // fspagerview
 extension NearViewController: FSPagerViewDataSource, FSPagerViewDelegate {
     func numberOfItems(in pagerView: FSPagerView) -> Int {
@@ -269,8 +272,8 @@ extension NearViewController: FSPagerViewDataSource, FSPagerViewDelegate {
         let permanent = self.arr[index].getPermanent()
         let myStatus = self.arr[index].getMyStatus()
         aCell.customInit(photo, name, descHtml, startDate, endDate, goingCount, permanent, myStatus)
-//        aCell.delegate = self
-//        aCell.id = populars[indexPath.row].getId()
+        //        aCell.delegate = self
+        //        aCell.id = populars[indexPath.row].getId()
         return aCell
     }
     
@@ -290,6 +293,7 @@ extension NearViewController: FSPagerViewDataSource, FSPagerViewDelegate {
     }
     
     func pagerViewDidEndDecelerating(_ pagerView: FSPagerView) {
+        // swipe fspagerview
         let index = pagerView.currentIndex
         if let long = Float(self.arr[index].venue.getLong()),
             let lat = Float(self.arr[index].venue.getLat()) {
@@ -310,13 +314,13 @@ extension NearViewController: CLLocationManagerDelegate {
         }
         locationManager.startUpdatingLocation()
         mapView.isMyLocationEnabled = true
-//        mapView.settings.myLocationButton = true
+        //        mapView.settings.myLocationButton = true
     }
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-//        guard let location = locations.first else {
-//            return
-//        }
+        //        guard let location = locations.first else {
+        //            return
+        //        }
         let location = CLLocation(latitude: CLLocationDegrees(MY_LATITUDE), longitude: CLLocationDegrees(MY_LONGITUDE))
         // get location now, now is fake
         mapView.camera = GMSCameraPosition(target: location.coordinate, zoom: ZOOM, bearing: 0, viewingAngle: 0)
@@ -326,25 +330,25 @@ extension NearViewController: CLLocationManagerDelegate {
 
 // mapview
 extension NearViewController: GMSMapViewDelegate {
-    func mapView(_ mapView: GMSMapView, didTap marker: GMSMarker) -> Bool {
-//        if let icon = marker.icon as? UIImage {
-//             marker.icon = self.imageWithImage(image: icon, scaledToSize: CGSize(width: 48.0, height: 48.0))
-//        }
-        
-        
-       
-        if let data = marker.userData as? Int {
-            self.fsPagerView.scrollToItem(at: data, animated: true)
+//    func mapView(_ mapView: GMSMapView, didTap marker: GMSMarker) -> Bool {
+//        //        if let icon = marker.icon as? UIImage {
+//        //             marker.icon = self.imageWithImage(image: icon, scaledToSize: CGSize(width: 48.0, height: 48.0))
+//        //        }
+//        
+//        
+//        
+//        if let data = marker.userData as? Int {
+//            self.fsPagerView.scrollToItem(at: data, animated: true)
 //            if let long = Float(self.arr[data].venue.getLong()),
 //                let lat = Float(self.arr[data].venue.getLat()) {
 //                print("\(long) \(lat)")
 //                self.MY_LATITUDE = lat
 //                self.MY_LONGITUDE = long
 //                setupMap(MY_LONGITUDE, MY_LATITUDE)
-//            }
-        }
-        return true
-    }
+//                }
+//        }
+//        return true
+//    }
     
     func mapView(_ mapView: GMSMapView, didChange position: GMSCameraPosition) {
         let latitude = mapView.camera.target.latitude
@@ -376,4 +380,3 @@ extension NearViewController: GMUClusterManagerDelegate {
         return false
     }
 }
-

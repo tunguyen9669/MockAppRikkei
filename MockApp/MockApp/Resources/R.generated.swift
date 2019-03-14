@@ -336,7 +336,7 @@ struct R: Rswift.Validatable {
     fileprivate init() {}
   }
   
-  /// This `R.nib` struct is generated, and contains static references to 8 nibs.
+  /// This `R.nib` struct is generated, and contains static references to 9 nibs.
   struct nib {
     /// Nib `CategoryCell`.
     static let categoryCell = _R.nib._CategoryCell()
@@ -348,6 +348,8 @@ struct R: Rswift.Validatable {
     static let eventPagerCell = _R.nib._EventPagerCell()
     /// Nib `FirstEDCell`.
     static let firstEDCell = _R.nib._FirstEDCell()
+    /// Nib `MarkerView`.
+    static let markerView = _R.nib._MarkerView()
     /// Nib `NewsCell`.
     static let newsCell = _R.nib._NewsCell()
     /// Nib `SecondEDCell`.
@@ -383,6 +385,12 @@ struct R: Rswift.Validatable {
     @available(*, deprecated, message: "Use UINib(resource: R.nib.firstEDCell) instead")
     static func firstEDCell(_: Void = ()) -> UIKit.UINib {
       return UIKit.UINib(resource: R.nib.firstEDCell)
+    }
+    
+    /// `UINib(name: "MarkerView", in: bundle)`
+    @available(*, deprecated, message: "Use UINib(resource: R.nib.markerView) instead")
+    static func markerView(_: Void = ()) -> UIKit.UINib {
+      return UIKit.UINib(resource: R.nib.markerView)
     }
     
     /// `UINib(name: "NewsCell", in: bundle)`
@@ -421,6 +429,10 @@ struct R: Rswift.Validatable {
     
     static func firstEDCell(owner ownerOrNil: AnyObject?, options optionsOrNil: [UINib.OptionsKey : Any]? = nil) -> FirstEDCell? {
       return R.nib.firstEDCell.instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? FirstEDCell
+    }
+    
+    static func markerView(owner ownerOrNil: AnyObject?, options optionsOrNil: [UINib.OptionsKey : Any]? = nil) -> MarkerView? {
+      return R.nib.markerView.instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? MarkerView
     }
     
     static func newsCell(owner ownerOrNil: AnyObject?, options optionsOrNil: [UINib.OptionsKey : Any]? = nil) -> NewsCell? {
@@ -591,6 +603,7 @@ struct _R: Rswift.Validatable {
       try _EventCell.validate()
       try _EventPagerCell.validate()
       try _FirstEDCell.validate()
+      try _MarkerView.validate()
       try _NewsCell.validate()
     }
     
@@ -684,6 +697,24 @@ struct _R: Rswift.Validatable {
       static func validate() throws {
         if UIKit.UIImage(named: "default_image", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'default_image' is used in nib 'FirstEDCell', but couldn't be loaded.") }
         if UIKit.UIImage(named: "dropdown", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'dropdown' is used in nib 'FirstEDCell', but couldn't be loaded.") }
+        if #available(iOS 11.0, *) {
+        }
+      }
+      
+      fileprivate init() {}
+    }
+    
+    struct _MarkerView: Rswift.NibResourceType, Rswift.Validatable {
+      let bundle = R.hostingBundle
+      let name = "MarkerView"
+      
+      func firstView(owner ownerOrNil: AnyObject?, options optionsOrNil: [UINib.OptionsKey : Any]? = nil) -> MarkerView? {
+        return instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? MarkerView
+      }
+      
+      static func validate() throws {
+        if UIKit.UIImage(named: "red_anotation", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'red_anotation' is used in nib 'MarkerView', but couldn't be loaded.") }
+        if UIKit.UIImage(named: "triangle", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'triangle' is used in nib 'MarkerView', but couldn't be loaded.") }
         if #available(iOS 11.0, *) {
         }
       }
