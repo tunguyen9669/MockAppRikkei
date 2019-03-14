@@ -28,20 +28,20 @@
                     <rect key="frame" x="0.0" y="0.0" width="300" height="85"/>
                     <subviews>
                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="default_image" translatesAutoresizingMaskIntoConstraints="NO" id="qAJ-4Y-oKj">
-                            <rect key="frame" x="5" y="5" width="100" height="70"/>
+                            <rect key="frame" x="8" y="8" width="100" height="70"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="100" id="QJP-In-HgO"/>
                                 <constraint firstAttribute="height" constant="70" id="VO4-x1-lX7"/>
                             </constraints>
                         </imageView>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Venue name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8OU-lf-6mU">
-                            <rect key="frame" x="120" y="5" width="170" height="19"/>
+                            <rect key="frame" x="123" y="8" width="167" height="19"/>
                             <fontDescription key="fontDescription" name="Roboto-Medium" family="Roboto" pointSize="16"/>
                             <nil key="textColor"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Distance" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dtF-Ok-CtT">
-                            <rect key="frame" x="120" y="29" width="170" height="16.5"/>
+                            <rect key="frame" x="123" y="32" width="167" height="16.5"/>
                             <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="14"/>
                             <color key="textColor" red="0.26666666666666666" green="0.26666666666666666" blue="0.26666666666666666" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
@@ -51,11 +51,11 @@
                     <constraints>
                         <constraint firstItem="dtF-Ok-CtT" firstAttribute="top" secondItem="8OU-lf-6mU" secondAttribute="bottom" constant="5" id="81J-cg-n2Z"/>
                         <constraint firstItem="8OU-lf-6mU" firstAttribute="top" secondItem="qAJ-4Y-oKj" secondAttribute="top" id="KV5-kB-XV1"/>
-                        <constraint firstItem="qAJ-4Y-oKj" firstAttribute="leading" secondItem="7jt-A4-V67" secondAttribute="leading" constant="5" id="QEs-2v-gbH"/>
+                        <constraint firstItem="qAJ-4Y-oKj" firstAttribute="leading" secondItem="7jt-A4-V67" secondAttribute="leading" constant="8" id="QEs-2v-gbH"/>
                         <constraint firstItem="dtF-Ok-CtT" firstAttribute="leading" secondItem="8OU-lf-6mU" secondAttribute="leading" id="UzJ-4H-o7z"/>
                         <constraint firstItem="dtF-Ok-CtT" firstAttribute="trailing" secondItem="8OU-lf-6mU" secondAttribute="trailing" id="Ynp-2a-vq5"/>
                         <constraint firstItem="8OU-lf-6mU" firstAttribute="leading" secondItem="qAJ-4Y-oKj" secondAttribute="trailing" constant="15" id="dnA-oB-rxr"/>
-                        <constraint firstItem="qAJ-4Y-oKj" firstAttribute="top" secondItem="7jt-A4-V67" secondAttribute="top" constant="5" id="qYw-hS-10j"/>
+                        <constraint firstItem="qAJ-4Y-oKj" firstAttribute="top" secondItem="7jt-A4-V67" secondAttribute="top" constant="8" id="qYw-hS-10j"/>
                         <constraint firstAttribute="trailing" secondItem="8OU-lf-6mU" secondAttribute="trailing" constant="10" id="rv2-f3-c9x"/>
                     </constraints>
                 </view>
@@ -79,6 +79,7 @@
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
             <connections>
+                <outlet property="bgView" destination="7jt-A4-V67" id="vKE-FA-9Hf"/>
                 <outlet property="distanceLabel" destination="dtF-Ok-CtT" id="NhR-PD-vs0"/>
                 <outlet property="nameLabel" destination="8OU-lf-6mU" id="8b3-gF-27D"/>
                 <outlet property="photoImageView" destination="qAJ-4Y-oKj" id="wUt-dh-DTa"/>

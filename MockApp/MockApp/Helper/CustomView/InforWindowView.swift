@@ -11,6 +11,7 @@ import Kingfisher
 
 class InforWindowView: UIView {
 
+    @IBOutlet weak var bgView: UIView!
     @IBOutlet weak var photoImageView: UIImageView!
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var distanceLabel: UILabel!
@@ -18,6 +19,10 @@ class InforWindowView: UIView {
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        self.bgView.layer.cornerRadius = 6
+        self.bgView.layer.borderWidth = 3
+        
+        self.bgView.layer.borderColor = UIColor.blueColor.cgColor
     }
     
     func customInit(_ photo: String,_ name: String,_ distance: Float) {

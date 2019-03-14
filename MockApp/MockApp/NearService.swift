@@ -18,7 +18,7 @@ class NearService: APIServiceObject {
         serviceAgent.startRequest(requet) { (json, error) in
             if let error = error {
                 completion(Result.failure(error))
-            } else {
+            } else {    
                 let data = json["response"]["events"].arrayValue
                 
                 for item in data {
