@@ -72,9 +72,9 @@
 		24A496DC221A9CA500ABA699 /* IntExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A496DB221A9CA500ABA699 /* IntExtension.swift */; };
 		24A496E0221A9EF600ABA699 /* UITabbarExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A496DF221A9EF600ABA699 /* UITabbarExtension.swift */; };
 		24A496E2221AA3C100ABA699 /* StringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A496E1221AA3C100ABA699 /* StringExtension.swift */; };
-		24A76E4D2239E21E002B47AD /* MarkerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A76E4C2239E21E002B47AD /* MarkerView.swift */; };
-		24A76E4F2239E233002B47AD /* MarkerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 24A76E4E2239E233002B47AD /* MarkerView.xib */; };
 		24A76E512239E538002B47AD /* UIViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A76E502239E538002B47AD /* UIViewExtension.swift */; };
+		24A76E53223A2D2E002B47AD /* InforWindowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A76E52223A2D2E002B47AD /* InforWindowView.swift */; };
+		24A76E55223A2D75002B47AD /* InforWindowView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 24A76E54223A2D75002B47AD /* InforWindowView.xib */; };
 		24AC90A62238BB9200B277C8 /* LocationExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24AC90A52238BB9200B277C8 /* LocationExtension.swift */; };
 		24AC90AC2239051400B277C8 /* Background.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 24AC90AB2239051400B277C8 /* Background.storyboard */; };
 		24AC90AF2239053A00B277C8 /* BackgroundViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24AC90AE2239053A00B277C8 /* BackgroundViewController.swift */; };
@@ -234,9 +234,9 @@
 		24A496DB221A9CA500ABA699 /* IntExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntExtension.swift; sourceTree = "<group>"; };
 		24A496DF221A9EF600ABA699 /* UITabbarExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITabbarExtension.swift; sourceTree = "<group>"; };
 		24A496E1221AA3C100ABA699 /* StringExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExtension.swift; sourceTree = "<group>"; };
-		24A76E4C2239E21E002B47AD /* MarkerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarkerView.swift; sourceTree = "<group>"; };
-		24A76E4E2239E233002B47AD /* MarkerView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MarkerView.xib; sourceTree = "<group>"; };
 		24A76E502239E538002B47AD /* UIViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExtension.swift; sourceTree = "<group>"; };
+		24A76E52223A2D2E002B47AD /* InforWindowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InforWindowView.swift; sourceTree = "<group>"; };
+		24A76E54223A2D75002B47AD /* InforWindowView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = InforWindowView.xib; sourceTree = "<group>"; };
 		24AC90A52238BB9200B277C8 /* LocationExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationExtension.swift; sourceTree = "<group>"; };
 		24AC90AB2239051400B277C8 /* Background.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Background.storyboard; sourceTree = "<group>"; };
 		24AC90AE2239053A00B277C8 /* BackgroundViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundViewController.swift; sourceTree = "<group>"; };
@@ -734,8 +734,8 @@
 			isa = PBXGroup;
 			children = (
 				24ADABC02216BD9000499926 /* SegmentView.swift */,
-				24A76E4C2239E21E002B47AD /* MarkerView.swift */,
-				24A76E4E2239E233002B47AD /* MarkerView.xib */,
+				24A76E52223A2D2E002B47AD /* InforWindowView.swift */,
+				24A76E54223A2D75002B47AD /* InforWindowView.xib */,
 			);
 			path = CustomView;
 			sourceTree = "<group>";
@@ -871,13 +871,13 @@
 			files = (
 				240C65302224D9AF00D57103 /* ThirdEDCell.xib in Resources */,
 				24ADABA122169B1E00499926 /* Roboto-Condensed.ttf in Resources */,
-				24A76E4F2239E233002B47AD /* MarkerView.xib in Resources */,
 				24ADABB32216A1C200499926 /* Home.storyboard in Resources */,
 				24ADAB9522169B1E00499926 /* Roboto_Specimen_Book.pdf in Resources */,
 				24ADAB9622169B1E00499926 /* Roboto-Italic.ttf in Resources */,
 				24ADABA522169B1E00499926 /* Roboto-ThinItalic.ttf in Resources */,
 				24ADABA722169CEC00499926 /* Assets.xcassets in Resources */,
 				240C652C2224C92900D57103 /* SecondEDCell.xib in Resources */,
+				24A76E55223A2D75002B47AD /* InforWindowView.xib in Resources */,
 				24ADAB9C22169B1E00499926 /* Roboto-LightItalic.ttf in Resources */,
 				24ADAB9F22169B1E00499926 /* Roboto-BoldItalic.ttf in Resources */,
 				24ADAB9A22169B1E00499926 /* Roboto-Bold.ttf in Resources */,
@@ -1125,7 +1125,6 @@
 				24A76E512239E538002B47AD /* UIViewExtension.swift in Sources */,
 				24ADAB7C2216997800499926 /* R.generated.swift in Sources */,
 				24E54675221BDA12003D1855 /* VenueDTO.swift in Sources */,
-				24A76E4D2239E21E002B47AD /* MarkerView.swift in Sources */,
 				249532662223DB1700E1563F /* FirstEDCell.swift in Sources */,
 				2460C60D221D3E5500A7817B /* LoginViewController.swift in Sources */,
 				243A1A2A2223796B00967001 /* DateHeader.swift in Sources */,
@@ -1145,6 +1144,7 @@
 				24ADABBE2216A33900499926 /* CustomTabbarController.swift in Sources */,
 				24ADABC12216BD9000499926 /* SegmentView.swift in Sources */,
 				24A496C8221A605B00ABA699 /* NewsDTO.swift in Sources */,
+				24A76E53223A2D2E002B47AD /* InforWindowView.swift in Sources */,
 				245883A12228CA6700635AB9 /* BrowseService.swift in Sources */,
 				245883A62228CC1500635AB9 /* CategoryCell.swift in Sources */,
 				24A496B7221A435100ABA699 /* NewsCell.swift in Sources */,
