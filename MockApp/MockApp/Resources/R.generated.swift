@@ -176,7 +176,7 @@ struct R: Rswift.Validatable {
     fileprivate init() {}
   }
   
-  /// This `R.image` struct is generated, and contains static references to 22 images.
+  /// This `R.image` struct is generated, and contains static references to 25 images.
   struct image {
     /// Image `back`.
     static let back = Rswift.ImageResource(bundle: R.hostingBundle, name: "back")
@@ -202,6 +202,12 @@ struct R: Rswift.Validatable {
     static let near = Rswift.ImageResource(bundle: R.hostingBundle, name: "near")
     /// Image `null_image`.
     static let null_image = Rswift.ImageResource(bundle: R.hostingBundle, name: "null_image")
+    /// Image `r_a`.
+    static let r_a = Rswift.ImageResource(bundle: R.hostingBundle, name: "r_a")
+    /// Image `r_desc`.
+    static let r_desc = Rswift.ImageResource(bundle: R.hostingBundle, name: "r_desc")
+    /// Image `r`.
+    static let r = Rswift.ImageResource(bundle: R.hostingBundle, name: "r")
     /// Image `red_anotation`.
     static let red_anotation = Rswift.ImageResource(bundle: R.hostingBundle, name: "red_anotation")
     /// Image `red_star`.
@@ -281,6 +287,21 @@ struct R: Rswift.Validatable {
     /// `UIImage(named: "null_image", bundle: ..., traitCollection: ...)`
     static func null_image(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
       return UIKit.UIImage(resource: R.image.null_image, compatibleWith: traitCollection)
+    }
+    
+    /// `UIImage(named: "r", bundle: ..., traitCollection: ...)`
+    static func r(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.r, compatibleWith: traitCollection)
+    }
+    
+    /// `UIImage(named: "r_a", bundle: ..., traitCollection: ...)`
+    static func r_a(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.r_a, compatibleWith: traitCollection)
+    }
+    
+    /// `UIImage(named: "r_desc", bundle: ..., traitCollection: ...)`
+    static func r_desc(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.r_desc, compatibleWith: traitCollection)
     }
     
     /// `UIImage(named: "red_anotation", bundle: ..., traitCollection: ...)`
@@ -791,7 +812,7 @@ struct _R: Rswift.Validatable {
       }
       
       static func validate() throws {
-        if UIKit.UIImage(named: "rikkeisoft-logo", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'rikkeisoft-logo' is used in storyboard 'Background', but couldn't be loaded.") }
+        if UIKit.UIImage(named: "r", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'r' is used in storyboard 'Background', but couldn't be loaded.") }
         if #available(iOS 11.0, *) {
         }
         if _R.storyboard.background().backgroundViewController() == nil { throw Rswift.ValidationError(description:"[R.swift] ViewController with identifier 'backgroundViewController' could not be loaded from storyboard 'Background' as 'BackgroundViewController'.") }

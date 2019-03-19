@@ -9,6 +9,11 @@
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="Roboto-Medium.ttf">
+            <string>Roboto-Medium</string>
+        </array>
+    </customFonts>
     <scenes>
         <!--Background View Controller-->
         <scene sceneID="A2V-tF-qPP">
@@ -18,18 +23,26 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="rikkeisoft-logo" translatesAutoresizingMaskIntoConstraints="NO" id="Glm-26-LT6">
-                                <rect key="frame" x="87.5" y="243.5" width="200" height="200"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="r" translatesAutoresizingMaskIntoConstraints="NO" id="pqk-zC-cSa">
+                                <rect key="frame" x="94" y="181" width="187.5" height="187.5"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="200" id="u1p-O0-Wd3"/>
-                                    <constraint firstAttribute="height" constant="200" id="xMt-i5-7C8"/>
+                                    <constraint firstAttribute="width" secondItem="pqk-zC-cSa" secondAttribute="height" multiplier="1:1" id="6Fa-RV-aVc"/>
                                 </constraints>
                             </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Rikkeisoft events information box" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="teo-P8-hno">
+                                <rect key="frame" x="67" y="618" width="241" height="19"/>
+                                <fontDescription key="fontDescription" name="Roboto-Medium" family="Roboto" pointSize="16"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" red="0.0" green="0.066666666666666666" blue="0.14117647058823529" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstItem="Glm-26-LT6" firstAttribute="centerY" secondItem="sqN-Ka-Kzd" secondAttribute="centerY" id="rkv-uV-DR3"/>
-                            <constraint firstItem="Glm-26-LT6" firstAttribute="centerX" secondItem="sqN-Ka-Kzd" secondAttribute="centerX" id="ymM-M3-QIM"/>
+                            <constraint firstItem="pqk-zC-cSa" firstAttribute="centerY" secondItem="sqN-Ka-Kzd" secondAttribute="centerY" multiplier="0.8" id="3ED-Ad-rb6"/>
+                            <constraint firstItem="pqk-zC-cSa" firstAttribute="centerX" secondItem="sqN-Ka-Kzd" secondAttribute="centerX" id="NfW-c6-05C"/>
+                            <constraint firstItem="pqk-zC-cSa" firstAttribute="width" secondItem="PnJ-Vo-WOA" secondAttribute="width" multiplier="0.5" id="TnN-eI-DL5"/>
+                            <constraint firstItem="teo-P8-hno" firstAttribute="centerX" secondItem="sqN-Ka-Kzd" secondAttribute="centerX" id="fhy-sQ-qKy"/>
+                            <constraint firstItem="sqN-Ka-Kzd" firstAttribute="bottom" secondItem="teo-P8-hno" secondAttribute="bottom" constant="30" id="wot-k7-FIb"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="sqN-Ka-Kzd"/>
                     </view>
@@ -40,6 +53,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="rikkeisoft-logo" width="300" height="300"/>
+        <image name="r" width="76" height="86"/>
     </resources>
 </document>
