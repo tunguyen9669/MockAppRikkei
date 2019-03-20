@@ -30,6 +30,17 @@ class NearViewController: UIViewController {
     let locationManager = CLLocationManager()
     var clusterManager: GMUClusterManager!
     
+    var ZOOM: Float = 16.0
+    
+    @IBAction func zoomOut(_ sender: Any) {
+        self.ZOOM -= 1
+        self.mapView.animate(toZoom: ZOOM)
+    }
+    
+    @IBAction func zoomIn(_ sender: Any) {
+        self.ZOOM += 1
+        self.mapView.animate(toZoom: ZOOM)
+    }
     // MARK: - life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -310,7 +321,7 @@ extension NearViewController: CLLocationManagerDelegate {
         }
         locationManager.startUpdatingLocation()
         mapView.isMyLocationEnabled = true
-        //        mapView.settings.myLocationButton = true
+        mapView.settings.myLocationButton = true
     }
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
