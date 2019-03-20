@@ -72,6 +72,7 @@
 		24A496DC221A9CA500ABA699 /* IntExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A496DB221A9CA500ABA699 /* IntExtension.swift */; };
 		24A496E0221A9EF600ABA699 /* UITabbarExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A496DF221A9EF600ABA699 /* UITabbarExtension.swift */; };
 		24A496E2221AA3C100ABA699 /* StringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A496E1221AA3C100ABA699 /* StringExtension.swift */; };
+		24A72C16224226BC00C99466 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24ADAB4B221695A900499926 /* AppDelegate.swift */; };
 		24A76E512239E538002B47AD /* UIViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A76E502239E538002B47AD /* UIViewExtension.swift */; };
 		24A76E53223A2D2E002B47AD /* InforWindowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A76E52223A2D2E002B47AD /* InforWindowView.swift */; };
 		24A76E55223A2D75002B47AD /* InforWindowView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 24A76E54223A2D75002B47AD /* InforWindowView.xib */; };
@@ -1159,6 +1160,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				24A72C16224226BC00C99466 /* AppDelegate.swift in Sources */,
 				24ADAB61221695AA00499926 /* MockAppTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
