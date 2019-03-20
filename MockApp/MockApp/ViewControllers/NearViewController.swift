@@ -34,8 +34,6 @@ class NearViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         print("View did load")
-        
-        
         // setup fspagerview
         self.fsPagerView.register(UINib(nibName: "EventPagerCell", bundle: nil), forCellWithReuseIdentifier: "EventPagerCell")
         self.fsPagerView.interitemSpacing = 8
@@ -56,10 +54,6 @@ class NearViewController: UIViewController {
         locationManager.delegate = self
         notificationAction()
         initializeClusterItems()
-        
-        
-        
-        
     }
     override func viewDidLayoutSubviews() {
         // set up fspagerview
@@ -207,6 +201,7 @@ class NearViewController: UIViewController {
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
             self.getNearlyEvents(1000.0, self.MY_LONGITUDE, self.MY_LATITUDE) { (events) in
                 self.reloadFsPager(events)
+                self.fsPagerView.selectItem(at: 0, animated: true)
                 self.showPartyMarkers(events)
             }
         }
@@ -217,6 +212,7 @@ class NearViewController: UIViewController {
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
             self.getNearlyEvents(1000.0, self.MY_LONGITUDE, self.MY_LATITUDE) { (events) in
                 self.reloadFsPager(events)
+                self.fsPagerView.selectItem(at: 0, animated: true)
                 self.showPartyMarkers(events)
             }
         }
@@ -350,6 +346,8 @@ extension NearViewController: GMSMapViewDelegate {
 //        return true
 //    }
     
+    
+    
     func mapView(_ mapView: GMSMapView, markerInfoWindow marker: GMSMarker) -> UIView? {
         if let infoView = UIView.loadFromNibNamed(nibNamed: "InforWindowView") as? InforWindowView {
             if let index = marker.userData as? Int {
@@ -377,19 +375,27 @@ extension NearViewController: GMSMapViewDelegate {
         }
     }
     func mapView(_ mapView: GMSMapView, didChange position: GMSCameraPosition) {
+        
         let latitude = mapView.camera.target.latitude
         let longitude = mapView.camera.target.longitude
         let coordinate0 = CLLocation(latitude: latitude, longitude: longitude)
         let coordinate1 = CLLocation(latitude: CLLocationDegrees(MY_LATITUDE), longitude: CLLocationDegrees(MY_LONGITUDE))
+        
         let distanceInMeters = coordinate0.distance(from: coordinate1)
+        print(distanceInMeters)
         if distanceInMeters > 1000 {
-            self.alertWith("Đã cập nhật lại danh sách")
+            self.alertWith("Đã cập nhật lại danh sách do bán kính vượt quá 1000m")
             self.MY_LATITUDE = Float(latitude)
             self.MY_LONGITUDE = Float(longitude)
             self.getNearlyEvents(1000.0, MY_LONGITUDE, MY_LATITUDE) { (events) in
-                self.reloadFsPager(events)
-                self.showPartyMarkers(events)
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.2, execute: {
+                    self.reloadFsPager(events)
+                    self.showPartyMarkers(events)
+
+                })
             }
+           
+            
         }
     }
     
