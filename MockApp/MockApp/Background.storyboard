@@ -24,7 +24,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="r" translatesAutoresizingMaskIntoConstraints="NO" id="pqk-zC-cSa">
-                                <rect key="frame" x="94" y="181" width="187.5" height="187.5"/>
+                                <rect key="frame" x="112.5" y="181" width="187.5" height="187.5"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="pqk-zC-cSa" secondAttribute="height" multiplier="1:1" id="6Fa-RV-aVc"/>
                                 </constraints>
@@ -39,7 +39,7 @@
                         <color key="backgroundColor" red="0.0" green="0.066666666666666666" blue="0.14117647058823529" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="pqk-zC-cSa" firstAttribute="centerY" secondItem="sqN-Ka-Kzd" secondAttribute="centerY" multiplier="0.8" id="3ED-Ad-rb6"/>
-                            <constraint firstItem="pqk-zC-cSa" firstAttribute="centerX" secondItem="sqN-Ka-Kzd" secondAttribute="centerX" id="NfW-c6-05C"/>
+                            <constraint firstItem="pqk-zC-cSa" firstAttribute="centerX" secondItem="sqN-Ka-Kzd" secondAttribute="centerX" multiplier="1.1" id="NfW-c6-05C"/>
                             <constraint firstItem="pqk-zC-cSa" firstAttribute="width" secondItem="PnJ-Vo-WOA" secondAttribute="width" multiplier="0.5" id="TnN-eI-DL5"/>
                             <constraint firstItem="teo-P8-hno" firstAttribute="centerX" secondItem="sqN-Ka-Kzd" secondAttribute="centerX" id="fhy-sQ-qKy"/>
                             <constraint firstItem="sqN-Ka-Kzd" firstAttribute="bottom" secondItem="teo-P8-hno" secondAttribute="bottom" constant="30" id="wot-k7-FIb"/>

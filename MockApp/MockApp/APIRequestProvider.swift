@@ -11,7 +11,7 @@ import Alamofire
 
 class APIRequestProvider: NSObject {
     // MARK: - variable
-    private var requestURL: String = "http://172.16.18.81/18175d1_mobile_100_fresher/public/api/v0/"
+    private var requestURL: String = "http://ee3eb891.ngrok.io/18175d1_mobile_100_fresher/public/api/v0/"
     
     private var _headers: HTTPHeaders = [:]
     var headers: HTTPHeaders {

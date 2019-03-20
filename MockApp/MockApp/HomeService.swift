@@ -16,6 +16,7 @@ class HomeService: APIServiceObject {
         let request =  APIRequestProvider.shareInstance.getNewsList(pageIndex)
         serviceAgent.startRequest(request) { (json, error) in
             if let error = error {
+                print("News: \(error.description)")
                 completion(Result.failure(error))
             } else {   
                 let data = json["response"]["news"].arrayValue

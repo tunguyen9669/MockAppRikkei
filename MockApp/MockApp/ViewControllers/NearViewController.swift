@@ -177,9 +177,9 @@ class NearViewController: UIViewController {
         self.arr = self.arr.sorted { (po1, po2) -> Bool in
             return po1.getGoingCount() >= po2.getGoingCount()
         }
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-            self.fsPagerView.reloadData()
-        }
+        
+        self.fsPagerView.reloadData()
+        
         
   
         
@@ -353,11 +353,8 @@ extension NearViewController: GMSMapViewDelegate {
     func mapView(_ mapView: GMSMapView, markerInfoWindow marker: GMSMarker) -> UIView? {
         if let infoView = UIView.loadFromNibNamed(nibNamed: "InforWindowView") as? InforWindowView {
             if let index = marker.userData as? Int {
-                DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
-                    self.fsPagerView.selectItem(at: index, animated: true)
-                }
+                self.fsPagerView.selectItem(at: index, animated: true)
                 
-
                 let photo = self.arr[index].getPhoto()
                 let name = self.arr[index].venue.getName()
                 let distance = self.arr[index].getDistance()
