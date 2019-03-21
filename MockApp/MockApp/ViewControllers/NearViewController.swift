@@ -18,6 +18,8 @@ class NearViewController: UIViewController {
     var MY_LATITUDE: Float = 37.891628
     var MY_LONGITUDE: Float = -122.123161
     var arr = [Event]()
+    var markers = [GMSMarker]()
+    var fsPagerIndex: Int?
     // set up fspager view
     @IBOutlet weak var fsPagerView: FSPagerView! {
         didSet {
@@ -134,11 +136,12 @@ class NearViewController: UIViewController {
 //                let markerViewNew = MarkerView(frame: CGRect(x: 0, y: 0, width: 265, height: 200), index: 1)
 //                let markerView = MarkerView(frame: CGRect(x: 0, y: 0, width: 265, height: 200), name: events[i].getName(), photo: events[i].getPhoto(), distance: events[i].getDistance())
                 marker.icon = R.image.red_anotation()
-                marker.title = "\(events[i].venue.getName()) \n \(events[i].getDistance()) km"
+                marker.title = "\(events[i].getName()) \n \(events[i].getDistance()) km"
                 marker.userData = i
                 marker.position = CLLocationCoordinate2DMake(CLLocationDegrees(lat), CLLocationDegrees(long))
                 marker.map = mapView
                 //                self.generatePOIItems(events[i].getName(), position: marker.position, icon: marker.icon)
+                self.markers.append(marker)
             }
             //            self.clusterManager.cluster()
         }
@@ -150,6 +153,11 @@ class NearViewController: UIViewController {
     func setupMap(_ longitude: Float, _ latitude: Float){
         let camera = GMSCameraPosition.camera(withLatitude: CLLocationDegrees(latitude), longitude: CLLocationDegrees(longitude), zoom: ZOOM)
         self.mapView.camera = camera
+//        if let index = fsPagerIndex {
+//            print("Index: \(index)")
+//            let marker = self.markers[index]
+//            self.mapView.selectedMarker = marker
+//        }
     }
     
     func getNearlyEvents(_ radius: Float, _ longitude: Float, _ latitude: Float,_ completion: @escaping ([Event]) -> Void) {
@@ -183,10 +191,6 @@ class NearViewController: UIViewController {
         }
         
         self.fsPagerView.reloadData()
-        
-        
-  
-        
     }
     
     deinit {
@@ -301,13 +305,17 @@ extension NearViewController: FSPagerViewDataSource, FSPagerViewDelegate {
     func pagerViewDidEndDecelerating(_ pagerView: FSPagerView) {
         // swipe fspagerview
         let index = pagerView.currentIndex
-        if let long = Float(self.arr[index].venue.getLong()),
-            let lat = Float(self.arr[index].venue.getLat()) {
-            self.MY_LATITUDE = lat
-            self.MY_LONGITUDE = long
-            setupMap(MY_LONGITUDE, MY_LATITUDE)
-            
-        }
+  
+//        if let long = Float(self.arr[index].venue.getLong()),
+//            let lat = Float(self.arr[index].venue.getLat()) {
+//            setupMap(long, lat)
+//            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                let marker = self.markers[index]
+                self.mapView.selectedMarker = marker
+//            }
+        
+//        }
+        
     }
     
 }
@@ -320,7 +328,7 @@ extension NearViewController: CLLocationManagerDelegate {
         }
         locationManager.startUpdatingLocation()
         mapView.isMyLocationEnabled = true
-        mapView.settings.myLocationButton = true
+//        mapView.settings.myLocationButton = true
     }
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
@@ -337,22 +345,15 @@ extension NearViewController: CLLocationManagerDelegate {
 // mapview
 extension NearViewController: GMSMapViewDelegate {
 //    func mapView(_ mapView: GMSMapView, didTap marker: GMSMarker) -> Bool {
-//        //        if let icon = marker.icon as? UIImage {
-//        //             marker.icon = self.imageWithImage(image: icon, scaledToSize: CGSize(width: 48.0, height: 48.0))
-//        //        }
 //
-//
-//
-////        if let data = marker.userData as? Int {
-//            self.fsPagerView.scrollToItem(at: data, animated: true)
-////            if let long = Float(self.arr[data].venue.getLong()),
-////                let lat = Float(self.arr[data].venue.getLat()) {
-////                print("\(long) \(lat)")
-////                self.MY_LATITUDE = lat
-////                self.MY_LONGITUDE = long
-////                setupMap(MY_LONGITUDE, MY_LATITUDE)
-////                }
-////        }
+//        mapView.selectedMarker = marker
+//        if let data = marker.userData as? Int {
+//            if let long = Float(self.arr[data].venue.getLong()),
+//                let lat = Float(self.arr[data].venue.getLat()) {
+//                print("\(long) \(lat)")
+//                setupMap(long, lat)
+//            }
+//        }
 //        return true
 //    }
     
@@ -361,15 +362,11 @@ extension NearViewController: GMSMapViewDelegate {
     func mapView(_ mapView: GMSMapView, markerInfoWindow marker: GMSMarker) -> UIView? {
         if let infoView = UIView.loadFromNibNamed(nibNamed: "InforWindowView") as? InforWindowView {
             if let index = marker.userData as? Int {
-                
                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
                     self.fsPagerView.scrollToItem(at: index, animated: true)
                 }
-                
-                
-                setupMap(MY_LONGITUDE, MY_LATITUDE)
                 let photo = self.arr[index].getPhoto()
-                let name = self.arr[index].venue.getName()
+                let name = self.arr[index].getName()
                 let distance = self.arr[index].getDistance()
                 infoView.customInit(photo, name, distance)
             }
@@ -378,28 +375,33 @@ extension NearViewController: GMSMapViewDelegate {
             return nil
         }
     }
-    
-    func mapView(_ mapView: GMSMapView, idleAt position: GMSCameraPosition) {
-        let latitude = mapView.camera.target.latitude
-        let longitude = mapView.camera.target.longitude
-        let coordinate0 = CLLocation(latitude: latitude, longitude: longitude)
-        let coordinate1 = CLLocation(latitude: CLLocationDegrees(MY_LATITUDE), longitude: CLLocationDegrees(MY_LONGITUDE))
-        
-        self.MY_LATITUDE = Float(latitude)
-        self.MY_LONGITUDE = Float(longitude)
-        
-        let distanceInMeters = coordinate0.distance(from: coordinate1)
-        print(distanceInMeters)
-        if distanceInMeters > 1000 {
-            self.alertWith("Đã cập nhật lại danh sách do bán kính vượt quá 1000m")
-            self.getNearlyEvents(1000.0, MY_LONGITUDE, MY_LATITUDE) { (events) in
-                print(events.count)
-                self.arr = events
-                self.fsPagerView.reloadData()
-                self.showPartyMarkers(events)
+    func mapView(_ mapView: GMSMapView, willMove gesture: Bool) {
+       
+        if gesture {
+            print("aaaa")
+            let latitude = mapView.camera.target.latitude
+            let longitude = mapView.camera.target.longitude
+            let coordinate0 = CLLocation(latitude: latitude, longitude: longitude)
+            let coordinate1 = CLLocation(latitude: CLLocationDegrees(MY_LATITUDE), longitude: CLLocationDegrees(MY_LONGITUDE))
+            
+            self.MY_LATITUDE = Float(latitude)
+            self.MY_LONGITUDE = Float(longitude)
+            
+            let distanceInMeters = coordinate0.distance(from: coordinate1)
+            print(distanceInMeters)
+            if distanceInMeters > 1000 {
+                self.alertWith("Đã cập nhật lại danh sách do bán kính vượt quá 1000m")
+                self.getNearlyEvents(1000.0, MY_LONGITUDE, MY_LATITUDE) { (events) in
+                    print(events.count)
+                    self.arr = events
+                    self.fsPagerView.reloadData()
+                    self.showPartyMarkers(events)
+                }
             }
+
         }
     }
+   
  
 }
 
