@@ -306,16 +306,16 @@ extension NearViewController: FSPagerViewDataSource, FSPagerViewDelegate {
         // swipe fspagerview
         let index = pagerView.currentIndex
   
-//        if let long = Float(self.arr[index].venue.getLong()),
-//            let lat = Float(self.arr[index].venue.getLat()) {
-//            setupMap(long, lat)
-//            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-                let marker = self.markers[index]
-                self.mapView.selectedMarker = marker
+        if let long = Float(self.arr[index].venue.getLong()),
+            let lat = Float(self.arr[index].venue.getLat()) {
+            setupMap(long, lat)
+//            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+//                let marker = self.markers[index]
+//                self.mapView.selectedMarker = marker
 //            }
-        
-//        }
-        
+    
+        }
+
     }
     
 }

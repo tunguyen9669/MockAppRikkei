@@ -73,13 +73,11 @@ class EventByCategoryViewController: UIViewController {
         checkDataDB()
         notificationAction()
 
+        self.tableView.delegate = self
+        self.noHeaderDatasource.arrEvent = self.events
+        self.tableView.dataSource = self.noHeaderDatasource
+        self.tableView.reloadData()
         
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
-            self.tableView.delegate = self
-            self.noHeaderDatasource.arrEvent = self.events
-            self.tableView.dataSource = self.noHeaderDatasource
-            self.tableView.reloadData()
-        }
         
         let left = UISwipeGestureRecognizer(target : self, action : #selector(self.goDateTab(_:)))
         left.direction = .left
