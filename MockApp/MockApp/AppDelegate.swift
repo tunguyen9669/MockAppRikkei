@@ -23,7 +23,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         if let rootVC = R.storyboard.background.backgroundViewController() {
             self.window?.rootViewController = rootVC
             self.window?.makeKeyAndVisible()
-            Timer.scheduledTimer(timeInterval: 3, target: self, selector: #selector(moveToHome), userInfo: nil, repeats: false)
+            
         }
         
     }
@@ -76,11 +76,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return tabbarController
     }
     
-    @objc func moveToHome(){
+    func moveToHome(){
         self.tabbar = self.createTabbarControler()
-        self.window = UIWindow(frame: UIScreen.main.bounds)
+//        self.window = UIWindow(frame: UIScreen.main.bounds)
         self.window?.rootViewController = self.tabbar
-        self.window?.makeKeyAndVisible()
     }
 
 
@@ -91,7 +90,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         GMSServices.provideAPIKey("AIzaSyCrJdKVdwaXIEB2rGAmsWO_ZQWLDZy9ap8")
         GMSPlacesClient.provideAPIKey("AIzaSyCrJdKVdwaXIEB2rGAmsWO_ZQWLDZy9ap8")
-        
+        window = UIWindow(frame: UIScreen.main.bounds)
         splashScreen()
         return true
     }

@@ -12,5 +12,10 @@ import UIKit
 class BackgroundViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
+        Timer.scheduledTimer(timeInterval: 3, target: self, selector: #selector(moveToHome), userInfo: nil, repeats: false)
+    }
+    
+    @objc func moveToHome() {
+        appDelegate.moveToHome()
     }
 }
