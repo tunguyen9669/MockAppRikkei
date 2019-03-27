@@ -29,7 +29,7 @@ extension UIViewController {
         let timeNow = "\(year)-\(month)-\(day) \(hour):\(min):\(second)"
         return timeNow.convertStringToMilisecond()
     }
-    
+    // HaND: Sử dụng enum thay cho Int
     func getTimeEndEvent(_ time: Int) -> Int {
         /*
          1: Today
@@ -83,7 +83,7 @@ extension UIViewController {
         }
         return 7
     }
-    
+    // HaND: Hàm này không liên quan gì đến UIViewController. Chuyển sang UIImage
     func imageWithImage(image:UIImage, scaledToSize newSize:CGSize) -> UIImage{
         UIGraphicsBeginImageContextWithOptions(newSize, false, 0.0)
         image.draw(in: CGRect(x: 0, y: 0, width: newSize.width, height: newSize.height))
@@ -92,7 +92,7 @@ extension UIViewController {
         return newImage
     }
     
-    
+    // HaND: Đưa vào Array extension
     func sortInArrray(_ arr: [Event]) -> [Event] {
         var events = arr
         events = events.sorted { (po1, po2) -> Bool in

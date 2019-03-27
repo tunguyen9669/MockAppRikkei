@@ -159,6 +159,7 @@ class SearchViewController: UIViewController {
         
     }
     
+    // HaND: Không dùng dấu _ ở đây. Khi gọi thì dùng cả tên tham số cho tường minh.
     func search(_ pageIndex: Int, _ keyword: String, _ completion: @escaping ([Event]) -> Void) {
         if Connectivity.isConnectedToInternet {
             UIApplication.shared.isNetworkActivityIndicatorVisible = true

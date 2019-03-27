@@ -52,6 +52,7 @@ class EventDetailViewController: UIViewController {
             UIApplication.shared.isNetworkActivityIndicatorVisible = true
             services.requestUpdateStatusEvent(status, id) { (message) in
                 self.alertWith(message)
+                // HaND: Nên trả về code ở đây chứ không nên dùng String để kiểm tra
                 if message == "Thao tác thành công" {
                     completion(true)
                 } else {

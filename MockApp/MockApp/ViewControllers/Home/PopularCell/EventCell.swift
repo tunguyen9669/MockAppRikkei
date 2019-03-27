@@ -21,7 +21,7 @@ class EventCell: UITableViewCell {
     @IBOutlet weak var attendImageView: UIImageView!
     var id: Int = 0
     var delegate: EventCellDelegate?
-    
+    // HaND: Vì sao không dùng didSelect của tableview mà phải tạo action?
     @IBAction func onClick(_ sender: Any) {
         print("Click")
         self.delegate?.onClick(self.id)
@@ -38,7 +38,8 @@ class EventCell: UITableViewCell {
 
         // Configure the view for the selected state
     }
-    
+    // HaND: Đổi tên hàm, đây không phải hàm init.
+    // Truyền tham số là Event vào, không cần truyền nhiều tham số thế này
     // update UI
     func customInit(_ photo: String,_ name: String,_ descHtml: String, _ startDate: String, _ endDate: String, _ goingCount: Int, _ permanent: String, _ myStatus: Int) {
         if photo != "" {

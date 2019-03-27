@@ -9,7 +9,15 @@
 import Foundation
 import UIKit
 import RealmSwift
-
+// HaND: Sắp xếp lại thứ tự các biến, hàm:
+// - IBOutlets
+// - var
+// - let
+// - ViewController life cycle
+// - Các hàm hỗ trợ khởi tạo view
+// - Các hàm dữ liệu
+// - Action
+// - Extension
 class EventByCategoryViewController: UIViewController {
     // MARK: - outlet, action and variable
     var category = Category()
@@ -268,6 +276,7 @@ class EventByCategoryViewController: UIViewController {
     
     func checkDataDB() {
         // chua nghi ra truy van getobject
+        // HaND: id là primary key thì lúc getObjects chỉ ra một giá trị thôi, không cần dùng mảng
         guard let arrCategory = realmManager.getObjects(CategoryRealmModel.self)?.filter("id == \(self.category.getId())").toArray(ofType: CategoryRealmModel.self) else {
             return
         }
@@ -290,6 +299,7 @@ class EventByCategoryViewController: UIViewController {
         
     }
     
+    // HaND: Hàm này gần giống như hàm trên, kiểm tra xem có dùng chung được không
     func getDataFromDB() {
         guard let arrCategory = realmManager.getObjects(CategoryRealmModel.self)?.filter("id == \(self.category.getId())").toArray(ofType: CategoryRealmModel.self) else {
             return
@@ -315,6 +325,7 @@ class EventByCategoryViewController: UIViewController {
     }
     
     func creatDB(populars: [Event]) {
+        // HaND: Viết thêm hàm khởi tạo với Category
         let categoryRealm = CategoryRealmModel()
         categoryRealm.id = self.category.getId()
         categoryRealm.name = self.category.getName()
@@ -330,12 +341,14 @@ class EventByCategoryViewController: UIViewController {
         
     }
     
+    // HaND: Không dùng dấu _ ở đây. Khi gọi thì dùng cả tên tham số cho tường minh.
     func getEventsByCategory(_ pageIndex: Int, _ id: Int, _ conpletion: @escaping([Event]) -> Void) {
         if Connectivity.isConnectedToInternet {
             UIApplication.shared.isNetworkActivityIndicatorVisible = true
             services.requestGetListEventsByCT(pageIndex, id) { (result) in
                 switch result {
                 case .success(let result):
+                    // HaND: Những chỗ kiểu như thế này thì dùng map hoặc compactMap cho ngắn gọn
                     var arr = [Event]()
                     for item in result {
                         arr.append(Event(item))
@@ -354,7 +367,7 @@ class EventByCategoryViewController: UIViewController {
 }
 
 // extension
-
+// HaND: Xóa các đoạn comment đi
 extension EventByCategoryViewController: UITableViewDelegate {
 //    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 //        if indexStyle == 1 {

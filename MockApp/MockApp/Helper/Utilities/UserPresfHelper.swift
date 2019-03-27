@@ -35,7 +35,7 @@ class UserPrefsHelper: NSObject {
     private override init() {}
     
     // MARK: - update DB
-    
+    // HaND: Sử dụng biến với get set
     func setIsEventUpdated(_ updated: Bool) {
         UserDefaults.standard.set(updated, forKey: PrefsKey.isEventUpdated)
     }

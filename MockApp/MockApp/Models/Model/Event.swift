@@ -9,6 +9,7 @@
 import Foundation
 
 class Event {
+    // HaND: Bỏ public đi
     public var id: Int?
     public var status: Int?
     public var photo: String?
@@ -25,11 +26,13 @@ class Event {
     public var oneDayEvent: String?
     public var extra: String?
     public var distance: Float?
+    // HaND: Sử dụng enum thay cho Int
     public var myStatus: Int?
     public var goingCount: Int?
     public var wentCount: Int?
     public var venue: Venue
     
+    // HaND: Bỏ hàm get đi, dùng luôn hàm get mặc định
     public func getId() -> Int {
         return id ?? 0
     }

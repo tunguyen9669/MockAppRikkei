@@ -7,7 +7,7 @@
 //
 
 import UIKit
-
+// HaND: Xóa các dòng trắng thừa đi
 class DateHeader: UITableViewHeaderFooterView {
     @IBOutlet weak var titleLabel: UILabel!
     

@@ -24,7 +24,7 @@ class LoginViewController: UIViewController {
                 return
         }
         print("\(email) \(pass)")
-        
+        // HaND: Không cần kiểm tra == false thế này
         if email.isValidEmail() == false {
             self.alertWith("Định dạng email không đúng")
         } else if pass.count < 6 || pass.count > 16 {
